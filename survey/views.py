@@ -7,6 +7,12 @@ from survey.models import Item, User
 import uuid
 
 def survey(request):
+    if ( request.COOKIES.has_key('usercode') ):
+        u = get_object_or_404(User, code=request.COOKIES['usercode'])
+
+        if u:
+            return render_to_response('already_completed.html', {}, context_instance=RequestContext(request))
+
     return render_to_response('survey.html', {}, context_instance=RequestContext(request))
 
 def record(request):
