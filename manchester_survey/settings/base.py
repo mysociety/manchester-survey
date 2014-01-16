@@ -125,6 +125,7 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
     'south',
     'pagination',
+    'survey',
 )
 
 # Log WARN and above to stderr; ERROR and above by email when DEBUG is False.
