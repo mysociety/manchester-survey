@@ -64,7 +64,7 @@
     </style>
 </head>
 <body>
-<form action="<? SURVEY_URL ?>" method="POST">
+<form action="/record" method="POST">
     <div class="screen">
         <p>
             This survey is conducted by researchers at the University of Manchester with mySociety as part of a project examining how and why citizens use websites like <? SITE_NAME ?>. The main goal is to improve the users’ experience and to help researchers understand whether <? SITE_NAME ?> offers a new way for people to become involved in their communities and in politics. The survey shouldn’t take more than 10-15 minutes to be completed. 
@@ -927,7 +927,8 @@ You said you have been involved in online communities/groups in other ways than 
 
         <p>Please, tick the box if you DO NOT wish to be contacted by our research team again. Check box</p>
 
-    <input type="submit">
+        {% csrf_token %}
+        <input type="submit">
     </div>
 </form>
 </body>
