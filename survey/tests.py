@@ -77,6 +77,11 @@ class StartPageTest(TestCase):
         response = Item.objects.filter(user_id=u.id).filter(key='1').filter(value='a')
         self.assertTrue(len(responses) == 1)
 
+    def test_multi_value_answers_recorded(self):
+        self.post_survey({'1':['b','d']})
+        stored = self.get_stored_item('1')
+        self.assertEqual('b,d', stored.value)
+
     def test_source_site_is_recorded(self):
         self.client.get(reverse('survey:survey'), {'site': 'twfy'})
 
