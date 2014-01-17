@@ -14,9 +14,13 @@ def has_voted(request):
         return True
     return False
 
+def get_user_from_cookie(request):
+    u = User.objects.get(code=request.COOKIES['usercode'])
+    return u
+
 def survey(request):
     if ( has_voted(request) ):
-        u = get_object_or_404(User, code=request.COOKIES['usercode'])
+        u = get_user_from_cookie(request)
 
         if u:
             return render_to_response('already_completed.html', {}, context_instance=RequestContext(request))
@@ -28,7 +32,7 @@ def survey(request):
 
 def record(request):
     if ( has_voted(request) ):
-        u = get_object_or_404(User, code=request.COOKIES['usercode'])
+        u = get_user_from_cookie(request)
     else:
         u = User(code=uuid.uuid4())
         u.save()
