@@ -1,13 +1,21 @@
 # Create your views here.
 from django.shortcuts import get_object_or_404,render_to_response
 from django.template import RequestContext
+from django.conf import settings
 
 from survey.models import Item, User
 
 import uuid
 
-def survey(request):
+def has_voted(request):
     if ( request.COOKIES.has_key('usercode') ):
+        if ( settings.DEBUG and request.GET and request.GET['ignorecookie'] ):
+            return False
+        return True
+    return False
+
+def survey(request):
+    if ( has_voted(request) ):
         u = get_object_or_404(User, code=request.COOKIES['usercode'])
 
         if u:
@@ -16,7 +24,7 @@ def survey(request):
     return render_to_response('survey.html', {}, context_instance=RequestContext(request))
 
 def record(request):
-    if ( request.COOKIES.has_key('usercode') ):
+    if ( has_voted(request) ):
         u = get_object_or_404(User, code=request.COOKIES['usercode'])
     else:
         u = User(code=uuid.uuid4())

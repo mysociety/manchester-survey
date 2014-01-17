@@ -25,6 +25,28 @@ class StartPageTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "already completed")
 
+    def test_can_override_completion_check(self):
+        response = self.client.get(reverse('survey:survey'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "University of Manchester")
+
+        self.client.post(reverse('survey:record'))
+        self.assertIsNotNone(self.client.cookies['usercode'])
+
+        response = self.client.get(reverse('survey:survey'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "already completed")
+
+        response = self.client.get(reverse('survey:survey'), {'ignorecookie': 1})
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "already completed")
+
+        # override should only work on staging sites
+        with self.settings(DEBUG='1'):
+            response = self.client.get(reverse('survey:survey'), {'ignorecookie': 1})
+            self.assertEqual(response.status_code, 200)
+            self.assertContains(response, "University of Manchester")
+
     def test_completing_survey_creates_user(self):
         self.post_survey({})
         self.assertIsNotNone(self.client.cookies['usercode'].value)
