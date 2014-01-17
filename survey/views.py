@@ -54,6 +54,10 @@ def record(request):
         r = Item(user_id=u.id, key=v, value=val, site=site, batch=1)
         r.save()
 
+    """
+    We don't use django's session handling as we want to save the cookie for a long
+    time and we also use the built in session things for actual session data
+    """
     one_year = 60 * 60 * 24 * 365
 
     response = render_to_response('thanks.html', {}, context_instance=RequestContext(request))
