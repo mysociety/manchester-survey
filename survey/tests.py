@@ -4,6 +4,10 @@ from django.test import TestCase
 from survey.models import User, Item
 
 class StartPageTest(TestCase):
+    def post_survey(self, values):
+        self.client.get(reverse('survey:survey'))
+        self.client.post(reverse('survey:record'), values)
+
     def test_front_page_displays(self):
         response = self.client.get(reverse('survey:survey'))
         self.assertEqual(response.status_code, 200)
@@ -22,11 +26,7 @@ class StartPageTest(TestCase):
         self.assertContains(response, "already completed")
 
     def test_completing_survey_creates_user(self):
-        response = self.client.get(reverse('survey:survey'))
-        self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "University of Manchester")
-
-        self.client.post(reverse('survey:record'))
+        self.post_survey({})
         self.assertIsNotNone(self.client.cookies['usercode'].value)
 
         usercode = self.client.cookies['usercode']
@@ -34,12 +34,7 @@ class StartPageTest(TestCase):
         self.assertIsNotNone(u.id)
 
     def test_survey_is_recorded(self):
-        response = self.client.get(reverse('survey:survey'))
-        self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "University of Manchester")
-
-        self.client.post(reverse('survey:record'), {'1': 'a'})
-        self.assertIsNotNone(self.client.cookies['usercode'])
+        self.post_survey({'1':'a'})
 
         usercode = self.client.cookies['usercode']
         u = User.objects.get(code=usercode.value)
