@@ -1,7 +1,7 @@
 from django.core.urlresolvers import reverse
 from django.test import TestCase
 
-from survey.models import User
+from survey.models import User, Item
 
 class StartPageTest(TestCase):
     def test_front_page_displays(self):
@@ -32,3 +32,20 @@ class StartPageTest(TestCase):
         usercode = self.client.cookies['usercode']
         u = User.objects.get(code=usercode.value)
         self.assertIsNotNone(u.id)
+
+    def test_survey_is_recorded(self):
+        response = self.client.get(reverse('survey:survey'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "University of Manchester")
+
+        self.client.post(reverse('survey:record'), {'1': 'a'})
+        self.assertIsNotNone(self.client.cookies['usercode'])
+
+        usercode = self.client.cookies['usercode']
+        u = User.objects.get(code=usercode.value)
+
+        responses = Item.objects.filter(user_id=u.id)
+        self.assertTrue(len(responses) == 1)
+
+        response = Item.objects.filter(user_id=u.id).filter(key='1').filter(value='a')
+        self.assertTrue(len(responses) == 1)
