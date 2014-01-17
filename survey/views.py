@@ -21,6 +21,9 @@ def survey(request):
         if u:
             return render_to_response('already_completed.html', {}, context_instance=RequestContext(request))
 
+    if ( request.GET.has_key('site') ):
+        request.session['site'] = request.GET['site']
+
     return render_to_response('survey.html', {}, context_instance=RequestContext(request))
 
 def record(request):
@@ -29,6 +32,10 @@ def record(request):
     else:
         u = User(code=uuid.uuid4())
         u.save()
+
+    site = 'unknown'
+    if ( request.session.has_key('site') ):
+        site = request.session['site']
 
     for v in request.POST:
         if v == 'csrfmiddlewaretoken':
@@ -40,7 +47,7 @@ def record(request):
         else:
             val = request.POST[v]
 
-        r = Item(user_id=u.id, key=v, value=val, site='test', batch=1)
+        r = Item(user_id=u.id, key=v, value=val, site=site, batch=1)
         r.save()
 
     one_year = 60 * 60 * 24 * 365

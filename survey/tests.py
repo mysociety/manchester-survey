@@ -8,6 +8,16 @@ class StartPageTest(TestCase):
         self.client.get(reverse('survey:survey'))
         self.client.post(reverse('survey:record'), values)
 
+    def get_stored_item(self, key):
+        usercode = self.client.cookies['usercode']
+        u = User.objects.get(code=usercode.value)
+
+        responses = Item.objects.filter(user_id=u.id)
+        self.assertTrue(len(responses) == 1)
+
+        response = Item.objects.get(user_id=u.id, key=key)
+        return response
+
     def test_front_page_displays(self):
         response = self.client.get(reverse('survey:survey'))
         self.assertEqual(response.status_code, 200)
@@ -66,3 +76,11 @@ class StartPageTest(TestCase):
 
         response = Item.objects.filter(user_id=u.id).filter(key='1').filter(value='a')
         self.assertTrue(len(responses) == 1)
+
+    def test_source_site_is_recorded(self):
+        self.client.get(reverse('survey:survey'), {'site': 'twfy'})
+
+        self.client.post(reverse('survey:record'), {'1': 'a'})
+
+        stored = self.get_stored_item('1')
+        self.assertEqual('twfy', stored.site)
