@@ -899,12 +899,17 @@ You said you have been involved in online communities/groups in other ways than 
         <p>Thank you very much for completing this survey! Your answers are very valuable to our research.</p> 
         <p>As well as your use of {{ site_name }}, we would like to know more about your experiences of using the web in your daily life. To do this, we might contact you again to ask you to complete another survey and/or to get involved in other online activities (e.g. take part in an online discussion forum, fill an online diary) about some of the topics covered in this survey.</p> 
 
-        <p>Please, tick the box if you DO NOT wish to be contacted by our research team again. Check box</p>
+        <div class="radio">
+            <input type="checkbox" id="donotcontact" name="donocontact">
+            <label for="donotcontact">Please, tick the box if you DO NOT wish to be contacted by our research team again.</label>
+        </div>
 
         <input type="hidden" name="site" value="{{ site_code }}">
         <input type="hidden" name="source" value="{{ source }}">
         {% csrf_token %}
+        <p>
         <input type="submit">
+        </p>
     </div>
 </form>
 {% endblock %}
