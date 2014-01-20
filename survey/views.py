@@ -21,6 +21,10 @@ def get_user_from_cookie(request):
 def management(request):
     return render_to_response('management.html', {}, context_instance=RequestContext(request))
 
+def contact(request):
+    return render_to_response('contact.html', {}, context_instance=RequestContext(request))
+
+
 def survey(request):
     if ( has_voted(request) ):
         u = get_user_from_cookie(request)
