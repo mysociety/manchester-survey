@@ -15,7 +15,10 @@ class StartPageTest(TestCase):
         responses = Item.objects.filter(user_id=u.id)
         self.assertTrue(len(responses) == 1)
 
-        response = Item.objects.get(user_id=u.id, key=key)
+        try:
+            response = Item.objects.get(user_id=u.id, key=key)
+        except Item.DoesNotExist:
+            return None
         return response
 
     def test_front_page_displays(self):
@@ -82,5 +85,23 @@ class StartPageTest(TestCase):
         stored = self.get_stored_item('1')
         self.assertEqual('b,d', stored.value)
 
+    def test_email_is_recorded_in_user(self):
+        self.post_survey({'1':'a', 'email': 'test@example.org'})
 
+        stored = self.get_stored_item('email')
+        self.assertIsNone(stored)
+
+        usercode = self.client.cookies['usercode']
+        u = User.objects.get(code=usercode.value)
+        self.assertEqual('test@example.org', u.email)
+
+    def test_email_is_blank_if_not_provided(self):
+        self.post_survey({'1':'a'})
+
+        stored = self.get_stored_item('email')
+        self.assertIsNone(stored)
+
+        usercode = self.client.cookies['usercode']
+        u = User.objects.get(code=usercode.value)
+        self.assertIsNone(u.email)
 

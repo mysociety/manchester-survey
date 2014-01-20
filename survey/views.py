@@ -51,8 +51,9 @@ def record(request):
         u = User(code=uuid.uuid4())
         u.save()
 
+
     for v in request.POST:
-        if v == 'csrfmiddlewaretoken':
+        if v == 'csrfmiddlewaretoken' or v == 'email':
             continue
         #TODO: this is almost certainly not the best way but enough for proof of concept
         val = request.POST.getlist(v)
@@ -63,6 +64,10 @@ def record(request):
 
         r = Item(user_id=u.id, key=v, value=val, batch=1)
         r.save()
+
+    if request.POST.has_key('email'):
+        u.email = request.POST['email']
+        u.save()
 
     """
     We don't use django's session handling as we want to save the cookie for a long
