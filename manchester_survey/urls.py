@@ -15,6 +15,7 @@ urlpatterns = patterns('',
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^', include('survey.urls', app_name='survey', namespace='survey')),
+    url(r'^', include('diary.urls', app_name='diary', namespace='diary')),
 )
 
 urlpatterns += staticfiles_urlpatterns()
