@@ -1,4 +1,5 @@
 from django.db import models
+from survey.models import User
 
 # Create your models here.
 class Week(models.Model):
@@ -8,12 +9,6 @@ class Question(models.Model):
     for_week = models.ForeignKey(Week)
     question = models.TextField(null=False)
     optional = models.BooleanField(default=True)
-
-class User(models.Model):
-    usercode = models.TextField(unique=True, null=False, db_index=True)
-    email = models.TextField(unique=True, null=False)
-    startdate = models.DateTimeField()
-    withdrawn = models.BooleanField(default=False)
 
 class Entries(models.Model):
     user = models.ForeignKey(User)
