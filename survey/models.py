@@ -18,6 +18,5 @@ class Item(models.Model):
     user = models.ForeignKey(User)
     whenstored = models.DateTimeField(auto_now_add=True)
     batch = models.TextField(db_index=True, null=False)
-    site = models.TextField(db_index=True, null=False)
     key = models.TextField(db_index=True, null=False)
     value = models.TextField(db_index=True, null=False)

@@ -82,10 +82,5 @@ class StartPageTest(TestCase):
         stored = self.get_stored_item('1')
         self.assertEqual('b,d', stored.value)
 
-    def test_source_site_is_recorded(self):
-        self.client.get(reverse('survey:survey'), {'site': 'twfy'})
 
-        self.client.post(reverse('survey:record'), {'1': 'a'})
 
-        stored = self.get_stored_item('1')
-        self.assertEqual('twfy', stored.site)

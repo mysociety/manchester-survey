@@ -61,7 +61,7 @@ def record(request):
         else:
             val = request.POST[v]
 
-        r = Item(user_id=u.id, key=v, value=val, site=site, batch=1)
+        r = Item(user_id=u.id, key=v, value=val, batch=1)
         r.save()
 
     """
