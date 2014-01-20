@@ -10,7 +10,7 @@
         </p>
 
         <p>
-            Individual responses will be kept completely confidential. Only the aggregate data will be reported; your individual responses will never be published or identified. Further details of how we will manage the data we collect from the project and use it are accessible by clicking here <a href="#">CLICK THROUGH TO T&C for Management of Project Data (see SEPARATE DOCUMENT)</a>.
+            Your individual responses will be kept completely confidential. Only the aggregate data will be reported; your individual responses will never be published or identified. Further details of how we will manage the data we collect from the project and use it are accessible by clicking here <a href="#">CLICK THROUGH TO T&C for Management of Project Data (see SEPARATE DOCUMENT)</a>.
         </p>
 
         <p>
@@ -282,7 +282,7 @@ Allow for multiple choices (except option F - don’t know/can’t remember – 
 
     <div class="screen">
         <div class="question">
-9.  There are different ways of trying to improve things in this country or help prevent things from going wrong. Prior to today, have you done or have you considered doing any of the following?
+9.  There are different ways of trying to improve things in this country or help prevent things from going wrong. Have you ever done or have you considered doing any of the following?
         </div>
         <div class="answers">
             <table>
@@ -325,33 +325,49 @@ Allow for multiple choices (except option F - don’t know/can’t remember – 
 
     <div class="screen">
         <div class="question">
-10. Before today, have you ever contacted a public official or politician by email, by post or in person to express your opinion or ask for assistance about … Multiple choice permitted for options A and B, but option C is exclusive. So people can tick both option A and B, but if they tick option C, no other option can be ticked. Allow to continue to next screen even if NO box is ticked
+10. Have you ever contacted a public official or politician using a mySociety website to express your opinion or ask for assistance...
         </div>
+
         <div class="answers">
-            <div class="radio">
-                <input type="radio" id="a10a" name="10" value="a"><label for="a10a">A social issue or problem affecting your local community?</label>
-            </div>
-            <div class="radio">
-                <input type="radio" id="a10b" name="10" value="b"><label for="a10b">Other social issues or problems affecting the country as a whole?</label>
-            </div>
-            <div class="radio">
-                <input type="radio" id="a10c" name="10" value="c"><label for="a10c">Don’t know/Can’t remember</label>
-            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Yes, more than once</th>
+                        <th>Yes, once</th>
+                        <th>No, but I have considered it</th>
+                        <th>No, I have not done/considered it</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td>About an issue or problem affection your local community</td>
+                    <td class="centered"><input type="radio" name="10community" value="a"></td>
+                    <td class="centered"><input type="radio" name="10community" value="b"></td>
+                    <td class="centered"><input type="radio" name="10community" value="c"></td>
+                    <td class="centered"><input type="radio" name="10community" value="d"></td>
+                </tr>
+                <tr>
+                    <td>About other issues of problems affecting the country as a whole</td>
+                    <td class="centered"><input type="radio" name="10country" value="a"></td>
+                    <td class="centered"><input type="radio" name="10country" value="b"></td>
+                    <td class="centered"><input type="radio" name="10country" value="c"></td>
+                    <td class="centered"><input type="radio" name="10country" value="d"></td>
+                </tr>
+            </table>
         </div>
+
     </div>
-
-
     <div class="screen">
         <div class="question">
-            11. Not including the times you have contacted public officials and politicians, have you ever used social networking sites (e.g. Facebook, Twitter), blogs or the email to share your own comments or promote content produced by others about … Multiple choice permitted for options A and B, but option C is exclusive. So people can tick both option A and B, but if they tick option C, no other option can be ticked. Allow to continue to next screen even if NO box is ticked
+11. And more generally, outside of your use of any of the mySociety websites, have you ever contacted a public official or politician by email, by post or in person to express your opinion or ask for assistance about...
         </div>
 
         <div class="answers">
             <div class="radio">
-                <input type="radio" id="a11a" name="11" value="a"><label for="a11a">A social issue or problem affecting your local community?</label>
+                <input type="radio" id="a11a" name="11" value="a"><label for="a11a">An issue or problem affecting your local community?</label>
             </div>
             <div class="radio">
-                <input type="radio" id="a11b" name="11" value="b"><label for="a11b">Other social issues or problems affecting the country as a whole?</label>
+                <input type="radio" id="a11b" name="11" value="b"><label for="a11b">Other issues or problems affecting the country as a whole?</label>
             </div>
             <div class="radio">
                 <input type="radio" id="a11c" name="11" value="c"><label for="a11c">Don’t know/Can’t remember</label>
@@ -359,34 +375,53 @@ Allow for multiple choices (except option F - don’t know/can’t remember – 
         </div>
     </div>
 
+
     <div class="screen">
         <div class="question">
-            12. Some people don't vote nowadays for one reason or another. Did you vote in the last British general election in May 2010?
+            12. Not including the times you have contacted public officials and politicians, have you ever used social networking sites (e.g. Facebook, Twitter), blogs or the email to share your own comments or promote content produced by others about … Multiple choice permitted for options A and B, but option C is exclusive. So people can tick both option A and B, but if they tick option C, no other option can be ticked. Allow to continue to next screen even if NO box is ticked
         </div>
+
         <div class="answers">
             <div class="radio">
-                <input type="radio" id="a12a" name="12" value="a"><label for="a12a">Yes</label>
+                <input type="radio" id="a12a" name="12" value="a"><label for="a12a">A social issue or problem affecting your local community?</label>
             </div>
             <div class="radio">
-                <input type="radio" id="a12b" name="12" value="b"><label for="a12b">No</label>
+                <input type="radio" id="a12b" name="12" value="b"><label for="a12b">Other social issues or problems affecting the country as a whole?</label>
             </div>
             <div class="radio">
-                <input type="radio" id="a12c" name="12" value="c"><label for="a12c">I wasn’t eligible to vote</label>
-            </div>
-            <div class="radio">
-                <input type="radio" id="a12d" name="12" value="d"><label for="a12d">Don't know/Can’t remember</label>
+                <input type="radio" id="a12c" name="12" value="c"><label for="a12c">Don’t know/Can’t remember</label>
             </div>
         </div>
     </div>
 
     <div class="screen">
         <div class="question">
-            13. In the last twelve months have you been involved with any of the following ONLINE community or group (other than mySociety)? For each of them, can you tell us how you participated? Please tick as many as apply.
+            13. Some people don't vote nowadays for one reason or another. Did you vote in the last British general election in May 2010?
+        </div>
+        <div class="answers">
+            <div class="radio">
+                <input type="radio" id="a13a" name="13" value="a"><label for="a13a">Yes</label>
+            </div>
+            <div class="radio">
+                <input type="radio" id="a13b" name="13" value="b"><label for="a13b">No</label>
+            </div>
+            <div class="radio">
+                <input type="radio" id="a13c" name="13" value="c"><label for="a13c">I wasn’t eligible to vote</label>
+            </div>
+            <div class="radio">
+                <input type="radio" id="a13d" name="13" value="d"><label for="a13d">Don't know/Can’t remember</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="screen">
+        <div class="question">
+            14. In the last twelve months have you been involved with any of the following ONLINE community or group (other than mySociety)? For each of them, can you tell us how you participated? Please tick as many as apply.
         </div>
         <div class="answers">
 
 Multiple choices permitted for each row and column. Allow to continue to next screen even if NO box is ticked. 
-ONLY IF respondents tick option F in at least one row, go to question 13.2 below**. If option F is NOT ticked in any row, go to the next question (question 14).
+ONLY IF respondents tick option F in at least one row, go to question 14.2 below**. If option F is NOT ticked in any row, go to the next question (question 15).
 
             <table>
                 <thead>
@@ -402,21 +437,21 @@ ONLY IF respondents tick option F in at least one row, go to question 13.2 below
                 </thead>
                 <tr>
                     <td>Online political organisation or activist group (e.g. 38 Degrees, MoveOn.org, political group on Facebook).</td>
-                    <td class="centered"><input type="checkbox" name="13political" value="a"></td>
-                    <td class="centered"><input type="checkbox" name="13political" value="b"></td>
-                    <td class="centered"><input type="checkbox" name="13political" value="c"></td>
-                    <td class="centered"><input type="checkbox" name="13political" value="d"></td>
-                    <td class="centered"><input type="checkbox" name="13political" value="e"></td>
-                    <td class="centered"><input type="checkbox" name="13political" value="f"></td>
+                    <td class="centered"><input type="checkbox" name="14political" value="a"></td>
+                    <td class="centered"><input type="checkbox" name="14political" value="b"></td>
+                    <td class="centered"><input type="checkbox" name="14political" value="c"></td>
+                    <td class="centered"><input type="checkbox" name="14political" value="d"></td>
+                    <td class="centered"><input type="checkbox" name="14political" value="e"></td>
+                    <td class="centered"><input type="checkbox" name="14political" value="f"></td>
                 </tr>
                 <tr>
                     <td>Online community or group related to health, your hobbies, social or personal interests (e.g. a parenting site like Mumsnet.org, Cancerchat.org or an online craft/DIY/sporting group,)</td>
-                    <td class="centered"><input type="checkbox" name="13community" value="a"></td>
-                    <td class="centered"><input type="checkbox" name="13community" value="b"></td>
-                    <td class="centered"><input type="checkbox" name="13community" value="c"></td>
-                    <td class="centered"><input type="checkbox" name="13community" value="d"></td>
-                    <td class="centered"><input type="checkbox" name="13community" value="e"></td>
-                    <td class="centered"><input type="checkbox" name="13community" value="f"></td>
+                    <td class="centered"><input type="checkbox" name="14community" value="a"></td>
+                    <td class="centered"><input type="checkbox" name="14community" value="b"></td>
+                    <td class="centered"><input type="checkbox" name="14community" value="c"></td>
+                    <td class="centered"><input type="checkbox" name="14community" value="d"></td>
+                    <td class="centered"><input type="checkbox" name="14community" value="e"></td>
+                    <td class="centered"><input type="checkbox" name="14community" value="f"></td>
                 </tr>
             </table>
         </div>
@@ -425,7 +460,7 @@ ONLY IF respondents tick option F in at least one row, go to question 13.2 below
     <div class="screen">
         <div class="question">
 
-**QUESTION 13.2 (only if option F ticked in at least one row)
+**QUESTION 14.2 (only if option F ticked in at least one row)
 You said you have been involved in online communities/groups in other ways than those listed in the previous question. Can you tell us how? [space for answers]
 
         </div>
@@ -433,7 +468,7 @@ You said you have been involved in online communities/groups in other ways than 
 
     <div class="screen">
         <div class="question">
-            14. The groups we just asked about in the last question operate almost entirely or fully on the internet. Beyond these online-based groups we are interested to know if you have been involved with any other more traditionally run types of community or political organisations over the past twelve months. For each of them, can you say how you participated? Please tick as many as apply.
+            15. The groups we just asked about in the last question operate almost entirely or fully on the internet. Beyond these online-based groups we are interested to know if you have been involved with any other more traditionally run types of community or political organisations over the past twelve months. For each of them, can you say how you participated? Please tick as many as apply.
         </div>
 
         <div class="answers">
@@ -449,59 +484,59 @@ You said you have been involved in online communities/groups in other ways than 
                 </thead>
                 <tr>
                     <td>Political party</td>
-                    <td class="centered"><input type="checkbox" name="14party" value="a"></td>
-                    <td class="centered"><input type="checkbox" name="14party" value="b"></td>
-                    <td class="centered"><input type="checkbox" name="14party" value="c"></td>
-                    <td class="centered"><input type="checkbox" name="14party" value="d"></td>
+                    <td class="centered"><input type="checkbox" name="15party" value="a"></td>
+                    <td class="centered"><input type="checkbox" name="15party" value="b"></td>
+                    <td class="centered"><input type="checkbox" name="15party" value="c"></td>
+                    <td class="centered"><input type="checkbox" name="15party" value="d"></td>
                 </tr>
                 <tr>
                     <td>Trade union</td>
-                    <td class="centered"><input type="checkbox" name="14union" value="a"></td>
-                    <td class="centered"><input type="checkbox" name="14union" value="b"></td>
-                    <td class="centered"><input type="checkbox" name="14union" value="c"></td>
-                    <td class="centered"><input type="checkbox" name="14union" value="d"></td>
+                    <td class="centered"><input type="checkbox" name="15union" value="a"></td>
+                    <td class="centered"><input type="checkbox" name="15union" value="b"></td>
+                    <td class="centered"><input type="checkbox" name="15union" value="c"></td>
+                    <td class="centered"><input type="checkbox" name="15union" value="d"></td>
                 </tr>
                 <tr>
                     <td>Local charities and community welfare organisations</td>
-                    <td class="centered"><input type="checkbox" name="14local" value="a"></td>
-                    <td class="centered"><input type="checkbox" name="14local" value="b"></td>
-                    <td class="centered"><input type="checkbox" name="14local" value="c"></td>
-                    <td class="centered"><input type="checkbox" name="14local" value="d"></td>
+                    <td class="centered"><input type="checkbox" name="15local" value="a"></td>
+                    <td class="centered"><input type="checkbox" name="15local" value="b"></td>
+                    <td class="centered"><input type="checkbox" name="15local" value="c"></td>
+                    <td class="centered"><input type="checkbox" name="15local" value="d"></td>
                 </tr>
                 <tr>
                     <td>NGOs and other environmental or humanitarian aid organisations</td>
-                    <td class="centered"><input type="checkbox" name="14ngo" value="a"></td>
-                    <td class="centered"><input type="checkbox" name="14ngo" value="b"></td>
-                    <td class="centered"><input type="checkbox" name="14ngo" value="c"></td>
-                    <td class="centered"><input type="checkbox" name="14ngo" value="d"></td>
+                    <td class="centered"><input type="checkbox" name="15ngo" value="a"></td>
+                    <td class="centered"><input type="checkbox" name="15ngo" value="b"></td>
+                    <td class="centered"><input type="checkbox" name="15ngo" value="c"></td>
+                    <td class="centered"><input type="checkbox" name="15ngo" value="d"></td>
                 </tr>
                 <tr>
                     <td>Religious groups or church organisations</td>
-                    <td class="centered"><input type="checkbox" name="14religious" value="a"></td>
-                    <td class="centered"><input type="checkbox" name="14religious" value="b"></td>
-                    <td class="centered"><input type="checkbox" name="14religious" value="c"></td>
-                    <td class="centered"><input type="checkbox" name="14religious" value="d"></td>
+                    <td class="centered"><input type="checkbox" name="15religious" value="a"></td>
+                    <td class="centered"><input type="checkbox" name="15religious" value="b"></td>
+                    <td class="centered"><input type="checkbox" name="15religious" value="c"></td>
+                    <td class="centered"><input type="checkbox" name="15religious" value="d"></td>
                 </tr>
                 <tr>
                     <td>Hobby/Recreational/Art/Sports clubs or societies (e.g. gym club, social club)</td>
-                    <td class="centered"><input type="checkbox" name="14hobby" value="a"></td>
-                    <td class="centered"><input type="checkbox" name="14hobby" value="b"></td>
-                    <td class="centered"><input type="checkbox" name="14hobby" value="c"></td>
-                    <td class="centered"><input type="checkbox" name="14hobby" value="d"></td>
+                    <td class="centered"><input type="checkbox" name="15hobby" value="a"></td>
+                    <td class="centered"><input type="checkbox" name="15hobby" value="b"></td>
+                    <td class="centered"><input type="checkbox" name="15hobby" value="c"></td>
+                    <td class="centered"><input type="checkbox" name="15hobby" value="d"></td>
                 </tr>
                 <tr>
                     <td>Health/weight control/ disability support groups or self-help programmes (e.g. Weightwatchers)</td>
-                    <td class="centered"><input type="checkbox" name="14health" value="a"></td>
-                    <td class="centered"><input type="checkbox" name="14health" value="b"></td>
-                    <td class="centered"><input type="checkbox" name="14health" value="c"></td>
-                    <td class="centered"><input type="checkbox" name="14health" value="d"></td>
+                    <td class="centered"><input type="checkbox" name="15health" value="a"></td>
+                    <td class="centered"><input type="checkbox" name="15health" value="b"></td>
+                    <td class="centered"><input type="checkbox" name="15health" value="c"></td>
+                    <td class="centered"><input type="checkbox" name="15health" value="d"></td>
                 </tr>
                 <tr>
                     <td>Other community or civic groups</td>
-                    <td class="centered"><input type="checkbox" name="14other" value="a"></td>
-                    <td class="centered"><input type="checkbox" name="14other" value="b"></td>
-                    <td class="centered"><input type="checkbox" name="14other" value="c"></td>
-                    <td class="centered"><input type="checkbox" name="14other" value="d"></td>
+                    <td class="centered"><input type="checkbox" name="15other" value="a"></td>
+                    <td class="centered"><input type="checkbox" name="15other" value="b"></td>
+                    <td class="centered"><input type="checkbox" name="15other" value="c"></td>
+                    <td class="centered"><input type="checkbox" name="15other" value="d"></td>
                 </tr>
             </table>
 
@@ -512,30 +547,7 @@ You said you have been involved in online communities/groups in other ways than 
 
     <div class="screen">
         <div class="question">
-            15. How frequently do you discuss social and political issues or problems affecting your local community or area with family, friends or neighbours?
-        </div>
-        <div class="answers">
-            <div class="radio">
-                <input type="radio" id="a15a" name="15" value="a"><label for="a15a">Every day</label>
-            </div>
-            <div class="radio">
-                <input type="radio" id="a15b" name="15" value="b"><label for="a15b">Several times a week</label>
-            </div>
-            <div class="radio">
-                <input type="radio" id="a15c" name="15" value="c"><label for="a15c">Once or twice a week</label>
-            </div>
-            <div class="radio">
-                <input type="radio" id="a15d" name="15" value="d"><label for="a15d">Less often</label>
-            </div>
-            <div class="radio">
-                <input type="radio" id="a15e" name="15" value="e"><label for="a15e">Never</label>
-            </div>
-        </div>
-    </div>
-
-    <div class="screen">
-        <div class="question">
-            16. And more generally, how frequently do you discuss about national/international politics and current affairs with family, friends or neighbours?
+            16. How frequently do you discuss social and political issues or problems affecting your local community or area with family, friends or neighbours?
         </div>
         <div class="answers">
             <div class="radio">
@@ -553,14 +565,13 @@ You said you have been involved in online communities/groups in other ways than 
             <div class="radio">
                 <input type="radio" id="a16e" name="16" value="e"><label for="a16e">Never</label>
             </div>
-
         </div>
     </div>
+
     <div class="screen">
         <div class="question">
-            17. People learn what is going on in this country and the world from various sources (e.g. TV, radio, internet, newspapers, or magazines). How often, if at all, do you get information about news and current political affairs?
+            17. And more generally, how frequently do you discuss about national/international politics and current affairs with family, friends or neighbours?
         </div>
-
         <div class="answers">
             <div class="radio">
                 <input type="radio" id="a17a" name="17" value="a"><label for="a17a">Every day</label>
@@ -577,11 +588,35 @@ You said you have been involved in online communities/groups in other ways than 
             <div class="radio">
                 <input type="radio" id="a17e" name="17" value="e"><label for="a17e">Never</label>
             </div>
+
         </div>
     </div>
     <div class="screen">
         <div class="question">
-            18. What was your age last birthday? Please enter a 2-digit number (e.g. 18).
+            18. People learn what is going on in this country and the world from various sources (e.g. TV, radio, internet, newspapers, or magazines). How often, if at all, do you get information about news and current political affairs?
+        </div>
+
+        <div class="answers">
+            <div class="radio">
+                <input type="radio" id="a18a" name="18" value="a"><label for="a18a">Every day</label>
+            </div>
+            <div class="radio">
+                <input type="radio" id="a18b" name="18" value="b"><label for="a18b">Several times a week</label>
+            </div>
+            <div class="radio">
+                <input type="radio" id="a18c" name="18" value="c"><label for="a18c">Once or twice a week</label>
+            </div>
+            <div class="radio">
+                <input type="radio" id="a18d" name="18" value="d"><label for="a18d">Less often</label>
+            </div>
+            <div class="radio">
+                <input type="radio" id="a18e" name="18" value="e"><label for="a18e">Never</label>
+            </div>
+        </div>
+    </div>
+    <div class="screen">
+        <div class="question">
+            19. What was your age last birthday? Please enter a 2-digit number (e.g. 18).
         </div>
 
         <div class="answers">
@@ -591,267 +626,267 @@ You said you have been involved in online communities/groups in other ways than 
 
     <div class="screen">
         <div class="question">
-            19.  And are you…
+            20.  And are you…
         </div>
 
         <div class="answers">
             <div class="radio">
-                <input type="radio" id="a19a" name="19" value="a"><label for="a19a">female </label>
+                <input type="radio" id="a20a" name="20" value="a"><label for="a20a">female </label>
             </div>
             <div class="radio">
-                <input type="radio" id="a19b" name="19" value="b"><label for="a19b">male </label>
+                <input type="radio" id="a20b" name="20" value="b"><label for="a20b">male </label>
             </div>
             <div class="radio">
-                <input type="radio" id="a19c" name="19" value="c"><label for="a19c">don't want to answer </label>
+                <input type="radio" id="a20c" name="20" value="c"><label for="a20c">don't want to answer </label>
             </div>
         </div>
     </div>
 
     <div class="screen">
         <div class="question">
-            20. What is the last type of educational institution (e.g. school, college or university) that you have attended or which type of educational institution are you attending now?
+            21. What is the last type of educational institution (e.g. school, college or university) that you have attended or which type of educational institution are you attending now?
         </div>
         <div class="answers">
             <div class="radio">
-                <input type="radio" id="a20a" name="20" value="a"><label for="a20a">Primary school or equivalent </label>
+                <input type="radio" id="a21a" name="21" value="a"><label for="a21a">Primary school or equivalent </label>
             </div>
             <div class="radio">
-                <input type="radio" id="a20b" name="20" value="b"><label for="a20b">Secondary school or equivalent </label>
+                <input type="radio" id="a21b" name="21" value="b"><label for="a21b">Secondary school or equivalent </label>
             </div>
             <div class="radio">
-                <input type="radio" id="a20c" name="20" value="c"><label for="a20c">Special school or equivalent </label>
+                <input type="radio" id="a21c" name="21" value="c"><label for="a21c">Special school or equivalent </label>
             </div>
             <div class="radio">
-                <input type="radio" id="a20d" name="20" value="d"><label for="a20d">Sixth form college or equivalent </label>
+                <input type="radio" id="a21d" name="21" value="d"><label for="a21d">Sixth form college or equivalent </label>
             </div>
             <div class="radio">
-                <input type="radio" id="a20e" name="20" value="e"><label for="a20e">Technical college or equivalent </label>
+                <input type="radio" id="a21e" name="21" value="e"><label for="a21e">Technical college or equivalent </label>
             </div>
             <div class="radio">
-                <input type="radio" id="a20f" name="20" value="f"><label for="a20f">Further Education College </label>
+                <input type="radio" id="a21f" name="21" value="f"><label for="a21f">Further Education College </label>
             </div>
             <div class="radio">
-                <input type="radio" id="a20g" name="20" value="g"><label for="a20g">Adult Community College </label>
+                <input type="radio" id="a21g" name="21" value="g"><label for="a21g">Adult Community College </label>
             </div>
             <div class="radio">
-                <input type="radio" id="a20h" name="20" value="h"><label for="a20h">University or equivalent </label>
+                <input type="radio" id="a21h" name="21" value="h"><label for="a21h">University or equivalent </label>
             </div>
             <div class="radio">
-                <input type="radio" id="a20i" name="20" value="i"><label for="a20i">other </label>
+                <input type="radio" id="a21i" name="21" value="i"><label for="a21i">other </label>
             </div>
             <div class="radio">
-                <input type="radio" id="a20j" name="20" value="j"><label for="a20j">don't want to answer </label>
+                <input type="radio" id="a21j" name="21" value="j"><label for="a21j">don't want to answer </label>
             </div>
         </div>
     </div>
 
     <div class="screen">
         <div class="question">
-            21. Which of these descriptions best describes your current situation?
+            22. Which of these descriptions best describes your current situation?
         </div>
 
         <div class="answers">
             <div class="radio">
-                <input type="radio" id="a21a" name="21" value="a"><label for="a21a">working full time (30 hours a week or more) </label>
+                <input type="radio" id="a22a" name="22" value="a"><label for="a22a">working full time (30 hours a week or more) </label>
             </div>
             <div class="radio">
-                <input type="radio" id="a21b" name="21" value="b"><label for="a21b">working part time (8-29 hours a week) </label>
+                <input type="radio" id="a22b" name="22" value="b"><label for="a22b">working part time (8-29 hours a week) </label>
             </div>
             <div class="radio">
-                <input type="radio" id="a21c" name="21" value="c"><label for="a21c">retired </label>
+                <input type="radio" id="a22c" name="22" value="c"><label for="a22c">retired </label>
             </div>
             <div class="radio">
-                <input type="radio" id="a21d" name="21" value="d"><label for="a21d">unemployed </label>
+                <input type="radio" id="a22d" name="22" value="d"><label for="a22d">unemployed </label>
             </div>
             <div class="radio">
-                <input type="radio" id="a21e" name="21" value="e"><label for="a21e">permanently sick or disabled </label>
+                <input type="radio" id="a22e" name="22" value="e"><label for="a22e">permanently sick or disabled </label>
             </div>
             <div class="radio">
-                <input type="radio" id="a21f" name="21" value="f"><label for="a21f">in community or military service </label>
+                <input type="radio" id="a22f" name="22" value="f"><label for="a22f">in community or military service </label>
             </div>
             <div class="radio">
-                <input type="radio" id="a21g" name="21" value="g"><label for="a21g">undergraduate student </label>
+                <input type="radio" id="a22g" name="22" value="g"><label for="a22g">undergraduate student </label>
             </div>
             <div class="radio">
-                <input type="radio" id="a21h" name="21" value="h"><label for="a21h">postgraduate student </label>
+                <input type="radio" id="a22h" name="22" value="h"><label for="a22h">postgraduate student </label>
             </div>
             <div class="radio">
-                <input type="radio" id="a21i" name="21" value="i"><label for="a21i">in full time education (not degree or higher) </label>
+                <input type="radio" id="a22i" name="22" value="i"><label for="a22i">in full time education (not degree or higher) </label>
             </div>
             <div class="radio">
-                <input type="radio" id="a21j" name="21" value="j"><label for="a21j">in part time education (not degree or higher) </label>
+                <input type="radio" id="a22j" name="22" value="j"><label for="a22j">in part time education (not degree or higher) </label>
             </div>
             <div class="radio">
-                <input type="radio" id="a21k" name="21" value="k"><label for="a21k">doing housework, looking after children or other persons </label>
+                <input type="radio" id="a22k" name="22" value="k"><label for="a22k">doing housework, looking after children or other persons </label>
             </div>
             <div class="radio">
-                <input type="radio" id="a21l" name="21" value="l"><label for="a21l">none of the above </label>
+                <input type="radio" id="a22l" name="22" value="l"><label for="a22l">none of the above </label>
             </div>
             <div class="radio">
-                <input type="radio" id="a21m" name="21" value="m"><label for="a21m">don't want to answer </label>
+                <input type="radio" id="a22m" name="22" value="m"><label for="a22m">don't want to answer </label>
             </div>
         </div>
     </div>
 
     <div class="screen">
         <div class="question">
-            22. The incomes of households differ a lot in Britain today. Which figures best represent the total income of your household before tax?
+            23. The incomes of households differ a lot in Britain today. Which figures best represent the total income of your household before tax?
         </div>
         <div class="answers">
             <div class="radio">
-                <input type="radio" id="a22a" name="22" value="a"><label for="a22a">up to £12,500 </label>
+                <input type="radio" id="a23a" name="23" value="a"><label for="a22a">up to £12,500 </label>
             </div>
             <div class="radio">
-                <input type="radio" id="a22b" name="22" value="b"><label for="a22b">£12,501 to £25,000 </label>
+                <input type="radio" id="a23b" name="23" value="b"><label for="a23b">£12,501 to £25,000 </label>
             </div>
             <div class="radio">
-                <input type="radio" id="a22c" name="22" value="c"><label for="a22c">£25,001 to £37,500 </label>
+                <input type="radio" id="a23c" name="23" value="c"><label for="a23c">£25,001 to £37,500 </label>
             </div>
             <div class="radio">
-                <input type="radio" id="a22d" name="22" value="d"><label for="a22d">£37,501 to £50,000 </label>
+                <input type="radio" id="a23d" name="23" value="d"><label for="a23d">£37,501 to £50,000 </label>
             </div>
             <div class="radio">
-                <input type="radio" id="a22e" name="22" value="e"><label for="a22e">£50,001 to £75,000 </label>
+                <input type="radio" id="a23e" name="23" value="e"><label for="a23e">£50,001 to £75,000 </label>
             </div>
             <div class="radio">
-                <input type="radio" id="a22f" name="22" value="f"><label for="a22f">£75,001 to £100,000 </label>
+                <input type="radio" id="a23f" name="23" value="f"><label for="a23f">£75,001 to £100,000 </label>
             </div>
             <div class="radio">
-                <input type="radio" id="a22g" name="22" value="g"><label for="a22g">more than £100,000 </label>
+                <input type="radio" id="a23g" name="23" value="g"><label for="a23g">more than £100,000 </label>
             </div>
             <div class="radio">
-                <input type="radio" id="a22h" name="22" value="h"><label for="a22h">don't want to answer </label>
+                <input type="radio" id="a23h" name="23" value="h"><label for="a23h">don't want to answer </label>
             </div>
         </div>
     </div>
 
     <div class="screen">
         <div class="question">
-23. To which one of these ethnic groups do you consider you belong? One choice only permitted. Allow to continue to next screen even if NO box is ticked
+24. To which one of these ethnic groups do you consider you belong? One choice only permitted. Allow to continue to next screen even if NO box is ticked
         </div>
         <div class="answers">
             <dl>
                 <dt>White</dt>
                 <dd>
                     <div class="radio">
-                        <input type="radio" name="23"><label>British </label>
+                        <input type="radio" name="24"><label>British </label>
                     </div>
                     <div class="radio">
-                        <input type="radio" name="23"><label>English </label>
+                        <input type="radio" name="24"><label>English </label>
                     </div>
                     <div class="radio">
-                        <input type="radio" name="23"><label>Welsh </label>
+                        <input type="radio" name="24"><label>Welsh </label>
                     </div>
                     <div class="radio">
-                        <input type="radio" name="23"><label>Scottish </label>
+                        <input type="radio" name="24"><label>Scottish </label>
                     </div>
                     <div class="radio">
-                        <input type="radio" name="23"><label>Irish </label>
+                        <input type="radio" name="24"><label>Irish </label>
                     </div>
                     <div class="radio">
-                        <input type="radio" name="23"><label>Other white </label>
+                        <input type="radio" name="24"><label>Other white </label>
                     </div>
                 </dd>
                 <dt>Mixed</dt>
                 <dd>
                     <div class="radio">
-                        <input type="radio" name="23"><label>White and Black Caribbean </label>
+                        <input type="radio" name="24"><label>White and Black Caribbean </label>
                     </div>
                     <div class="radio">
-                        <input type="radio" name="23"><label>White and Black African </label>
+                        <input type="radio" name="24"><label>White and Black African </label>
                     </div>
                     <div class="radio">
-                        <input type="radio" name="23"><label>White and Asian </label>
+                        <input type="radio" name="24"><label>White and Asian </label>
                     </div>
                     <div class="radio">
-                        <input type="radio" name="23"><label>Other Mixed </label>
+                        <input type="radio" name="24"><label>Other Mixed </label>
                     </div>
                 </dd>
                 <dt>Asian or Asian British</dt>
                 <dd>
                     <div class="radio">
-                        <input type="radio" name="23"><label>Indian </label>
+                        <input type="radio" name="24"><label>Indian </label>
                     </div>
                     <div class="radio">
-                        <input type="radio" name="23"><label>Pakistani </label>
+                        <input type="radio" name="24"><label>Pakistani </label>
                     </div>
                     <div class="radio">
-                        <input type="radio" name="23"><label>Bangladeshi </label>
+                        <input type="radio" name="24"><label>Bangladeshi </label>
                     </div>
                     <div class="radio">
-                        <input type="radio" name="23"><label>Other Asian </label>
+                        <input type="radio" name="24"><label>Other Asian </label>
                     </div>
                 </dd>
                 <dt>Black or Black British</dt>
                 <dd>
                     <div class="radio">
-                        <input type="radio" name="23"><label>Caribbean </label>
+                        <input type="radio" name="24"><label>Caribbean </label>
                     </div>
                     <div class="radio">
-                        <input type="radio" name="23"><label>African </label>
+                        <input type="radio" name="24"><label>African </label>
                     </div>
                     <div class="radio">
-                        <input type="radio" name="23"><label>Other Black </label>
+                        <input type="radio" name="24"><label>Other Black </label>
                     </div>
                 </dd>
             </dl>
             <div class="radio">
-                <input type="radio" name="23"><label>Chinese</label>
+                <input type="radio" name="24"><label>Chinese</label>
             </div>
             <div class="radio">
-                <input type="radio" name="23"><label>any other ethic group</label>
+                <input type="radio" name="24"><label>any other ethic group</label>
             </div>
             <div class="radio">
-                <input type="radio" name="23"><label>Don't know</label>
+                <input type="radio" name="24"><label>Don't know</label>
             </div>
             <div class="radio">
-                <input type="radio" name="23"><label>Don't want to answer</label>
-            </div>
-        </div>
-    </div>
-
-    <div class="screen">
-        <div class="question">
-24. Here is a list of tasks that can be performed on the Internet. Some people have done these tasks, while others have not. Which, if any, of these have you done? Please tick as many as apply.
-        </div>
-        <div class="answers">
-            <div class="radio">
-                <input type="checkbox" id="a24a" name="24" value="a"><label for="a24a">Wrote a blog post</label>
-            </div>
-            <div class="radio">
-                <input type="checkbox" id="a24b" name="24" value="b"><label for="a24b">Purchased a product or service on a website</label>
-            </div>
-            <div class="radio">
-                <input type="checkbox" id="a24c" name="24" value="c"><label for="a24c">Logged onto a social networking site (e.g. Facebook, Twitter, Google+)</label>
-            </div>
-            <div class="radio">
-                <input type="checkbox" id="a24d" name="24" value="d"><label for="a24d">Posted a comment on a social networking site (e.g. Facebook, Twitter, Google+)</label>
-            </div>
-            <div class="radio">
-                <input type="checkbox" id="a24e" name="24" value="e"><label for="a24e">Posted an audio, video, or image file to the internet </label>
-            </div>
-            <div class="radio">
-                <input type="checkbox" id="a24f" name="24" value="f"><label for="a24f">Sent an attachment with an email</label>
-            </div>
-            <div class="radio">
-                <input type="checkbox" id="a24g" name="24" value="g"><label for="a24g">Commented on an article or blog post</label>
+                <input type="radio" name="24"><label>Don't want to answer</label>
             </div>
         </div>
     </div>
 
     <div class="screen">
         <div class="question">
-25. Do you have a twitter account? If so would you be willing to provide your username to the research team?
+25. Here is a list of tasks that can be performed on the Internet. Some people have done these tasks, while others have not. Which, if any, of these have you done? Please tick as many as apply.
         </div>
         <div class="answers">
             <div class="radio">
-                <input type="radio" id="a25a" name="25" value="a"><label for="a25a">No</label>
+                <input type="checkbox" id="a25a" name="25" value="a"><label for="a25a">Wrote a blog post</label>
             </div>
             <div class="radio">
-                <input type="radio" id="a25b" name="25" value="b"><label for="a25b">Yes, but I’d rather not give you my username</label>
+                <input type="checkbox" id="a25b" name="25" value="b"><label for="a25b">Purchased a product or service on a website</label>
             </div>
             <div class="radio">
-                <input type="radio" id="a25c" name="25" value="c"><label for="a25c">Yes,</label> and my username is @<input type="text" name="twitter_name" maxlength="20">
+                <input type="checkbox" id="a25c" name="25" value="c"><label for="a25c">Logged onto a social networking site (e.g. Facebook, Twitter, Google+)</label>
+            </div>
+            <div class="radio">
+                <input type="checkbox" id="a25d" name="25" value="d"><label for="a25d">Posted a comment on a social networking site (e.g. Facebook, Twitter, Google+)</label>
+            </div>
+            <div class="radio">
+                <input type="checkbox" id="a25e" name="25" value="e"><label for="a25e">Posted an audio, video, or image file to the internet </label>
+            </div>
+            <div class="radio">
+                <input type="checkbox" id="a25f" name="25" value="f"><label for="a25f">Sent an attachment with an email</label>
+            </div>
+            <div class="radio">
+                <input type="checkbox" id="a25g" name="25" value="g"><label for="a25g">Commented on an article or blog post</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="screen">
+        <div class="question">
+26. Do you have a twitter account? If so would you be willing to provide your username to the research team?
+        </div>
+        <div class="answers">
+            <div class="radio">
+                <input type="radio" id="a26a" name="26" value="a"><label for="a26a">No</label>
+            </div>
+            <div class="radio">
+                <input type="radio" id="a26b" name="26" value="b"><label for="a26b">Yes, but I’d rather not give you my username</label>
+            </div>
+            <div class="radio">
+                <input type="radio" id="a26c" name="26" value="c"><label for="a26c">Yes,</label> and my username is @<input type="text" name="twitter_name" maxlength="20">
             </div>
 
             <p>
