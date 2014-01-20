@@ -70,7 +70,7 @@
 
     <div class="screen">
         <div class="question">
-            1.  Where did you hear about <? SITE_NAME ?>? Please tick all that apply. 
+            1.  Where did you hear about {{ site_name }}? Please tick all that apply. 
         </div>
 
 Allow for multiple choices (except option F - don’t know/can’t remember – this is exclusive. I.e. if people tick option F, no other choice is allowed). Allow to continue to next screen even if NO box is ticked
@@ -890,17 +890,19 @@ You said you have been involved in online communities/groups in other ways than 
             </div>
 
             <p>
-                Privacy note: Your twitter account is requested simply so that we can better understand your use of social media on a daily basis and your interests and activities outside of the scope of the survey that may affect how you perceive/use the <? SITE_NAME ?>. Your username will not be disclosed to any party outside of the research team and will not be used in any manner that could identify you in any outputs of the project.
+                Privacy note: Your twitter account is requested simply so that we can better understand your use of social media on a daily basis and your interests and activities outside of the scope of the survey that may affect how you perceive/use the {{ site_name }}. Your username will not be disclosed to any party outside of the research team and will not be used in any manner that could identify you in any outputs of the project.
             </p>
         </div>
     </div>
 
     <div class="screen">
         <p>Thank you very much for completing this survey! Your answers are very valuable to our research.</p> 
-        <p>As well as your use of <? SITE_NAME ?>, we would like to know more about your experiences of using the web in your daily life. To do this, we might contact you again to ask you to complete another survey and/or to get involved in other online activities (e.g. take part in an online discussion forum, fill an online diary) about some of the topics covered in this survey.</p> 
+        <p>As well as your use of {{ site_name }}, we would like to know more about your experiences of using the web in your daily life. To do this, we might contact you again to ask you to complete another survey and/or to get involved in other online activities (e.g. take part in an online discussion forum, fill an online diary) about some of the topics covered in this survey.</p> 
 
         <p>Please, tick the box if you DO NOT wish to be contacted by our research team again. Check box</p>
 
+        <input type="hidden" name="site" value="{{ site_code }}">
+        <input type="hidden" name="source" value="{{ source }}">
         {% csrf_token %}
         <input type="submit">
     </div>

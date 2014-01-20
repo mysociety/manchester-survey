@@ -2,6 +2,9 @@ from django.db import models
 
 # Create your models here.
 
+class Sites():
+    sites = { 'twfy': 'TheyWorkForYou', 'wtt': 'WriteToThem', 'fms': 'FixMyStreet', 'wtdk': 'WhatDoTheyKnow' }
+
 class Secret(models.Model):
     secret = models.TextField(null=False)
 

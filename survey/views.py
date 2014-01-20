@@ -3,7 +3,7 @@ from django.shortcuts import get_object_or_404,render_to_response
 from django.template import RequestContext
 from django.conf import settings
 
-from survey.models import Item, User
+from survey.models import Item, User, Sites
 
 import uuid
 
@@ -25,10 +25,17 @@ def survey(request):
         if u:
             return render_to_response('already_completed.html', {}, context_instance=RequestContext(request))
 
+    vars = {}
     if ( request.GET.has_key('site') ):
-        request.session['site'] = request.GET['site']
+        site = request.GET['site']
+        vars['site_code'] = site
+        vars['site_name'] = Sites.sites[site]
 
-    return render_to_response('survey.html', {}, context_instance=RequestContext(request))
+    if ( request.GET.has_key('source') ):
+        source = request.GET['source']
+        vars['source'] = source
+
+    return render_to_response('survey.html', vars, context_instance=RequestContext(request))
 
 def record(request):
     if ( has_voted(request) ):
@@ -36,10 +43,6 @@ def record(request):
     else:
         u = User(code=uuid.uuid4())
         u.save()
-
-    site = 'unknown'
-    if ( request.session.has_key('site') ):
-        site = request.session['site']
 
     for v in request.POST:
         if v == 'csrfmiddlewaretoken':
