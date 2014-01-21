@@ -9,9 +9,12 @@ from survey.models import User
 
 def register(request):
     if request.method == 'POST':
+        u = User.objects.get(code=request.session['u'])
+        if u.startdate:
+            return render_to_response('already_registered.html', {}, context_instance=RequestContext(request))
+
         form = RegisterForm(request.POST)
         if form.is_valid():
-            u = User.objects.get(code=request.session['u'])
             u.name = form.cleaned_data['name']
             u.startdate = date.today()
             u.save()
