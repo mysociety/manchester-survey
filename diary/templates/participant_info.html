@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block title %}Participant Information{% endblock %}
+
+{% block content %}
+<div class="screen">
+    <h1>
+        Participant Information Sheet
+    </h1>
+
+    <p>
+    This time diary is part of a project funded by mySociety and the Economic and Social Research Council (ESRC) that is examining citizens use of online resources like the sites provided by mySociety. It is being conducted by researchers at the University of Manchester with mySociety. The main goal of the study is to understand more clearly how and why people use these sites with an aim to helping improve the users’ experience and help researchers understand whether it offers a new means for people to participate in society and politics. Your participation in the research is entirely voluntary and before you decide to participate I would like to provide you with some further details of the project so you can understand why it is being undertaken and what it will involve. Please take time to read through the following information and to decide whether you would like to participate. Please feel free to ask any questions about the study and your participation in it using our project email address. Thank you in advance for your time. 
+    </p>
+
+    <dl>
+    <dt>Who will conduct the research?</dt>
+    <dd>Professor Rachel Gibson, Dr. Marta Cantijoch and Ms. Silvia Galandini (University of Manchester) and Mr. Tom Steinberg (mySociety) are leading the research. We are an experienced research team with a range of expertise in studying organizations and citizens use of the Web. We have a body of published works on this topic in international journals and books (see www.projectcode.net)</dd>
+
+    <dt>What is the aim of the research?</dt>
+    <dd>The research is designed to understand to what extent the mySociety websites are allowing citizens to learn more about their rights as citizens and how they can affect local and national political authorities. We also seek to provide some measures for groups like mySociety to evaluate how successful and effective they are.</dd> 
+
+    <dt>Why have I been chosen?</dt>
+    <dd>You have been chosen because your answers to our survey indicated that you had some interesting reactions to the site and we would like to explore this further with you.</dd> 
+
+    <dt>What would I be asked to do if I took part?</dt>
+    <dd>You will be sent an email in which you will be invited to complete an online diary or blog on a weekly basis for a total of 3 months. We will ask you to record how much attention you have paid to news and current affairs, what social and political issues you consider important and what types of online and offline social and civic activities you have engaged in during the past week (e.g. use of facebook and twitter, involvement in any community groups or organizations). The way it will work is that we will ask a few questions of everyone that is completing this part of the study and then provide a space where you are free to add in any additional information as you choose. You can log in from home or another venue of your choosing where you have an internet connection.</dd>
+
+    <dt>What happens to the data collected?</dt>
+    <dd>The data will be securely stored by mySociety and released to the University of Manchester research team for analysis the purposes of this research project. The data may also be archived by the sponsors of the study, the Economic and Social Research Council (ESRC) if they consider it to have value for future studies of this type of online participation. Any archived data would be anonymised and not allow for identification of individuals.</dd>
+
+    <dt>How is confidentiality maintained?</dt>
+    <dd>You will be assigned a unique id number in the survey data and this will be used to identify you in your time diary entries. Thus no direct reference to you by your real name will be made in either data set. Any quoted material will be anonymised prior to publication and any directly or personally identified quoted material will be reproduced only with your permission. If you decide to take part you will be asked to complete a short consent form that sets out these t&c more clearly and asks if you agree to our using the information you have provided for the purposes of research.</dd>
+
+    <dt>What happens if I do not want to take part or if I change my mind?</dt>
+    <dd>Your participation in the research is entirely voluntary and you are free to withdraw at any point without providing a reason and without detriment to yourself. At your request any information you have supplied to that point will be deleted/destroyed and will not be used to inform the research.</dd> 
+
+    <dt>Will I be paid for participating in the research?</dt>
+    <dd>There will be no financial payment/compensation offered for your participation in the research.</dd>
+
+    <dt>What is the duration of the research?</dt>
+    <dd>The study will last three months and we will ask you to complete a diary on a weekly basis during that time period.</dd>
+
+    <dt>Where will the research be conducted?</dt>
+    <dd>The time diaries can be completed at a venue of your preference. You will need an internet connection and a device to access the web.</dd>  
+
+    <dt>Will the outcomes of the research be published?</dt>
+    <dd>The results of the research will be published in a report for mySociety that will be available to download online and in a range of peer reviewed journals. Short reports on key findings may also be published on the mySociety website and occasional pieces written for the popular press.</dd> 
+    </dl>
+
+    <p>
+        <a href="{% url 'survey:contact' %}">Contact for further information</a>.
+    </p>
+
+    <p>
+        Thank you very much for taking the time to read through the information provided.
+    </p>
+
+
+    <p>
+        Yours sincerely,
+    </p> 
+
+
+    <p>
+        Professor Rachel Gibson (Director, Institute for Social Change, University of Manchester)</br>
+        Tom Steinberg (Director, mySociety)
+    </p>
+
+</div>
+{% endblock %}
