@@ -12,6 +12,7 @@ def register(request):
         form = RegisterForm(request.POST)
         if form.is_valid():
             u = User.objects.get(code=request.session['u'])
+            u.name = form.cleaned_data['name']
             u.startdate = date.today()
             u.save()
             send_start_email(u)
