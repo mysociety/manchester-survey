@@ -11,6 +11,7 @@ class Secret(models.Model):
 class User(models.Model):
     code = models.TextField(unique=True, null=False, db_index=True)
     email = models.TextField(unique=True, null=True, db_index=True)
+    name = models.TextField(null=True)
     startdate = models.DateTimeField(null=True)
     withdrawn = models.BooleanField(default=False)
     token = models.TextField(unique=True, null=True, db_index=True)
