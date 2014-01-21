@@ -3,8 +3,10 @@ from datetime import date
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.core.mail import send_mail
+from django.utils import timezone
 
 from diary.forms import RegisterForm
+from diary.models import Question
 from survey.models import User
 
 def register(request):
@@ -16,7 +18,7 @@ def register(request):
         form = RegisterForm(request.POST)
         if form.is_valid():
             u.name = form.cleaned_data['name']
-            u.startdate = date.today()
+            u.startdate = timezone.now()
             u.save()
             send_start_email(u)
             return render_to_response('register_thanks.html', {}, context_instance=RequestContext(request))
@@ -35,6 +37,18 @@ def register(request):
 
         form = RegisterForm()
         return render_to_response('register.html', { 'form': form }, context_instance=RequestContext(request))
+
+def questions_for_week(request):
+    token = request.GET['t']
+    u = User.objects.get(token=token)
+
+    week = u.get_current_week()
+    try:
+        questions = Question.objects.get(for_week=week)
+    except:
+        return render_to_response('questions.html', { 'week': week }, context_instance=RequestContext(request))
+    return render_to_response('questions.html', { 'week': week, 'questions': questions }, context_instance=RequestContext(request))
+
 
 def participant_info(request):
     return render_to_response('participant_info.html', {}, context_instance=RequestContext(request))

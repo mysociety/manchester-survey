@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block title %}Questions for Week {{ week }}{% endblock %}
+
+{% block content %}
+<div class="screen">
+    {% csrf_token %}
+</div>
+{% endblock %}

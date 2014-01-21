@@ -1,6 +1,5 @@
 from django.db import models
-
-# Create your models here.
+from django.utils import timezone
 
 class Sites():
     sites = { 'twfy': 'TheyWorkForYou', 'wtt': 'WriteToThem', 'fms': 'FixMyStreet', 'wtdk': 'WhatDoTheyKnow' }
@@ -15,6 +14,13 @@ class User(models.Model):
     startdate = models.DateTimeField(null=True)
     withdrawn = models.BooleanField(default=False)
     token = models.TextField(unique=True, null=True, db_index=True)
+
+    def get_current_week(self):
+        startdate = self.startdate
+        current = timezone.now()
+        diff = current - startdate
+        # convert to weeks
+        return ( diff.days / 7 ) + 1
 
 class Item(models.Model):
     user = models.ForeignKey(User)
