@@ -13,6 +13,7 @@ class User(models.Model):
     email = models.TextField(unique=True, null=True, db_index=True)
     startdate = models.DateTimeField(null=True)
     withdrawn = models.BooleanField(default=False)
+    token = models.TextField(unique=True, null=True, db_index=True)
 
 class Item(models.Model):
     user = models.ForeignKey(User)
