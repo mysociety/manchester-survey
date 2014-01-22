@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block title %}Questions for Week {{ week }}{% endblock %}
+
+{% block content %}
+<div class="screen">
+    {% csrf_token %}
+
+INITIAL SCREEN
+Hello! This is the new entry of your weekly diary.
+When completing the diary, please don't worry about grammar and spelling. Just feel free to write your thoughts about the topics suggested. 
+We also would like to reassure you that your identity and your diary entries will remain anonymous.
+Thank you for your participation!
+
+SCREEN 1 (every week)	
+
+Before starting your diary, we would like to ask you a couple of questions. 
+
+Thinking about the past 7 days, did you get a chance to… Multiple choice permitted. Allow to continue to next screen, even if no answer is given.
+Read a PAPER version of a daily newspaper
+Read the ONLINE version of a daily newspaper
+Read a local newspaper or gazette
+Watch the news or a news programme on television
+Listen to a radio news program or any news on the radio
+Search for news online (e.g. by using Google, Yahoo or Bing)
+Access news on social networking sites (e.g. Facebook, Twitter)
+Read news on blogs
+Watch or download political or news videos online (e.g. Youtube, iPlayer, 4oD)
+
+Thinking about different kinds of news you paid attention to in the past 7 days, which of the following topics did you follow with more interest? Tick all that apply. Multiple choice permitted. Allow to continue to next screen, even if no answer is given.
+International news
+National government and politics
+Local government and politics
+People and events in your own community
+Sports
+Business
+Science and technology
+Entertainment news 
+Health and medicine
+
+
+SCREEN 2 (every week)
+People find out about what happens in the world, the country or their local area/neighbourhood through different channels. They can read a newspaper, watch news on TV, or they can discuss with friends, family and neighbours.
+Please try to fill in this section of the diary telling us about your experience in the past 7 days finding out and discussing about news or stories that caught your attention or you found particularly interesting. These can be international or national news, or stories related to everyday life in your local area, including crime, local politics, services, events, people and businesses.
+Consider writing about the following details:
+Which news or stories captured you attention?
+Was any of the news or stories about your local area?
+Where did you hear about this? Was it in the media or someone else told you? Where were you and with whom? 
+Did you discuss this story or this news? If yes, with whom? 
+Did you and the people you discussed with expressed personal opinions? Were these opinions similar or did you disagree?
+  
+SCREEN 7 (start week 2, every three weeks: 3 entries)
+Before completing the second and final part of your diary, we have a quick question for you:
+
+How much impact do you think people like you can have in making your community a better place to live — a big impact, a moderate impact, a small impact, or no impact at all? Only one answer allowed. Allow to continue to next screen, even if no answer is given.
+
+Big impact
+Moderate impact
+Small impact
+No impact at all 
+
+
+
+
+
+SCREEN 8 (start week 2, every three weeks: 3 entries)
+Following up from our last question, what are your thoughts about the impact ordinary people can have on their communities?  
+While writing your diary, consider telling us about the following:
+How much impact do you think people have on their community? Why?
+How much influence do you think you have on your community? Why?
+Can you think of any example of something you or someone you know did that had an impact on the community? 
+What do you think would make it easier for you to have more impact on your community?
+
+
+
+LAST SCREEN
+Thank you for completing the diary! Your answers are very valuable to our research. 
+
+We will send you the link to the following diary on Thursday next week and you will have time until Sunday to complete it.
+
+
+    
+</div>
+{% endblock %}

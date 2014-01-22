@@ -6,7 +6,7 @@ from django.core.mail import send_mail
 from django.utils import timezone
 
 from diary.forms import RegisterForm
-from diary.models import Question
+from diary.models import Question, Week
 from survey.models import User
 
 def register(request):
@@ -44,10 +44,11 @@ def questions_for_week(request):
 
     week = u.get_current_week()
     try:
-        questions = Question.objects.get(for_week=week)
+        week = Week.objects.get(week=week)
+        template = week.template
     except:
-        return render_to_response('questions.html', { 'week': week }, context_instance=RequestContext(request))
-    return render_to_response('questions.html', { 'week': week, 'questions': questions }, context_instance=RequestContext(request))
+        return render_to_response('invalid_week.html', {}, context_instance=RequestContext(request))
+    return render_to_response(template, { 'week': week }, context_instance=RequestContext(request))
 
 
 def participant_info(request):

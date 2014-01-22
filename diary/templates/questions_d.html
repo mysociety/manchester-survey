@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block title %}Questions for Week {{ week }}{% endblock %}
+
+{% block content %}
+<div class="screen">
+    {% csrf_token %}
+INITIAL SCREEN
+Hello! This is the new entry of your weekly diary.
+When completing the diary, please don't worry about grammar and spelling. Just feel free to write your thoughts about the topics suggested. 
+We also would like to reassure you that your identity and your diary entries will remain anonymous.
+Thank you for your participation!
+
+SCREEN 1 (every week)	
+
+Before starting your diary, we would like to ask you a couple of questions. 
+
+Thinking about the past 7 days, did you get a chance to… Multiple choice permitted. Allow to continue to next screen, even if no answer is given.
+Read a PAPER version of a daily newspaper
+Read the ONLINE version of a daily newspaper
+Read a local newspaper or gazette
+Watch the news or a news programme on television
+Listen to a radio news program or any news on the radio
+Search for news online (e.g. by using Google, Yahoo or Bing)
+Access news on social networking sites (e.g. Facebook, Twitter)
+Read news on blogs
+Watch or download political or news videos online (e.g. Youtube, iPlayer, 4oD)
+
+Thinking about different kinds of news you paid attention to in the past 7 days, which of the following topics did you follow with more interest? Tick all that apply. Multiple choice permitted. Allow to continue to next screen, even if no answer is given.
+International news
+National government and politics
+Local government and politics
+People and events in your own community
+Sports
+Business
+Science and technology
+Entertainment news 
+Health and medicine
+
+
+SCREEN 2 (every week)
+People find out about what happens in the world, the country or their local area/neighbourhood through different channels. They can read a newspaper, watch news on TV, or they can discuss with friends, family and neighbours.
+Please try to fill in this section of the diary telling us about your experience in the past 7 days finding out and discussing about news or stories that caught your attention or you found particularly interesting. These can be international or national news, or stories related to everyday life in your local area, including crime, local politics, services, events, people and businesses.
+Consider writing about the following details:
+Which news or stories captured you attention?
+Was any of the news or stories about your local area?
+Where did you hear about this? Was it in the media or someone else told you? Where were you and with whom? 
+Did you discuss this story or this news? If yes, with whom? 
+Did you and the people you discussed with expressed personal opinions? Were these opinions similar or did you disagree?
+  
+SCREEN 5 (start week 4, every three weeks: 3 entries)
+Before completing the second and final part of your diary, we have a quick question for you:
+
+Thinking about the past 3 weeks, have you… Multiple choice permitted. Allow to continue to next screen, even if no answer is given.
+Signed a petition in person or online?
+Taken part in a lawful public protest/march/demonstration?
+Refused to buy or bought a certain product for political/social reasons?
+Contacted public officials online, in person or by post (e.g. MPs, MEPs or councillors)?
+Supported a political party or candidate (e.g. by donating money, attending meetings or volunteering)?
+Supported a voluntary organisation (e.g. by donating money, attending meetings or volunteering)?
+Posted comments or shared contents online (e.g. through Facebook, Twitter, blogs) about social or political issues
+
+
+SCREEN 6 (start week 4, every three weeks: 3 entries)
+We would like to know more about the activities we just asked you about, that is activities people might do to improve things or help prevent things from going wrong. Don’t worry if you haven’t done any of them in the past 3 weeks or in general. We still would like to read about your point of view.
+While writing your diary, consider telling us about the following:
+What did you do? What was it about?
+Why did you take this action? Why was it important to you?
+Was this the first time you took this action?
+Did someone ask you or convince you to take part in this activity? If yes, who?
+Did you try to convince other people to participate? If yes, who? 
+If you haven’t done any of these activities in the past 3 weeks, consider the following: 
+Is there any particular reason why you didn't do any of these activities in the past 3 weeks? 
+Have you done any of these activities in previous occasions?
+If yes, what did you do? Why did you take these actions?
+Would you consider doing it in the future?
+
+
+LAST SCREEN
+Thank you for completing the diary! Your answers are very valuable to our research. 
+
+We will send you the link to the following diary on Thursday next week and you will have time until Sunday to complete it.
+
+
+    
+</div>
+{% endblock %}

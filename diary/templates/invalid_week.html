@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
 
-{% block title %}Questions for Week {{ week }}{% endblock %}
+{% block title %}Wrong Week {{ week }}{% endblock %}
 
 {% block content %}
 <div class="screen">
+    Something went wrong finding the diary for this week
     {% csrf_token %}
 </div>
 {% endblock %}
