@@ -6,7 +6,7 @@ from django.core.mail import send_mail
 from django.utils import timezone
 
 from diary.forms import RegisterForm
-from diary.models import Question, Week
+from diary.models import Entries, Week
 from survey.models import User
 
 def register(request):
@@ -41,6 +41,7 @@ def register(request):
 def questions_for_week(request):
     token = request.GET['t']
     u = User.objects.get(token=token)
+    request.session['u'] = u.code
 
     week = u.get_current_week()
     try:
@@ -49,6 +50,28 @@ def questions_for_week(request):
     except:
         return render_to_response('invalid_week.html', {}, context_instance=RequestContext(request))
     return render_to_response(template, { 'week': week }, context_instance=RequestContext(request))
+
+def record_answers(request):
+    week_num = request.POST['week']
+    week = Week.objects.get(week=week_num)
+
+    code = request.session['u']
+    u = User.objects.get(code=code)
+
+    for v in request.POST:
+        if v == 'csrfmiddlewaretoken' or v == 'week':
+            continue
+        val = request.POST.getlist(v)
+        if len(val) > 1:
+            val = ','.join(val)
+        else:
+            val = request.POST[v]
+
+        r = Entries(user_id=u.id, week_id=week.id, question=v, answer=val)
+        r.save()
+
+    return render_to_response('question_thanks.html', {}, context_instance=RequestContext(request))
+
 
 
 def participant_info(request):
