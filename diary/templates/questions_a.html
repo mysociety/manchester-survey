@@ -1,9 +1,6 @@
-{% extends 'base.html' %}
+{% extends 'questions_base.html' %}
 
-{% block title %}Questions for Week {{ week }}{% endblock %}
-
-{% block content %}
-    {% csrf_token %}
+{% block questions %}
     <div class="screen">
         <p>
             Thank you for agreeing to keep a diary! This is the first entry of your weekly diary.
@@ -25,10 +22,4 @@
     {% include "questions_initial.html" %}
 
     {% include "questions_three_and_four.html" %}
-
-    <div class="screen">
-        <p>Thank you for completing the diary! Your answers are very valuable to our research.</p> 
-
-        <p>We will send you the link to the following diary on Thursday next week and you will have time until Sunday to complete it.</p>
-    </div>
 {% endblock %}

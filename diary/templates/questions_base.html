@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}Questions for Week {{ week.week }}{% endblock %}
+
+{% block content %}
+<form action="{% url 'diary:record_answers' %}" method="POST">
+{% csrf_token %}
+<input type="hidden" name="week" value="{{ week.week }}">
+{% block questions %}{% endblock %}
+</form>
+{% endblock %}

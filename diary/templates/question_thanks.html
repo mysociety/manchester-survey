@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Thanks{% endblock %}
+
+{% block content %}
+<div class="screen">
+    {% if week.week == 12 %}
+        <p>This was the last entry of you diary!</p> 
+
+        <p>Thank you very much for taking part in this activity! Your answers were very valuable to our research.</p> 
+    {% else %}
+        <p>Thank you for completing the diary! Your answers are very valuable to our research.</p> 
+
+        <p>We will send you the link to the following diary on Thursday next week and you will have time until Sunday to complete it.</p>
+    {% endif %}
+</div>
+{% endblock %}
