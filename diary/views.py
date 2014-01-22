@@ -49,6 +49,14 @@ def questions_for_week(request):
         template = week.template
     except:
         return render_to_response('invalid_week.html', {}, context_instance=RequestContext(request))
+
+    try:
+        entry = Entries.objects.filter(week=week).filter(user_id=u.id)
+        if entry.count() > 0:
+            return render_to_response('invalid_week.html', {}, context_instance=RequestContext(request))
+    except:
+        pass
+
     return render_to_response(template, { 'week': week }, context_instance=RequestContext(request))
 
 def record_answers(request):
