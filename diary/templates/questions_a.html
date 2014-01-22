@@ -3,73 +3,32 @@
 {% block title %}Questions for Week {{ week }}{% endblock %}
 
 {% block content %}
-<div class="screen">
     {% csrf_token %}
-INITIAL SCREEN
-Thank you for agreeing to keep a diary! This is the first entry of your weekly diary.
-When completing the diary, please don't worry about grammar and spelling. Just feel free to write your thoughts about the topics suggested. 
-We also would like to reassure you that your identity and your diary entries will remain anonymous.
-Thank you for your participation!
-
-SCREEN 1 (every week)	
+    <div class="screen">
+        <p>
+            Thank you for agreeing to keep a diary! This is the first entry of your weekly diary.
+        </p>
 
-Before starting your diary, we would like to ask you a couple of questions. 
+        <p>
+            When completing the diary, please don't worry about grammar and spelling. Just feel free to write your thoughts about the topics suggested. 
+        </p>
 
-Thinking about the past 7 days, did you get a chance to… Multiple choice permitted. Allow to continue to next screen, even if no answer is given.
-Read a PAPER version of a daily newspaper
-Read the ONLINE version of a daily newspaper
-Read a local newspaper or gazette
-Watch the news or a news programme on television
-Listen to a radio news program or any news on the radio
-Search for news online (e.g. by using Google, Yahoo or Bing)
-Access news on social networking sites (e.g. Facebook, Twitter)
-Read news on blogs
-Watch or download political or news videos online (e.g. Youtube, iPlayer, 4oD)
+        <p>
+            We also would like to reassure you that your identity and your diary entries will remain anonymous.
+        </p>
 
-Thinking about different kinds of news you paid attention to in the past 7 days, which of the following topics did you follow with more interest? Tick all that apply. Multiple choice permitted. Allow to continue to next screen, even if no answer is given.
-International news
-National government and politics
-Local government and politics
-People and events in your own community
-Sports
-Business
-Science and technology
-Entertainment news 
-Health and medicine
+        <p>
+            Thank you for your participation!
+        </p>
+    </div>
 
-
-SCREEN 2 (every week)
-People find out about what happens in the world, the country or their local area/neighbourhood through different channels. They can read a newspaper, watch news on TV, or they can discuss with friends, family and neighbours.
-Please try to fill in this section of the diary telling us about your experience in the past 7 days finding out and discussing about news or stories that caught your attention or you found particularly interesting. These can be international or national news, or stories related to everyday life in your local area, including crime, local politics, services, events, people and businesses.
-Consider writing about the following details:
-Which news or stories captured you attention?
-Was any of the news or stories about your local area?
-Where did you hear about this? Was it in the media or someone else told you? Where were you and with whom? 
-Did you discuss this story or this news? If yes, with whom? 
-Did you and the people you discussed with expressed personal opinions? Were these opinions similar or did you disagree?
-  
-SCREEN 3 (every other week, starting week 1)
-Before completing the second and final part of your diary, we have a quick question for you:
+    {% include "questions_initial.html" %}
 
-In the past 2 weeks, have you done something to… Multiple choice permitted. Allow to continue to next screen, even if no answer is given.
-…help your neighbours in any ways (e.g. by lending toolbox, collecting post for them or taking care of their pets while they were on holiday or at work)?
-…help improve or support your local community on your own (e.g. by supporting a local business, contacting a councillor, reporting a problem or crime)
-...help solve a problem in your community by working with fellow citizens (e.g. by taking part in neighbourhood watch, a residents’ association or cleaning parks or streets)?
-
-SCREEN 4 (start week 1, every other week: 6 entries)
-We would like to know more about the activities we just asked you about, that is helping your neighbours or your local community either alone or with other people. This could include (but is not necessarily limited to) things like minding pets or looking after a neighbour’s house while they are away, getting involved in a neighbourhood watch scheme, making a point to support local businesses or volunteering your time to help improve your local area. 
-While writing your diary, consider telling us about the following:
-How did you help you neighbours or try to improve your community?
-Is this something that you do regularly or was this the first time?
-How did helping your neighbours or community make you feel? Why was it important to you and what difference you feel (if any) it made to others?
-If you haven’t done any of these activities over the past couple of weeks then we are still interested in hearing from you since there are lots of reasons for this, e.g. lack of time and opportunity, there are no particular issues or problems needing to be solved. If you could take a moment and let us know why you have not been involved in any local activities in these two weeks we would be very grateful.  It might be you have been active in these types of activities at an earlier time and if so then could you tell us about what did you did and why? 
-
-LAST SCREEN
-Thank you for completing the diary! Your answers are very valuable to our research. 
+    {% include "questions_three_and_four.html" %}
 
-We will send you the link to the following diary on Thursday next week and you will have time until Sunday to complete it.
+    <div class="screen">
+        <p>Thank you for completing the diary! Your answers are very valuable to our research.</p> 
 
-
-
-</div>
+        <p>We will send you the link to the following diary on Thursday next week and you will have time until Sunday to complete it.</p>
+    </div>
 {% endblock %}
