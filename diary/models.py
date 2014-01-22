@@ -4,6 +4,7 @@ from survey.models import User
 # Create your models here.
 class Week(models.Model):
     week = models.IntegerField()
+    template = models.TextField(null=True)
 
 class Question(models.Model):
     for_week = models.ForeignKey(Week)
