@@ -6,6 +6,8 @@ class Week(models.Model):
     week = models.IntegerField()
     template = models.TextField(null=True)
 
+    def __unicode__(self):
+        return "%s - %s" % ( self.week, self.template )
 
 class Entries(models.Model):
     user = models.ForeignKey(User)

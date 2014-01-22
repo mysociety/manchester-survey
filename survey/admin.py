@@ -1,6 +1,8 @@
 from django.contrib import admin
 from survey import models
 
+admin.site.register(models.User)
+
 # tweak to taste - simple at the top and more custom below
 
 

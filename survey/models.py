@@ -22,6 +22,9 @@ class User(models.Model):
         # convert to weeks
         return ( diff.days / 7 ) + 1
 
+    def __unicode__(self):
+        return "%s - %s ( %s )" % ( self.code, self.email, self.name )
+
 class Item(models.Model):
     user = models.ForeignKey(User)
     whenstored = models.DateTimeField(auto_now_add=True)
