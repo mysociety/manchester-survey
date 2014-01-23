@@ -3,6 +3,7 @@ from django.core.urlresolvers import reverse
 from django.utils import timezone
 from django.test import TestCase
 
+from diary.models import Entries, Week
 from survey.models import User
 
 class RegisterPageTest(TestCase):
@@ -64,3 +65,16 @@ class DiaryPageTest(TestCase):
         u.save()
         response = self.client.get(reverse('diary:questions'), {'t': 'token'})
         self.assertContains(response, 'There are no more diary entries')
+
+    def test_diary_details_are_recorded(self):
+        u = User(email='test@example.org',token='token',code='usercode', startdate=timezone.now())
+        u.save()
+
+        w = Week.objects.get(week=1)
+
+        # do this to set up the session
+        response = self.client.get(reverse('diary:questions'), {'t': 'token'})
+        response = self.client.post(reverse('diary:record_answers'), { 'media_diary': 'watched the news', 'week': 1 })
+
+        answers = Entries.objects.filter(user_id=u.id).filter(week_id=w.id)
+        self.assertEqual(len(answers), 1)
