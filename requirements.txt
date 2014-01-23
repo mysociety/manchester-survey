@@ -11,6 +11,9 @@ Django
 South
 django-pagination
 
+# for tests
+mock
+
 ### Django related registration
 # The registration app is a little out of date - get it from the repo direct....
 # django-registration

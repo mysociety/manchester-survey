@@ -86,6 +86,14 @@ class DiaryPageTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'Something went wrong finding')
 
+    def test_questions_on_non_diary_day_returns_closed_message(self):
+        # see http://www.voidspace.org.uk/python/mock/patch.html#where-to-patch
+        # for why it's diary.views and not manchester_survey.utils
+        with patch( 'diary.views.SurveyDate') as mock:
+            patched_date = mock.return_value
+            patched_date.is_diary_day.return_value = False
+            response = self.client.get(reverse('diary:questions'))
+            self.assertContains(response, 'closed')
 
     def test_questions_page_displays_correct_week(self):
         u = User(email='test@example.org',token='token',code='usercode', startdate=timezone.now())

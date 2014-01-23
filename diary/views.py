@@ -5,6 +5,7 @@ from django.template import RequestContext
 from django.core.mail import send_mail
 from django.utils import timezone
 
+from manchester_survey.utils import SurveyDate
 from diary.forms import RegisterForm
 from diary.models import Entries, Week
 from survey.models import User
@@ -39,6 +40,10 @@ def register(request):
         return render_to_response('register.html', { 'form': form }, context_instance=RequestContext(request))
 
 def questions_for_week(request):
+    sd = SurveyDate(timezone.now())
+    if not sd.is_diary_day():
+        return render_to_response('diary_closed.html', {},  context_instance=RequestContext(request))
+
     try:
         token = request.GET['t']
         u = User.objects.get(token=token)
