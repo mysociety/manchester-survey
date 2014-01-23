@@ -53,3 +53,14 @@ class DiaryPageTest(TestCase):
             u.save()
             response = self.client.get(reverse('diary:questions'), {'t': 'token'})
             self.assertContains(response, 'Week %d' % ( i + 1 ))
+
+    def test_startdate_over_12_weeks_ago_is_an_error(self):
+        u = User(email='test@example.org',token='token',code='usercode', startdate=timezone.now())
+        u.save()
+
+        response = self.client.get(reverse('diary:questions'), {'t': 'token'})
+        too_old = timezone.now() + timedelta(weeks=-12)
+        u.startdate=too_old
+        u.save()
+        response = self.client.get(reverse('diary:questions'), {'t': 'token'})
+        self.assertContains(response, 'There are no more diary entries')

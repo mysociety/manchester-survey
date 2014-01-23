@@ -46,12 +46,12 @@ def questions_for_week(request):
     except:
         return render_to_response('invalid_week.html', {}, context_instance=RequestContext(request))
 
-    week = u.get_current_week()
+    week_num = u.get_current_week()
     try:
-        week = Week.objects.get(week=week)
+        week = Week.objects.get(week=week_num)
         template = week.template
     except:
-        return render_to_response('invalid_week.html', {}, context_instance=RequestContext(request))
+        return render_to_response('invalid_week.html', { 'week': week_num }, context_instance=RequestContext(request))
 
     try:
         entry = Entries.objects.filter(week=week).filter(user_id=u.id)

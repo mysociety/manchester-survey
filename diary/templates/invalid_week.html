@@ -4,7 +4,11 @@
 
 {% block content %}
 <div class="screen">
+    {% if week and week > 12 %}
+    There are no more diary entries to complete. Thanks for partcipating.
+    {% else %}
     Something went wrong finding the diary for this week
+    {% endif %}
     {% csrf_token %}
 </div>
 {% endblock %}
