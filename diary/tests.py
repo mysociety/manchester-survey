@@ -1,3 +1,4 @@
+from datetime import timedelta
 from django.core.urlresolvers import reverse
 from django.utils import timezone
 from django.test import TestCase
@@ -45,6 +46,10 @@ class DiaryPageTest(TestCase):
         u = User(email='test@example.org',token='token',code='usercode', startdate=timezone.now())
         u.save()
 
-        response = self.client.get(reverse('diary:questions'), {'t': 'token'})
-        self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'Week 1')
+        for i in range(11):
+            week = i * -1
+            startdate = timezone.now() + timedelta(weeks=week)
+            u.startdate=startdate
+            u.save()
+            response = self.client.get(reverse('diary:questions'), {'t': 'token'})
+            self.assertContains(response, 'Week %d' % ( i + 1 ))
