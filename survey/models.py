@@ -15,13 +15,6 @@ class User(models.Model):
     withdrawn = models.BooleanField(default=False)
     token = models.TextField(unique=True, null=True, db_index=True)
 
-    def get_current_week(self):
-        startdate = self.startdate
-        current = timezone.now()
-        diff = current - startdate
-        # convert to weeks
-        return ( diff.days / 7 ) + 1
-
     def __unicode__(self):
         return "%s - %s ( %s )" % ( self.code, self.email, self.name )
 

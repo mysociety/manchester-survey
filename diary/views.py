@@ -51,7 +51,7 @@ def questions_for_week(request):
     except:
         return render_to_response('invalid_week.html', {}, context_instance=RequestContext(request))
 
-    week_num = u.get_current_week()
+    week_num = sd.get_week_from_startdate(timezone.now(), u.startdate)
     try:
         week = Week.objects.get(week=week_num)
         template = week.template
