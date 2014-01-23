@@ -3,7 +3,7 @@ from django.test import TestCase
 
 from survey.models import User, Item
 
-class StartPageTest(TestCase):
+class SurveyTest(TestCase):
     def post_survey(self, values):
         self.client.get(reverse('survey:survey'))
         self.client.post(reverse('survey:record'), values)
@@ -104,4 +104,3 @@ class StartPageTest(TestCase):
         usercode = self.client.cookies['usercode']
         u = User.objects.get(code=usercode.value)
         self.assertIsNone(u.email)
-
