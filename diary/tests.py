@@ -35,6 +35,12 @@ class RegisterPageTest(TestCase):
 class DiaryPageTest(TestCase):
     fixtures = ['initial_data.json']
 
+    def test_questions_page_with_no_token_is_an_error(self):
+        response = self.client.get(reverse('diary:questions'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'Something went wrong finding')
+
+
     def test_questions_page_displays_correct_week(self):
         u = User(email='test@example.org',token='token',code='usercode', startdate=timezone.now())
         u.save()

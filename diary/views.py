@@ -39,9 +39,12 @@ def register(request):
         return render_to_response('register.html', { 'form': form }, context_instance=RequestContext(request))
 
 def questions_for_week(request):
-    token = request.GET['t']
-    u = User.objects.get(token=token)
-    request.session['u'] = u.code
+    try:
+        token = request.GET['t']
+        u = User.objects.get(token=token)
+        request.session['u'] = u.code
+    except:
+        return render_to_response('invalid_week.html', {}, context_instance=RequestContext(request))
 
     week = u.get_current_week()
     try:
