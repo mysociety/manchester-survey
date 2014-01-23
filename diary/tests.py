@@ -99,24 +99,25 @@ class DiaryPageTest(TestCase):
         u = User(email='test@example.org',token='token',code='usercode', startdate=timezone.now())
         u.save()
 
-        for i in range(11):
-            week = i * -1
-            startdate = timezone.now() + timedelta(weeks=week)
-            u.startdate=startdate
-            u.save()
-            response = self.client.get(reverse('diary:questions'), {'t': 'token'})
-            self.assertContains(response, 'Week %d' % ( i + 1 ))
+        with patch( 'diary.views.SurveyDate') as mock:
+            patched_date = mock.return_value
+
+            for i in range(1, 12): 
+                patched_date.get_week_from_startdate.return_value = i
+                response = self.client.get(reverse('diary:questions'), {'t': 'token'})
+                self.assertContains(response, 'Week %d' % ( i ))
 
     def test_startdate_over_12_weeks_ago_is_an_error(self):
         u = User(email='test@example.org',token='token',code='usercode', startdate=timezone.now())
         u.save()
 
-        response = self.client.get(reverse('diary:questions'), {'t': 'token'})
-        too_old = timezone.now() + timedelta(weeks=-12)
-        u.startdate=too_old
-        u.save()
-        response = self.client.get(reverse('diary:questions'), {'t': 'token'})
-        self.assertContains(response, 'There are no more diary entries')
+        with patch( 'diary.views.SurveyDate') as mock:
+            patched_date = mock.return_value
+            patched_date.get_week_from_startdate.return_value = 13
+
+            response = self.client.get(reverse('diary:questions'), {'t': 'token'})
+            response = self.client.get(reverse('diary:questions'), {'t': 'token'})
+            self.assertContains(response, 'There are no more diary entries')
 
     def test_diary_details_are_recorded(self):
         u = User(email='test@example.org',token='token',code='usercode', startdate=timezone.now())
@@ -124,9 +125,13 @@ class DiaryPageTest(TestCase):
 
         w = Week.objects.get(week=1)
 
-        # do this to set up the session
-        response = self.client.get(reverse('diary:questions'), {'t': 'token'})
-        response = self.client.post(reverse('diary:record_answers'), { 'media_diary': 'watched the news', 'week': 1 })
+        with patch( 'diary.views.SurveyDate') as mock:
+            patched_date = mock.return_value
+            patched_date.get_week_from_startdate.return_value = 1
 
-        answers = Entries.objects.filter(user_id=u.id).filter(week_id=w.id)
-        self.assertEqual(len(answers), 1)
+            # do this to set up the session
+            response = self.client.get(reverse('diary:questions'), {'t': 'token'})
+            response = self.client.post(reverse('diary:record_answers'), { 'media_diary': 'watched the news', 'week': 1 })
+
+            answers = Entries.objects.filter(user_id=u.id).filter(week_id=w.id)
+            self.assertEqual(len(answers), 1)
