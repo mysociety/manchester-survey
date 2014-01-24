@@ -19,7 +19,8 @@ def register(request):
         form = RegisterForm(request.POST)
         if form.is_valid():
             u.name = form.cleaned_data['name']
-            u.startdate = timezone.now()
+            sd = SurveyDate()
+            u.startdate = sd.get_start_date(sd.now())
             u.save()
             send_start_email(u)
             return render_to_response('register_thanks.html', {}, context_instance=RequestContext(request))

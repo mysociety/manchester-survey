@@ -73,12 +73,18 @@ class RegisterPageTest(TestCase):
         # need to do this to set up session
         response = self.client.get(reverse('diary:register'), {'t': 'token'})
 
-        response = self.client.post(reverse('diary:register'), {'name': 'Test User', 'agree': 1})
-        self.assertContains(response, 'Thank')
+        with patch( 'diary.views.SurveyDate') as mock:
+            patched_date = mock.return_value
+            patched_date.now.return_value = dateparse.parse_date('2014-01-24')
+            patched_date.get_start_date.return_value = dateparse.parse_datetime('2014-01-23T00:00:00+00:00')
 
-        u = User.objects.get(code='usercode')
-        self.assertIsNotNone(u.startdate)
-        self.assertEqual(u.name, 'Test User')
+            response = self.client.post(reverse('diary:register'), {'name': 'Test User', 'agree': 1})
+            self.assertContains(response, 'Thank')
+
+            u = User.objects.get(code='usercode')
+            self.assertIsNotNone(u.startdate)
+            self.assertEqual(u.startdate.isoformat(), '2014-01-23T00:00:00+00:00')
+            self.assertEqual(u.name, 'Test User')
 
 class DiaryPageTest(TestCase):
     fixtures = ['initial_data.json']
