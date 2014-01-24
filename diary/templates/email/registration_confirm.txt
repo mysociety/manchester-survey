@@ -1,0 +1,3 @@
+Confirm things here:
+
+http://{{ host }}{% url 'diary:questions' %}
