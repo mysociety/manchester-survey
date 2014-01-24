@@ -103,6 +103,7 @@ class DiaryPageTest(TestCase):
 
         with patch( 'diary.views.SurveyDate') as mock:
             patched_date = mock.return_value
+            patched_date.is_diary_day.return_value = True
 
             for i in range(1, 12): 
                 patched_date.get_week_from_startdate.return_value = i
