@@ -123,6 +123,7 @@ INSTALLED_APPS = (
     'django.contrib.humanize',
     'django.contrib.admin',
     'django.contrib.admindocs',
+    'django.contrib.sites',
     'south',
     'pagination',
     'survey',
@@ -167,6 +168,9 @@ PAGINATION_INVALID_PAGE_RAISES_404 = True
 # Cookies
 SESSION_COOKIE_HTTPONLY = True
 CSRF_COOKIE_HTTPONLY = True
+
+# Sites
+SITE_ID = 1
 
 # Now get the mySociety configuration
 from .mysociety import *
