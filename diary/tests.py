@@ -11,43 +11,45 @@ from manchester_survey.utils import SurveyDate
 
 class SurveyDateTest(TestCase):
     def test_creation(self):
-        sd = SurveyDate('2014-01-23')
+        sd = SurveyDate(date='2014-01-23')
         self.assertIsNotNone(sd)
 
     def test_only_thursday_to_sunday_are_diary_days(self):
         start_date = dateparse.parse_date('2014-01-20')
-        sd = SurveyDate(start_date)
+        sd = SurveyDate(date=start_date)
         self.assertFalse(sd.is_diary_day())
 
         for i in range(6):
             date = start_date + timedelta(days=i)
-            sd = SurveyDate(date)
+            sd = SurveyDate(date=date)
             if i < 3:
                 self.assertFalse(sd.is_diary_day())
             else:
                 self.assertTrue(sd.is_diary_day())
 
     def test_start_date_gets_nearest_thursday(self):
+        sd = SurveyDate()
         today = dateparse.parse_date('2014-01-23')
-        self.assertEquals(SurveyDate.get_start_date(today).isoformat(), '2014-01-23')
+        self.assertEquals(sd.get_start_date(today).isoformat(), '2014-01-23')
 
         today = dateparse.parse_date('2014-01-20')
-        self.assertEquals(SurveyDate.get_start_date(today).isoformat(), '2014-01-23')
+        self.assertEquals(sd.get_start_date(today).isoformat(), '2014-01-23')
 
         today = dateparse.parse_date('2014-01-19')
-        self.assertEquals(SurveyDate.get_start_date(today).isoformat(), '2014-01-16')
+        self.assertEquals(sd.get_start_date(today).isoformat(), '2014-01-16')
 
     def test_get_week_from_startdate(self):
+        sd = SurveyDate()
         today = dateparse.parse_date('2014-01-20')
 
         startdate = dateparse.parse_date('2014-01-23')
-        self.assertEquals(SurveyDate.get_week_from_startdate(today, startdate), 0)
+        self.assertEquals(sd.get_week_from_startdate(today, startdate), 0)
 
         startdate = dateparse.parse_date('2014-01-16')
-        self.assertEquals(SurveyDate.get_week_from_startdate(today, startdate), 1)
+        self.assertEquals(sd.get_week_from_startdate(today, startdate), 1)
 
         startdate = dateparse.parse_date('2014-01-09')
-        self.assertEquals(SurveyDate.get_week_from_startdate(today, startdate), 2)
+        self.assertEquals(sd.get_week_from_startdate(today, startdate), 2)
 
 
 class RegisterPageTest(TestCase):

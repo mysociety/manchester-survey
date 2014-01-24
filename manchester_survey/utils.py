@@ -2,22 +2,21 @@ from datetime import date, timedelta
 from django.utils import dateparse
 
 class SurveyDate:
-    def __init__(self, date):
-        self.d = date
+    def __init__(self, **kwargs):
+        if kwargs.has_key('date'):
+            self.d = kwargs['date']
 
     def is_diary_day(self):
         if self.d.weekday() > 2:
             return True
         return False
 
-    @classmethod
-    def get_week_from_startdate(cls, current, startdate):
+    def get_week_from_startdate(self, current, startdate):
         diff = current - startdate
         # convert to weeks
         return ( diff.days / 7 ) + 1
 
-    @classmethod
-    def get_start_date(cls, today):
+    def get_start_date(self, today):
         if today.weekday() == 3:
             return today
         elif today.weekday() < 3:

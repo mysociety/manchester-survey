@@ -40,7 +40,7 @@ def register(request):
         return render_to_response('register.html', { 'form': form }, context_instance=RequestContext(request))
 
 def questions_for_week(request):
-    sd = SurveyDate(timezone.now())
+    sd = SurveyDate(date=SurveyDate.now())
     if not sd.is_diary_day():
         return render_to_response('diary_closed.html', {},  context_instance=RequestContext(request))
 
