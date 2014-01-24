@@ -1,5 +1,5 @@
 from datetime import date, timedelta
-from django.utils import dateparse
+from django.utils import dateparse, timezone
 
 class SurveyDate:
     def __init__(self, **kwargs):
@@ -26,3 +26,8 @@ class SurveyDate:
 
         start_day = today + timedelta(days=add_days)
         return start_day
+
+    # purely for mocking in tests
+    @classmethod
+    def now(self):
+        return timezone.now()
