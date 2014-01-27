@@ -150,7 +150,65 @@ class DiaryPageTest(TestCase):
             answers = Entries.objects.filter(user_id=u.id).filter(week_id=w.id)
             self.assertEqual(len(answers), 1)
 
-class ReminderTest(TestCase):
+class FirstReminderTest(TestCase):
+    fixtures = ['initial_data.json']
+
+    def run_command(self):
+        with patch('diary.models.SurveyDate') as mock:
+            patched_date = mock.return_value
+            patched_date.get_start_date.return_value = dateparse.parse_date('2014-01-23')
+
+            rm = ReminderManager()
+            rm.send_first_reminder_email()
+
+    def test_sends_reminder(self):
+        startdate = '2014-01-23'
+        u = User(email='test@example.org',token='token',code='usercode', startdate=startdate)
+        u.save()
+
+        self.run_command()
+        self.assertEqual(len(mail.outbox), 1)
+        self.assertRegexpMatches(mail.outbox[0].body, 'D/token/')
+
+    def test_reminder_not_send_to_withdrawn_users(self):
+        startdate = '2014-01-23'
+        u = User(email='test@example.org',token='token',code='usercode', startdate=startdate)
+        u.save()
+
+        u = User(withdrawn=True,email='test2@example.org',token='token2',code='usercode2', startdate=startdate)
+        u.save()
+
+        self.run_command()
+        self.assertEqual(len(mail.outbox), 1)
+        self.assertEqual(mail.outbox[0].to, ['test@example.org'])
+
+    def test_reminder_not_sent_to_finished_users(self):
+        startdate = '2013-10-31'
+        u = User(email='test@example.org',token='token',code='usercode', startdate=startdate)
+        u.save()
+
+        startdate = '2013-10-24'
+        u = User(withdrawn=True,email='test2@example.org',token='token2',code='usercode2', startdate=startdate)
+        u.save()
+
+        self.run_command()
+        self.assertEqual(len(mail.outbox), 1)
+        self.assertEqual(mail.outbox[0].to, ['test@example.org'])
+
+    def test_reminder_not_sent_to_not_started_users(self):
+        startdate = '2013-10-31'
+        u = User(email='test@example.org',token='token',code='usercode', startdate=startdate)
+        u.save()
+
+        startdate = '2014-01-31'
+        u = User(withdrawn=True,email='test2@example.org',token='token2',code='usercode2', startdate=startdate)
+        u.save()
+
+        self.run_command()
+        self.assertEqual(len(mail.outbox), 1)
+        self.assertEqual(mail.outbox[0].to, ['test@example.org'])
+
+class SecondReminderTest(TestCase):
     fixtures = ['initial_data.json']
 
     def test_sends_reminder(self):
