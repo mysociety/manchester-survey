@@ -9,6 +9,17 @@ from survey.models import User
 from manchester_survey.utils import SurveyDate
 
 class ReminderManager(models.Manager):
+    def send_registration_email(self):
+        users = User.objects.filter(startdate__isnull=True).exclude(email__isnull=True)
+
+        host = sites.models.Site.objects.get_current()
+        template = loader.get_template('email/registration_confirm.txt')
+
+        for user in users:
+            context = { 'token': user.generate_token(), 'host': host }
+            content = template.render(Context(context))
+            send_mail('diary registration', content, 'test@example.org', [user.email])
+
     def send_first_reminder_email(self):
         sd = SurveyDate()
         today = date.today()

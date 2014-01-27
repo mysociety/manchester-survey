@@ -53,6 +53,47 @@ class SurveyDateTest(TestCase):
         self.assertEquals(sd.get_week_from_startdate(today, startdate), 2)
 
 
+class RegistraionEmailTest(TestCase):
+    fixtures = ['initial_data.json']
+
+    def run_command(self):
+        with patch('diary.models.SurveyDate') as mock:
+            patched_date = mock.return_value
+            patched_date.get_start_date.return_value = dateparse.parse_date('2014-01-23')
+
+            rm = ReminderManager()
+            rm.send_registration_email()
+
+    def test_sends_registration_email(self):
+        u = User(email='test@example.org',token='token',code='usercode')
+        u.save()
+
+        self.run_command()
+        self.assertEqual(len(mail.outbox), 1)
+        self.assertRegexpMatches(mail.outbox[0].body, 'D/token/')
+
+    def test_does_not_send_if_user_has_startdate(self):
+        u = User(email='test@example.org',token='token',code='usercode')
+        u.save()
+
+        startdate='2014-01-16'
+        u = User(withdrawn=True,email='test2@example.org',token='token2',code='usercode2', startdate=startdate)
+        u.save()
+
+        self.run_command()
+        self.assertEqual(len(mail.outbox), 1)
+        self.assertEqual(mail.outbox[0].to, ['test@example.org'])
+
+    def test_does_not_send_if_user_has_no_email(self):
+        u = User(email='test@example.org',token='token',code='usercode')
+        u.save()
+
+        u = User(withdrawn=True,token='token2',code='usercode2')
+        u.save()
+
+        self.run_command()
+        self.assertEqual(len(mail.outbox), 1)
+
 class RegisterPageTest(TestCase):
     def test_registration_page_with_no_token_is_an_error(self):
         response = self.client.get(reverse('diary:register'))
