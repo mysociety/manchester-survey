@@ -1,10 +1,11 @@
 from mock import patch, Mock
-from datetime import timedelta
+from datetime import timedelta, date
+from django.core import mail
 from django.core.urlresolvers import reverse
 from django.utils import dateparse, timezone
 from django.test import TestCase
 
-from diary.models import Entries, Week
+from diary.models import Entries, Week, ReminderManager
 from survey.models import User
 from manchester_survey.utils import SurveyDate
 
@@ -148,3 +149,54 @@ class DiaryPageTest(TestCase):
 
             answers = Entries.objects.filter(user_id=u.id).filter(week_id=w.id)
             self.assertEqual(len(answers), 1)
+
+class ReminderTest(TestCase):
+    fixtures = ['initial_data.json']
+
+    def test_sends_reminder(self):
+        startdate = '2014-01-23'
+        u = User(email='test@example.org',token='token',code='usercode', startdate=startdate)
+        u.save()
+
+        with patch('diary.models.SurveyDate') as mock:
+            patched_date = mock.return_value
+            patched_date.get_start_date.return_value = dateparse.parse_date('2014-01-23')
+
+            rm = ReminderManager()
+            rm.send_second_reminder_email()
+
+            self.assertEqual(len(mail.outbox), 1)
+            self.assertRegexpMatches(mail.outbox[0].body, 'D/token/')
+
+    def test_no_reminder_sent_before_startdate(self):
+        startdate = '2014-01-23'
+        u = User(email='test@example.org',token='token',code='usercode', startdate=startdate)
+        u.save()
+
+        with patch('diary.models.SurveyDate') as mock:
+            patched_date = mock.return_value
+            patched_date.get_start_date.return_value = dateparse.parse_date('2014-01-16')
+
+            rm = ReminderManager()
+            rm.send_second_reminder_email()
+
+            self.assertEqual(len(mail.outbox), 0)
+
+    def test_no_reminder_sent_if_diary_entry_for_week(self):
+        startdate = '2014-01-23'
+        u = User(email='test@example.org',token='token',code='usercode', startdate=startdate)
+        u.save()
+
+        w = Week.objects.get(week=1)
+
+        e = Entries(user_id=u.id,week_id=w.id,question='q',answer='a')
+        e.save()
+
+        with patch('diary.models.SurveyDate') as mock:
+            patched_date = mock.return_value
+            patched_date.get_start_date.return_value = dateparse.parse_date('2014-01-23')
+
+            rm = ReminderManager()
+            rm.send_second_reminder_email()
+
+            self.assertEqual(len(mail.outbox), 0)
