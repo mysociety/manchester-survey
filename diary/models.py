@@ -9,16 +9,20 @@ from survey.models import User
 from manchester_survey.utils import SurveyDate
 
 class ReminderManager(models.Manager):
-    def send_registration_email(self):
-        users = User.objects.filter(startdate__isnull=True).exclude(email__isnull=True)
-
+    def send_email(self, template, subject, from_address, users):
         host = sites.models.Site.objects.get_current()
-        template = loader.get_template('email/registration_confirm.txt')
+        template = loader.get_template(template)
 
         for user in users:
             context = { 'token': user.generate_token(), 'host': host }
             content = template.render(Context(context))
-            send_mail('diary registration', content, 'test@example.org', [user.email])
+            send_mail(subject, content, from_address, [user.email])
+
+
+    def send_registration_email(self):
+        users = User.objects.filter(startdate__isnull=True).exclude(email__isnull=True)
+
+        self.send_email('email/registration_confirm.txt', 'Diary Registration', 'from@example.org', users)
 
     def send_first_reminder_email(self):
         sd = SurveyDate()
@@ -26,23 +30,15 @@ class ReminderManager(models.Manager):
         today = sd.get_start_date(today)
         twelve_weeks_ago = today - timedelta(weeks=12)
 
-        host = sites.models.Site.objects.get_current()
-        template = loader.get_template('email/registration_confirm.txt')
-
         users = User.objects.filter(startdate__gte=twelve_weeks_ago).filter(withdrawn=False)
 
-        for user in users:
-            context = { 'token': user.generate_token(), 'host': host }
-            content = template.render(Context(context))
-            send_mail('this weeks diary', content, 'test@example.org', [user.email])
+        self.send_email('email/registration_confirm.txt', 'This week\'s diary', 'from@example.org', users)
 
     def send_second_reminder_email(self):
         sd = SurveyDate()
         today = date.today()
         today = sd.get_start_date(today)
 
-        host = sites.models.Site.objects.get_current()
-        template = loader.get_template('email/registration_confirm.txt')
 
         for week_num in range(0,11):
             start_date = today - timedelta(weeks=week_num)
@@ -53,13 +49,10 @@ class ReminderManager(models.Manager):
 
             users = User.objects.filter(withdrawn=False).filter(startdate__lte=end_date).filter(startdate__gte=start_date).exclude(entries__week_id=week_id)
 
+            self.send_email('email/registration_confirm.txt', 'This week\'s diary', 'from@example.org', users)
+
             #print 'users for week %d: %d' % ( week_num + 1, users.count() )
             #print 'start: %s, end: %s' % ( start_date, end_date )
-
-            for user in users:
-                context = { 'token': user.generate_token(), 'host': host }
-                content = template.render(Context(context))
-                send_mail('this weeks diary', content, 'test@example.org', [user.email])
 
 class Week(models.Model):
     week = models.IntegerField()
