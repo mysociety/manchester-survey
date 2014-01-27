@@ -8,7 +8,7 @@ from django.utils import timezone
 from manchester_survey.utils import SurveyDate
 from diary.forms import RegisterForm
 from diary.models import Entries, Week
-from survey.models import User
+from survey.models import User, UserManager
 
 def register(request):
     if request.method == 'POST':
@@ -29,7 +29,7 @@ def register(request):
     else:
         try:
             token = request.GET['t']
-            u = User.objects.get(token=token)
+            u = UserManager.get_user_from_token(token)
             request.session['u'] = u.code
         except:
             return render_to_response('invalid_registration.html', {}, context_instance=RequestContext(request))
@@ -46,7 +46,7 @@ def questions_for_week(request, token):
         return render_to_response('diary_closed.html', {},  context_instance=RequestContext(request))
 
     try:
-        u = User.objects.get(token=token)
+        u = UserManager.get_user_from_token(token)
         request.session['u'] = u.code
     except:
         return render_to_response('invalid_week.html', {}, context_instance=RequestContext(request))

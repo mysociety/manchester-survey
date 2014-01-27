@@ -1,5 +1,11 @@
 from django.db import models
-from django.utils import timezone
+
+
+class UserManager(models.Manager):
+    @classmethod
+    def get_user_from_token(self, token):
+        u = User.objects.get(token=token)
+        return u
 
 class Sites():
     sites = { 'twfy': 'TheyWorkForYou', 'wtt': 'WriteToThem', 'fms': 'FixMyStreet', 'wtdk': 'WhatDoTheyKnow' }
@@ -17,6 +23,10 @@ class User(models.Model):
 
     def __unicode__(self):
         return "%s - %s ( %s )" % ( self.code, self.email, self.name )
+
+    def generate_token(self):
+        return self.token
+
 
 class Item(models.Model):
     user = models.ForeignKey(User)

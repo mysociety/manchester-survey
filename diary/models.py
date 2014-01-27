@@ -30,7 +30,7 @@ class ReminderManager(models.Manager):
             #print 'start: %s, end: %s' % ( start_date, end_date )
 
             for user in users:
-                context = { 'token': user.token, 'host': host }
+                context = { 'token': user.generate_token(), 'host': host }
                 content = template.render(Context(context))
                 send_mail('this weeks diary', content, 'test@example.org', [user.email])
 
