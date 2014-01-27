@@ -89,10 +89,14 @@ class RegisterPageTest(TestCase):
 class DiaryPageTest(TestCase):
     fixtures = ['initial_data.json']
 
-    def test_questions_page_with_no_token_is_an_error(self):
-        response = self.client.get(reverse('diary:questions'))
-        self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'Something went wrong finding')
+    def test_questions_page_with_bad_token_is_an_error(self):
+        with patch( 'diary.views.SurveyDate') as mock:
+            patched_date = mock.return_value
+            patched_date.is_diary_day.return_value = True
+
+            response = self.client.get(reverse('diary:questions', args=('badtoken',)))
+            self.assertEqual(response.status_code, 200)
+            self.assertContains(response, 'Something went wrong finding')
 
     def test_questions_on_non_diary_day_returns_closed_message(self):
         # see http://www.voidspace.org.uk/python/mock/patch.html#where-to-patch
@@ -100,7 +104,7 @@ class DiaryPageTest(TestCase):
         with patch( 'diary.views.SurveyDate') as mock:
             patched_date = mock.return_value
             patched_date.is_diary_day.return_value = False
-            response = self.client.get(reverse('diary:questions'))
+            response = self.client.get(reverse('diary:questions', args=('token',)))
             self.assertContains(response, 'closed')
 
     def test_questions_page_displays_correct_week(self):
@@ -113,7 +117,7 @@ class DiaryPageTest(TestCase):
 
             for i in range(1, 12): 
                 patched_date.get_week_from_startdate.return_value = i
-                response = self.client.get(reverse('diary:questions'), {'t': 'token'})
+                response = self.client.get(reverse('diary:questions', args=('token',)))
                 self.assertContains(response, 'Week %d' % ( i ))
 
     def test_startdate_over_12_weeks_ago_is_an_error(self):
@@ -124,8 +128,8 @@ class DiaryPageTest(TestCase):
             patched_date = mock.return_value
             patched_date.get_week_from_startdate.return_value = 13
 
-            response = self.client.get(reverse('diary:questions'), {'t': 'token'})
-            response = self.client.get(reverse('diary:questions'), {'t': 'token'})
+            response = self.client.get(reverse('diary:questions', args=('token',)))
+            response = self.client.get(reverse('diary:questions', args=( 'token',)))
             self.assertContains(response, 'There are no more diary entries')
 
     def test_diary_details_are_recorded(self):
@@ -139,7 +143,7 @@ class DiaryPageTest(TestCase):
             patched_date.get_week_from_startdate.return_value = 1
 
             # do this to set up the session
-            response = self.client.get(reverse('diary:questions'), {'t': 'token'})
+            response = self.client.get(reverse('diary:questions', args=('token',)))
             response = self.client.post(reverse('diary:record_answers'), { 'media_diary': 'watched the news', 'week': 1 })
 
             answers = Entries.objects.filter(user_id=u.id).filter(week_id=w.id)

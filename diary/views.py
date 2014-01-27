@@ -40,13 +40,12 @@ def register(request):
         form = RegisterForm()
         return render_to_response('register.html', { 'form': form }, context_instance=RequestContext(request))
 
-def questions_for_week(request):
+def questions_for_week(request, token):
     sd = SurveyDate(date=SurveyDate.now())
     if not sd.is_diary_day():
         return render_to_response('diary_closed.html', {},  context_instance=RequestContext(request))
 
     try:
-        token = request.GET['t']
         u = User.objects.get(token=token)
         request.session['u'] = u.code
     except:
