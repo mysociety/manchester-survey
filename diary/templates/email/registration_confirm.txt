@@ -1,3 +1,9 @@
-Confirm things here:
+Hello! You recently completed an online survey for us about your use of a mySociety site and we are writing to you now to see whether you would be willing to participate in a follow up phase of the study. Here we are interested in finding out more about what in your community or in the news has interested or engaged you in the past week. We would like to invite you to complete a short online diary in which we will ask you to record your thoughts.
 
-http://{{ host }}{% url 'diary:questions' token %}
+If you agree to participate in this part of the research we will send you an email with a link to your diary and you will be able to access it from home or another venue of your choosing that has an internet connection. You can take as little or as much time as you would like to spend filling it out. Every week for up to three months you will receive a link to complete a new entry on your diary. We do hope you can complete the diary each week but its fine if you don’t complete all the entries. We would still value your participation.
+
+If you would like to register and create your diary please click on the link below.  
+
+http://{{ host }}{% url 'diary:register' token %}
+
+Please Note: Clicking on the link does not oblige you in any way to complete the diary. If you do register for this step of the research and decide not to complete the diary you can withdraw from the process at any point. If you request it by emailing us at XXX@mysociety.org.uk, any data you provide to us will be removed from the dataset. All data we receive will be anonymised and no identification of individuals will be permitted in any public forum or output of the research.

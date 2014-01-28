@@ -10,7 +10,7 @@ from diary.forms import RegisterForm
 from diary.models import Entries, Week
 from survey.models import User, UserManager
 
-def register(request):
+def register(request, token):
     if request.method == 'POST':
         u = User.objects.get(code=request.session['u'])
         if u.startdate:
@@ -28,7 +28,6 @@ def register(request):
             return render_to_response('register.html', { 'form': form }, context_instance=RequestContext(request))
     else:
         try:
-            token = request.GET['t']
             u = UserManager.get_user_from_token(token)
             request.session['u'] = u.code
         except:

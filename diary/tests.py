@@ -70,7 +70,7 @@ class RegistraionEmailTest(TestCase):
 
         self.run_command()
         self.assertEqual(len(mail.outbox), 1)
-        self.assertRegexpMatches(mail.outbox[0].body, 'D/token/')
+        self.assertRegexpMatches(mail.outbox[0].body, 'R/token/')
 
     def test_does_not_send_if_user_has_startdate(self):
         u = User(email='test@example.org',token='token',code='usercode')
@@ -96,7 +96,7 @@ class RegistraionEmailTest(TestCase):
 
 class RegisterPageTest(TestCase):
     def test_registration_page_with_no_token_is_an_error(self):
-        response = self.client.get(reverse('diary:register'))
+        response = self.client.get(reverse('diary:register', args=('badtoken',)))
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'something went wrong')
 
@@ -104,7 +104,7 @@ class RegisterPageTest(TestCase):
         u = User(email='test@example.org',token='token',code='usercode')
         u.save()
 
-        response = self.client.get(reverse('diary:register'), {'t': 'token'})
+        response = self.client.get(reverse('diary:register', args=('token',)))
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'To register and create')
 
@@ -113,14 +113,14 @@ class RegisterPageTest(TestCase):
         u.save()
 
         # need to do this to set up session
-        response = self.client.get(reverse('diary:register'), {'t': 'token'})
+        response = self.client.get(reverse('diary:register', args=('token',)))
 
         with patch( 'diary.views.SurveyDate') as mock:
             patched_date = mock.return_value
             patched_date.now.return_value = dateparse.parse_date('2014-01-24')
             patched_date.get_start_date.return_value = dateparse.parse_datetime('2014-01-23T00:00:00+00:00')
 
-            response = self.client.post(reverse('diary:register'), {'name': 'Test User', 'agree': 1})
+            response = self.client.post(reverse('diary:register', args=('token',)), {'name': 'Test User', 'agree': 1})
             self.assertContains(response, 'Thank')
 
             u = User.objects.get(code='usercode')
