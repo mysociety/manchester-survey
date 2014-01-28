@@ -32,7 +32,7 @@ class ReminderManager(models.Manager):
 
         users = User.objects.filter(startdate__gte=twelve_weeks_ago).filter(withdrawn=False)
 
-        self.send_email('email/registration_confirm.txt', 'This week\'s diary', 'from@example.org', users)
+        self.send_email('email/first_reminder.txt', 'This week\'s diary', 'from@example.org', users)
 
     def send_second_reminder_email(self):
         sd = SurveyDate()
@@ -49,7 +49,7 @@ class ReminderManager(models.Manager):
 
             users = User.objects.filter(withdrawn=False).filter(startdate__lte=end_date).filter(startdate__gte=start_date).exclude(entries__week_id=week_id)
 
-            self.send_email('email/registration_confirm.txt', 'This week\'s diary', 'from@example.org', users)
+            self.send_email('email/second_reminder.txt', 'This week\'s diary', 'from@example.org', users)
 
             #print 'users for week %d: %d' % ( week_num + 1, users.count() )
             #print 'start: %s, end: %s' % ( start_date, end_date )
