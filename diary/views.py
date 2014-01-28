@@ -87,6 +87,26 @@ def record_answers(request):
 
     return render_to_response('question_thanks.html', {}, context_instance=RequestContext(request))
 
+def confirm_withdraw(request, token):
+    try:
+        u = UserManager.get_user_from_token(token)
+    except:
+        return render_to_response('invalid_week.html', {}, context_instance=RequestContext(request))
+
+    u.withdraw = True
+    u.save()
+    return render_to_response('confirm_withdrawl.html', {}, context_instance=RequestContext(request))
+
+def withdraw(request, token):
+    try:
+        u = UserManager.get_user_from_token(token)
+    except:
+        return render_to_response('invalid_week.html', {}, context_instance=RequestContext(request))
+
+    u.withdrawn = True
+    u.save()
+    return render_to_response('withdrawn.html', { token: token }, context_instance=RequestContext(request))
+
 
 
 def participant_info(request):

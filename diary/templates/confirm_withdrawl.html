@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Confirm withdrawl{% endblock %}
+
+{% block content %}
+<div class="screen">
+    <p>
+    Please confirm that you no longer want to complete a weekly diary.
+    </p>
+
+    <p>
+    <a href="{% url 'diary:withdraw' token %}">Confirm</a>
+    </p>
+</div>
+{% endblock %}

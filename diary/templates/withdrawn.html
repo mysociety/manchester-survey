@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Withdrawl confirmed{% endblock %}
+
+{% block content %}
+<div class="screen">
+    <p>
+    You have withdrawn from the weekly diary process. We will no longer send you reminders.
+    </p>
+
+    <p>
+    If you want to restart, or have accidentally withdrawn please contact {{ settings.CONTACT_EMAIL }} and we'll add you back in.
+    </p>
+</div>
+{% endblock %}

@@ -299,3 +299,21 @@ class SecondReminderTest(TestCase):
             rm.send_second_reminder_email()
 
             self.assertEqual(len(mail.outbox), 0)
+
+class WithdrawTest(TestCase):
+    def test_displays_confirm_page(self):
+        u = User(email='test@example.org',token='token',code='usercode')
+        u.save()
+
+        response = self.client.get(reverse('diary:confirm_withdraw', args=('token',)))
+        self.assertContains(response, 'Confirm withdrawl')
+
+    def test_confirmed_page_set_withdrawn(self):
+        u = User(email='test@example.org',token='token',code='usercode')
+        u.save()
+
+        response = self.client.get(reverse('diary:withdraw', args=('token',)))
+        self.assertContains(response, 'Withdrawl confirmed')
+
+        u = User.objects.get(code='usercode')
+        self.assertTrue(u.withdrawn)
