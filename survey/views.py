@@ -4,6 +4,7 @@ from django.template import RequestContext
 from django.conf import settings
 
 from survey.models import Item, User, Sites
+from survey.forms import SurveyForm
 
 import uuid
 
@@ -52,22 +53,22 @@ def record(request):
         u.save()
 
 
-    for v in request.POST:
-        if v == 'csrfmiddlewaretoken' or v == 'email':
-            continue
-        #TODO: this is almost certainly not the best way but enough for proof of concept
-        val = request.POST.getlist(v)
-        if len(val) > 1:
-            val = ','.join(val)
-        else:
-            val = request.POST[v]
+    f = SurveyForm(request.POST)
+    if f.is_valid():
+        for v in f.cleaned_data:
+            if v == 'email':
+                continue
+            val = f.cleaned_data[v]
 
-        r = Item(user_id=u.id, key=v, value=val, batch=1)
-        r.save()
+            r = Item(user_id=u.id, key=v, value=val, batch=1)
+            r.save()
 
-    if request.POST.has_key('email'):
-        u.email = request.POST['email']
-        u.save()
+        if f.cleaned_data.has_key('email'):
+            u.email = f.cleaned_data['email']
+            u.save()
+    else:
+        return render_to_response('already_completed.html', {}, context_instance=RequestContext(request))
+
 
     """
     We don't use django's session handling as we want to save the cookie for a long

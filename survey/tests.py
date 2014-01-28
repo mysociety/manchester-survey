@@ -103,4 +103,4 @@ class SurveyTest(TestCase):
 
         usercode = self.client.cookies['usercode']
         u = User.objects.get(code=usercode.value)
-        self.assertIsNone(u.email)
+        self.assertEqual(u.email, '')
