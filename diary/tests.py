@@ -147,7 +147,7 @@ class DiaryPageTest(TestCase):
             patched_date = mock.return_value
             patched_date.is_diary_day.return_value = False
             response = self.client.get(reverse('diary:questions', args=('token',)))
-            self.assertContains(response, 'closed')
+            self.assertContains(response, 'no longer available')
 
     def test_questions_page_displays_correct_week(self):
         u = User(email='test@example.org',token='token',code='usercode', startdate=timezone.now())
