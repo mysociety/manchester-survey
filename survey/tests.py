@@ -78,7 +78,7 @@ class SurveyTest(TestCase):
         self.assertTrue(len(responses) == 1)
 
         response = Item.objects.filter(user_id=u.id).filter(key='1').filter(value='a')
-        self.assertTrue(len(responses) == 1)
+        self.assertTrue(len(response) == 1)
 
     def test_multi_value_answers_recorded(self):
         self.post_survey({'1':['b','d']})
