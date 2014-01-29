@@ -2,3 +2,4 @@
 conf/httpd.conf
 conf/general.yml
 Vagrantfile
+.sass-cache

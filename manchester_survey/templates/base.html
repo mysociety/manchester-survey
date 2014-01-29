@@ -5,7 +5,7 @@
         <title>{% block fulltitle %}{% block title %}{% endblock %} :: mySociety Survey{% endblock %}</title>
         <meta charset="utf-8">
         {% load staticfiles %}
-        <link type="text/css" rel="stylesheet" href="{% static "css/main.css" %}">
+        <link type="text/css" rel="stylesheet" href="{% static "css/app.css" %}">
         {% if settings.GOOGLE_ANALYTICS_ACCOUNT %}
         <script type="text/javascript">
 
@@ -25,11 +25,33 @@
 
     <body>
         {% if settings.DEBUG %}
-        <div id="staging_header">This is a staging site &ndash; any data saved here <strong>may be deleted</strong>.</div>
+        <div id="alert-box--header">This is a staging site &ndash; any data saved here <strong>may be deleted</strong>.</div>
         {% endif %}
 
-        {% block content %}
-        {% endblock %}
+        <div class="ms-header">
+            <nav class="ms-header__row">
+                <a class="ms-header__logo" href="http://www.mysociety.org">mySociety</a>
+            </nav>
+        </div>
+
+        <header class="brand-header">
+            <div class="brand-header__row">
+                <div class="brand-header__title-unit">
+                    <h1 class="brand-header__title">Survey</h1>
+                </div>
+            </div>
+        </header>
+
+        <div class="full-page">
+            <div class="full-page__row">
+                <div class="full-page__unit">
+                <div class="page-wrapper">
+                    {% block content %}
+                    {% endblock %}
+                </div>
+                </div>
+            </div>
+        </div>
 
     </body>
 </html>
