@@ -9,8 +9,7 @@ class SurveyTest(TestCase):
         self.client.post(reverse('survey:record'), values)
 
     def get_stored_item(self, key):
-        usercode = self.client.cookies['usercode']
-        u = User.objects.get(code=usercode.value)
+        u = User.objects.latest('id')
 
         responses = Item.objects.filter(user_id=u.id)
         self.assertTrue(len(responses) == 1)
@@ -32,7 +31,7 @@ class SurveyTest(TestCase):
         self.assertContains(response, "University of Manchester")
 
         self.client.post(reverse('survey:record'))
-        self.assertIsNotNone(self.client.cookies['usercode'])
+        self.assertIsNotNone(self.client.cookies['surveydone'])
 
         response = self.client.get(reverse('survey:survey', args=('twfy', 'w')))
         self.assertEqual(response.status_code, 200)
@@ -44,7 +43,7 @@ class SurveyTest(TestCase):
         self.assertContains(response, "University of Manchester")
 
         self.client.post(reverse('survey:record'))
-        self.assertIsNotNone(self.client.cookies['usercode'])
+        self.assertIsNotNone(self.client.cookies['surveydone'])
 
         response = self.client.get(reverse('survey:survey', args=('twfy', 'w')))
         self.assertEqual(response.status_code, 200)
@@ -61,18 +60,18 @@ class SurveyTest(TestCase):
             self.assertContains(response, "University of Manchester")
 
     def test_completing_survey_creates_user(self):
-        self.post_survey({})
-        self.assertIsNotNone(self.client.cookies['usercode'].value)
+        users = User.objects.all()
+        count = users.count()
 
-        usercode = self.client.cookies['usercode']
-        u = User.objects.get(code=usercode.value)
-        self.assertIsNotNone(u.id)
+        self.post_survey({})
+
+        users = User.objects.all()
+        self.assertEqual(count + 1, users.count())
 
     def test_survey_is_recorded(self):
         self.post_survey({'1':'a'})
 
-        usercode = self.client.cookies['usercode']
-        u = User.objects.get(code=usercode.value)
+        u = User.objects.latest('id')
 
         responses = Item.objects.filter(user_id=u.id)
         self.assertTrue(len(responses) == 1)
@@ -91,8 +90,7 @@ class SurveyTest(TestCase):
         stored = self.get_stored_item('email')
         self.assertIsNone(stored)
 
-        usercode = self.client.cookies['usercode']
-        u = User.objects.get(code=usercode.value)
+        u = User.objects.latest('id')
         self.assertEqual('test@example.org', u.email)
 
     def test_email_is_blank_if_not_provided(self):
@@ -101,6 +99,5 @@ class SurveyTest(TestCase):
         stored = self.get_stored_item('email')
         self.assertIsNone(stored)
 
-        usercode = self.client.cookies['usercode']
-        u = User.objects.get(code=usercode.value)
+        u = User.objects.latest('id')
         self.assertEqual(u.email, '')

@@ -9,15 +9,11 @@ from survey.forms import SurveyForm
 import uuid
 
 def has_voted(request):
-    if ( request.COOKIES.has_key('usercode') ):
+    if ( request.COOKIES.has_key('surveydone') ):
         if ( settings.DEBUG and request.GET and request.GET['ignorecookie'] ):
             return False
         return True
     return False
-
-def get_user_from_cookie(request):
-    u = User.objects.get(code=request.COOKIES['usercode'])
-    return u
 
 def management(request):
     return render_to_response('management.html', {}, context_instance=RequestContext(request))
@@ -28,10 +24,7 @@ def contact(request):
 
 def survey(request, site, source):
     if ( has_voted(request) ):
-        u = get_user_from_cookie(request)
-
-        if u:
-            return render_to_response('already_completed.html', {}, context_instance=RequestContext(request))
+        return render_to_response('already_completed.html', {}, context_instance=RequestContext(request))
 
     vars = {}
     vars['site_code'] = site
@@ -42,7 +35,7 @@ def survey(request, site, source):
 
 def record(request):
     if ( has_voted(request) ):
-        u = get_user_from_cookie(request)
+        return render_to_response('survey.html', vars, context_instance=RequestContext(request))
     else:
         u = User(code=uuid.uuid4())
         u.save()
@@ -72,6 +65,6 @@ def record(request):
     one_year = 60 * 60 * 24 * 365
 
     response = render_to_response('thanks.html', {}, context_instance=RequestContext(request))
-    response.set_cookie('usercode', value=u.code, max_age=one_year)
+    response.set_cookie('surveydone', 1, max_age=one_year)
 
     return response
