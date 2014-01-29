@@ -5,6 +5,6 @@ from survey.views import *
 urlpatterns = patterns('',
     url(r'^management', 'survey.views.management', name='management'),
     url(r'^contact', 'survey.views.contact', name='contact'),
-    url(r'^$', 'survey.views.survey', name='survey'),
+    url(r'^S/(?P<site>[a-z]{,4})/(?P<source>[a-z])/$', 'survey.views.survey', name='survey'),
     url(r'^record$', 'survey.views.record', name='record'),
 )

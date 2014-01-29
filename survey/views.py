@@ -26,7 +26,7 @@ def contact(request):
     return render_to_response('contact.html', {}, context_instance=RequestContext(request))
 
 
-def survey(request):
+def survey(request, site, source):
     if ( has_voted(request) ):
         u = get_user_from_cookie(request)
 
@@ -34,14 +34,9 @@ def survey(request):
             return render_to_response('already_completed.html', {}, context_instance=RequestContext(request))
 
     vars = {}
-    if ( request.GET.has_key('site') ):
-        site = request.GET['site']
-        vars['site_code'] = site
-        vars['site_name'] = Sites.sites[site]
-
-    if ( request.GET.has_key('source') ):
-        source = request.GET['source']
-        vars['source'] = source
+    vars['site_code'] = site
+    vars['site_name'] = Sites.sites[site]
+    vars['source'] = source
 
     return render_to_response('survey.html', vars, context_instance=RequestContext(request))
 
