@@ -59,8 +59,6 @@
             1.  Where did you hear about {{ site_name }}? Please tick all that apply. 
         </div>
 
-Allow for multiple choices (except option F - don’t know/can’t remember – this is exclusive. I.e. if people tick option F, no other choice is allowed). Allow to continue to next screen even if NO box is ticked
-
         <div class="answers">
             <div class="radio">
                 <input type="checkbox" id="a1a" name="1" value="a"><label for="a1a">TV/Radio</label>
@@ -162,7 +160,7 @@ Allow for multiple choices (except option F - don’t know/can’t remember – 
             5.  Some people say that politicians in Britain care what ordinary people think. Others say that political parties in Britain don't care what ordinary people think. Using the scale below, (where 1 means that political parties care about what ordinary people think, and 5 means that they don't care what ordinary people think), where would you place yourself?
         </div>
 
-        <p>
+        <div class="answers">
             Parties care about what ordinary people think
             <span class="range-radio"><input type="radio" id="a51" name="5" value="1"><label for="a51">1</label></span>
             <span class="range-radio"><input type="radio" id="a52" name="5" value="2"><label for="a52">2</label></span>
@@ -170,7 +168,7 @@ Allow for multiple choices (except option F - don’t know/can’t remember – 
             <span class="range-radio"><input type="radio" id="a54" name="5" value="4"><label for="a54">4</label></span>
             <span class="range-radio"><input type="radio" id="a55" name="5" value="5"><label for="a54">5</label></span>
             Parties don't care what ordinary people think
-        </p>
+        </div>
     </div>
 
 
@@ -365,7 +363,7 @@ Allow for multiple choices (except option F - don’t know/can’t remember – 
 
     <div class="screen">
         <div class="question">
-            12. Not including the times you have contacted public officials and politicians, have you ever used social networking sites (e.g. Facebook, Twitter), blogs or the email to share your own comments or promote content produced by others about … Multiple choice permitted for options A and B, but option C is exclusive. So people can tick both option A and B, but if they tick option C, no other option can be ticked. Allow to continue to next screen even if NO box is ticked
+            12. Not including the times you have contacted public officials and politicians, have you ever used social networking sites (e.g. Facebook, Twitter), blogs or the email to share your own comments or promote content produced by others about …
         </div>
 
         <div class="answers">
@@ -406,10 +404,6 @@ Allow for multiple choices (except option F - don’t know/can’t remember – 
             14. In the last twelve months have you been involved with any of the following ONLINE community or group (other than mySociety)? For each of them, can you tell us how you participated? Please tick as many as apply.
         </div>
         <div class="answers">
-
-Multiple choices permitted for each row and column. Allow to continue to next screen even if NO box is ticked. 
-ONLY IF respondents tick option F in at least one row, go to question 14.2 below**. If option F is NOT ticked in any row, go to the next question (question 15).
-
             <table>
                 <thead>
                     <tr>
@@ -446,10 +440,11 @@ ONLY IF respondents tick option F in at least one row, go to question 14.2 below
 
     <div class="screen" id="screen14-2">
         <div class="question">
+            14.2 You said you have been involved in online communities/groups in other ways than those listed in the previous question. Can you tell us how?
+        </div>
 
-**QUESTION 14.2 (only if option F ticked in at least one row)
-You said you have been involved in online communities/groups in other ways than those listed in the previous question. Can you tell us how? [space for answers]
-
+        <div class="answers">
+            <textarea name="14how"></textarea>
         </div>
     </div>
 
@@ -749,7 +744,7 @@ You said you have been involved in online communities/groups in other ways than 
 
     <div class="screen">
         <div class="question">
-24. To which one of these ethnic groups do you consider you belong? One choice only permitted. Allow to continue to next screen even if NO box is ticked
+            24. To which one of these ethnic groups do you consider you belong? 
         </div>
         <div class="answers">
             <dl>
