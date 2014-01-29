@@ -4,69 +4,8 @@
     <head>
         <title>{% block fulltitle %}{% block title %}{% endblock %} :: mySociety Survey{% endblock %}</title>
         <meta charset="utf-8">
-        <style type="text/css">
-            body {
-                margin: 1em;
-                background-color: #ccc;
-            }
-            
-            p {
-                padding: 0em;
-            }
-
-            table {
-                border-collapse: collapse;
-                border-spacing: 0px;
-            }
-
-            tr {
-                border-top: 1px solid #ccc;
-            }
-
-            thead tr {
-                border-top: 0px;
-            }
-
-            th, td {
-                padding: 0.5em 1em;
-            }
-
-            .centered {
-                text-align: center;
-            }
-
-            .screen {
-                background-color: white;
-                margin: 1em 0em;
-                padding: 0.5em;
-                border-radius: 3px;
-            }
-
-            .answers {
-                margin-top: 1em;
-            }
-
-            .radio {
-                margin-bottom: 0.25em;
-                padding-left: 1em;
-            }
-
-            .radio input {
-                display: inline-block;
-                margin-right: 1em;
-            }
-
-            .range-radio {
-                padding-right: 1em;
-            }
-
-            .range-radio input {
-                display: inline-block;
-                margin-right: 0.5em;
-            }
-        </style>
-        {# CSS #}
-        {# JS #}
+        {% load staticfiles %}
+        <link type="text/css" rel="stylesheet" href="{% static "css/main.css" %}">
         {% if settings.GOOGLE_ANALYTICS_ACCOUNT %}
         <script type="text/javascript">
 
