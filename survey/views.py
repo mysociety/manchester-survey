@@ -35,7 +35,7 @@ def survey(request, site, source):
 
 def record(request):
     if ( has_voted(request) ):
-        return render_to_response('survey.html', vars, context_instance=RequestContext(request))
+        return render_to_response('already_completed.html', {}, context_instance=RequestContext(request))
     else:
         u = User(code=uuid.uuid4())
         u.save()
