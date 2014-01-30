@@ -33,4 +33,4 @@
     $('input[name="14political"][value="f"]').on('click', toggle_fourteen_optional);
 
     $('#screen14-2').hide();
-})(Zepto);
+})(jQuery);

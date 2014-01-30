@@ -5,7 +5,8 @@
         <title>{% block fulltitle %}{% block title %}{% endblock %} :: mySociety Survey{% endblock %}</title>
         <meta charset="utf-8">
         {% load staticfiles %}
-        <script type="text/javascript" src="{% static "javascripts/vendor/zepto.js" %}"></script>
+        <script type="text/javascript" src="{% static "javascripts/vendor/jquery.min.js" %}"></script>
+        <script type="text/javascript" src="{% static "javascripts/vendor/parsley.min.js" %}"></script>
         <link type="text/css" rel="stylesheet" href="{% static "css/app.css" %}">
         {% if settings.GOOGLE_ANALYTICS_ACCOUNT %}
         <script type="text/javascript">

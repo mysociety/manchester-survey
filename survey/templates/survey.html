@@ -3,7 +3,7 @@
 {% block title %}Survey{% endblock %}
 
 {% block content %}
-<form action="/record" method="POST">
+<form id="surveyform" action="/record" method="POST" parsley-validate>
     <div class="screen">
         <p>
             This survey is conducted by researchers at the University of Manchester with mySociety as part of a project examining how and why citizens use websites like {{ site_name }}. The main goal is to improve the users’ experience and to help researchers understand whether {{ site_name }} offers a new way for people to become involved in their communities and in politics. The survey shouldn’t take more than 10-15 minutes to be completed. 
@@ -39,7 +39,7 @@
         </p>
 
         <div class="radio">
-            <input type="radio" id="permission-yes" name="permission" value="Yes"><label for="permission-yes">Yes</label>
+            <input type="radio" id="permission-yes" name="permission" value="Yes" parsley-error-message="Please agree to the terms and conditions before taking part" parsley-regexp="Yes" required><label for="permission-yes">Yes</label>
         </div>
         <div class="radio">
             <input type="radio" id="permission-no" name="permission" value="No"><label for="permission-no">No</label>
@@ -895,7 +895,7 @@
         </p>
 
         <p>
-            <input type="text" name="email">
+            <input type="email" name="email" parsley-trigger="change">
         </p>
 
         <input type="hidden" name="site" value="{{ site_code }}">
