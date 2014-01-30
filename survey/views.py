@@ -55,7 +55,7 @@ def record(request):
             u.email = f.cleaned_data['email']
             u.save()
     else:
-        return render_to_response('already_completed.html', {}, context_instance=RequestContext(request))
+        return render_to_response('survey.html', { 'form': f }, context_instance=RequestContext(request))
 
 
     """

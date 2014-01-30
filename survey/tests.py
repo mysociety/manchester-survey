@@ -6,13 +6,14 @@ from survey.models import User, Item
 class SurveyTest(TestCase):
     def post_survey(self, values):
         self.client.get(reverse('survey:survey', args=('twfy', 'w')))
+        if 'permission' not in values:
+            values['permission'] = 'Yes'
         self.client.post(reverse('survey:record'), values)
 
     def get_stored_item(self, key):
         u = User.objects.latest('id')
 
         responses = Item.objects.filter(user_id=u.id)
-        self.assertTrue(len(responses) == 1)
 
         try:
             response = Item.objects.get(user_id=u.id, key=key)
@@ -30,7 +31,7 @@ class SurveyTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "University of Manchester")
 
-        self.client.post(reverse('survey:record'))
+        self.client.post(reverse('survey:record'), { 'permission': 'Yes' } )
         self.assertIsNotNone(self.client.cookies['surveydone'])
 
         response = self.client.get(reverse('survey:survey', args=('twfy', 'w')))
@@ -42,7 +43,7 @@ class SurveyTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "University of Manchester")
 
-        self.client.post(reverse('survey:record'))
+        self.client.post(reverse('survey:record'), { 'permission': 'Yes'} )
         self.assertIsNotNone(self.client.cookies['surveydone'])
 
         response = self.client.get(reverse('survey:survey', args=('twfy', 'w')))
@@ -74,7 +75,7 @@ class SurveyTest(TestCase):
         u = User.objects.latest('id')
 
         responses = Item.objects.filter(user_id=u.id)
-        self.assertTrue(len(responses) == 1)
+        self.assertTrue(len(responses) == 2)
 
         response = Item.objects.filter(user_id=u.id).filter(key='1').filter(value='a')
         self.assertTrue(len(response) == 1)
@@ -100,4 +101,4 @@ class SurveyTest(TestCase):
         self.assertIsNone(stored)
 
         u = User.objects.latest('id')
-        self.assertEqual(u.email, '')
+        self.assertEqual(u.email, None)

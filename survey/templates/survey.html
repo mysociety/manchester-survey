@@ -4,6 +4,17 @@
 
 {% block content %}
 <form id="surveyform" action="/record" method="POST" parsley-validate>
+    {% if form and form.errors %}
+        <p class="errors">
+            There were some problems with your survey.
+        </p>
+        <ul class="errorlist">
+        {% for field, errors in form.errors.items %}
+            <li><a href="#name_{{ field }}">{% for e in errors %}{{ e }}{% endfor %}</a></li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+
     <div class="screen">
         <p>
             This survey is conducted by researchers at the University of Manchester with mySociety as part of a project examining how and why citizens use websites like {{ site_name }}. The main goal is to improve the users’ experience and to help researchers understand whether {{ site_name }} offers a new way for people to become involved in their communities and in politics. The survey shouldn’t take more than 10-15 minutes to be completed. 
@@ -38,11 +49,13 @@
             <a href="{% url 'survey:management' %}">Management of Project Data</a>. 
         </p>
 
+        <a name="name_permission"></a>
         <div class="radio">
-            <input type="radio" id="permission-yes" name="permission" value="Yes" parsley-error-message="Please agree to the terms and conditions before taking part" parsley-regexp="Yes" required><label for="permission-yes">Yes</label>
+            <input type="radio" id="permission-yes" name="permission" value="Yes" parsley-error-message="Please agree to the terms and conditions before taking part" parsley-regexp="Yes" required {% if form.permission and form.permission.value == 'Yes' %}checked{% endif %}><label for="permission-yes">Yes</label>
+            {{ form.permission.errors }}
         </div>
         <div class="radio">
-            <input type="radio" id="permission-no" name="permission" value="No"><label for="permission-no">No</label>
+            <input type="radio" id="permission-no" name="permission" value="No" {% if form.permission and form.permission.value == 'No' %}checked{% endif %}><label for="permission-no">No</label>
         </div>
 
         <p>
@@ -895,6 +908,8 @@
         </p>
 
         <p>
+            <a name="name_email"></a>
+            {{ form.email.errors }}
             <input type="email" name="email" parsley-trigger="change">
         </p>
 

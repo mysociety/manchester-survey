@@ -248,6 +248,13 @@ form {
     }
 }
 
+.errorlist, .parsley-error-list {
+    li {
+        display: block !important;
+        color: red;
+    }
+}
+
 .screen {
     @include grid-column(12);
     @include panel;
