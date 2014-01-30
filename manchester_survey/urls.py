@@ -9,7 +9,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
-    #url(r'^$', 'manchester_survey.views.home', name='home'),
+    url(r'^$', 'manchester_survey.views.home', name='home'),
     # url(r'^manchester_survey/', include('manchester_survey.foo.urls')),
 
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
