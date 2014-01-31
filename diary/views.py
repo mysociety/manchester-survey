@@ -10,9 +10,16 @@ from diary.forms import RegisterForm
 from diary.models import Entries, Week
 from survey.models import User, UserManager
 
+def get_user_from_session(request):
+    u = User.objects.get(id=request.session['u'])
+    return u
+
+def add_user_to_session(request, user):
+    request.session['u'] = user.id
+
 def register(request, id, token):
     if request.method == 'POST':
-        u = User.objects.get(code=request.session['u'])
+        u = get_user_from_session(request)
         if u.startdate:
             return render_to_response('already_registered.html', {}, context_instance=RequestContext(request))
 
@@ -31,7 +38,7 @@ def register(request, id, token):
             u = UserManager.get_user_from_token(id, token)
             if not u:
                 return render_to_response('invalid_registration.html', {}, context_instance=RequestContext(request))
-            request.session['u'] = u.code
+            add_user_to_session(request, u)
         except:
             return render_to_response('invalid_registration.html', {}, context_instance=RequestContext(request))
 
@@ -48,7 +55,7 @@ def questions_for_week(request, id, token):
 
     try:
         u = UserManager.get_user_from_token(id, token)
-        request.session['u'] = u.code
+        add_user_to_session(request, u)
     except:
         return render_to_response('invalid_week.html', {}, context_instance=RequestContext(request))
 
@@ -72,8 +79,7 @@ def record_answers(request):
     week_num = request.POST['week']
     week = Week.objects.get(week=week_num)
 
-    code = request.session['u']
-    u = User.objects.get(code=code)
+    u = get_user_from_session(request)
 
     for v in request.POST:
         if v == 'csrfmiddlewaretoken' or v == 'week':
