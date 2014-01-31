@@ -1,4 +1,5 @@
 # Create your views here.
+from django.http import Http404
 from django.shortcuts import get_object_or_404,render_to_response
 from django.template import RequestContext
 from django.conf import settings
@@ -28,7 +29,11 @@ def survey(request, site, source):
 
     vars = {}
     vars['site_code'] = site
-    vars['site_name'] = Sites.sites[site]
+    try:
+        vars['site_name'] = Sites.sites[site]
+    except:
+        raise Http404
+
     vars['source'] = source
 
     return render_to_response('survey.html', vars, context_instance=RequestContext(request))
