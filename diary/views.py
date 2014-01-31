@@ -32,7 +32,7 @@ def register(request, id, token):
             send_start_email(u)
             return render_to_response('register_thanks.html', {}, context_instance=RequestContext(request))
         else:
-            return render_to_response('register.html', { 'form': form }, context_instance=RequestContext(request))
+            return render_to_response('register.html', { 'form': form, 'id': id, 'token': token }, context_instance=RequestContext(request))
     else:
         try:
             u = UserManager.get_user_from_token(id, token)
@@ -46,7 +46,7 @@ def register(request, id, token):
             return render_to_response('already_registered.html', {}, context_instance=RequestContext(request))
 
         form = RegisterForm()
-        return render_to_response('register.html', { 'form': form }, context_instance=RequestContext(request))
+        return render_to_response('register.html', { 'form': form, 'id': id, 'token': token }, context_instance=RequestContext(request))
 
 def questions_for_week(request, id, token):
     sd = SurveyDate(date=SurveyDate.now())
