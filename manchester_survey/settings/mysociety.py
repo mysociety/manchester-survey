@@ -11,12 +11,12 @@ TEMPLATE_DEBUG = DEBUG
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': config.get('PROJECT_NAME_DB_NAME'),
-        'TEST_NAME': config.get('PROJECT_NAME_DB_TEST_NAME'),
-        'USER': config.get('PROJECT_NAME_DB_USER'),
-        'PASSWORD': config.get('PROJECT_NAME_DB_PASS'),
-        'HOST': config.get('PROJECT_NAME_DB_HOST'),
-        'PORT': config.get('PROJECT_NAME_DB_PORT'),
+        'NAME': config.get('MANSURV_DB_NAME'),
+        'TEST_NAME': config.get('MANSURV_DB_TEST_NAME'),
+        'USER': config.get('MANSURV_DB_USER'),
+        'PASSWORD': config.get('MANSURV_DB_PASS'),
+        'HOST': config.get('MANSURV_DB_HOST'),
+        'PORT': config.get('MANSURV_DB_PORT'),
     }
 }
 

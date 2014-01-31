@@ -8,11 +8,11 @@
 #
 # Copyright (c) 2011 UK Citizens Online Democracy. All rights reserved.
 
-PROJECT_NAME_DB_HOST: 'localhost'
-PROJECT_NAME_DB_PORT: '5432'
-PROJECT_NAME_DB_USER: ''
-PROJECT_NAME_DB_NAME: ''
-PROJECT_NAME_DB_PASS: ''
+MANSURV_DB_HOST: 'localhost'
+MANSURV_DB_PORT: '5432'
+MANSURV_DB_USER: ''
+MANSURV_DB_NAME: ''
+MANSURV_DB_PASS: ''
 
 STAGING: '1'
 
@@ -27,3 +27,5 @@ GOOGLE_ANALYTICS_ACCOUNT: ''
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
 ALLOWED_HOSTS:
   - '.example.com'
+
+CONTACT_EMAIL: ''
