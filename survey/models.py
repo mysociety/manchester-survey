@@ -25,7 +25,6 @@ class User(models.Model):
     name = models.TextField(null=True)
     startdate = models.DateTimeField(null=True)
     withdrawn = models.BooleanField(default=False)
-    token = models.TextField(unique=True, null=True, db_index=True)
 
     def __unicode__(self):
         return "%s - %s ( %s )" % ( self.code, self.email, self.name )
