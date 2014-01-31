@@ -1,3 +1,4 @@
+import random
 from datetime import date, timedelta
 from django.db import models
 from django.utils import timezone
@@ -6,7 +7,7 @@ from django.core.mail import send_mail
 from django.contrib import sites
 
 from survey.models import User
-from manchester_survey.utils import SurveyDate
+from manchester_survey.utils import SurveyDate, base32_to_int, int_to_base32
 
 class ReminderManager(models.Manager):
     def send_email(self, template, subject, from_address, users):
@@ -14,7 +15,10 @@ class ReminderManager(models.Manager):
         template = loader.get_template(template)
 
         for user in users:
-            context = { 'token': user.generate_token(), 'host': host }
+            if user.email == '':
+                continue
+            context = { 'id': int_to_base32(user.id), 'token': user.generate_token(random.randint(0,32767)
+), 'host': host }
             content = template.render(Context(context))
             send_mail(subject, content, from_address, [user.email])
 

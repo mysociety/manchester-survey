@@ -1,6 +1,6 @@
 Hello! You recently registered to complete an online diary for us about things in your community or in the news that have interested you. We are sending you the link to your next diary entry. 
 
-You can access this week’s diary at http://{{ host }}{% url 'diary:questions' token %}
+You can access this week’s diary at http://{{ host }}{% url 'diary:questions' id token %}
 
 You have until midnight on Sunday to complete this week’s diary entry. 
 

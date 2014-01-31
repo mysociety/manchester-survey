@@ -10,7 +10,7 @@ from diary.forms import RegisterForm
 from diary.models import Entries, Week
 from survey.models import User, UserManager
 
-def register(request, token):
+def register(request, id, token):
     if request.method == 'POST':
         u = User.objects.get(code=request.session['u'])
         if u.startdate:
@@ -28,7 +28,9 @@ def register(request, token):
             return render_to_response('register.html', { 'form': form }, context_instance=RequestContext(request))
     else:
         try:
-            u = UserManager.get_user_from_token(token)
+            u = UserManager.get_user_from_token(id, token)
+            if not u:
+                return render_to_response('invalid_registration.html', {}, context_instance=RequestContext(request))
             request.session['u'] = u.code
         except:
             return render_to_response('invalid_registration.html', {}, context_instance=RequestContext(request))
@@ -39,13 +41,13 @@ def register(request, token):
         form = RegisterForm()
         return render_to_response('register.html', { 'form': form }, context_instance=RequestContext(request))
 
-def questions_for_week(request, token):
+def questions_for_week(request, id, token):
     sd = SurveyDate(date=SurveyDate.now())
     if not sd.is_diary_day():
         return render_to_response('diary_closed.html', {},  context_instance=RequestContext(request))
 
     try:
-        u = UserManager.get_user_from_token(token)
+        u = UserManager.get_user_from_token(id, token)
         request.session['u'] = u.code
     except:
         return render_to_response('invalid_week.html', {}, context_instance=RequestContext(request))
@@ -87,25 +89,25 @@ def record_answers(request):
 
     return render_to_response('question_thanks.html', {}, context_instance=RequestContext(request))
 
-def confirm_withdraw(request, token):
+def confirm_withdraw(request, id, token):
     try:
-        u = UserManager.get_user_from_token(token)
+        u = UserManager.get_user_from_token(id, token)
     except:
         return render_to_response('invalid_week.html', {}, context_instance=RequestContext(request))
 
     u.withdraw = True
     u.save()
-    return render_to_response('confirm_withdrawl.html', {}, context_instance=RequestContext(request))
+    return render_to_response('confirm_withdrawl.html', { 'id': id, 'token': token }, context_instance=RequestContext(request))
 
-def withdraw(request, token):
+def withdraw(request, id, token):
     try:
-        u = UserManager.get_user_from_token(token)
+        u = UserManager.get_user_from_token(id, token)
     except:
         return render_to_response('invalid_week.html', {}, context_instance=RequestContext(request))
 
     u.withdrawn = True
     u.save()
-    return render_to_response('withdrawn.html', { token: token }, context_instance=RequestContext(request))
+    return render_to_response('withdrawn.html', {}, context_instance=RequestContext(request))
 
 
 

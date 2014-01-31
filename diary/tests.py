@@ -1,3 +1,4 @@
+import random
 from mock import patch, Mock
 from datetime import timedelta, date
 from django.core import mail
@@ -7,8 +8,13 @@ from django.test import TestCase
 
 from diary.models import Entries, Week, ReminderManager
 from survey.models import User
-from manchester_survey.utils import SurveyDate
+from manchester_survey.utils import SurveyDate, int_to_base32
 
+
+def make_token_args(u):
+    id = int_to_base32(u.id)
+    token = u.generate_token(random.randint(0,32767))
+    return (id, token)
 
 class SurveyDateTest(TestCase):
     def test_creation(self):
@@ -70,7 +76,7 @@ class RegistraionEmailTest(TestCase):
 
         self.run_command()
         self.assertEqual(len(mail.outbox), 1)
-        self.assertRegexpMatches(mail.outbox[0].body, 'R/token/')
+        self.assertRegexpMatches(mail.outbox[0].body, 'R/([0-9A-Za-z]+)-(.+)/')
 
     def test_does_not_send_if_user_has_startdate(self):
         u = User(email='test@example.org',token='token',code='usercode')
@@ -96,15 +102,16 @@ class RegistraionEmailTest(TestCase):
 
 class RegisterPageTest(TestCase):
     def test_registration_page_with_no_token_is_an_error(self):
-        response = self.client.get(reverse('diary:register', args=('badtoken',)))
+        response = self.client.get(reverse('diary:register', args=('badid', 'badtoken',)))
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'something went wrong')
 
     def test_registration_with_token_displays_page(self):
         u = User(email='test@example.org',token='token',code='usercode')
         u.save()
+        (rand, hash) = make_token_args(u)
 
-        response = self.client.get(reverse('diary:register', args=('token',)))
+        response = self.client.get(reverse('diary:register', args=(rand, hash)))
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'To register and create')
 
@@ -113,14 +120,15 @@ class RegisterPageTest(TestCase):
         u.save()
 
         # need to do this to set up session
-        response = self.client.get(reverse('diary:register', args=('token',)))
+        (rand, hash) = make_token_args(u)
+        response = self.client.get(reverse('diary:register', args=(rand, hash)))
 
         with patch( 'diary.views.SurveyDate') as mock:
             patched_date = mock.return_value
             patched_date.now.return_value = dateparse.parse_date('2014-01-24')
             patched_date.get_start_date.return_value = dateparse.parse_datetime('2014-01-23T00:00:00+00:00')
 
-            response = self.client.post(reverse('diary:register', args=('token',)), {'name': 'Test User', 'agree': 1})
+            response = self.client.post(reverse('diary:register', args=(rand, hash)), {'name': 'Test User', 'agree': 1})
             self.assertContains(response, 'Thank')
 
             u = User.objects.get(code='usercode')
@@ -136,7 +144,7 @@ class DiaryPageTest(TestCase):
             patched_date = mock.return_value
             patched_date.is_diary_day.return_value = True
 
-            response = self.client.get(reverse('diary:questions', args=('badtoken',)))
+            response = self.client.get(reverse('diary:questions', args=('badid', 'badtoken',)))
             self.assertEqual(response.status_code, 200)
             self.assertContains(response, 'Something went wrong finding')
 
@@ -146,12 +154,13 @@ class DiaryPageTest(TestCase):
         with patch( 'diary.views.SurveyDate') as mock:
             patched_date = mock.return_value
             patched_date.is_diary_day.return_value = False
-            response = self.client.get(reverse('diary:questions', args=('token',)))
+            response = self.client.get(reverse('diary:questions', args=('id', 'token',)))
             self.assertContains(response, 'no longer available')
 
     def test_questions_page_displays_correct_week(self):
         u = User(email='test@example.org',token='token',code='usercode', startdate=timezone.now())
         u.save()
+        (rand, hash) = make_token_args(u)
 
         with patch( 'diary.views.SurveyDate') as mock:
             patched_date = mock.return_value
@@ -159,24 +168,26 @@ class DiaryPageTest(TestCase):
 
             for i in range(1, 12): 
                 patched_date.get_week_from_startdate.return_value = i
-                response = self.client.get(reverse('diary:questions', args=('token',)))
+                response = self.client.get(reverse('diary:questions', args=(rand, hash)))
                 self.assertContains(response, 'Week %d' % ( i ))
 
     def test_startdate_over_12_weeks_ago_is_an_error(self):
         u = User(email='test@example.org',token='token',code='usercode', startdate=timezone.now())
         u.save()
+        (rand, hash) = make_token_args(u)
 
         with patch( 'diary.views.SurveyDate') as mock:
             patched_date = mock.return_value
             patched_date.get_week_from_startdate.return_value = 13
 
-            response = self.client.get(reverse('diary:questions', args=('token',)))
-            response = self.client.get(reverse('diary:questions', args=( 'token',)))
+            response = self.client.get(reverse('diary:questions', args=(rand, hash)))
+            response = self.client.get(reverse('diary:questions', args=(rand, hash)))
             self.assertContains(response, 'There are no more diary entries')
 
     def test_diary_details_are_recorded(self):
         u = User(email='test@example.org',token='token',code='usercode', startdate=timezone.now())
         u.save()
+        (rand, hash) = make_token_args(u)
 
         w = Week.objects.get(week=1)
 
@@ -185,7 +196,7 @@ class DiaryPageTest(TestCase):
             patched_date.get_week_from_startdate.return_value = 1
 
             # do this to set up the session
-            response = self.client.get(reverse('diary:questions', args=('token',)))
+            response = self.client.get(reverse('diary:questions', args=(rand, hash)))
             response = self.client.post(reverse('diary:record_answers'), { 'media_diary': 'watched the news', 'week': 1 })
 
             answers = Entries.objects.filter(user_id=u.id).filter(week_id=w.id)
@@ -209,7 +220,7 @@ class FirstReminderTest(TestCase):
 
         self.run_command()
         self.assertEqual(len(mail.outbox), 1)
-        self.assertRegexpMatches(mail.outbox[0].body, 'D/token/')
+        self.assertRegexpMatches(mail.outbox[0].body, 'D/([0-9A-Za-z]+)-(.+)/')
 
     def test_reminder_not_send_to_withdrawn_users(self):
         startdate = '2014-01-23'
@@ -265,7 +276,7 @@ class SecondReminderTest(TestCase):
             rm.send_second_reminder_email()
 
             self.assertEqual(len(mail.outbox), 1)
-            self.assertRegexpMatches(mail.outbox[0].body, 'D/token/')
+            self.assertRegexpMatches(mail.outbox[0].body, 'D/([0-9A-Za-z]+)-(.+)/')
 
     def test_no_reminder_sent_before_startdate(self):
         startdate = '2014-01-23'
@@ -304,15 +315,17 @@ class WithdrawTest(TestCase):
     def test_displays_confirm_page(self):
         u = User(email='test@example.org',token='token',code='usercode')
         u.save()
+        (rand, hash) = make_token_args(u)
 
-        response = self.client.get(reverse('diary:confirm_withdraw', args=('token',)))
+        response = self.client.get(reverse('diary:confirm_withdraw', args=(rand, hash)))
         self.assertContains(response, 'Confirm withdrawl')
 
     def test_confirmed_page_set_withdrawn(self):
         u = User(email='test@example.org',token='token',code='usercode')
         u.save()
+        (rand, hash) = make_token_args(u)
 
-        response = self.client.get(reverse('diary:withdraw', args=('token',)))
+        response = self.client.get(reverse('diary:withdraw', args=(rand, hash)))
         self.assertContains(response, 'Withdrawl confirmed')
 
         u = User.objects.get(code='usercode')
