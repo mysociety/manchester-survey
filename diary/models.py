@@ -1,4 +1,4 @@
-import random
+import random, sys
 from datetime import date, timedelta
 from django.db import models
 from django.utils import timezone
@@ -29,6 +29,12 @@ class ReminderManager(models.Manager):
 
 
     def send_registration_email(self):
+        sd = SurveyDate()
+        today = date.today()
+        if not settings.DEBUG and today.weekday() != 3:
+            print "This should only be run on a Thursday"
+            sys.exit()
+
         users = User.objects.filter(startdate__isnull=True).exclude(email__isnull=True)
 
         self.send_email('email/registration_confirm.txt', 'Diary Registration', 'from@example.org', users)
@@ -36,6 +42,10 @@ class ReminderManager(models.Manager):
     def send_first_reminder_email(self):
         sd = SurveyDate()
         today = date.today()
+        if not settings.DEBUG and today.weekday() != 3:
+            print "This should only be run on a Thursday"
+            sys.exit()
+
         today = sd.get_start_date(today)
         twelve_weeks_ago = today - timedelta(weeks=12)
 
@@ -46,8 +56,12 @@ class ReminderManager(models.Manager):
     def send_second_reminder_email(self):
         sd = SurveyDate()
         today = date.today()
-        today = sd.get_start_date(today)
 
+        if not settings.DEBUG and today.weekday() != 5:
+            print "This should only be run on a Sunday"
+            sys.exit()
+
+        today = sd.get_start_date(today)
 
         for week_num in range(0,11):
             start_date = today - timedelta(weeks=week_num)
