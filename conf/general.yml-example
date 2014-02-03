@@ -29,3 +29,4 @@ ALLOWED_HOSTS:
   - '.example.com'
 
 CONTACT_EMAIL: ''
+FROM_EMAIL: ''
