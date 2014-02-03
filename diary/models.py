@@ -6,6 +6,7 @@ from django.template import loader, Context, Template
 from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib import sites
+from django.core.management.base import CommandError
 
 from survey.models import User
 from manchester_survey.utils import SurveyDate, base32_to_int, int_to_base32
@@ -30,10 +31,9 @@ class ReminderManager(models.Manager):
 
     def send_registration_email(self):
         sd = SurveyDate()
-        today = date.today()
+        today = sd.now()
         if not settings.DEBUG and today.weekday() != 3:
-            print "This should only be run on a Thursday"
-            sys.exit()
+            raise CommandError("This should only be run on a Thursday")
 
         users = User.objects.filter(startdate__isnull=True).exclude(email__isnull=True)
 
@@ -41,10 +41,9 @@ class ReminderManager(models.Manager):
 
     def send_first_reminder_email(self):
         sd = SurveyDate()
-        today = date.today()
+        today = sd.now()
         if not settings.DEBUG and today.weekday() != 3:
-            print "This should only be run on a Thursday"
-            sys.exit()
+            raise CommandError("This should only be run on a Thursday")
 
         today = sd.get_start_date(today)
         twelve_weeks_ago = today - timedelta(weeks=12)
@@ -55,11 +54,10 @@ class ReminderManager(models.Manager):
 
     def send_second_reminder_email(self):
         sd = SurveyDate()
-        today = date.today()
+        today = sd.now()
 
         if not settings.DEBUG and today.weekday() != 5:
-            print "This should only be run on a Sunday"
-            sys.exit()
+            raise CommandError("This should only be run on a Sunday")
 
         today = sd.get_start_date(today)
 

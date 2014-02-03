@@ -5,6 +5,7 @@ from django.core import mail
 from django.core.urlresolvers import reverse
 from django.utils import dateparse, timezone
 from django.test import TestCase
+from django.core.management.base import CommandError
 
 from diary.models import Entries, Week, ReminderManager
 from survey.models import User
@@ -62,9 +63,10 @@ class SurveyDateTest(TestCase):
 class RegistraionEmailTest(TestCase):
     fixtures = ['initial_data.json']
 
-    def run_command(self):
+    def run_command(self, date):
         with patch('diary.models.SurveyDate') as mock:
             patched_date = mock.return_value
+            patched_date.now.return_value = dateparse.parse_date(date)
             patched_date.get_start_date.return_value = dateparse.parse_date('2014-01-23')
 
             rm = ReminderManager()
@@ -74,7 +76,7 @@ class RegistraionEmailTest(TestCase):
         u = User(email='test@example.org',code='usercode')
         u.save()
 
-        self.run_command()
+        self.run_command('2014-01-23')
         self.assertEqual(len(mail.outbox), 1)
         self.assertRegexpMatches(mail.outbox[0].body, 'R/([0-9A-Za-z]+)-(.+)/')
 
@@ -86,7 +88,7 @@ class RegistraionEmailTest(TestCase):
         u = User(withdrawn=True,email='test2@example.org',code='usercode2', startdate=startdate)
         u.save()
 
-        self.run_command()
+        self.run_command('2014-01-23')
         self.assertEqual(len(mail.outbox), 1)
         self.assertEqual(mail.outbox[0].to, ['test@example.org'])
 
@@ -97,8 +99,12 @@ class RegistraionEmailTest(TestCase):
         u = User(withdrawn=True,code='usercode2')
         u.save()
 
-        self.run_command()
+        self.run_command('2014-01-23')
         self.assertEqual(len(mail.outbox), 1)
+
+    def test_command_does_not_run_if_not_thursday(self):
+        with self.assertRaisesRegexp(CommandError, 'Thursday'):
+            self.run_command('2014-01-22')
 
 class RegisterPageTest(TestCase):
     def test_registration_page_with_no_token_is_an_error(self):
@@ -244,9 +250,10 @@ class DiaryPageTest(TestCase):
 class FirstReminderTest(TestCase):
     fixtures = ['initial_data.json']
 
-    def run_command(self):
+    def run_command(self, date):
         with patch('diary.models.SurveyDate') as mock:
             patched_date = mock.return_value
+            patched_date.now.return_value = dateparse.parse_date(date)
             patched_date.get_start_date.return_value = dateparse.parse_date('2014-01-23')
 
             rm = ReminderManager()
@@ -257,7 +264,7 @@ class FirstReminderTest(TestCase):
         u = User(email='test@example.org',code='usercode', startdate=startdate)
         u.save()
 
-        self.run_command()
+        self.run_command('2014-01-23')
         self.assertEqual(len(mail.outbox), 1)
         self.assertRegexpMatches(mail.outbox[0].body, 'D/([0-9A-Za-z]+)-(.+)/')
 
@@ -269,7 +276,7 @@ class FirstReminderTest(TestCase):
         u = User(withdrawn=True,email='test2@example.org',code='usercode2', startdate=startdate)
         u.save()
 
-        self.run_command()
+        self.run_command('2014-01-23')
         self.assertEqual(len(mail.outbox), 1)
         self.assertEqual(mail.outbox[0].to, ['test@example.org'])
 
@@ -282,7 +289,7 @@ class FirstReminderTest(TestCase):
         u = User(withdrawn=True,email='test2@example.org',code='usercode2', startdate=startdate)
         u.save()
 
-        self.run_command()
+        self.run_command('2014-01-23')
         self.assertEqual(len(mail.outbox), 1)
         self.assertEqual(mail.outbox[0].to, ['test@example.org'])
 
@@ -295,9 +302,13 @@ class FirstReminderTest(TestCase):
         u = User(withdrawn=True,email='test2@example.org',code='usercode2', startdate=startdate)
         u.save()
 
-        self.run_command()
+        self.run_command('2014-01-23')
         self.assertEqual(len(mail.outbox), 1)
         self.assertEqual(mail.outbox[0].to, ['test@example.org'])
+
+    def test_command_does_not_run_if_not_thursday(self):
+        with self.assertRaisesRegexp(CommandError, 'Thursday'):
+            self.run_command('2014-01-22')
 
 class SecondReminderTest(TestCase):
     fixtures = ['initial_data.json']
@@ -309,6 +320,7 @@ class SecondReminderTest(TestCase):
 
         with patch('diary.models.SurveyDate') as mock:
             patched_date = mock.return_value
+            patched_date.now.return_value = dateparse.parse_date('2014-01-25')
             patched_date.get_start_date.return_value = dateparse.parse_date('2014-01-23')
 
             rm = ReminderManager()
@@ -324,6 +336,7 @@ class SecondReminderTest(TestCase):
 
         with patch('diary.models.SurveyDate') as mock:
             patched_date = mock.return_value
+            patched_date.now.return_value = dateparse.parse_date('2014-01-25')
             patched_date.get_start_date.return_value = dateparse.parse_date('2014-01-16')
 
             rm = ReminderManager()
@@ -343,12 +356,23 @@ class SecondReminderTest(TestCase):
 
         with patch('diary.models.SurveyDate') as mock:
             patched_date = mock.return_value
+            patched_date.now.return_value = dateparse.parse_date('2014-01-25')
             patched_date.get_start_date.return_value = dateparse.parse_date('2014-01-23')
 
             rm = ReminderManager()
             rm.send_second_reminder_email()
 
             self.assertEqual(len(mail.outbox), 0)
+
+    def test_command_does_not_run_if_not_sunday(self):
+        with self.assertRaisesRegexp(CommandError, 'Sunday'):
+            with patch('diary.models.SurveyDate') as mock:
+                patched_date = mock.return_value
+                patched_date.now.return_value = dateparse.parse_date('2014-01-23')
+                patched_date.get_start_date.return_value = dateparse.parse_date('2014-01-23')
+
+                rm = ReminderManager()
+                rm.send_second_reminder_email()
 
 class WithdrawTest(TestCase):
     def test_displays_confirm_page(self):
