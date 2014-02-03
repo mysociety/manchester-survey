@@ -292,11 +292,30 @@ form {
     }
 
     .range-radio {
-        padding-right: 1em;
+        display: block;
+        margin-left: 2em;
 
-        input, label {
+        label {
+            padding-left: 1em;
             display: inline-block;
-            margin-right: 0.5em;
+        }
+        @media (min-width: $medium-screen) {
+            display: inline-block;
+            margin-left: 0em;
+            padding-right: 1em;
+
+            &:nth-of-type(1) {
+                padding-left: 1em;
+            }
+
+            label {
+                padding-left: 0em;
+            }
+
+            input {
+                display: inline-block;
+                margin-right: 0.5em;
+            }
         }
     }
 
