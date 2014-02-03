@@ -20,7 +20,6 @@ class Secret(models.Model):
     secret = models.TextField(null=False)
 
 class User(models.Model):
-    code = models.TextField(unique=True, null=False, db_index=True)
     email = models.TextField(unique=True, null=True, db_index=True)
     name = models.TextField(null=True)
     startdate = models.DateTimeField(null=True)

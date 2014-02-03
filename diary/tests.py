@@ -73,7 +73,7 @@ class RegistraionEmailTest(TestCase):
             rm.send_registration_email()
 
     def test_sends_registration_email(self):
-        u = User(email='test@example.org',code='usercode')
+        u = User(email='test@example.org')
         u.save()
 
         self.run_command('2014-01-23')
@@ -81,11 +81,11 @@ class RegistraionEmailTest(TestCase):
         self.assertRegexpMatches(mail.outbox[0].body, 'R/([0-9A-Za-z]+)-(.+)/')
 
     def test_does_not_send_if_user_has_startdate(self):
-        u = User(email='test@example.org',code='usercode')
+        u = User(email='test@example.org')
         u.save()
 
         startdate='2014-01-16'
-        u = User(withdrawn=True,email='test2@example.org',code='usercode2', startdate=startdate)
+        u = User(withdrawn=True,email='test2@example.org', startdate=startdate)
         u.save()
 
         self.run_command('2014-01-23')
@@ -93,10 +93,10 @@ class RegistraionEmailTest(TestCase):
         self.assertEqual(mail.outbox[0].to, ['test@example.org'])
 
     def test_does_not_send_if_user_has_no_email(self):
-        u = User(email='test@example.org',code='usercode')
+        u = User(email='test@example.org',)
         u.save()
 
-        u = User(withdrawn=True,code='usercode2')
+        u = User(withdrawn=True,)
         u.save()
 
         self.run_command('2014-01-23')
@@ -113,7 +113,7 @@ class RegisterPageTest(TestCase):
         self.assertContains(response, 'something went wrong')
 
     def test_registration_with_token_displays_page(self):
-        u = User(email='test@example.org',code='usercode')
+        u = User(email='test@example.org')
         u.save()
         (rand, hash) = make_token_args(u)
 
@@ -122,7 +122,7 @@ class RegisterPageTest(TestCase):
         self.assertContains(response, 'To register and create')
 
     def test_save_registration_adds_start_date(self):
-        u = User(email='test@example.org',code='usercode')
+        u = User(email='test@example.org')
         u.save()
 
         # need to do this to set up session
@@ -137,7 +137,7 @@ class RegisterPageTest(TestCase):
             response = self.client.post(reverse('diary:register', args=(rand, hash)), {'name': 'Test User', 'agree': 1})
             self.assertContains(response, 'Thank')
 
-            u = User.objects.get(code='usercode')
+            u = User.objects.latest('id')
             self.assertIsNotNone(u.startdate)
             self.assertEqual(u.startdate.isoformat(), '2014-01-23T00:00:00+00:00')
             self.assertEqual(u.name, 'Test User')
@@ -203,7 +203,7 @@ class DiaryPageTest(TestCase):
             self.assertContains(response, 'no longer available')
 
     def test_questions_page_displays_correct_week(self):
-        u = User(email='test@example.org',code='usercode', startdate=timezone.now())
+        u = User(email='test@example.org', startdate=timezone.now())
         u.save()
         (rand, hash) = make_token_args(u)
 
@@ -217,7 +217,7 @@ class DiaryPageTest(TestCase):
                 self.assertContains(response, 'Week %d' % ( i ))
 
     def test_startdate_over_12_weeks_ago_is_an_error(self):
-        u = User(email='test@example.org',code='usercode', startdate=timezone.now())
+        u = User(email='test@example.org', startdate=timezone.now())
         u.save()
         (rand, hash) = make_token_args(u)
 
@@ -230,7 +230,7 @@ class DiaryPageTest(TestCase):
             self.assertContains(response, 'There are no more diary entries')
 
     def test_diary_details_are_recorded(self):
-        u = User(email='test@example.org',code='usercode', startdate=timezone.now())
+        u = User(email='test@example.org', startdate=timezone.now())
         u.save()
         (rand, hash) = make_token_args(u)
 
@@ -261,7 +261,7 @@ class FirstReminderTest(TestCase):
 
     def test_sends_reminder(self):
         startdate = '2014-01-23'
-        u = User(email='test@example.org',code='usercode', startdate=startdate)
+        u = User(email='test@example.org', startdate=startdate)
         u.save()
 
         self.run_command('2014-01-23')
@@ -270,10 +270,10 @@ class FirstReminderTest(TestCase):
 
     def test_reminder_not_send_to_withdrawn_users(self):
         startdate = '2014-01-23'
-        u = User(email='test@example.org',code='usercode', startdate=startdate)
+        u = User(email='test@example.org', startdate=startdate)
         u.save()
 
-        u = User(withdrawn=True,email='test2@example.org',code='usercode2', startdate=startdate)
+        u = User(withdrawn=True,email='test2@example.org', startdate=startdate)
         u.save()
 
         self.run_command('2014-01-23')
@@ -282,11 +282,11 @@ class FirstReminderTest(TestCase):
 
     def test_reminder_not_sent_to_finished_users(self):
         startdate = '2013-10-31'
-        u = User(email='test@example.org',code='usercode', startdate=startdate)
+        u = User(email='test@example.org', startdate=startdate)
         u.save()
 
         startdate = '2013-10-24'
-        u = User(withdrawn=True,email='test2@example.org',code='usercode2', startdate=startdate)
+        u = User(withdrawn=True,email='test2@example.org', startdate=startdate)
         u.save()
 
         self.run_command('2014-01-23')
@@ -295,11 +295,11 @@ class FirstReminderTest(TestCase):
 
     def test_reminder_not_sent_to_not_started_users(self):
         startdate = '2013-10-31'
-        u = User(email='test@example.org',code='usercode', startdate=startdate)
+        u = User(email='test@example.org', startdate=startdate)
         u.save()
 
         startdate = '2014-01-31'
-        u = User(withdrawn=True,email='test2@example.org',code='usercode2', startdate=startdate)
+        u = User(withdrawn=True,email='test2@example.org', startdate=startdate)
         u.save()
 
         self.run_command('2014-01-23')
@@ -315,7 +315,7 @@ class SecondReminderTest(TestCase):
 
     def test_sends_reminder(self):
         startdate = '2014-01-23'
-        u = User(email='test@example.org',code='usercode', startdate=startdate)
+        u = User(email='test@example.org', startdate=startdate)
         u.save()
 
         with patch('diary.models.SurveyDate') as mock:
@@ -331,7 +331,7 @@ class SecondReminderTest(TestCase):
 
     def test_no_reminder_sent_before_startdate(self):
         startdate = '2014-01-23'
-        u = User(email='test@example.org',code='usercode', startdate=startdate)
+        u = User(email='test@example.org', startdate=startdate)
         u.save()
 
         with patch('diary.models.SurveyDate') as mock:
@@ -346,7 +346,7 @@ class SecondReminderTest(TestCase):
 
     def test_no_reminder_sent_if_diary_entry_for_week(self):
         startdate = '2014-01-23'
-        u = User(email='test@example.org',code='usercode', startdate=startdate)
+        u = User(email='test@example.org', startdate=startdate)
         u.save()
 
         w = Week.objects.get(week=1)
@@ -376,7 +376,7 @@ class SecondReminderTest(TestCase):
 
 class WithdrawTest(TestCase):
     def test_displays_confirm_page(self):
-        u = User(email='test@example.org',code='usercode')
+        u = User(email='test@example.org')
         u.save()
         (rand, hash) = make_token_args(u)
 
@@ -384,12 +384,12 @@ class WithdrawTest(TestCase):
         self.assertContains(response, 'Confirm withdrawl')
 
     def test_confirmed_page_set_withdrawn(self):
-        u = User(email='test@example.org',code='usercode')
+        u = User(email='test@example.org')
         u.save()
         (rand, hash) = make_token_args(u)
 
         response = self.client.get(reverse('diary:withdraw', args=(rand, hash)))
         self.assertContains(response, 'Withdrawl confirmed')
 
-        u = User.objects.get(code='usercode')
+        u = User.objects.latest('id')
         self.assertTrue(u.withdrawn)

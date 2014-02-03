@@ -7,8 +7,6 @@ from django.conf import settings
 from survey.models import Item, User, Sites
 from survey.forms import SurveyForm
 
-import uuid
-
 def has_voted(request):
     if ( request.COOKIES.has_key('surveydone') ):
         if ( settings.DEBUG and request.GET and request.GET['ignorecookie'] ):
@@ -45,7 +43,7 @@ def record(request):
     if ( has_voted(request) ):
         return render_to_response('already_completed.html', {}, context_instance=RequestContext(request))
     else:
-        u = User(code=uuid.uuid4())
+        u = User()
         u.save()
 
 
