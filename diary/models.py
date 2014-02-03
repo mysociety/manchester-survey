@@ -18,8 +18,12 @@ class ReminderManager(models.Manager):
         for user in users:
             if user.email == '':
                 continue
-            context = { 'id': int_to_base32(user.id), 'token': user.generate_token(random.randint(0,32767)
-), 'host': host }
+            context = {
+                    'id': int_to_base32(user.id),
+                    'token': user.generate_token(random.randint(0,32767)),
+                    'host': host,
+                    'contact_email': settings.CONTACT_EMAIL
+                    }
             content = template.render(Context(context))
             send_mail(subject, content, from_address, [user.email])
 

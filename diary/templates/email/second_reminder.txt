@@ -3,5 +3,5 @@ We would like to remind you that you have until midnight on Sunday to complete t
 
 You can access the diary at http://{{ host }}{% url 'diary:questions' id token %}
 
-If you experience any technical issues or want to get in contact with the research team, please email {{ settings.CONTACT_EMAIL }}
+If you experience any technical issues or want to get in contact with the research team, please email {{ contact_email }}
 Thank you for participating in our project!

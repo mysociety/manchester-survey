@@ -4,6 +4,6 @@ You can access this week’s diary at http://{{ host }}{% url 'diary:questions' 
 
 You have until midnight on Sunday to complete this week’s diary entry. 
 
-If you experience any technical issues or want to get in contact with the research team, please email {{ settings.CONTACT_EMAIL }}
+If you experience any technical issues or want to get in contact with the research team, please email {{ contact_email }}
 
 Thank you for participating in our project!
