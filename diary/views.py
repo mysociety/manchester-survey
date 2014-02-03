@@ -1,11 +1,14 @@
+import random
 from datetime import date
 
 from django.shortcuts import render_to_response
-from django.template import RequestContext
+from django.template import RequestContext, loader, Context, Template
 from django.core.mail import send_mail
 from django.utils import timezone
+from django.conf import settings
+from django.contrib import sites
 
-from manchester_survey.utils import SurveyDate
+from manchester_survey.utils import SurveyDate, int_to_base32
 from diary.forms import RegisterForm
 from diary.models import Entries, Week
 from survey.models import User, UserManager
@@ -26,11 +29,12 @@ def register(request, id, token):
         form = RegisterForm(request.POST)
         if form.is_valid():
             u.name = form.cleaned_data['name']
-            sd = SurveyDate()
+            sd = SurveyDate(date=SurveyDate.now())
             u.startdate = sd.get_start_date(sd.now())
             u.save()
-            send_start_email(u)
-            return render_to_response('register_thanks.html', {}, context_instance=RequestContext(request))
+            is_diary_day = sd.is_diary_day()
+            send_start_email(u, is_diary_day)
+            return render_to_response('register_thanks.html', { 'is_diary_day': is_diary_day }, context_instance=RequestContext(request))
         else:
             return render_to_response('register.html', { 'form': form, 'id': id, 'token': token }, context_instance=RequestContext(request))
     else:
@@ -120,7 +124,22 @@ def withdraw(request, id, token):
 def participant_info(request):
     return render_to_response('participant_info.html', {}, context_instance=RequestContext(request))
 
-def send_start_email(user):
-    #TODO: template this
-    send_mail('Initial Diary Entry', 'This is link for the diary for the first week', 'from@example.com',
-    [user.email])
+def send_start_email(user, is_diary_day):
+    subject = 'Initial Diary Entry'
+    host = sites.models.Site.objects.get_current()
+
+    template_file = 'email/initial_diary_email.txt'
+    if not is_diary_day:
+        template_file = 'email/late_diary_email.txt'
+    template = loader.get_template(template_file)
+
+    if user.email == '':
+        return
+    context = {
+            'id': int_to_base32(user.id),
+            'token': user.generate_token(random.randint(0,32767)),
+            'host': host,
+            'contact_email': settings.CONTACT_EMAIL
+            }
+    content = template.render(Context(context))
+    send_mail(subject, content, settings.FROM_EMAIL, [user.email])

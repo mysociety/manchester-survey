@@ -1,0 +1,7 @@
+Thank you for registering for the next phase of our project! 
+
+We will send you the link to your first diary entry on Thursday and you will have time until Sunday to complete it.
+
+If you experience any technical issues or want to get in contact with the research team, please email {{ contact_email }}. 
+
+Thank you for participating in our project!

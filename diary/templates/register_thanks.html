@@ -8,12 +8,18 @@
         Thank you for registering! 
     </p>
 
+    {% if is_diary_day %}
     <p>
         You will shortly receive an email with the link to your first diary entry. 
     </p>
+    {% else %}
+    <p>
+        You will shortly receive an email confirming your registration and then on Thursday an email with a link to your first diary entry.
+    </p>
+    {% endif %}
 
     <p>
-    If you experience any issues or don’t receive an email within the next XXX minutes, please email {{ settings.CONTACT_EMAIL }}
+    If you experience any issues or don’t receive an email shortly, please email {{ settings.CONTACT_EMAIL }}
     </p>
 </div>
 {% endblock %}

@@ -136,6 +136,45 @@ class RegisterPageTest(TestCase):
             self.assertEqual(u.startdate.isoformat(), '2014-01-23T00:00:00+00:00')
             self.assertEqual(u.name, 'Test User')
 
+    def test_save_registration_sends_email(self):
+        u = User(email='test@example.org')
+        u.save()
+
+        # need to do this to set up session
+        (rand, hash) = make_token_args(u)
+        response = self.client.get(reverse('diary:register', args=(rand, hash)))
+
+        with patch( 'diary.views.SurveyDate') as mock:
+            patched_date = mock.return_value
+            patched_date.is_diary_day.return_value = True
+            patched_date.now.return_value = dateparse.parse_date('2014-01-24')
+            patched_date.get_start_date.return_value = dateparse.parse_datetime('2014-01-23T00:00:00+00:00')
+
+            response = self.client.post(reverse('diary:register', args=(rand, hash)), {'name': 'Test User', 'agree': 1})
+            self.assertContains(response, 'an email with the link to your first diary')
+            self.assertEqual(len(mail.outbox), 1)
+            self.assertRegexpMatches(mail.outbox[0].body, 'You have until midnight')
+
+    def test_save_non_diary_day_registration_sends_email(self):
+        u = User(email='test@example.org')
+        u.save()
+
+        # need to do this to set up session
+        (rand, hash) = make_token_args(u)
+        response = self.client.get(reverse('diary:register', args=(rand, hash)))
+
+        with patch( 'diary.views.SurveyDate') as mock:
+            patched_date = mock.return_value
+            patched_date.is_diary_day.return_value = False
+            patched_date.now.return_value = dateparse.parse_date('2014-01-24')
+            patched_date.get_start_date.return_value = dateparse.parse_datetime('2014-01-23T00:00:00+00:00')
+
+            response = self.client.post(reverse('diary:register', args=(rand, hash)), {'name': 'Test User', 'agree': 1})
+            self.assertContains(response, 'an email confirming your registration')
+            self.assertEqual(len(mail.outbox), 1)
+            self.assertRegexpMatches(mail.outbox[0].body, 'We will send you the link to your first')
+
+
 class DiaryPageTest(TestCase):
     fixtures = ['initial_data.json']
 
