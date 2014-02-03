@@ -319,6 +319,21 @@ form {
         }
     }
 
+    th {
+        padding: 0.25em;
+    }
+
+    tr:nth-of-type(even) {
+        background-color: white;
+    }
+
+    td {
+        padding: 0.5em;
+        input[type="radio"] {
+            margin: 0px;
+        }
+    }
+
     textarea {
         height: 10em;
     }
