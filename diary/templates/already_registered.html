@@ -4,6 +4,8 @@
 
 {% block content %}
 <div class="screen">
-    Looks like you already registered for this. If you've not recieved an email then let us know at ...
+    <p>
+    Looks like you already registered for this. If you've not recieved an email then let us know at <a href="mailto:{{ settings.CONTACT_EMAIL }}">{{ settings.CONTACT_EMAIL }}</a>.
+    </p>
 </div>
 {% endblock %}
