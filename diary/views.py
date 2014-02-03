@@ -69,7 +69,7 @@ def questions_for_week(request, id, token):
     try:
         entry = Entries.objects.filter(week=week).filter(user_id=u.id)
         if entry.count() > 0:
-            return render_to_response('invalid_week.html', {}, context_instance=RequestContext(request))
+            return render_to_response('invalid_week.html', { 'already_answered': 1 }, context_instance=RequestContext(request))
     except:
         pass
 
