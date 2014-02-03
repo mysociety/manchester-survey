@@ -248,6 +248,22 @@ form {
     }
 }
 
+.brand-header__navigation {
+    display: none; //temporary hide on mobile: #todo: fix on mobile
+    @media (min-width: $medium-screen) {
+        display: block;
+    }
+    float: right;
+    margin-top: 0.95em;
+    margin-right: 145px;
+    a {
+        display: inline-block;
+        margin-right: 1em;
+        font-size: 0.8125em;
+        letter-spacing: 0.02em;
+    }
+}
+
 .errorlist, .parsley-error-list {
     li {
         display: block !important;

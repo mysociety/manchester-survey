@@ -16,6 +16,9 @@ def has_voted(request):
         return True
     return False
 
+def about(request):
+    return render_to_response('about.html', {}, context_instance=RequestContext(request))
+
 def management(request):
     return render_to_response('management.html', {}, context_instance=RequestContext(request))
 

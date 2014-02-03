@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}About{% endblock %}
+
+{% block content %}
+    <div class="screen">
+        <p>
+            This survey is conducted by researchers at the University of Manchester with mySociety as part of a project examining how and why citizens use websites like {{ site_name }}. The main goal is to improve the users’ experience and to help researchers understand whether {{ site_name }} offers a new way for people to become involved in their communities and in politics. The survey shouldn’t take more than 10-15 minutes to be completed. 
+        </p>
+
+        <p>
+            Your individual responses will not be reported as part of
+            the overall findings and never used in a way that could
+            identify you. Further details of how we will manage the data
+            we collect from the project and use it are set out in the  
+            <a href="{% url 'survey:management' %}">Management of Project data</a>.
+        </p>
+
+        <p>
+            Thank you in advance for your time. 
+        </p>
+
+        <p>
+            Yours sincerely, 
+        </p>
+
+        <p>
+            Professor Rachel Gibson (Director, Institute for Social Change, University of Manchester)<br>
+            Tom Steinberg (Director, mySociety)
+        </p>
+
+        <p>
+            <a href="{% url 'survey:contact' %}">Contact details</a>
+        </p>
+    </div>
+{% endblock %}
