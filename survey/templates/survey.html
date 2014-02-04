@@ -3,7 +3,7 @@
 {% block title %}Survey{% endblock %}
 
 {% block content %}
-<form id="surveyform" action="/record" method="POST" parsley-validate>
+<form id="surveyform" action="/record" method="POST">
     {% if form and form.errors %}
         <p class="errors">
             There were some problems with your survey.
@@ -15,7 +15,7 @@
         </ul>
     {% endif %}
 
-    <div class="screen">
+    <h1>1</h1><div class="screen">
         <p>
             This survey is conducted by researchers at the University of Manchester with mySociety as part of a project examining how and why citizens use websites like {{ site_name }}. The main goal is to improve the users’ experience and to help researchers understand whether {{ site_name }} offers a new way for people to become involved in their communities and in politics. The survey shouldn’t take more than 10-15 minutes to be completed. 
         </p>
@@ -42,7 +42,7 @@
         </p>
     </div>
 
-    <div class="screen">
+    <h1>2</h1><div class="screen">
         <p>
             I agree to participate in this survey and to my data being
             used according to the terms &amp; conditions set out in the
@@ -51,7 +51,7 @@
 
         <a name="name_permission"></a>
         <div class="radio">
-            <input type="radio" id="permission-yes" name="permission" value="Yes" parsley-error-message="Please agree to the terms and conditions before taking part" parsley-regexp="Yes" required {% if form.permission and form.permission.value == 'Yes' %}checked{% endif %}><label for="permission-yes">Yes</label>
+            <input type="radio" id="permission-yes" name="permission" value="Yes" required class="required" {% if form.permission and form.permission.value == 'Yes' %}checked{% endif %}><label for="permission-yes">Yes</label>
             {{ form.permission.errors }}
         </div>
         <div class="radio">
@@ -67,7 +67,7 @@
         </p>
     </div>
 
-    <div class="screen">
+    <h1>3</h1><div class="screen">
         <div class="question">
             1.  Where did you hear about {{ site_name }}? Please tick all that apply. 
         </div>
@@ -96,7 +96,7 @@
     </div>
 
 
-    <div class="screen">
+    <h1>4</h1><div class="screen">
         <div class="question">
         2.  How much interest do you generally have in what is going on in politics?
         </div>
@@ -117,7 +117,7 @@
     </div>
 
 
-    <div class="screen">
+    <h1>5</h1><div class="screen">
         <div class="question">
     3.  Generally speaking, how complicated, if at all, would you say you find politics? Please answer on a 0 to 10 scale, where 0 means 'not at all complicated' and 10 means 'extremely complicated'?
         </div>
@@ -143,7 +143,7 @@
     </div>
 
 
-    <div class="screen">
+    <h1>6</h1><div class="screen">
         <div class="question">
         4.  On a scale from 0 to 10 where 10 means a great deal of influence and 0 means no influence, how much influence would you say you have on politics and public affairs?
         </div>
@@ -168,7 +168,7 @@
     </div>
 
 
-    <div class="screen">
+    <h1>7</h1><div class="screen">
         <div class="question">
             5.  Some people say that politicians in Britain care what ordinary people think. Others say that political parties in Britain don't care what ordinary people think. Using the scale below, (where 1 means that political parties care about what ordinary people think, and 5 means that they don't care what ordinary people think), where would you place yourself?
         </div>
@@ -185,7 +185,7 @@
     </div>
 
 
-    <div class="screen">
+    <h1>8</h1><div class="screen">
         <div class="question">
 6.  In general, do you think of yourself as a little closer to one of the parties than the others? If yes, please can you tell us which party?
         </div>
@@ -224,7 +224,7 @@
     </div>
 
 
-    <div class="screen">
+    <h1>9</h1><div class="screen">
         <div class="question">
 7.  How satisfied or dissatisfied are you with…
         </div>
@@ -264,7 +264,7 @@
         </div>
     </div>
 
-    <div class="screen">
+    <h1>10</h1><div class="screen">
         <div class="question">
 8.  Generally speaking, do you believe that most people can be trusted or can’t you be too careful in dealing with people?
         </div>
@@ -278,7 +278,7 @@
         </div>
     </div>
 
-    <div class="screen">
+    <h1>11</h1><div class="screen">
         <div class="question">
 9.  There are different ways of trying to improve things in this country or help prevent things from going wrong. Have you ever done or have you considered doing any of the following?
         </div>
@@ -321,7 +321,7 @@
     </div>
 
 
-    <div class="screen">
+    <h1>12</h1><div class="screen">
         <div class="question">
 10. Have you ever contacted a public official or politician using a mySociety website to express your opinion or ask for assistance...
         </div>
@@ -355,7 +355,7 @@
         </div>
 
     </div>
-    <div class="screen">
+    <h1>13</h1><div class="screen">
         <div class="question">
 11. And more generally, outside of your use of any of the mySociety websites, have you ever contacted a public official or politician by email, by post or in person to express your opinion or ask for assistance about...
         </div>
@@ -374,7 +374,7 @@
     </div>
 
 
-    <div class="screen">
+    <h1>14</h1><div class="screen">
         <div class="question">
             12. Not including the times you have contacted public officials and politicians, have you ever used social networking sites (e.g. Facebook, Twitter), blogs or the email to share your own comments or promote content produced by others about …
         </div>
@@ -392,7 +392,7 @@
         </div>
     </div>
 
-    <div class="screen">
+    <h1>15</h1><div class="screen">
         <div class="question">
             13. Some people don't vote nowadays for one reason or another. Did you vote in the last British general election in May 2010?
         </div>
@@ -412,7 +412,7 @@
         </div>
     </div>
 
-    <div class="screen">
+    <h1>16</h1><div class="screen">
         <div class="question">
             14. In the last twelve months have you been involved with any of the following ONLINE community or group (other than mySociety)? For each of them, can you tell us how you participated? Please tick as many as apply.
         </div>
@@ -436,7 +436,7 @@
                     <td class="centered"><input type="checkbox" name="14political" value="c" {% if form.14political and 'c' in form.14political.value %}checked{% endif %}></td>
                     <td class="centered"><input type="checkbox" name="14political" value="d" {% if form.14political and 'd' in form.14political.value %}checked{% endif %}></td>
                     <td class="centered"><input type="checkbox" name="14political" value="e" {% if form.14political and 'e' in form.14political.value %}checked{% endif %}></td>
-                    <td class="centered"><input type="checkbox" name="14political" value="f" {% if form.14political and 'f' in form.14political.value %}checked{% endif %}></td>
+                    <td class="centered"><input type="checkbox" id="14politicalf" name="14political" value="f" {% if form.14political and 'f' in form.14political.value %}checked{% endif %}></td>
                 </tr>
                 <tr>
                     <td>Online community or group related to health, your hobbies, social or personal interests (e.g. a parenting site like Mumsnet.org, Cancerchat.org or an online craft/DIY/sporting group,)</td>
@@ -445,23 +445,24 @@
                     <td class="centered"><input type="checkbox" name="14community" value="c" {% if form.14community and 'c' in form.14community.value %}checked{% endif %}></td>
                     <td class="centered"><input type="checkbox" name="14community" value="d" {% if form.14community and 'd' in form.14community.value %}checked{% endif %}></td>
                     <td class="centered"><input type="checkbox" name="14community" value="e" {% if form.14community and 'e' in form.14community.value %}checked{% endif %}></td>
-                    <td class="centered"><input type="checkbox" name="14community" value="f" {% if form.14community and 'f' in form.14community.value %}checked{% endif %}></td>
+                    <td class="centered"><input type="checkbox" id="14communityf" name="14community" value="f" {% if form.14community and 'f' in form.14community.value %}checked{% endif %}></td>
                 </tr>
             </table>
+
+        </div>
+
+        <div class="answers" id="screen14-2">
+            <div class="question">
+                14.2 You said you have been involved in online communities/groups in other ways than those listed in the previous question. Can you tell us how?
+            </div>
+
+            <div class="answers">
+                <textarea name="14how">{{ form.14how.value }}</textarea>
+            </div>
         </div>
     </div>
 
-    <div class="screen" id="screen14-2">
-        <div class="question">
-            14.2 You said you have been involved in online communities/groups in other ways than those listed in the previous question. Can you tell us how?
-        </div>
-
-        <div class="answers">
-            <textarea name="14how">{{ form.14how.value }}</textarea>
-        </div>
-    </div>
-
-    <div class="screen">
+    <h1>17</h1><div class="screen">
         <div class="question">
             15. The groups we just asked about in the last question operate almost entirely or fully on the internet. Beyond these online-based groups we are interested to know if you have been involved with any other more traditionally run types of community or political organisations over the past twelve months. For each of them, can you say how you participated? Please tick as many as apply.
         </div>
@@ -540,7 +541,7 @@
     </div>
 
 
-    <div class="screen">
+    <h1>18</h1><div class="screen">
         <div class="question">
             16. How frequently do you discuss social and political issues or problems affecting your local community or area with family, friends or neighbours?
         </div>
@@ -563,7 +564,7 @@
         </div>
     </div>
 
-    <div class="screen">
+    <h1>19</h1><div class="screen">
         <div class="question">
             17. And more generally, how frequently do you discuss about national/international politics and current affairs with family, friends or neighbours?
         </div>
@@ -586,7 +587,7 @@
 
         </div>
     </div>
-    <div class="screen">
+    <h1>21</h1><div class="screen">
         <div class="question">
             18. People learn what is going on in this country and the world from various sources (e.g. TV, radio, internet, newspapers, or magazines). How often, if at all, do you get information about news and current political affairs?
         </div>
@@ -609,7 +610,7 @@
             </div>
         </div>
     </div>
-    <div class="screen">
+    <h1>22</h1><div class="screen">
         <div class="question">
             19. What was your age last birthday? Please enter a 2-digit number (e.g. 18).
         </div>
@@ -619,7 +620,7 @@
         </div>
     </div>
 
-    <div class="screen">
+    <h1>23</h1><div class="screen">
         <div class="question">
             20.  And are you…
         </div>
@@ -637,7 +638,7 @@
         </div>
     </div>
 
-    <div class="screen">
+    <h1>24</h1><div class="screen">
         <div class="question">
             21. What is the last type of educational institution (e.g. school, college or university) that you have attended or which type of educational institution are you attending now?
         </div>
@@ -675,7 +676,7 @@
         </div>
     </div>
 
-    <div class="screen">
+    <h1>25</h1><div class="screen">
         <div class="question">
             22. Which of these descriptions best describes your current situation?
         </div>
@@ -723,7 +724,7 @@
         </div>
     </div>
 
-    <div class="screen">
+    <h1>26</h1><div class="screen">
         <div class="question">
             23. The incomes of households differ a lot in Britain today. Which figures best represent the total income of your household before tax?
         </div>
@@ -755,7 +756,7 @@
         </div>
     </div>
 
-    <div class="screen">
+    <h1>27</h1><div class="screen">
         <div class="question">
             24. To which one of these ethnic groups do you consider you belong? 
         </div>
@@ -840,7 +841,7 @@
         </div>
     </div>
 
-    <div class="screen">
+    <h1>28</h1><div class="screen">
         <div class="question">
 25. Could you tell us the first half of your postcode? (e.g. M13 or KA27)
         </div>
@@ -849,7 +850,7 @@
         </div>
     </div>
 
-    <div class="screen">
+    <h1>29</h1><div class="screen">
         <div class="question">
 26. Here is a list of tasks that can be performed on the Internet. Some people have done these tasks, while others have not. Which, if any, of these have you done? Please tick as many as apply.
         </div>
@@ -878,7 +879,7 @@
         </div>
     </div>
 
-    <div class="screen">
+    <h1>30</h1><div class="screen">
         <div class="question">
 27. Do you have a twitter account? If so would you be willing to provide your username to the research team?
         </div>
@@ -899,7 +900,7 @@
         </div>
     </div>
 
-    <div class="screen">
+    <h1>31</h1><div class="screen">
         <p>Thank you very much for completing this survey! Your answers are very valuable to our research.</p> 
         <p>As well as your use of {{ site_name }}, we would like to know more about your experiences of using the web in your daily life. To do this, we might contact you again to ask you to complete another survey and/or to get involved in other online activities (e.g. take part in an online discussion forum, fill an online diary) about some of the topics covered in this survey.</p> 
 
@@ -910,7 +911,7 @@
         <p>
             <a name="name_email"></a>
             {{ form.email.errors }}
-            <input type="email" name="email" parsley-trigger="change" value="{{ form.email.value }}">
+            <input type="email" name="email" value="{{ form.email.value }}">
         </p>
 
         <input type="hidden" name="site" value="{{ site_code }}">
@@ -921,4 +922,38 @@
         </p>
     </div>
 </form>
+
+<script>
+    jQuery.validator.addMethod("pattern", function(value, element, param) {
+        if (this.optional(element)) {
+            return true;
+        }
+        if (typeof param === 'string') {
+            param = new RegExp('^(?:' + param + ')$');
+        }
+        return param.test(value);
+    }, "Invalid format.");
+    $("#surveyform").steps({
+        titleTemplate: '#title#',
+        onStepChanging: function(ev, current, next) {
+          return $('#surveyform').valid();
+        },
+        labels: {
+            current: '&gt;'
+        }
+    }).validate({
+        rules: {
+            permission: {
+                required: true,
+                pattern: 'Yes'
+            }
+        },
+        messages: {
+            permission: {
+                required: 'Please agree to the terms and conditions before taking part',
+                pattern: 'Please agree to the terms and conditions before taking part'
+            }
+        }
+    });
+</script>
 {% endblock %}

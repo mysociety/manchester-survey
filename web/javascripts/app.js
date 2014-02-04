@@ -21,10 +21,8 @@
 
     function toggle_fourteen_optional() {
         if ( $(this).prop('checked') ) {
-            console.log('checked');
             $('#screen14-2').show();
         } else {
-            console.log('not checked');
             $('#screen14-2').hide();
         }
     }

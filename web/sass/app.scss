@@ -271,9 +271,34 @@ form {
     }
 }
 
+h1 {
+    display: none;
+}
+
+ul[role="menu"],
+ul[role="tablist"] {
+    li {
+        margin-left: 1em;
+        display: inline-block;
+        list-style: none;
+
+        .number {
+            display: none;
+        }
+    }
+}
+
+.actions {
+    text-align: right;
+}
+
 .screen {
     @include grid-column(12);
     @include panel;
+
+    &.body {
+        min-height: 20em;
+    }
 
     .answers {
         margin-top: 1em;
