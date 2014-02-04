@@ -3,9 +3,20 @@
 {% block title %}Questions for Week {{ week.week }}{% endblock %}
 
 {% block content %}
-<form action="{% url 'diary:record_answers' %}" method="POST">
+<form id="diary-form" action="{% url 'diary:record_answers' %}" method="POST">
 {% csrf_token %}
 <input type="hidden" name="week" value="{{ week.week }}">
 {% block questions %}{% endblock %}
 </form>
+<script>
+    $("#diary-form").steps({
+        titleTemplate: '#title#',
+        onStepChanging: function(ev, current, next) {
+          return $('#diary-form').valid();
+        },
+        labels: {
+            current: '&gt;'
+        }
+    }).validate();
+</script>
 {% endblock %}
