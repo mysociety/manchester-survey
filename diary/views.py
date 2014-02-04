@@ -53,9 +53,13 @@ def register(request, id, token):
         return render_to_response('register.html', { 'form': form, 'id': id, 'token': token }, context_instance=RequestContext(request))
 
 def questions_for_week(request, id, token):
-    sd = SurveyDate(date=SurveyDate.now())
-    if not sd.is_diary_day():
-        return render_to_response('diary_closed.html', {},  context_instance=RequestContext(request))
+    week_num = week_override = 0
+    if settings.DEBUG and request.GET and request.GET['week']:
+        week_num = week_override = request.GET['week']
+    else:
+        sd = SurveyDate(date=SurveyDate.now())
+        if not sd.is_diary_day():
+            return render_to_response('diary_closed.html', {},  context_instance=RequestContext(request))
 
     try:
         u = UserManager.get_user_from_token(id, token)
@@ -63,7 +67,9 @@ def questions_for_week(request, id, token):
     except:
         return render_to_response('invalid_week.html', {}, context_instance=RequestContext(request))
 
-    week_num = sd.get_week_from_startdate(timezone.now(), u.startdate)
+    if not week_override:
+        week_num = sd.get_week_from_startdate(timezone.now(), u.startdate)
+
     try:
         week = Week.objects.get(week=week_num)
         template = week.template
@@ -72,7 +78,7 @@ def questions_for_week(request, id, token):
 
     try:
         entry = Entries.objects.filter(week=week).filter(user_id=u.id)
-        if entry.count() > 0:
+        if not week_override and entry.count() > 0:
             return render_to_response('invalid_week.html', { 'already_answered': 1 }, context_instance=RequestContext(request))
     except:
         pass
