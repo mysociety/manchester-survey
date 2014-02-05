@@ -388,14 +388,33 @@
         </div>
 
         <div class="answers">
-            <div class="radio">
-                <input type="checkbox" id="a11a" name="11" value="a" {% if form.11 and form.11.value == 'a' %}checked{% endif %}><label for="a11a">An issue or problem affecting your local community?</label>
-            </div>
-            <div class="radio">
-                <input type="checkbox" id="a11b" name="11" value="b" {% if form.11 and form.11.value == 'b' %}checked{% endif %}><label for="a11b">Other issues or problems affecting the country as a whole?</label>
-            </div>
-            <div class="radio">
-                <input class="exclusive" type="checkbox" id="a11c" name="11" value="c" {% if form.11 and form.11.value == 'c' %}checked{% endif %}><label for="a11c">Don’t know/Can’t remember</label>
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Yes</th>
+                        <th>No, but I have considered it</th>
+                        <th>No, I have not done/considered it</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td>... about an issue or problem affecting your local community</td>
+                    <td class="centered"><input type="radio" oclass="q11" name="11community" value="a" {% if form.11community and form.11community.value == 'a' %}checked{% endif %}></td>
+                    <td class="centered"><input type="radio" oclass="q11" name="11community" value="b" {% if form.11community and form.11community.value == 'b' %}checked{% endif %}></td>
+                    <td class="centered"><input type="radio" oclass="q11" name="11community" value="c" {% if form.11community and form.11community.value == 'c' %}checked{% endif %}></td>
+                </tr>
+                <tr>
+                    <td>... about other issues of problems affecting the country as a whole</td>
+                    <td class="centered"><input type="radio" oclass="q11" name="11country" value="a" {% if form.11country and form.11country.value == 'a' %}checked{% endif %}></td>
+                    <td class="centered"><input type="radio" oclass="q11" name="11country" value="b" {% if form.11country and form.11country.value == 'b' %}checked{% endif %}></td>
+                    <td class="centered"><input type="radio" oclass="q11" name="11country" value="c" {% if form.11country and form.11country.value == 'c' %}checked{% endif %}></td>
+                </tr>
+            </table>
+
+            <div class="answers">
+                <div class="radio">
+                    <input class="table-exclusive" oclass="q11" type="checkbox" id="a11dont" name="11" value="none" {% if form.11 and form.11.value == 'dont' %}checked{% endif %}><label for="a11dont">Don't know</label>
+                </div>
             </div>
         </div>
     </div>
@@ -407,14 +426,33 @@
         </div>
 
         <div class="answers">
-            <div class="radio">
-                <input type="checkbox" id="a12a" name="12" value="a" {% if form.12 and 'a' in form.12.value %}checked{% endif %}><label for="a12a">A social issue or problem affecting your local community?</label>
-            </div>
-            <div class="radio">
-                <input type="checkbox" id="a12b" name="12" value="b" {% if form.12 and 'b' in form.12.value %}checked{% endif %}><label for="a12b">Other social issues or problems affecting the country as a whole?</label>
-            </div>
-            <div class="radio">
-                <input class="exclusive" type="checkbox" id="a12c" name="12" value="c" {% if form.12 and 'c' in form.12.value %}checked{% endif %}><label for="a12c">Don’t know/Can’t remember</label>
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Yes</th>
+                        <th>No, but I have considered it</th>
+                        <th>No, I have not done/considered it</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td>... about an issue or problem affecting your local community</td>
+                    <td class="centered"><input type="radio" oclass="q12" name="12community" value="a" {% if form.12community and form.12community.value == 'a' %}checked{% endif %}></td>
+                    <td class="centered"><input type="radio" oclass="q12" name="12community" value="b" {% if form.12community and form.12community.value == 'b' %}checked{% endif %}></td>
+                    <td class="centered"><input type="radio" oclass="q12" name="12community" value="c" {% if form.12community and form.12community.value == 'c' %}checked{% endif %}></td>
+                </tr>
+                <tr>
+                    <td>... about other issues of problems affecting the country as a whole</td>
+                    <td class="centered"><input type="radio" oclass="q12" name="12country" value="a" {% if form.12country and form.12country.value == 'a' %}checked{% endif %}></td>
+                    <td class="centered"><input type="radio" oclass="q12" name="12country" value="b" {% if form.12country and form.12country.value == 'b' %}checked{% endif %}></td>
+                    <td class="centered"><input type="radio" oclass="q12" name="12country" value="c" {% if form.12country and form.12country.value == 'c' %}checked{% endif %}></td>
+                </tr>
+            </table>
+
+            <div class="answers">
+                <div class="radio">
+                    <input class="table-exclusive" oclass="q12" type="checkbox" id="a12dont" name="12" value="none" {% if form.12 and form.12.value == 'dont' %}checked{% endif %}><label for="a12dont">Don't know</label>
+                </div>
             </div>
         </div>
     </div>
