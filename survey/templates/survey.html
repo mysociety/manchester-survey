@@ -368,7 +368,7 @@
                 <input type="checkbox" id="a11b" name="11" value="b" {% if form.11 and form.11.value == 'b' %}checked{% endif %}><label for="a11b">Other issues or problems affecting the country as a whole?</label>
             </div>
             <div class="radio">
-                <input type="checkbox" id="a11c" name="11" value="c" {% if form.11 and form.11.value == 'c' %}checked{% endif %}><label for="a11c">Don’t know/Can’t remember</label>
+                <input class="exclusive" type="checkbox" id="a11c" name="11" value="c" {% if form.11 and form.11.value == 'c' %}checked{% endif %}><label for="a11c">Don’t know/Can’t remember</label>
             </div>
         </div>
     </div>
@@ -387,7 +387,7 @@
                 <input type="checkbox" id="a12b" name="12" value="b" {% if form.12 and 'b' in form.12.value %}checked{% endif %}><label for="a12b">Other social issues or problems affecting the country as a whole?</label>
             </div>
             <div class="radio">
-                <input type="checkbox" id="a12c" name="12" value="c" {% if form.12 and 'c' in form.12.value %}checked{% endif %}><label for="a12c">Don’t know/Can’t remember</label>
+                <input class="exclusive" type="checkbox" id="a12c" name="12" value="c" {% if form.12 and 'c' in form.12.value %}checked{% endif %}><label for="a12c">Don’t know/Can’t remember</label>
             </div>
         </div>
     </div>

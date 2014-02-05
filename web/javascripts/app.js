@@ -10,22 +10,23 @@
         }
     });
 
-    $('#a11c').on('click', function() {
-        if ( $('#a11c').prop('checked') ) {
-            $('input[name="11"]').prop('disabled', 1);
-            $('#a11c').prop('disabled', 0);
+    function toggle_others(id, name) {
+        id_str = '#' + id;
+        name_str = 'input[name="' + name + '"]';
+        if ( $(id_str).prop('checked') ) {
+            $(name_str).prop('disabled', 1);
+            $(id_str).prop('disabled', 0);
         } else {
-            $('input[name="11"]').prop('disabled', 0);
+            $(name_str).prop('disabled', 0);
         }
-    });
+    }
 
-    $('#a12c').on('click', function() {
-        if ( $('#a12c').prop('checked') ) {
-            $('input[name="12"]').prop('disabled', 1);
-            $('#a12c').prop('disabled', 0);
-        } else {
-            $('input[name="12"]').prop('disabled', 0);
-        }
+    $('.exclusive').each( function(idx, el) {
+        the_el = $(el);
+        id = the_el.prop('id');
+        id_str = '#' + id;
+        name = the_el.prop('name');
+        the_el.on('click', function() { toggle_others(id, name); });
     });
 
     function toggle_fourteen_optional() {
