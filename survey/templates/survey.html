@@ -438,9 +438,10 @@
                 <label for="id_14_e">Helped promote the organisation on the internet (e.g. posted or forwarded a link, message or other material about the group)</label>
             </div>
             <div class="radio">
-                <input type="checkbox" id="id_14_f" name="14" value="f" {% if form.14 and 'f' in form.14.value %}checked{% endif %}>
+                <input class="optional" opt="screen14-2" type="checkbox" id="id_14_f" name="14" value="f" {% if form.14 and 'f' in form.14.value %}checked{% endif %}>
                 <label for="id_14_f">Other (e.g donated money)</label>
             </div>
+
             <div class="radio">
                 <input class="exclusive" type="checkbox" id="id_14_g" name="14" value="g" {% if form.14 and 'g' in form.14.value %}checked{% endif %}>
                 <label for="id_14_g">None of the above</label>
@@ -485,7 +486,7 @@
                 <label for="id_15_e">Helped promote the organisation on the internet (e.g. posted or forwarded a link, message or other material about the group)</label>
             </div>
             <div class="radio">
-                <input type="checkbox" id="id_15_f" name="15" value="f" {% if form.15 and 'f' in form.15.value %}checked{% endif %}>
+                <input class="optional" opt="screen15-2" type="checkbox" id="id_15_f" name="15" value="f" {% if form.15 and 'f' in form.15.value %}checked{% endif %}>
                 <label for="id_15_f">Other (e.g donated money)</label>
             </div>
             <div class="radio">

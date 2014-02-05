@@ -29,17 +29,22 @@
         the_el.on('click', function() { toggle_others(id, name); });
     });
 
-    function toggle_fourteen_optional() {
-        if ( $(this).prop('checked') ) {
-            $('#screen14-2').show();
+    function toggle_optional() {
+        el = $(this);
+        id_str = '#' + el.attr('opt');
+        if ( el.prop('checked') ) {
+            $(id_str).show();
         } else {
-            $('#screen14-2').hide();
+            $(id_str).hide();
         }
     }
 
-    $('input[name="14community"][value="f"]').on('click', toggle_fourteen_optional);
-    $('input[name="14political"][value="f"]').on('click', toggle_fourteen_optional);
+    $('.optional').each( function(idx, el) {
+        the_el = $(el);
+        the_el.on('click', toggle_optional);
+    });
 
     $('#screen14-2').hide();
+    $('#screen15-2').hide();
     $('#submit_button').hide();
 })(jQuery);
