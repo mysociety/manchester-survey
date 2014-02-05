@@ -149,6 +149,9 @@
                 Extremely complicated
             </p>
 
+            <div class="radio">
+                <input type="radio" id="a3dontknow" name="3" value="don't know" {% if form.3 and form.3.value == "don't know" %}checked{% endif %}><label for="a3dontknow">Don't know</label>
+            </div>
         </div>
     </div>
 
@@ -174,6 +177,10 @@
                 <span class="range-radio"><input type="radio" id="a410" name="4" value="10" {% if form.4 and form.4.value == '10' %}checked{% endif %}><label for="a410">10</label></span>
                 A great deal of influence
             </p>
+
+            <div class="radio">
+                <input type="radio" id="a4dontknow" name="4" value="don't know" {% if form.4 and form.4.value == "don't know" %}checked{% endif %}><label for="a4dontknow">Don't know</label>
+            </div>
         </div>
     </div>
 
@@ -191,6 +198,10 @@
             <span class="range-radio"><input type="radio" id="a54" name="5" value="4" {% if form.5 and form.5.value == '4' %}checked{% endif %}><label for="a54">4</label></span>
             <span class="range-radio"><input type="radio" id="a55" name="5" value="5" {% if form.5 and form.5.value == '5' %}checked{% endif %}><label for="a54">5</label></span>
             Parties don't care what ordinary people think
+
+            <div class="radio">
+                <input type="radio" id="a5dontknow" name="4" value="don't know" {% if form.4 and form.4.value == "don't know" %}checked{% endif %}><label for="a4dontknow">Don't know</label>
+            </div>
         </div>
     </div>
 
@@ -747,6 +758,10 @@
         <div class="answers">
             <input type="number" name="20" maxlength="2" value="{{ form.age.value }}">
         </div>
+
+        <div class="radio">
+            <input class="exclusive" type="checkbox" id="a20" name="20" value="dont" {% if form.20 and form.20.value == 'dont' %}checked{% endif %}><label for="a20">don't want to answer </label>
+        </div>
     </div>
 
     <h1>24</h1><div class="screen">
@@ -976,6 +991,10 @@
         </div>
         <div class="answers">
             <input type="text" name="26" value="{{ form.postcode.value }}"/>
+        </div>
+
+        <div class="radio">
+            <input class="exclusive" type="checkbox" id="a26" name="26" value="dont" {% if form.26 and form.26.value == 'dont' %}checked{% endif %}><label for="a26">don't want to answer </label>
         </div>
     </div>
 
