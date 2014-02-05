@@ -40,6 +40,14 @@
             Professor Rachel Gibson (Director, Institute for Social Change, University of Manchester)<br>
             Tom Steinberg (Director, mySociety)
         </p>
+
+        <p>
+            <a href="{% url 'survey:contact' %}">Contact details</a>
+        </p>
+
+        <p>
+            Project funded by:               
+        </p>
     </div>
 
     <h1>2</h1><div class="screen">
@@ -57,19 +65,11 @@
         <div class="radio">
             <input type="radio" id="permission-no" name="permission" value="No" {% if form.permission and form.permission.value == 'No' %}checked{% endif %}><label for="permission-no">No</label>
         </div>
-
-        <p>
-            <a href="{% url 'survey:contact' %}">Contact details</a>
-        </p>
-
-        <p>
-            Project funded by:               
-        </p>
     </div>
 
     <h1>3</h1><div class="screen">
         <div class="question">
-            1.  Where did you hear about {{ site_name }}? Please tick all that apply. 
+            1.  Where did you hear about <b>{{ site_name }}</b>? Please tick all that apply. 
         </div>
 
         <div class="answers">
@@ -136,7 +136,7 @@
                 <span class="range-radio"><input type="radio" id="a38" name="3" value="8" {% if form.3 and form.3.value == '8' %}checked{% endif %}><label for="a38">8</label></span>
                 <span class="range-radio"><input type="radio" id="a39" name="3" value="9" {% if form.3 and form.3.value == '9' %}checked{% endif %}><label for="a39">9</label></span>
                 <span class="range-radio"><input type="radio" id="a310" name="3" value="10" {% if form.3 and form.3.value == '10' %}checked{% endif %}><label for="a310">10</label></span>
-                extremely complicated
+                Extremely complicated
             </p>
 
         </div>
@@ -162,7 +162,7 @@
                 <span class="range-radio"><input type="radio" id="a48" name="4" value="8" {% if form.4 and form.4.value == '8' %}checked{% endif %}><label for="a48">8</label></span>
                 <span class="range-radio"><input type="radio" id="a49" name="4" value="9" {% if form.4 and form.4.value == '9' %}checked{% endif %}><label for="a49">9</label></span>
                 <span class="range-radio"><input type="radio" id="a410" name="4" value="10" {% if form.4 and form.4.value == '10' %}checked{% endif %}><label for="a410">10</label></span>
-                a great deal of influence
+                A great deal of influence
             </p>
         </div>
     </div>
@@ -170,7 +170,7 @@
 
     <h1>7</h1><div class="screen">
         <div class="question">
-            5.  Some people say that politicians in Britain care what ordinary people think. Others say that political parties in Britain don't care what ordinary people think. Using the scale below, (where 1 means that political parties care about what ordinary people think, and 5 means that they don't care what ordinary people think), where would you place yourself?
+            5.  Some people say that political parties in Britain care what ordinary people think. Others say that political parties in Britain don't care what ordinary people think. Using the scale below, (where 1 means that political parties care about what ordinary people think, and 5 means that they don't care what ordinary people think), where would you place yourself?
         </div>
 
         <div class="answers">
@@ -242,7 +242,7 @@
                 </thead>
                 <tr>
                     <td>
-                        …the way the British government is doing its job?
+                        …the way the <b>British government</b> is doing its job?
                     </td>
                     <td class="centered"><input type="radio" name="7government" value="a" {% if form.7government and form.7government.value == 'a' %}checked{% endif %}></td>
                     <td class="centered"><input type="radio" name="7government" value="b" {% if form.7government and form.7government.value == 'b' %}checked{% endif %}></td>
@@ -252,7 +252,7 @@
                 </tr>
                 <tr>
                     <td>
-                        …the way your local council is doing its job?
+                        …the way <b>your local council</b> is doing its job?
                     </td>
                     <td class="centered"><input type="radio" name="7council" value="a" {% if form.7council and form.7council.value == 'a' %}checked{% endif %}></td>
                     <td class="centered"><input type="radio" name="7council" value="b" {% if form.7council and form.7council.value == 'b' %}checked{% endif %}></td>
@@ -323,7 +323,7 @@
 
     <h1>12</h1><div class="screen">
         <div class="question">
-10. Have you ever contacted a public official or politician using a mySociety website to express your opinion or ask for assistance...
+            10. Have you ever contacted a public official or politician <b>using a mySociety</b> website to express your opinion or ask for assistance...
         </div>
 
         <div class="answers">
@@ -338,7 +338,7 @@
                     </tr>
                 </thead>
                 <tr>
-                    <td>About an issue or problem affection your local community</td>
+                    <td>About an issue or problem affecting your local community</td>
                     <td class="centered"><input type="radio" name="10community" value="a" {% if form.10community and form.10community.value == 'a' %}checked{% endif %}></td>
                     <td class="centered"><input type="radio" name="10community" value="b" {% if form.10community and form.10community.value == 'b' %}checked{% endif %}></td>
                     <td class="centered"><input type="radio" name="10community" value="c" {% if form.10community and form.10community.value == 'c' %}checked{% endif %}></td>
@@ -475,7 +475,7 @@
                         <th>Requested or looked for information about the organisation online or in person </th>
                         <th>Became a member / renewed membership or donated money</th>
                         <th>Attended events/ meetings/ service</th>
-                        <th> d. Volunteered (e.g. helped organising activities or fundraising)</th>
+                        <th>Volunteered (e.g. helped organising activities or fundraising)</th>
                     </tr>
                 </thead>
                 <tr>
@@ -543,7 +543,7 @@
 
     <h1>18</h1><div class="screen">
         <div class="question">
-            16. How frequently do you discuss social and political issues or problems affecting your local community or area with family, friends or neighbours?
+            16. How frequently do you discuss social and political issues affecting your local community with family, friends or neighbours?
         </div>
         <div class="answers">
             <div class="radio">
@@ -843,7 +843,7 @@
 
     <h1>28</h1><div class="screen">
         <div class="question">
-25. Could you tell us the first half of your postcode? (e.g. M13 or KA27)
+            25. Could you tell us the <b>first half</b> of your postcode? (e.g. M13 or KA27)
         </div>
         <div class="answers">
             <input type="text" name="postcode" value="{{ form.postcode.value }}"/>
@@ -895,7 +895,7 @@
             </div>
 
             <p>
-                Privacy note: Your twitter account is requested simply so that we can better understand your use of social media on a daily basis and your interests and activities outside of the scope of the survey that may affect how you perceive/use the {{ site_name }}. Your username will not be disclosed to any party outside of the research team and will not be used in any manner that could identify you in any outputs of the project.
+                Privacy note: Your twitter account is requested simply so that we can better understand your use of social media on a daily basis and your interests and activities outside of the scope of the survey that may affect how you perceive/use {{ site_name }}. Your username will not be disclosed to any party outside of the research team and will not be used in any manner that could identify you in any outputs of the project.
             </p>
         </div>
     </div>
