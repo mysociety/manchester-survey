@@ -10,6 +10,15 @@
         }
     });
 
+    $('#a11c').on('click', function() {
+        if ( $('#a11c').prop('checked') ) {
+            $('input[name="11"]').prop('disabled', 1);
+            $('#a11c').prop('disabled', 0);
+        } else {
+            $('input[name="11"]').prop('disabled', 0);
+        }
+    });
+
     $('#a12c').on('click', function() {
         if ( $('#a12c').prop('checked') ) {
             $('input[name="12"]').prop('disabled', 1);
