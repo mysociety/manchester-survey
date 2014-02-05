@@ -918,7 +918,7 @@
         <input type="hidden" name="source" value="{{ source }}">
         {% csrf_token %}
         <p>
-        <input type="submit">
+        <input id="submit_button" type="submit">
         </p>
     </div>
 </form>
@@ -937,6 +937,9 @@
         titleTemplate: '#title#',
         onStepChanging: function(ev, current, next) {
           return $('#surveyform').valid();
+        },
+        onFinishing: function(ev, current) {
+            $('#surveyform').submit();
         },
         labels: {
             current: '&gt;'
