@@ -305,6 +305,16 @@ ul[role="tablist"] {
     }
 }
 
+ul[role="menu"] {
+    a {
+        @include button;
+        background-color: darken($colour_primary, 10%);
+        &:hover {
+            background-color: darken($colour_primary, 15%);
+        }
+    }
+}
+
 .actions {
     text-align: right;
 }
