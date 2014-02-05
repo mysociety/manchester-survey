@@ -10,45 +10,35 @@
         }
     });
 
-    $('#a16none').on('click', function() {
-        if ( $('#a16none').prop('checked') ) {
-            $('input[name="16party"]').prop('disabled', 1);
-            $('input[name="16union"]').prop('disabled', 1);
-            $('input[name="16local"]').prop('disabled', 1);
-            $('input[name="16ngo"]').prop('disabled', 1);
-            $('input[name="16religious"]').prop('disabled', 1);
-            $('input[name="16hobby"]').prop('disabled', 1);
-            $('input[name="16health"]').prop('disabled', 1);
-            $('input[name="16other"]').prop('disabled', 1);
-        } else {
-            $('input[name="16party"]').prop('disabled', 0);
-            $('input[name="16union"]').prop('disabled', 0);
-            $('input[name="16local"]').prop('disabled', 0);
-            $('input[name="16ngo"]').prop('disabled', 0);
-            $('input[name="16religious"]').prop('disabled', 0);
-            $('input[name="16hobby"]').prop('disabled', 0);
-            $('input[name="16health"]').prop('disabled', 0);
-            $('input[name="16other"]').prop('disabled', 0);
-        }
-    });
+    function toggle_on_oclass(el) {
+        the_el = $(el);
+        oclass = the_el.attr('oclass');
+        oclass_str = 'input[oclass="' + oclass + '"]';
+        toggle_others(the_el, oclass_str);
+    }
 
-    function toggle_others(id, name) {
-        id_str = '#' + id;
+    function toggle_on_name(el) {
+        the_el = $(el);
+        name = the_el.prop('name');
         name_str = 'input[name="' + name + '"]';
-        if ( $(id_str).prop('checked') ) {
+        toggle_others(the_el, name_str);
+    }
+
+    function toggle_others(el, name_str) {
+        if ( el.prop('checked') ) {
             $(name_str).prop('disabled', 1);
-            $(id_str).prop('disabled', 0);
+            el.prop('disabled', 0);
         } else {
             $(name_str).prop('disabled', 0);
         }
     }
 
+    $('.table-exclusive').each( function(idx, el) {
+        $(el).on('click', function() { toggle_on_oclass(this); });
+    });
+
     $('.exclusive').each( function(idx, el) {
-        the_el = $(el);
-        id = the_el.prop('id');
-        id_str = '#' + id;
-        name = the_el.prop('name');
-        the_el.on('click', function() { toggle_others(id, name); });
+        $(el).on('click', function() { toggle_on_name(this); });
     });
 
     function toggle_optional() {
