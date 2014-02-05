@@ -951,6 +951,9 @@
                 pattern: 'Yes'
             }
         },
+        errorPlacement: function(error, element) {
+            element.before( error );
+        },
         messages: {
             permission: {
                 required: 'Please agree to the terms and conditions before taking part',

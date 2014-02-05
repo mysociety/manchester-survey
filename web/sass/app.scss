@@ -314,9 +314,18 @@ ul[role="tablist"] {
         input, label {
             display: inline-block;
         }
+        label.error {
+            line-height: 1.6;
+            display: block;
+            margin-bottom: 0.25em;
+        }
         input {
             display: inline-block;
             margin-right: 1em;
+            margin-bottom: 0.5em;
+            .error {
+                margin-bottom: 0.5em;
+            }
         }
     }
 
