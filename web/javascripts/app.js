@@ -10,6 +10,28 @@
         }
     });
 
+    $('#a16none').on('click', function() {
+        if ( $('#a16none').prop('checked') ) {
+            $('input[name="16party"]').prop('disabled', 1);
+            $('input[name="16union"]').prop('disabled', 1);
+            $('input[name="16local"]').prop('disabled', 1);
+            $('input[name="16ngo"]').prop('disabled', 1);
+            $('input[name="16religious"]').prop('disabled', 1);
+            $('input[name="16hobby"]').prop('disabled', 1);
+            $('input[name="16health"]').prop('disabled', 1);
+            $('input[name="16other"]').prop('disabled', 1);
+        } else {
+            $('input[name="16party"]').prop('disabled', 0);
+            $('input[name="16union"]').prop('disabled', 0);
+            $('input[name="16local"]').prop('disabled', 0);
+            $('input[name="16ngo"]').prop('disabled', 0);
+            $('input[name="16religious"]').prop('disabled', 0);
+            $('input[name="16hobby"]').prop('disabled', 0);
+            $('input[name="16health"]').prop('disabled', 0);
+            $('input[name="16other"]').prop('disabled', 0);
+        }
+    });
+
     function toggle_others(id, name) {
         id_str = '#' + id;
         name_str = 'input[name="' + name + '"]';

@@ -580,7 +580,11 @@
                 </tr>
             </table>
 
-
+            <div class="answers">
+                <div class="radio">
+                    <input type="checkbox" id="a16none" name="16" value="none" {% if form.16 and form.16.value == 'none' %}checked{% endif %}><label for="a16none">None of the above</label>
+                </div>
+            </div>
         </div>
     </div>
 
