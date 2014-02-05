@@ -277,6 +277,8 @@ h1 {
 
 ul[role="menu"],
 ul[role="tablist"] {
+    margin-top: 1em;
+
     li {
         margin-left: 1em;
         display: inline-block;
@@ -284,6 +286,21 @@ ul[role="tablist"] {
 
         .number {
             display: none;
+        }
+    }
+}
+
+ul[role="tablist"] {
+    li {
+        a {
+            color: black;
+        }
+
+        &.current {
+            font-weight: $weight_bold;
+            a {
+                color: $colour_primary;
+            }
         }
     }
 }
