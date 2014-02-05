@@ -319,6 +319,14 @@ ul[role="menu"] {
     text-align: right;
 }
 
+.logos {
+    text-align: center;
+    img {
+        padding-left: 3em;
+        padding-right: 3em;
+    }
+}
+
 .screen {
     @include grid-column(12);
     @include panel;
