@@ -327,6 +327,17 @@ ul[role="menu"] {
     }
 }
 
+#diary-form {
+    .screen {
+        .radio {
+            margin-bottom: 0.75em;
+            input, label {
+                display: inline;
+            }
+        }
+    }
+}
+
 .screen {
     @include grid-column(12);
     @include panel;
