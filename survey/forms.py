@@ -9,6 +9,8 @@ class SurveyForm(forms.Form):
         super(SurveyForm, self).__init__(fields, *args, **kwargs)
         a_to_z = zip(list(string.ascii_lowercase), list(string.ascii_lowercase))
         for i in fields:
+            if i == 'csrfmiddlewaretoken':
+                continue
             val = fields.getlist(i)
             if len(val) > 1:
                 self.fields[i] = forms.MultipleChoiceField(choices=a_to_z)
