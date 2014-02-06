@@ -14,9 +14,14 @@
         onStepChanging: function(ev, current, next) {
           return $('#diary-form').valid();
         },
+        onFinishing: function(ev, current) {
+            $('#diary-form').submit();
+        },
         labels: {
             current: '&gt;'
         }
     }).validate();
+
+    $('input[type="submit"]').hide();
 </script>
 {% endblock %}
