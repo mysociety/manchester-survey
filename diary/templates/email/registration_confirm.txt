@@ -9,3 +9,5 @@ If you would like to register and create your diary please click on the link bel
 http://{{ host }}{% url 'diary:register' id token %}
 
 Please Note: Clicking on the link does not oblige you in any way to complete the diary. If you do register for this step of the research and decide not to complete the diary you can withdraw from the process at any point. If you request it by emailing us at {{ contact_email }}, any data you provide to us will be removed from the dataset. All data we receive will be anonymised and no identification of individuals will be permitted in any public forum or output of the research.
+
+Contact details: http://{{ host }}{% url 'survey:contact' %}
