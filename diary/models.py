@@ -81,7 +81,7 @@ class ReminderManager(models.Manager):
 
             users = User.objects.filter(withdrawn=False).filter(startdate__lte=end_date).filter(startdate__gte=start_date).exclude(entries__week_id=week_id)
 
-            self.send_email('email/second_reminder.txt', 'This week\'s mySociety diary', settings.FROM_EMAIL, users)
+            self.send_email('email/second_reminder.txt', 'Don\'t forget to complete your mySociety Diary', settings.FROM_EMAIL, users)
 
             #print 'users for week %d: %d' % ( week_num + 1, users.count() )
             #print 'start: %s, end: %s' % ( start_date, end_date )

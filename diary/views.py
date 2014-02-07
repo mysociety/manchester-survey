@@ -131,12 +131,13 @@ def participant_info(request):
     return render_to_response('participant_info.html', {}, context_instance=RequestContext(request))
 
 def send_start_email(user, is_diary_day):
-    subject = 'Initial Diary Entry'
+    subject = 'mySociety Diary: your first entry'
     host = sites.models.Site.objects.get_current()
 
     template_file = 'email/initial_diary_email.txt'
     if not is_diary_day:
         template_file = 'email/late_diary_email.txt'
+        subject = 'mySociety Diary: thank you for registering'
     template = loader.get_template(template_file)
 
     if user.email == '':
