@@ -1,0 +1,12 @@
+Hello!
+
+You recently registered to complete an online diary about things in your community or in the
+news that have interested you. We are sending you the link to your first diary entry.
+
+Filling out your diary is very easy. Find further instructions and complete the first entry of your diary at http://{{ host }}{% url 'diary:questions' id token %}
+
+You have until midnight on Sunday to complete this week’s diary entry. 
+
+If you experience any technical issues or want to get in contact with the research team, please email {{ contact_email }}. 
+
+Thank you for participating in our project!

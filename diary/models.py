@@ -39,6 +39,12 @@ class ReminderManager(models.Manager):
 
         self.send_email('email/registration_confirm.txt', 'Participate in the mySociety diary!', settings.FROM_EMAIL, users)
 
+    """
+    Send out an email to tell people that the diary entry is open.
+    We send out a different email for people who registered in the preceding Monday-Wednesday
+    than those who registered before that. We should not be sending out an email to those
+    who registered today as the registration process takes care of that.
+    """
     def send_first_reminder_email(self):
         sd = SurveyDate()
         today = sd.now()
@@ -48,9 +54,14 @@ class ReminderManager(models.Manager):
         today = sd.get_start_date(today)
         twelve_weeks_ago = today - timedelta(weeks=12)
 
-        users = User.objects.filter(startdate__gte=twelve_weeks_ago).filter(withdrawn=False)
+        last_sunday = today - timedelta(days=3)
 
-        self.send_email('email/first_reminder.txt', 'This week\'s mySociety diary', settings.FROM_EMAIL, users)
+        users = User.objects.filter(startdate__gte=twelve_weeks_ago).filter(startdate__lte=last_sunday).filter(withdrawn=False)
+
+        self.send_email('email/first_reminder.txt', 'mySociety Diary: your new weekly entry', settings.FROM_EMAIL, users)
+
+        users = User.objects.filter(startdate__gte=last_sunday).filter(startdate__lt=today).filter(withdrawn=False)
+        self.send_email('email/late_initial_diary_email.txt', 'mySociety Diary: your first entry', settings.FROM_EMAIL, users)
 
     def send_second_reminder_email(self):
         sd = SurveyDate()

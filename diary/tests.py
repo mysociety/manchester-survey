@@ -260,23 +260,45 @@ class FirstReminderTest(TestCase):
             rm.send_first_reminder_email()
 
     def test_sends_reminder(self):
-        startdate = '2014-01-23'
+        startdate = '2014-01-16'
         u = User(email='test@example.org', startdate=startdate)
         u.save()
 
         self.run_command('2014-01-23')
         self.assertEqual(len(mail.outbox), 1)
+        self.assertRegexpMatches(mail.outbox[0].subject, 'your new weekly entry')
+        self.assertRegexpMatches(mail.outbox[0].body, 'next diary entry')
         self.assertRegexpMatches(mail.outbox[0].body, 'D/([0-9A-Za-z]+)-(.+)/')
 
-    def test_reminder_not_send_to_withdrawn_users(self):
+    def test_reminfer_not_sent_if_registered_today(self):
         startdate = '2014-01-23'
+        u = User(email='test@example.org', startdate=startdate)
+        u.save()
+
+        self.run_command('2014-01-23')
+        self.assertEqual(len(mail.outbox), 0)
+
+    def test_different_reminder_sent_if_registered_on_non_diary_day(self):
+        startdate = '2014-01-21'
+        u = User(email='test@example.org', startdate=startdate)
+        u.save()
+
+        self.run_command('2014-01-23')
+        self.assertEqual(len(mail.outbox), 1)
+        self.assertRegexpMatches(mail.outbox[0].subject, 'your first entry')
+        self.assertRegexpMatches(mail.outbox[0].body, 'first diary entry')
+        self.assertRegexpMatches(mail.outbox[0].body, 'D/([0-9A-Za-z]+)-(.+)/')
+
+
+    def test_reminder_not_send_to_withdrawn_users(self):
+        startdate = '2014-01-16'
         u = User(email='test@example.org', startdate=startdate)
         u.save()
 
         u = User(withdrawn=True,email='test2@example.org', startdate=startdate)
         u.save()
 
-        self.run_command('2014-01-23')
+        self.run_command('2014-01-16')
         self.assertEqual(len(mail.outbox), 1)
         self.assertEqual(mail.outbox[0].to, ['test@example.org'])
 
