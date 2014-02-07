@@ -103,7 +103,7 @@ def record_answers(request):
         r = Entries(user_id=u.id, week_id=week.id, question=v, answer=val)
         r.save()
 
-    return render_to_response('question_thanks.html', {}, context_instance=RequestContext(request))
+    return render_to_response('question_thanks.html', { 'week': week }, context_instance=RequestContext(request))
 
 def confirm_withdraw(request, id, token):
     try:
