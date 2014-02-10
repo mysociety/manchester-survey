@@ -96,7 +96,7 @@ def export(request):
         '12community', '12country', '12', '13', '14', '14how', '15', '15how', '16party',
         '16union', '16local', '16ngo', '16religious', '16hobby', '16health', '16other',
         '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28',
-        'twitter_name', 'email', 'site', 'source',
+        'email', 'site', 'source',
     ]
 
     writer.writerow(all_fields)
@@ -109,8 +109,10 @@ def export(request):
             values[item.key] = item.value
 
         values['id'] = user.id
+        values['email'] = 0
         if user.email:
-            values['email'] = user.email
+            values['email'] = 1
+
 
         all_values = [ values[field] for field in all_fields ]
         writer.writerow(all_values)
