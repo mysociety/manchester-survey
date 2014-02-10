@@ -1,3 +1,7 @@
+import csv, cStringIO
+
+from django.contrib.auth.models import Permission
+from django.contrib.auth.models import User as DjangoUser
 from django.core.urlresolvers import reverse
 from django.test import TestCase
 
@@ -106,3 +110,72 @@ class SurveyTest(TestCase):
 
         u = User.objects.latest('id')
         self.assertEqual(u.email, None)
+
+class ExportBase(TestCase):
+    fixtures = ['user_accounts_test_data.json']
+
+    def setUp(self):
+        p = Permission.objects.get(codename='can_export')
+        u = DjangoUser.objects.get(id=2)
+        u.user_permissions.add(p)
+
+    def get_export(self):
+        logged_in = self.client.login(username='test2',password='test')
+        response = self.client.get(reverse('survey:export'))
+        reader = csv.reader(cStringIO.StringIO(response.content))
+
+        return reader
+
+
+class ExportTest(ExportBase):
+    def test_export_requires_login(self):
+        response = self.client.get(reverse('survey:export'))
+        self.assertEqual(response.status_code, 302)
+
+    def test_export_downloads_csv(self):
+        logged_in = self.client.login(username='test2',password='test')
+        response = self.client.get(reverse('survey:export'))
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response['content-type'], 'text/csv')
+
+    def test_export_has_correct_headers(self):
+        logged_in = self.client.login(username='test2',password='test')
+        response = self.client.get(reverse('survey:export'))
+
+        all_fields = [
+            'id', 'recorded', 'permission', 'tv', 'newspaper', 'internet', 'family', 'other', "1 don't know",
+            'a1other', '2', '3', '4', '5', '6', '7government', '7council', '7', '8', '9petition', '9march', '9refused', '9bought',
+            '9', '10community', '10country', '10', '11community', '11country', '11', '12community', '12country', '12', '13',
+            '14browsed', '14registered', '14joined', '14attended', '14promote', '14other', "14 don't know", '14how',
+            '15browsed', '15registered', '15joined', '15attended', '15promote', '15other', "15 don't know", '15how',
+            'party_information', 'party_joined', 'party_attended', 'party_voluntary', 'union_information', 'union_joined',
+            'union_attended', 'union_voluntary', 'local_information', 'local_joined', 'local_attended', 'local_voluntary',
+            'ngo_information', 'ngo_joined', 'ngo_attended', 'ngo_voluntary', 'religious_information', 'religious_joined',
+            'religious_attended', 'religious_voluntary', 'hobby_information', 'hobby_joined', 'hobby_attended', 'hobby_voluntary',
+            'health_information', 'health_joined', 'health_attended', 'health_voluntary', 'other_information', 'other_joined',
+            'other_attended', 'other_voluntary', '16none', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26',
+            'blog', 'purchase', 'logged on', 'commented', 'multimedia', 'emailed', 'blog comment', '27 none',
+            '28', 'email', 'site', 'source',
+        ]
+
+        reader = csv.reader(cStringIO.StringIO(response.content))
+
+        header = reader.next()
+        self.assertEqual(header, all_fields)
+
+
+class ExportMultiChoiceFieldsTest(ExportBase):
+    fixtures = ['user_accounts_test_data.json', 'multi_choice_test_data.json']
+
+    def test_question_one(self):
+        reader = self.get_export()
+
+        # throw away header
+        reader.next()
+
+        answer = [
+                '108', '2014-02-10 15:33:03.874897','Yes',"1","","1","","","","","","7","-1","3","","c","","","b","","","","","","c","b","","","","1","a","b","","c","","","","1","","","","","","1","1","","","","","","1","","","","","","1","","","1","1","","","","","1","","","","","","","1","","","","","1","","1","","","","d","b","","33","b","e","","c","Scottish","","","","1","","","","","","","0","twfy","w"
+        ]
+
+        row = reader.next()
+        self.assertEqual(row, answer)

@@ -1,0 +1,309 @@
+[
+{
+  "pk": 108, 
+  "model": "survey.user", 
+  "fields": {
+    "startdate": null, 
+    "withdrawn": false, 
+    "email": null, 
+    "name": null
+  }
+},
+{
+  "pk": 314, 
+  "model": "survey.item", 
+  "fields": {
+    "batch": "1", 
+    "value": "b", 
+    "user": 108, 
+    "key": "10country", 
+    "whenstored": "2014-02-10T15:33:03.795"
+  }
+},
+{
+  "pk": 315, 
+  "model": "survey.item", 
+  "fields": {
+    "batch": "1", 
+    "value": "Scottish", 
+    "user": 108, 
+    "key": "25", 
+    "whenstored": "2014-02-10T15:33:03.815"
+  }
+},
+{
+  "pk": 316, 
+  "model": "survey.item", 
+  "fields": {
+    "batch": "1", 
+    "value": "c", 
+    "user": 108, 
+    "key": "24", 
+    "whenstored": "2014-02-10T15:33:03.838"
+  }
+},
+{
+  "pk": 317, 
+  "model": "survey.item", 
+  "fields": {
+    "batch": "1", 
+    "value": "tv,internet", 
+    "user": 108, 
+    "key": "1", 
+    "whenstored": "2014-02-10T15:33:03.839"
+  }
+},
+{
+  "pk": 318, 
+  "model": "survey.item", 
+  "fields": {
+    "batch": "1", 
+    "value": "logged on", 
+    "user": 108, 
+    "key": "27", 
+    "whenstored": "2014-02-10T15:33:03.841"
+  }
+},
+{
+  "pk": 319, 
+  "model": "survey.item", 
+  "fields": {
+    "batch": "1", 
+    "value": "33", 
+    "user": 108, 
+    "key": "20", 
+    "whenstored": "2014-02-10T15:33:03.843"
+  }
+},
+{
+  "pk": 320, 
+  "model": "survey.item", 
+  "fields": {
+    "batch": "1", 
+    "value": "b", 
+    "user": 108, 
+    "key": "21", 
+    "whenstored": "2014-02-10T15:33:03.844"
+  }
+},
+{
+  "pk": 321, 
+  "model": "survey.item", 
+  "fields": {
+    "batch": "1", 
+    "value": "e", 
+    "user": 108, 
+    "key": "22", 
+    "whenstored": "2014-02-10T15:33:03.846"
+  }
+},
+{
+  "pk": 322, 
+  "model": "survey.item", 
+  "fields": {
+    "batch": "1", 
+    "value": "b", 
+    "user": 108, 
+    "key": "12country", 
+    "whenstored": "2014-02-10T15:33:03.848"
+  }
+},
+{
+  "pk": 323, 
+  "model": "survey.item", 
+  "fields": {
+    "batch": "1", 
+    "value": "7", 
+    "user": 108, 
+    "key": "3", 
+    "whenstored": "2014-02-10T15:33:03.849"
+  }
+},
+{
+  "pk": 324, 
+  "model": "survey.item", 
+  "fields": {
+    "batch": "1", 
+    "value": "3", 
+    "user": 108, 
+    "key": "5", 
+    "whenstored": "2014-02-10T15:33:03.850"
+  }
+},
+{
+  "pk": 325, 
+  "model": "survey.item", 
+  "fields": {
+    "batch": "1", 
+    "value": "-1", 
+    "user": 108, 
+    "key": "4", 
+    "whenstored": "2014-02-10T15:33:03.852"
+  }
+},
+{
+  "pk": 326, 
+  "model": "survey.item", 
+  "fields": {
+    "batch": "1", 
+    "value": "a", 
+    "user": 108, 
+    "key": "12community", 
+    "whenstored": "2014-02-10T15:33:03.854"
+  }
+},
+{
+  "pk": 327, 
+  "model": "survey.item", 
+  "fields": {
+    "batch": "1", 
+    "value": "b", 
+    "user": 108, 
+    "key": "8", 
+    "whenstored": "2014-02-10T15:33:03.855"
+  }
+},
+{
+  "pk": 328, 
+  "model": "survey.item", 
+  "fields": {
+    "batch": "1", 
+    "value": "Yes", 
+    "user": 108, 
+    "key": "permission", 
+    "whenstored": "2014-02-10T15:33:03.857"
+  }
+},
+{
+  "pk": 329, 
+  "model": "survey.item", 
+  "fields": {
+    "batch": "1", 
+    "value": "c", 
+    "user": 108, 
+    "key": "7government", 
+    "whenstored": "2014-02-10T15:33:03.858"
+  }
+},
+{
+  "pk": 330, 
+  "model": "survey.item", 
+  "fields": {
+    "batch": "1", 
+    "value": "c", 
+    "user": 108, 
+    "key": "10community", 
+    "whenstored": "2014-02-10T15:33:03.860"
+  }
+},
+{
+  "pk": 331, 
+  "model": "survey.item", 
+  "fields": {
+    "batch": "1", 
+    "value": "1", 
+    "user": 108, 
+    "key": "11", 
+    "whenstored": "2014-02-10T15:33:03.862"
+  }
+},
+{
+  "pk": 332, 
+  "model": "survey.item", 
+  "fields": {
+    "batch": "1", 
+    "value": "c", 
+    "user": 108, 
+    "key": "13", 
+    "whenstored": "2014-02-10T15:33:03.863"
+  }
+},
+{
+  "pk": 333, 
+  "model": "survey.item", 
+  "fields": {
+    "batch": "1", 
+    "value": "15registered,15joined", 
+    "user": 108, 
+    "key": "15", 
+    "whenstored": "2014-02-10T15:33:03.865"
+  }
+},
+{
+  "pk": 334, 
+  "model": "survey.item", 
+  "fields": {
+    "batch": "1", 
+    "value": "14attended", 
+    "user": 108, 
+    "key": "14", 
+    "whenstored": "2014-02-10T15:33:03.866"
+  }
+},
+{
+  "pk": 335, 
+  "model": "survey.item", 
+  "fields": {
+    "batch": "1", 
+    "value": "d", 
+    "user": 108, 
+    "key": "17", 
+    "whenstored": "2014-02-10T15:33:03.868"
+  }
+},
+{
+  "pk": 336, 
+  "model": "survey.item", 
+  "fields": {
+    "batch": "1", 
+    "value": "party_information,union_attended,local_joined,local_attended,ngo_voluntary,hobby_attended,health_voluntary,other_joined", 
+    "user": 108, 
+    "key": "16", 
+    "whenstored": "2014-02-10T15:33:03.869"
+  }
+},
+{
+  "pk": 337, 
+  "model": "survey.item", 
+  "fields": {
+    "batch": "1", 
+    "value": "b", 
+    "user": 108, 
+    "key": "18", 
+    "whenstored": "2014-02-10T15:33:03.870"
+  }
+},
+{
+  "pk": 338, 
+  "model": "survey.item", 
+  "fields": {
+    "batch": "1", 
+    "value": "2014-02-10 15:33:03.874897", 
+    "user": 108, 
+    "key": "recorded", 
+    "whenstored": "2014-02-10T15:33:03.875"
+  }
+},
+{
+  "pk": 339, 
+  "model": "survey.item", 
+  "fields": {
+    "batch": "1", 
+    "value": "twfy", 
+    "user": 108, 
+    "key": "site", 
+    "whenstored": "2014-02-10T15:33:03.846"
+  }
+},
+{
+  "pk": 340, 
+  "model": "survey.item", 
+  "fields": {
+    "batch": "1", 
+    "value": "w", 
+    "user": 108, 
+    "key": "source", 
+    "whenstored": "2014-02-10T15:33:03.846"
+  }
+}
+]
