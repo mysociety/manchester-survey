@@ -89,14 +89,31 @@ def export(request):
 
     writer = UnicodeWriter(response)
 
+    """
+    these are field where the values are stored as a comma seperated list and we want
+    to export on column per value with a 1 for selected and a 0 for not. hence we combine
+    the list in the field of selected values with the list in all_fields
+    """
+    checkboxes = ['1', '14', '15', '16', '27']
+
+    """
+    because most of the fields are optional and we need to produce a consistent list for each
+    row we need to have a list of all fields for output
+    """
     all_fields = [
-        'id', 'recorded', 'permission', '1', 'a1other', '1', '2', '3', '4', '5', '6',
-        '7government', '7council', '7', '8', '9petition', '9march', '9refused', '9bought',
-        '9', '10community', '10country', '10', '11community', '11country', '11',
-        '12community', '12country', '12', '13', '14', '14how', '15', '15how', '16party',
-        '16union', '16local', '16ngo', '16religious', '16hobby', '16health', '16other',
-        '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28',
-        'email', 'site', 'source',
+        'id', 'recorded', 'permission', 'tv', 'newspaper', 'internet', 'family', 'other', "1 don't know",
+        'a1other', '2', '3', '4', '5', '6', '7government', '7council', '7', '8', '9petition', '9march', '9refused', '9bought',
+        '9', '10community', '10country', '10', '11community', '11country', '11', '12community', '12country', '12', '13',
+        '14browsed', '14registered', '14joined', '14attended', '14promote', '14other', "14 don't know", '14how',
+        '15browsed', '15registered', '15joined', '15attended', '15promote', '15other', "15 don't know", '15how',
+        'party_information', 'party_joined', 'party_attended', 'party_voluntary', 'union_information', 'union_joined',
+        'union_attended', 'union_voluntary', 'local_information', 'local_joined', 'local_attended', 'local_voluntary',
+        'ngo_information', 'ngo_joined', 'ngo_attended', 'ngo_voluntary', 'religious_information', 'religious_joined',
+        'religious_attended', 'religious_voluntary', 'hobby_information', 'hobby_joined', 'hobby_attended', 'hobby_voluntary',
+        'health_information', 'health_joined', 'health_attended', 'health_voluntary', 'other_information', 'other_joined',
+        'other_attended', 'other_voluntary', '16none', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26',
+        'blog', 'purchase', 'logged on', 'commented', 'multimedia', 'emailed', 'blog comment', '27 none',
+        '28', 'email', 'site', 'source',
     ]
 
     writer.writerow(all_fields)
@@ -106,7 +123,12 @@ def export(request):
         items = Item.objects.filter(user_id=user.id)
         values = defaultdict(str)
         for item in items:
-            values[item.key] = item.value
+            if item.key in checkboxes:
+                answers = item.value.split(',')
+                for answer in answers:
+                    values[answer] = 1
+            else:
+                values[item.key] = item.value
 
         values['id'] = user.id
         values['email'] = 0

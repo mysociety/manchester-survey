@@ -81,23 +81,23 @@
 
         <div class="answers">
             <div class="radio">
-                <input type="checkbox" id="a1a" name="1" value="a" {% if form.1 and 'a' in form.1.value %}checked{% endif %}><label for="a1a">TV/Radio</label>
+                <input type="checkbox" id="a1a" name="1" value="tv" {% if form.1 and 'tv' in form.1.value %}checked{% endif %}><label for="a1a">TV/Radio</label>
             </div>
             <div class="radio">
-                <input type="checkbox" id="a1b" name="1" value="b" {% if form.1 and 'b' in form.1.value %}checked{% endif %}><label for="a1b">Newspaper</label>
+                <input type="checkbox" id="a1b" name="1" value="newspaper" {% if form.1 and 'newspaper' in form.1.value %}checked{% endif %}><label for="a1b">Newspaper</label>
             </div>
             <div class="radio">
-                <input type="checkbox" id="a1c" name="1" value="c" {% if form.1 and 'c' in form.1.value %}checked{% endif %}><label for="a1c">Internet (Facebook, Twitter, email, other website)</label>
+                <input type="checkbox" id="a1c" name="1" value="internet" {% if form.1 and 'internet' in form.1.value %}checked{% endif %}><label for="a1c">Internet (Facebook, Twitter, email, other website)</label>
             </div>
             <div class="radio">
-                <input type="checkbox" id="a1d" name="1" value="d" {% if form.1 and 'd' in form.1.value %}checked{% endif %}><label for="a1d">Through a family member/friend</label>
+                <input type="checkbox" id="a1d" name="1" value="family" {% if form.1 and 'family' in form.1.value %}checked{% endif %}><label for="a1d">Through a family member/friend</label>
             </div>
             <div class="radio">
                 <input type="checkbox" id="a1e" name="1"
-                value="e" {% if form.1 and 'e' in form.1.value %}checked{% endif %}><label for="a1e">Other (please specify)</label><input type="text" name="a1other" value="{{ form.a1other.value }}">
+                value="1 other" {% if form.1 and "1 other" in form.1.value %}checked{% endif %}><label for="a1e">Other (please specify)</label><input type="text" name="a1other" value="{{ form.a1other.value }}">
             </div>
             <div class="radio">
-                <input type="checkbox" id="a1f" name="1" value="f" {% if form.1 and 'f' in form.1.value %}checked{% endif %}><label for="a1f">Don't know/Can’t remember</label>
+                <input type="checkbox" id="a1f" name="1" value="1 don't know" {% if form.1 and "1 don't know" in form.1.value %}checked{% endif %}><label for="a1f">Don't know/Can’t remember</label>
             </div>
         </div>
     </div>
@@ -290,7 +290,7 @@
 
             <div class="answers">
                 <div class="radio">
-                    <input class="table-exclusive" oclass="q7" type="checkbox" id="a7dont" name="7" value="none" {% if form.7 and form.7.value == 'dont' %}checked{% endif %}><label for="a7dont">Don't know</label>
+                    <input class="table-exclusive" oclass="q7" type="checkbox" id="a7dont" name="7" value="1" {% if form.7 and form.7.value == '1' %}checked{% endif %}><label for="a7dont">Don't know</label>
                 </div>
             </div>
         </div>
@@ -355,7 +355,7 @@
 
             <div class="answers">
                 <div class="radio">
-                    <input class="table-exclusive" oclass="q9" type="checkbox" id="a9dont" name="9" value="none" {% if form.9 and form.9.value == 'dont' %}checked{% endif %}><label for="a9dont">Don't know</label>
+                    <input class="table-exclusive" oclass="q9" type="checkbox" id="a9dont" name="9" value="1" {% if form.9 and form.9.value == '1' %}checked{% endif %}><label for="a9dont">Don't know</label>
                 </div>
             </div>
         </div>
@@ -396,7 +396,7 @@
 
             <div class="answers">
                 <div class="radio">
-                    <input class="table-exclusive" oclass="q10" type="checkbox" id="a10dont" name="10" value="none" {% if form.10 and form.10.value == 'dont' %}checked{% endif %}><label for="a10dont">Don't know</label>
+                    <input class="table-exclusive" oclass="q10" type="checkbox" id="a10dont" name="10" value="1" {% if form.10 and form.10.value == '1' %}checked{% endif %}><label for="a10dont">Don't know</label>
                 </div>
             </div>
         </div>
@@ -433,7 +433,7 @@
 
             <div class="answers">
                 <div class="radio">
-                    <input class="table-exclusive" oclass="q11" type="checkbox" id="a11dont" name="11" value="none" {% if form.11 and form.11.value == 'dont' %}checked{% endif %}><label for="a11dont">Don't know</label>
+                    <input class="table-exclusive" oclass="q11" type="checkbox" id="a11dont" name="11" value="1" {% if form.11 and form.11.value == '1' %}checked{% endif %}><label for="a11dont">Don't know</label>
                 </div>
             </div>
         </div>
@@ -471,7 +471,7 @@
 
             <div class="answers">
                 <div class="radio">
-                    <input class="table-exclusive" oclass="q12" type="checkbox" id="a12dont" name="12" value="none" {% if form.12 and form.12.value == 'dont' %}checked{% endif %}><label for="a12dont">Don't know</label>
+                    <input class="table-exclusive" oclass="q12" type="checkbox" id="a12dont" name="12" value="1" {% if form.12 and form.12.value == '1' %}checked{% endif %}><label for="a12dont">Don't know</label>
                 </div>
             </div>
         </div>
@@ -503,32 +503,32 @@
         </div>
         <div class="answers">
             <div class="radio">
-                <input type="checkbox" id="id_14_a" name="14" value="a" {% if form.14 and 'a' in form.14.value %}checked{% endif %}>
+                <input type="checkbox" id="id_14_a" name="14" value="14browsed" {% if form.14 and '14browsed' in form.14.value %}checked{% endif %}>
                 <label for="id_14_a">Browsed website or contacted group for information</label>
             </div>
             <div class="radio">
-                <input type="checkbox" id="id_14_b" name="14" value="b" {% if form.14 and 'b' in form.14.value %}checked{% endif %}>
+                <input type="checkbox" id="id_14_b" name="14" value="14registered" {% if form.14 and '14registered' in form.14.value %}checked{% endif %}>
                 <label for="id_14_b">Registered/ Signed up as a member, supporter or friend</label>
             </div>
             <div class="radio">
-                <input type="checkbox" id="id_14_c" name="14" value="c" {% if form.14 and 'c' in form.14.value %}checked{% endif %}>
+                <input type="checkbox" id="id_14_c" name="14" value="14joined" {% if form.14 and '14joined' in form.14.value %}checked{% endif %}>
                 <label for="id_14_c">Joined a discussion forum or chat room</label>
             </div>
             <div class="radio">
-                <input type="checkbox" id="id_14_d" name="14" value="d" {% if form.14 and 'd' in form.14.value %}checked{% endif %}>
+                <input type="checkbox" id="id_14_d" name="14" value="14attended" {% if form.14 and '14attended' in form.14.value %}checked{% endif %}>
                 <label for="id_14_d">Attended ‘real world’ events, meet-ups or gatherings </label>
             </div>
             <div class="radio">
-                <input type="checkbox" id="id_14_e" name="14" value="e" {% if form.14 and 'e' in form.14.value %}checked{% endif %}>
+                <input type="checkbox" id="id_14_e" name="14" value="14promote" {% if form.14 and '14promote' in form.14.value %}checked{% endif %}>
                 <label for="id_14_e">Helped promote the organisation on the internet (e.g. posted or forwarded a link, message or other material about the group)</label>
             </div>
             <div class="radio">
-                <input class="optional" opt="screen14-2" type="checkbox" id="id_14_f" name="14" value="f" {% if form.14 and 'f' in form.14.value %}checked{% endif %}>
+                <input class="optional" opt="screen14-2" type="checkbox" id="id_14_f" name="14" value="14other" {% if form.14 and '14other' in form.14.value %}checked{% endif %}>
                 <label for="id_14_f">Other (e.g donated money)</label>
             </div>
 
             <div class="radio">
-                <input class="exclusive" type="checkbox" id="id_14_g" name="14" value="g" {% if form.14 and 'g' in form.14.value %}checked{% endif %}>
+                <input class="exclusive" type="checkbox" id="id_14_g" name="14" value="14don't know" {% if form.14 and "14 don't know" in form.14.value %}checked{% endif %}>
                 <label for="id_14_g">None of the above</label>
             </div>
 
@@ -551,31 +551,31 @@
         </div>
         <div class="answers">
             <div class="radio">
-                <input type="checkbox" id="id_15_a" name="15" value="a" {% if form.15 and 'a' in form.15.value %}checked{% endif %}>
+                <input type="checkbox" id="id_15_a" name="15" value="15browsed" {% if form.15 and "15browsed" in form.15.value %}checked{% endif %}>
                 <label for="id_15_a">Browsed website or contacted group for information</label>
             </div>
             <div class="radio">
-                <input type="checkbox" id="id_15_b" name="15" value="b" {% if form.15 and 'b' in form.15.value %}checked{% endif %}>
+                <input type="checkbox" id="id_15_b" name="15" value="15registered" {% if form.15 and "15registered" in form.15.value %}checked{% endif %}>
                 <label for="id_15_b">Registered/ Signed up as a member, supporter or friend</label>
             </div>
             <div class="radio">
-                <input type="checkbox" id="id_15_c" name="15" value="c" {% if form.15 and 'c' in form.15.value %}checked{% endif %}>
+                <input type="checkbox" id="id_15_c" name="15" value="15joined" {% if form.15 and "15joined" in form.15.value %}checked{% endif %}>
                 <label for="id_15_c">Joined a discussion forum or chat room</label>
             </div>
             <div class="radio">
-                <input type="checkbox" id="id_15_d" name="15" value="d" {% if form.15 and 'd' in form.15.value %}checked{% endif %}>
+                <input type="checkbox" id="id_15_d" name="15" value="15attended" {% if form.15 and "15attended" in form.15.value %}checked{% endif %}>
                 <label for="id_15_d">Attended ‘real world’ events, meet-ups or gatherings </label>
             </div>
             <div class="radio">
-                <input type="checkbox" id="id_15_e" name="15" value="e" {% if form.15 and 'e' in form.15.value %}checked{% endif %}>
+                <input type="checkbox" id="id_15_e" name="15" value="15promote" {% if form.15 and "15promote" in form.15.value %}checked{% endif %}>
                 <label for="id_15_e">Helped promote the organisation on the internet (e.g. posted or forwarded a link, message or other material about the group)</label>
             </div>
             <div class="radio">
-                <input class="optional" opt="screen15-2" type="checkbox" id="id_15_f" name="15" value="f" {% if form.15 and 'f' in form.15.value %}checked{% endif %}>
+                <input class="optional" opt="screen15-2" type="checkbox" id="id_15_f" name="15" value="15other" {% if form.15 and "15other" in form.15.value %}checked{% endif %}>
                 <label for="id_15_f">Other (e.g donated money)</label>
             </div>
             <div class="radio">
-                <input class="exclusive" type="checkbox" id="id_15_g" name="15" value="g" {% if form.15 and 'g' in form.15.value %}checked{% endif %}>
+                <input class="exclusive" type="checkbox" id="id_15_g" name="15" value="15 don't know" {% if form.15 and "15 don't know" in form.15.value %}checked{% endif %}>
                 <label for="id_15_g">None of the above</label>
             </div>
         </div>
@@ -609,65 +609,65 @@
                 </thead>
                 <tr>
                     <td>Political party</td>
-                    <td class="centered"><input type="checkbox" oclass="q16" name="16party" value="a" {% if form.16party and 'a' in form.16party.value %}checked{% endif %}></td>
-                    <td class="centered"><input type="checkbox" oclass="q16" name="16party" value="b" {% if form.16party and 'b' in form.16party.value %}checked{% endif %}></td>
-                    <td class="centered"><input type="checkbox" oclass="q16" name="16party" value="c" {% if form.16party and 'c' in form.16party.value %}checked{% endif %}></td>
-                    <td class="centered"><input type="checkbox" oclass="q16" name="16party" value="d" {% if form.16party and 'd' in form.16party.value %}checked{% endif %}></td>
+                    <td class="centered"><input type="checkbox" oclass="q16" name="16" value="party_information" {% if form.16 and 'party_information' in form.16.value %}checked{% endif %}></td>
+                    <td class="centered"><input type="checkbox" oclass="q16" name="16" value="party_joined" {% if form.16 and 'party_joined' in form.16.value %}checked{% endif %}></td>
+                    <td class="centered"><input type="checkbox" oclass="q16" name="16" value="party_attended" {% if form.16 and 'party_attended' in form.16.value %}checked{% endif %}></td>
+                    <td class="centered"><input type="checkbox" oclass="q16" name="16" value="party_voluntary" {% if form.16 and 'party_voluntary' in form.16.value %}checked{% endif %}></td>
                 </tr>
                 <tr>
                     <td>Trade union</td>
-                    <td class="centered"><input type="checkbox" oclass="q16" name="16union" value="a" {% if form.16union and 'a' in form.16union.value %}checked{% endif %}></td>
-                    <td class="centered"><input type="checkbox" oclass="q16" name="16union" value="b" {% if form.16union and 'b' in form.16union.value %}checked{% endif %}></td>
-                    <td class="centered"><input type="checkbox" oclass="q16" name="16union" value="c" {% if form.16union and 'c' in form.16union.value %}checked{% endif %}></td>
-                    <td class="centered"><input type="checkbox" oclass="q16" name="16union" value="d" {% if form.16union and 'd' in form.16union.value %}checked{% endif %}></td>
+                    <td class="centered"><input type="checkbox" oclass="q16" name="16" value="union_information" {% if form.16 and 'union_information' in form.16.value %}checked{% endif %}></td>
+                    <td class="centered"><input type="checkbox" oclass="q16" name="16" value="union_joined" {% if form.16 and 'union_joined' in form.16.value %}checked{% endif %}></td>
+                    <td class="centered"><input type="checkbox" oclass="q16" name="16" value="union_attended" {% if form.16 and 'union_attended' in form.16.value %}checked{% endif %}></td>
+                    <td class="centered"><input type="checkbox" oclass="q16" name="16" value="union_voluntary" {% if form.16 and 'union_voluntary' in form.16.value %}checked{% endif %}></td>
                 </tr>
                 <tr>
                     <td>Local charities and community welfare organisations</td>
-                    <td class="centered"><input type="checkbox" oclass="q16" name="16local" value="a" {% if form.16local and 'a' in form.16local.value %}checked{% endif %}></td>
-                    <td class="centered"><input type="checkbox" oclass="q16" name="16local" value="b" {% if form.16local and 'b' in form.16local.value %}checked{% endif %}></td>
-                    <td class="centered"><input type="checkbox" oclass="q16" name="16local" value="c" {% if form.16local and 'c' in form.16local.value %}checked{% endif %}></td>
-                    <td class="centered"><input type="checkbox" oclass="q16" name="16local" value="d" {% if form.16local and 'd' in form.16local.value %}checked{% endif %}></td>
+                    <td class="centered"><input type="checkbox" oclass="q16" name="16" value="local_information" {% if form.16 and 'local_information' in form.16.value %}checked{% endif %}></td>
+                    <td class="centered"><input type="checkbox" oclass="q16" name="16" value="local_joined" {% if form.16 and 'local_joined' in form.16.value %}checked{% endif %}></td>
+                    <td class="centered"><input type="checkbox" oclass="q16" name="16" value="local_attended" {% if form.16 and 'local_attended' in form.16.value %}checked{% endif %}></td>
+                    <td class="centered"><input type="checkbox" oclass="q16" name="16" value="local_voluntary" {% if form.16 and 'local_voluntary' in form.16.value %}checked{% endif %}></td>
                 </tr>
                 <tr>
                     <td>NGOs and other environmental or humanitarian aid organisations</td>
-                    <td class="centered"><input type="checkbox" oclass="q16" name="16ngo" value="a" {% if form.16ngo and 'a' in form.16ngo.value %}checked{% endif %}></td>
-                    <td class="centered"><input type="checkbox" oclass="q16" name="16ngo" value="b" {% if form.16ngo and 'b' in form.16ngo.value %}checked{% endif %}></td>
-                    <td class="centered"><input type="checkbox" oclass="q16" name="16ngo" value="c" {% if form.16ngo and 'c' in form.16ngo.value %}checked{% endif %}></td>
-                    <td class="centered"><input type="checkbox" oclass="q16" name="16ngo" value="d" {% if form.16ngo and 'd' in form.16ngo.value %}checked{% endif %}></td>
+                    <td class="centered"><input type="checkbox" oclass="q16" name="16" value="ngo_information" {% if form.16 and 'ngo_information' in form.16.value %}checked{% endif %}></td>
+                    <td class="centered"><input type="checkbox" oclass="q16" name="16" value="ngo_joined" {% if form.16 and 'ngo_joined' in form.16.value %}checked{% endif %}></td>
+                    <td class="centered"><input type="checkbox" oclass="q16" name="16" value="ngo_attended" {% if form.16 and 'ngo_attended' in form.16.value %}checked{% endif %}></td>
+                    <td class="centered"><input type="checkbox" oclass="q16" name="16" value="ngo_voluntary" {% if form.16 and 'ngo_voluntary' in form.16.value %}checked{% endif %}></td>
                 </tr>
                 <tr>
                     <td>Religious groups or church organisations</td>
-                    <td class="centered"><input type="checkbox" oclass="q16" name="16religious" value="a" {% if form.16religious and 'a' in form.16religious.value %}checked{% endif %}></td>
-                    <td class="centered"><input type="checkbox" oclass="q16" name="16religious" value="b" {% if form.16religious and 'b' in form.16religious.value %}checked{% endif %}></td>
-                    <td class="centered"><input type="checkbox" oclass="q16" name="16religious" value="c" {% if form.16religious and 'c' in form.16religious.value %}checked{% endif %}></td>
-                    <td class="centered"><input type="checkbox" oclass="q16" name="16religious" value="d" {% if form.16religious and 'd' in form.16religious.value %}checked{% endif %}></td>
+                    <td class="centered"><input type="checkbox" oclass="q16" name="16" value="religious_information" {% if form.16 and 'religious_information' in form.16.value %}checked{% endif %}></td>
+                    <td class="centered"><input type="checkbox" oclass="q16" name="16" value="religious_joined" {% if form.16 and 'religious_joined' in form.16.value %}checked{% endif %}></td>
+                    <td class="centered"><input type="checkbox" oclass="q16" name="16" value="religious_attended" {% if form.16 and 'religious_attended' in form.16.value %}checked{% endif %}></td>
+                    <td class="centered"><input type="checkbox" oclass="q16" name="16" value="religious_voluntary" {% if form.16 and 'religious_voluntary' in form.16.value %}checked{% endif %}></td>
                 </tr>
                 <tr>
                     <td>Recreational, social, sport and fitness clubs￼or societies</td>
-                    <td class="centered"><input type="checkbox" oclass="q16" name="16hobby" value="a" {% if form.16hobby and 'a' in form.16hobby.value %}checked{% endif %}></td>
-                    <td class="centered"><input type="checkbox" oclass="q16" name="16hobby" value="b" {% if form.16hobby and 'b' in form.16hobby.value %}checked{% endif %}></td>
-                    <td class="centered"><input type="checkbox" oclass="q16" name="16hobby" value="c" {% if form.16hobby and 'c' in form.16hobby.value %}checked{% endif %}></td>
-                    <td class="centered"><input type="checkbox" oclass="q16" name="16hobby" value="d" {% if form.16hobby and 'd' in form.16hobby.value %}checked{% endif %}></td>
+                    <td class="centered"><input type="checkbox" oclass="q16" name="16" value="hobby_information" {% if form.16 and 'hobby_information' in form.16.value %}checked{% endif %}></td>
+                    <td class="centered"><input type="checkbox" oclass="q16" name="16" value="hobby_joined" {% if form.16 and 'hobby_joined' in form.16.value %}checked{% endif %}></td>
+                    <td class="centered"><input type="checkbox" oclass="q16" name="16" value="hobby_attended" {% if form.16 and 'hobby_attended' in form.16.value %}checked{% endif %}></td>
+                    <td class="centered"><input type="checkbox" oclass="q16" name="16" value="hobby_voluntary" {% if form.16 and 'hobby_voluntary' in form.16.value %}checked{% endif %}></td>
                 </tr>
                 <tr>
                     <td>Health, weight management and disability support groups</td>
-                    <td class="centered"><input type="checkbox" oclass="q16" name="16health" value="a" {% if form.16health and 'a' in form.16health.value %}checked{% endif %}></td>
-                    <td class="centered"><input type="checkbox" oclass="q16" name="16health" value="b" {% if form.16health and 'b' in form.16health.value %}checked{% endif %}></td>
-                    <td class="centered"><input type="checkbox" oclass="q16" name="16health" value="c" {% if form.16health and 'c' in form.16health.value %}checked{% endif %}></td>
-                    <td class="centered"><input type="checkbox" oclass="q16" name="16health" value="d" {% if form.16health and 'd' in form.16health.value %}checked{% endif %}></td>
+                    <td class="centered"><input type="checkbox" oclass="q16" name="16" value="health_information" {% if form.16 and 'health_information' in form.16.value %}checked{% endif %}></td>
+                    <td class="centered"><input type="checkbox" oclass="q16" name="16" value="health_joined" {% if form.16 and 'health_joined' in form.16.value %}checked{% endif %}></td>
+                    <td class="centered"><input type="checkbox" oclass="q16" name="16" value="health_attended" {% if form.16 and 'health_attended' in form.16.value %}checked{% endif %}></td>
+                    <td class="centered"><input type="checkbox" oclass="q16" name="16" value="health_voluntary" {% if form.16 and 'health_voluntary' in form.16.value %}checked{% endif %}></td>
                 </tr>
                 <tr>
                     <td>Other community or civic groups</td>
-                    <td class="centered"><input type="checkbox" oclass="q16" name="16other" value="a" {% if form.16other and 'a' in form.16other.value %}checked{% endif %}></td>
-                    <td class="centered"><input type="checkbox" oclass="q16" name="16other" value="b" {% if form.16other and 'b' in form.16other.value %}checked{% endif %}></td>
-                    <td class="centered"><input type="checkbox" oclass="q16" name="16other" value="c" {% if form.16other and 'c' in form.16other.value %}checked{% endif %}></td>
-                    <td class="centered"><input type="checkbox" oclass="q16" name="16other" value="d" {% if form.16other and 'd' in form.16other.value %}checked{% endif %}></td>
+                    <td class="centered"><input type="checkbox" oclass="q16" name="16" value="other_information" {% if form.16 and 'other_information' in form.16.value %}checked{% endif %}></td>
+                    <td class="centered"><input type="checkbox" oclass="q16" name="16" value="other_joined" {% if form.16 and 'other_joined' in form.16.value %}checked{% endif %}></td>
+                    <td class="centered"><input type="checkbox" oclass="q16" name="16" value="other_attended" {% if form.16 and 'other_attended' in form.16.value %}checked{% endif %}></td>
+                    <td class="centered"><input type="checkbox" oclass="q16" name="16" value="other_voluntary" {% if form.16 and 'other_voluntary' in form.16.value %}checked{% endif %}></td>
                 </tr>
             </table>
 
             <div class="answers">
                 <div class="radio">
-                    <input class="table-exclusive" oclass="q16" type="checkbox" id="a16none" name="16" value="none" {% if form.16 and form.16.value == 'none' %}checked{% endif %}><label for="a16none">None of the above</label>
+                    <input class="table-exclusive" oclass="q16" type="checkbox" id="a16none" name="16none" value="1" {% if form.16 and form.16none.value == '1' %}checked{% endif %}><label for="a16none">None of the above</label>
                 </div>
             </div>
         </div>
@@ -762,7 +762,7 @@
         </div>
 
         <div class="radio">
-            <input class="exclusive" type="checkbox" id="a20" name="20" value="dont" {% if form.20 and form.20.value == 'dont' %}checked{% endif %}><label for="a20">don't want to answer </label>
+            <input class="exclusive" type="checkbox" id="a20" name="20" value="" {% if form.20 and form.20.value == ' ' %}checked{% endif %}><label for="a20">don't want to answer </label>
         </div>
     </div>
 
@@ -996,7 +996,7 @@
         </div>
 
         <div class="radio">
-            <input class="exclusive" type="checkbox" id="a26" name="26" value="dont" {% if form.26 and form.26.value == 'dont' %}checked{% endif %}><label for="a26">don't want to answer </label>
+            <input class="exclusive" type="checkbox" id="a26" name="26" value="" {% if form.26 and form.26.value == ' ' %}checked{% endif %}><label for="a26">don't want to answer </label>
         </div>
     </div>
 
@@ -1006,28 +1006,28 @@
         </div>
         <div class="answers">
             <div class="radio">
-                <input type="checkbox" id="a27a" name="27" value="a" {% if form.27 and 'a' in form.27.value %}checked{% endif %}><label for="a27a">Wrote a blog post</label>
+                <input type="checkbox" id="a27a" name="27" value="blog" {% if form.27 and "blog" in form.27.value %}checked{% endif %}><label for="a27a">Wrote a blog post</label>
             </div>
             <div class="radio">
-                <input type="checkbox" id="a27b" name="27" value="b" {% if form.27 and 'b' in form.27.value %}checked{% endif %}><label for="a27b">Purchased a product or service on a website</label>
+                <input type="checkbox" id="a27b" name="27" value="purchase" {% if form.27 and "purchase" in form.27.value %}checked{% endif %}><label for="a27b">Purchased a product or service on a website</label>
             </div>
             <div class="radio">
-                <input type="checkbox" id="a27c" name="27" value="c" {% if form.27 and 'c' in form.27.value %}checked{% endif %}><label for="a27c">Logged onto a social networking site (e.g. Facebook, Twitter, Google+)</label>
+                <input type="checkbox" id="a27c" name="27" value="logged on" {% if form.27 and "logged on" in form.27.value %}checked{% endif %}><label for="a27c">Logged onto a social networking site (e.g. Facebook, Twitter, Google+)</label>
             </div>
             <div class="radio">
-                <input type="checkbox" id="a27d" name="27" value="d" {% if form.27 and 'd' in form.27.value %}checked{% endif %}><label for="a27d">Posted a comment on a social networking site (e.g. Facebook, Twitter, Google+)</label>
+                <input type="checkbox" id="a27d" name="27" value="commented" {% if form.27 and "commented" in form.27.value %}checked{% endif %}><label for="a27d">Posted a comment on a social networking site (e.g. Facebook, Twitter, Google+)</label>
             </div>
             <div class="radio">
-                <input type="checkbox" id="a27e" name="27" value="e" {% if form.27 and 'e' in form.27.value %}checked{% endif %}><label for="a27e">Posted an audio, video, or image file to the internet </label>
+                <input type="checkbox" id="a27e" name="27" value="multimedia" {% if form.27 and "multimedia" in form.27.value %}checked{% endif %}><label for="a27e">Posted an audio, video, or image file to the internet </label>
             </div>
             <div class="radio">
-                <input type="checkbox" id="a27f" name="27" value="f" {% if form.27 and 'f' in form.27.value %}checked{% endif %}><label for="a27f">Sent an attachment with an email</label>
+                <input type="checkbox" id="a27f" name="27" value="emailed" {% if form.27 and "emailed" in form.27.value %}checked{% endif %}><label for="a27f">Sent an attachment with an email</label>
             </div>
             <div class="radio">
-                <input type="checkbox" id="a27g" name="27" value="g" {% if form.27 and 'g' in form.27.value %}checked{% endif %}><label for="a27g">Commented on an article or blog post</label>
+                <input type="checkbox" id="a27g" name="27" value="blog comment" {% if form.27 and "blog comment" in form.27.value %}checked{% endif %}><label for="a27g">Commented on an article or blog post</label>
             </div>
             <div class="radio">
-                <input class="exclusive" type="checkbox" id="a27h" name="27" value="h" {% if form.27 and 'h' in form.27.value %}checked{% endif %}><label for="a27h">None of the above</label>
+                <input class="exclusive" type="checkbox" id="a27h" name="27" value="27 none" {% if form.27 and "27 none" in form.27.value %}checked{% endif %}><label for="a27h">None of the above</label>
             </div>
         </div>
     </div>

@@ -70,7 +70,7 @@ class SurveyTest(TestCase):
         self.assertEqual(count + 1, users.count())
 
     def test_survey_is_recorded(self):
-        self.post_survey({'1':'a'})
+        self.post_survey({'1':'tv'})
 
         u = User.objects.latest('id')
 
@@ -81,16 +81,16 @@ class SurveyTest(TestCase):
         responses = Item.objects.filter(user_id=u.id)
         self.assertTrue(len(responses) == 3)
 
-        response = Item.objects.filter(user_id=u.id).filter(key='1').filter(value='a')
+        response = Item.objects.filter(user_id=u.id).filter(key='1').filter(value='tv')
         self.assertTrue(len(response) == 1)
 
     def test_multi_value_answers_recorded(self):
-        self.post_survey({'1':['b','d']})
+        self.post_survey({'1':['tv','newspaper']})
         stored = self.get_stored_item('1')
-        self.assertEqual('b,d', stored.value)
+        self.assertEqual('tv,newspaper', stored.value)
 
     def test_email_is_recorded_in_user(self):
-        self.post_survey({'1':'a', 'email': 'test@example.org'})
+        self.post_survey({'1':'tv', 'email': 'test@example.org'})
 
         stored = self.get_stored_item('email')
         self.assertIsNone(stored)
@@ -99,7 +99,7 @@ class SurveyTest(TestCase):
         self.assertEqual('test@example.org', u.email)
 
     def test_email_is_blank_if_not_provided(self):
-        self.post_survey({'1':'a'})
+        self.post_survey({'1':'tv'})
 
         stored = self.get_stored_item('email')
         self.assertIsNone(stored)
