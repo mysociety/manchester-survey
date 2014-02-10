@@ -8,7 +8,7 @@ from django.conf import settings
 
 from survey.models import Item, User, Sites
 from survey.forms import SurveyForm
-from manchester_survey.utils import UnicodeWriter
+from manchester_survey.utils import UnicodeWriter, SurveyDate
 
 def has_voted(request):
     if ( request.COOKIES.has_key('surveydone') ):
@@ -63,6 +63,9 @@ def record(request):
         if f.cleaned_data.has_key('email'):
             u.email = f.cleaned_data['email']
             u.save()
+
+        r = Item(user_id=u.id, key='recorded', value=SurveyDate.now(), batch=1)
+        r.save();
     else:
         return render_to_response('survey.html', { 'form': f }, context_instance=RequestContext(request))
 
@@ -87,7 +90,7 @@ def export(request):
     writer = UnicodeWriter(response)
 
     all_fields = [
-        'id', 'permission', '1', 'a1other', '1', '2', '3', '4', '5', '6',
+        'id', 'recorded', 'permission', '1', 'a1other', '1', '2', '3', '4', '5', '6',
         '7government', '7council', '7', '8', '9petition', '9march', '9refused', '9bought',
         '9', '10community', '10country', '10', '11community', '11country', '11',
         '12community', '12country', '12', '13', '14', '14how', '15', '15how', '16party',

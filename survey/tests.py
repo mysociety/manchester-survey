@@ -74,8 +74,12 @@ class SurveyTest(TestCase):
 
         u = User.objects.latest('id')
 
+        """
+        The answer here is 3 as permission is a required field and added by post_survey
+        and the view code adds in a recorded field with the datetime
+        """
         responses = Item.objects.filter(user_id=u.id)
-        self.assertTrue(len(responses) == 2)
+        self.assertTrue(len(responses) == 3)
 
         response = Item.objects.filter(user_id=u.id).filter(key='1').filter(value='a')
         self.assertTrue(len(response) == 1)
