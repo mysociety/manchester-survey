@@ -8,7 +8,7 @@ VIRTUAL_ENV="/data/vhost/!!(*= $vhost *)!!/virtualenv-manchester_survey"
 PATH=/data/vhost/!!(*= $vhost *)!!/manchester_survey/bin/:/data/vhost/!!(*= $vhost *)!!/virtualenv-manchester_survey/bin:/usr/local/bin:/usr/bin:/bin
 
 !!(* if (!$staging) { *)!!
-0 8 * * 4 !!(*= $user *)!! run-with-lockfile -n /data/vhost/!!(*= $vhost *)!!/send_registration_emails.lock "/data/vhost/!!(*= $vhost *)!!/manchester-survey/bin/cron_wrapper.bash send_registration_emails" || echo "stalled?"
+0 15 * * 4 !!(*= $user *)!! run-with-lockfile -n /data/vhost/!!(*= $vhost *)!!/send_registration_emails.lock "/data/vhost/!!(*= $vhost *)!!/manchester-survey/bin/cron_wrapper.bash send_registration_emails" || echo "stalled?"
 
 0 8 * * 4 !!(*= $user *)!! run-with-lockfile -n /data/vhost/!!(*= $vhost *)!!/send_diary_reminders.lock "/data/vhost/!!(*= $vhost *)!!/manchester-survey/bin/cron_wrapper.bash send_diary_reminders" || echo "stalled?"
 
