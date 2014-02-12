@@ -76,52 +76,42 @@
 
     <h1>3</h1><div class="screen">
         <div class="question">
-              Where did you hear about <b>{{ site_name }}</b>? Please tick all that apply. 
+            Thinking of the last time you visited <b>{{ site_name }}</b>, which of the following statements best describes your experience?
         </div>
 
         <div class="answers">
             <div class="radio">
-                <input type="checkbox" id="a1a" name="1" value="a" {% if form.1 and 'a' in form.1.value %}checked{% endif %}><label for="a1a">TV/Radio</label>
+                <input type="radio" id="a1a" name="1" value="a" {% if form.1 and 'a' in form.1.value %}checked{% endif %}><label for="a1a">It was the first time I visited or used the website</label>
             </div>
             <div class="radio">
-                <input type="checkbox" id="a1b" name="1" value="b" {% if form.1 and 'b' in form.1.value %}checked{% endif %}><label for="a1b">Newspaper</label>
+                <input type="radio" id="a1b" name="1" value="b" {% if form.1 and 'b' in form.1.value %}checked{% endif %}><label for="a1b">I had visited or used the website before</label>
             </div>
             <div class="radio">
-                <input type="checkbox" id="a1c" name="1" value="c" {% if form.1 and 'c' in form.1.value %}checked{% endif %}><label for="a1c">Internet (Facebook, Twitter, email, other website)</label>
-            </div>
-            <div class="radio">
-                <input type="checkbox" id="a1d" name="1" value="d" {% if form.1 and 'd' in form.1.value %}checked{% endif %}><label for="a1d">Through a family member/friend</label>
-            </div>
-            <div class="radio">
-                <input type="checkbox" id="a1e" name="1"
-                value="e" {% if form.1 and 'e' in form.1.value %}checked{% endif %}><label for="a1e">Other (please specify)</label><input type="text" name="a1other" value="{{ form.a1other.value }}">
-            </div>
-            <div class="radio">
-                <input type="checkbox" id="a1f" name="1" value="f" {% if form.1 and 'f' in form.1.value %}checked{% endif %}><label for="a1f">Don't know/Can’t remember</label>
+                <input type="radio" id="a1c" name="1" value="c" {% if form.1 and 'c' in form.1.value %}checked{% endif %}><label for="a1c">Don't know/Can't remember</label>
             </div>
         </div>
     </div>
 
-
     <h1>4</h1><div class="screen">
         <div class="question">
-          How much interest do you generally have in what is going on in politics?
+            What was the main purpose of this visit?
         </div>
+
         <div class="answers">
             <div class="radio">
-                <input type="radio" id="a2a" name="2" value="a" {% if form.2 and form.2.value == 'a' %}checked{% endif %}><label for="a2a">A great deal </label>
+                <input type="radio" id="a2a" name="2" value="a" {% if form.2 and 'a' in form.2.value %}checked{% endif %}><label for="a2a">Just generally browsing out of interest or curiosity </label>
             </div>
             <div class="radio">
-                <input type="radio" id="a2b" name="2" value="b" {% if form.2 and form.2.value == 'b' %}checked{% endif %}><label for="a2b">Quite a lot</label>
+                <input type="radio" id="a2b" name="2" value="b" {% if form.2 and 'b' in form.2.value %}checked{% endif %}><label for="a2b">Looking for information to deal with a specific or personal issue</label>
             </div>
             <div class="radio">
-                <input type="radio" id="a2c" name="2" value="c" {% if form.2 and form.2.value == 'c' %}checked{% endif %}><label for="a2c">Not much interest</label>
+                <input type="radio" id="a2c" name="2" value="c" {% if form.2 and 'c' in form.2.value %}checked{% endif %}><label for="a2c">	Following-up on an issue that I have been dealing with through the website</label>
             </div>
             <div class="radio">
-                <input type="radio" id="a2d" name="2" value="d" {% if form.2 and form.2.value == 'd' %}checked{% endif %}><label for="a2d">No interest at all</label>
+                <input type="radio" id="a2d" name="2" value="d" {% if form.2 and 'd' in form.2.value %}checked{% endif %}><label for="a2d">Other purposes</label>
             </div>
             <div class="radio">
-                <input type="radio" id="a2e" name="2" value="e" {% if form.2 and form.2.value == 'e' %}checked{% endif %}><label for="a2e">Don't know</label>
+                <input type="radio" id="a2e" name="2" value="e" {% if form.2 and 'e' in form.2.value %}checked{% endif %}><label for="a2e">Don't know/Can't remember</label>
             </div>
         </div>
     </div>
@@ -129,28 +119,23 @@
 
     <h1>5</h1><div class="screen">
         <div class="question">
-      Generally speaking, how complicated, if at all, would you say you find politics? Please answer on a 0 to 10 scale, where 0 means 'not at all complicated' and 10 means 'extremely complicated'?
+          How much interest do you generally have in what is going on in politics?
         </div>
         <div class="answers">
-
-            <p>
-                Not at all complicated
-                <span class="range-radio"><input type="radio" id="a30" name="3" value="0" {% if form.3 and form.3.value == '0' %}checked{% endif %}><label for="a30">0</label></span>
-                <span class="range-radio"><input type="radio" id="a31" name="3" value="1" {% if form.3 and form.3.value == '1' %}checked{% endif %}><label for="a31">1</label></span>
-                <span class="range-radio"><input type="radio" id="a32" name="3" value="2" {% if form.3 and form.3.value == '2' %}checked{% endif %}><label for="a32">2</label></span>
-                <span class="range-radio"><input type="radio" id="a33" name="3" value="3" {% if form.3 and form.3.value == '3' %}checked{% endif %}><label for="a33">3</label></span>
-                <span class="range-radio"><input type="radio" id="a34" name="3" value="4" {% if form.3 and form.3.value == '4' %}checked{% endif %}><label for="a34">4</label></span>
-                <span class="range-radio"><input type="radio" id="a35" name="3" value="5" {% if form.3 and form.3.value == '5' %}checked{% endif %}><label for="a35">5</label></span>
-                <span class="range-radio"><input type="radio" id="a36" name="3" value="6" {% if form.3 and form.3.value == '6' %}checked{% endif %}><label for="a36">6</label></span>
-                <span class="range-radio"><input type="radio" id="a37" name="3" value="7" {% if form.3 and form.3.value == '7' %}checked{% endif %}><label for="a37">7</label></span>
-                <span class="range-radio"><input type="radio" id="a38" name="3" value="8" {% if form.3 and form.3.value == '8' %}checked{% endif %}><label for="a38">8</label></span>
-                <span class="range-radio"><input type="radio" id="a39" name="3" value="9" {% if form.3 and form.3.value == '9' %}checked{% endif %}><label for="a39">9</label></span>
-                <span class="range-radio"><input type="radio" id="a310" name="3" value="10" {% if form.3 and form.3.value == '10' %}checked{% endif %}><label for="a310">10</label></span>
-                Extremely complicated
-            </p>
-
             <div class="radio">
-                <input type="radio" id="a3dontknow" name="3" value="don't know" {% if form.3 and form.3.value == "don't know" %}checked{% endif %}><label for="a3dontknow">Don't know</label>
+                <input type="radio" id="a3a" name="3" value="a" {% if form.3 and form.3.value == 'a' %}checked{% endif %}><label for="a3a">A great deal </label>
+            </div>
+            <div class="radio">
+                <input type="radio" id="a3b" name="3" value="b" {% if form.3 and form.3.value == 'b' %}checked{% endif %}><label for="a3b">Quite a lot</label>
+            </div>
+            <div class="radio">
+                <input type="radio" id="a3c" name="3" value="c" {% if form.3 and form.3.value == 'c' %}checked{% endif %}><label for="a3c">Not much interest</label>
+            </div>
+            <div class="radio">
+                <input type="radio" id="a3d" name="3" value="d" {% if form.3 and form.3.value == 'd' %}checked{% endif %}><label for="a3d">No interest at all</label>
+            </div>
+            <div class="radio">
+                <input type="radio" id="a3e" name="3" value="e" {% if form.3 and form.3.value == 'e' %}checked{% endif %}><label for="a3e">Don't know</label>
             </div>
         </div>
     </div>
@@ -158,12 +143,12 @@
 
     <h1>6</h1><div class="screen">
         <div class="question">
-          On a scale from 0 to 10 where 10 means a great deal of influence and 0 means no influence, how much influence would you say you have on politics and public affairs?
+      Generally speaking, how complicated, if at all, would you say you find politics? Please answer on a 0 to 10 scale, where 0 means 'not at all complicated' and 10 means 'extremely complicated'?
         </div>
         <div class="answers">
 
             <p>
-                No influence
+                Not at all complicated
                 <span class="range-radio"><input type="radio" id="a40" name="4" value="0" {% if form.4 and form.4.value == '0' %}checked{% endif %}><label for="a40">0</label></span>
                 <span class="range-radio"><input type="radio" id="a41" name="4" value="1" {% if form.4 and form.4.value == '1' %}checked{% endif %}><label for="a41">1</label></span>
                 <span class="range-radio"><input type="radio" id="a42" name="4" value="2" {% if form.4 and form.4.value == '2' %}checked{% endif %}><label for="a42">2</label></span>
@@ -175,7 +160,7 @@
                 <span class="range-radio"><input type="radio" id="a48" name="4" value="8" {% if form.4 and form.4.value == '8' %}checked{% endif %}><label for="a48">8</label></span>
                 <span class="range-radio"><input type="radio" id="a49" name="4" value="9" {% if form.4 and form.4.value == '9' %}checked{% endif %}><label for="a49">9</label></span>
                 <span class="range-radio"><input type="radio" id="a410" name="4" value="10" {% if form.4 and form.4.value == '10' %}checked{% endif %}><label for="a410">10</label></span>
-                A great deal of influence
+                Extremely complicated
             </p>
 
             <div class="radio">
@@ -187,18 +172,24 @@
 
     <h1>7</h1><div class="screen">
         <div class="question">
-              Some people say that political parties in Britain care what ordinary people think. Others say that political parties in Britain don't care what ordinary people think. Using the scale below, (where 1 means that political parties care about what ordinary people think, and 5 means that they don't care what ordinary people think), where would you place yourself?
+          On a scale from 0 to 10 where 10 means a great deal of influence and 0 means no influence, how much influence would you say you have on politics and public affairs?
         </div>
-
         <div class="answers">
+
             <p>
-            Parties care about what ordinary people think
-            <span class="range-radio"><input type="radio" id="a51" name="5" value="1" {% if form.5 and form.5.value == '1' %}checked{% endif %}><label for="a51">1</label></span>
-            <span class="range-radio"><input type="radio" id="a52" name="5" value="2" {% if form.5 and form.5.value == '2' %}checked{% endif %}><label for="a52">2</label></span>
-            <span class="range-radio"><input type="radio" id="a53" name="5" value="3" {% if form.5 and form.5.value == '3' %}checked{% endif %}><label for="a53">3</label></span>
-            <span class="range-radio"><input type="radio" id="a54" name="5" value="4" {% if form.5 and form.5.value == '4' %}checked{% endif %}><label for="a54">4</label></span>
-            <span class="range-radio"><input type="radio" id="a55" name="5" value="5" {% if form.5 and form.5.value == '5' %}checked{% endif %}><label for="a54">5</label></span>
-            Parties don't care what ordinary people think
+                No influence
+                <span class="range-radio"><input type="radio" id="a50" name="5" value="0" {% if form.5 and form.5.value == '0' %}checked{% endif %}><label for="a50">0</label></span>
+                <span class="range-radio"><input type="radio" id="a51" name="5" value="1" {% if form.5 and form.5.value == '1' %}checked{% endif %}><label for="a51">1</label></span>
+                <span class="range-radio"><input type="radio" id="a52" name="5" value="2" {% if form.5 and form.5.value == '2' %}checked{% endif %}><label for="a52">2</label></span>
+                <span class="range-radio"><input type="radio" id="a53" name="5" value="3" {% if form.5 and form.5.value == '3' %}checked{% endif %}><label for="a53">3</label></span>
+                <span class="range-radio"><input type="radio" id="a54" name="5" value="4" {% if form.5 and form.5.value == '4' %}checked{% endif %}><label for="a54">4</label></span>
+                <span class="range-radio"><input type="radio" id="a55" name="5" value="5" {% if form.5 and form.5.value == '5' %}checked{% endif %}><label for="a55">5</label></span>
+                <span class="range-radio"><input type="radio" id="a56" name="5" value="6" {% if form.5 and form.5.value == '6' %}checked{% endif %}><label for="a56">6</label></span>
+                <span class="range-radio"><input type="radio" id="a57" name="5" value="7" {% if form.5 and form.5.value == '7' %}checked{% endif %}><label for="a57">7</label></span>
+                <span class="range-radio"><input type="radio" id="a58" name="5" value="8" {% if form.5 and form.5.value == '8' %}checked{% endif %}><label for="a58">8</label></span>
+                <span class="range-radio"><input type="radio" id="a59" name="5" value="9" {% if form.5 and form.5.value == '9' %}checked{% endif %}><label for="a59">9</label></span>
+                <span class="range-radio"><input type="radio" id="a510" name="5" value="10" {% if form.5 and form.5.value == '10' %}checked{% endif %}><label for="a510">10</label></span>
+                A great deal of influence
             </p>
 
             <div class="radio">
@@ -210,47 +201,70 @@
 
     <h1>8</h1><div class="screen">
         <div class="question">
-  In general, do you think of yourself as a little closer to one of the parties than the others? If yes, please can you tell us which party?
+              Some people say that political parties in Britain care what ordinary people think. Others say that political parties in Britain don't care what ordinary people think. Using the scale below, (where 1 means that political parties care about what ordinary people think, and 5 means that they don't care what ordinary people think), where would you place yourself?
         </div>
+
         <div class="answers">
+            <p>
+            Parties care about what ordinary people think
+            <span class="range-radio"><input type="radio" id="a61" name="6" value="1" {% if form.6 and form.6.value == '1' %}checked{% endif %}><label for="a61">1</label></span>
+            <span class="range-radio"><input type="radio" id="a62" name="6" value="2" {% if form.6 and form.6.value == '2' %}checked{% endif %}><label for="a62">2</label></span>
+            <span class="range-radio"><input type="radio" id="a63" name="6" value="3" {% if form.6 and form.6.value == '3' %}checked{% endif %}><label for="a63">3</label></span>
+            <span class="range-radio"><input type="radio" id="a64" name="6" value="4" {% if form.6 and form.6.value == '4' %}checked{% endif %}><label for="a64">4</label></span>
+            <span class="range-radio"><input type="radio" id="a65" name="6" value="5" {% if form.6 and form.6.value == '5' %}checked{% endif %}><label for="a64">5</label></span>
+            Parties don't care what ordinary people think
+            </p>
+
             <div class="radio">
-                <input type="radio" id="a6a" name="6" value="a" {% if form.6 and form.6.value == 'a' %}checked{% endif %}><label for="a6a">Labour</label>
-            </div>
-            <div class="radio">
-                <input type="radio" id="a6b" name="6" value="b" {% if form.6 and form.6.value == 'b' %}checked{% endif %}><label for="a6b">Conservatives</label>
-            </div>
-            <div class="radio">
-                <input type="radio" id="a6c" name="6" value="c" {% if form.6 and form.6.value == 'c' %}checked{% endif %}><label for="a6c">Liberal Democrats</label>
-            </div>
-            <div class="radio">
-                <input type="radio" id="a6d" name="6" value="d" {% if form.6 and form.6.value == 'd' %}checked{% endif %}><label for="a6d">Scottish National Party (SNP)</label>
-            </div>
-            <div class="radio">
-                <input type="radio" id="a6e" name="6" value="e" {% if form.6 and form.6.value == 'e' %}checked{% endif %}><label for="a6e">Plaid Cymru</label>
-            </div>
-            <div class="radio">
-                <input type="radio" id="a6f" name="6" value="f" {% if form.6 and form.6.value == 'f' %}checked{% endif %}><label for="a6f">Green Party</label>
-            </div>
-            <div class="radio">
-                <input type="radio" id="a6g" name="6" value="g" {% if form.6 and form.6.value == 'g' %}checked{% endif %}><label for="a6g">United Kingdom Independence Party (UKIP)</label>
-            </div>
-            <div class="radio">
-                <input type="radio" id="a6h" name="6" value="h" {% if form.6 and form.6.value == 'h' %}checked{% endif %}><label for="a6h">British National Party (BNP)</label>
-            </div>
-            <div class="radio">
-                <input type="radio" id="a6i" name="6" value="i" {% if form.6 and form.6.value == 'i' %}checked{% endif %}><label for="a6i">Another party</label>
-            </div>
-            <div class="radio">
-                <input type="radio" id="a6j" name="6" value="j" {% if form.6 and form.6.value == 'j' %}checked{% endif %}><label for="a6j">None/No</label>
-            </div>
-            <div class="radio">
-                <input type="radio" id="a6k" name="6" value="k" {% if form.6 and form.6.value == 'k' %}checked{% endif %}><label for="a6k">Don't know</label>
+                <input type="radio" id="a6dontknow" name="6" value="don't know" {% if form.6 and form.6.value == "don't know" %}checked{% endif %}><label for="a6dontknow">Don't know</label>
             </div>
         </div>
     </div>
 
 
     <h1>9</h1><div class="screen">
+        <div class="question">
+  In general, do you think of yourself as a little closer to one of the parties than the others? If yes, please can you tell us which party?
+        </div>
+        <div class="answers">
+            <div class="radio">
+                <input type="radio" id="a7a" name="7" value="a" {% if form.7 and form.7.value == 'a' %}checked{% endif %}><label for="a7a">Labour</label>
+            </div>
+            <div class="radio">
+                <input type="radio" id="a7b" name="7" value="b" {% if form.7 and form.7.value == 'b' %}checked{% endif %}><label for="a7b">Conservatives</label>
+            </div>
+            <div class="radio">
+                <input type="radio" id="a7c" name="7" value="c" {% if form.7 and form.7.value == 'c' %}checked{% endif %}><label for="a7c">Liberal Democrats</label>
+            </div>
+            <div class="radio">
+                <input type="radio" id="a7d" name="7" value="d" {% if form.7 and form.7.value == 'd' %}checked{% endif %}><label for="a7d">Scottish National Party (SNP)</label>
+            </div>
+            <div class="radio">
+                <input type="radio" id="a7e" name="7" value="e" {% if form.7 and form.7.value == 'e' %}checked{% endif %}><label for="a7e">Plaid Cymru</label>
+            </div>
+            <div class="radio">
+                <input type="radio" id="a7f" name="7" value="f" {% if form.7 and form.7.value == 'f' %}checked{% endif %}><label for="a7f">Green Party</label>
+            </div>
+            <div class="radio">
+                <input type="radio" id="a7g" name="7" value="g" {% if form.7 and form.7.value == 'g' %}checked{% endif %}><label for="a7g">United Kingdom Independence Party (UKIP)</label>
+            </div>
+            <div class="radio">
+                <input type="radio" id="a7h" name="7" value="h" {% if form.7 and form.7.value == 'h' %}checked{% endif %}><label for="a7h">British National Party (BNP)</label>
+            </div>
+            <div class="radio">
+                <input type="radio" id="a7i" name="7" value="i" {% if form.7 and form.7.value == 'i' %}checked{% endif %}><label for="a7i">Another party</label>
+            </div>
+            <div class="radio">
+                <input type="radio" id="a7j" name="7" value="j" {% if form.7 and form.7.value == 'j' %}checked{% endif %}><label for="a7j">None/No</label>
+            </div>
+            <div class="radio">
+                <input type="radio" id="a7k" name="7" value="k" {% if form.7 and form.7.value == 'k' %}checked{% endif %}><label for="a7k">Don't know</label>
+            </div>
+        </div>
+    </div>
+
+
+    <h1>10</h1><div class="screen">
         <div class="question">
   How satisfied or dissatisfied are you with…
         </div>
@@ -270,50 +284,50 @@
                     <td>
                         …the way the <b>British government</b> is doing its job?
                     </td>
-                    <td class="centered"><input type="radio" oclass="q7" name="7government" value="a" {% if form.7government and form.7government.value == 'a' %}checked{% endif %}></td>
-                    <td class="centered"><input type="radio" oclass="q7" name="7government" value="b" {% if form.7government and form.7government.value == 'b' %}checked{% endif %}></td>
-                    <td class="centered"><input type="radio" oclass="q7" name="7government" value="c" {% if form.7government and form.7government.value == 'c' %}checked{% endif %}></td>
-                    <td class="centered"><input type="radio" oclass="q7" name="7government" value="d" {% if form.7government and form.7government.value == 'd' %}checked{% endif %}></td>
-                    <td class="centered"><input type="radio" oclass="q7" name="7government" value="e" {% if form.7government and form.7government.value == 'e' %}checked{% endif %}></td>
+                    <td class="centered"><input type="radio" oclass="q7" name="8government" value="a" {% if form.8government and form.8government.value == 'a' %}checked{% endif %}></td>
+                    <td class="centered"><input type="radio" oclass="q7" name="8government" value="b" {% if form.8government and form.8government.value == 'b' %}checked{% endif %}></td>
+                    <td class="centered"><input type="radio" oclass="q7" name="8government" value="c" {% if form.8government and form.8government.value == 'c' %}checked{% endif %}></td>
+                    <td class="centered"><input type="radio" oclass="q7" name="8government" value="d" {% if form.8government and form.8government.value == 'd' %}checked{% endif %}></td>
+                    <td class="centered"><input type="radio" oclass="q7" name="8government" value="e" {% if form.8government and form.8government.value == 'e' %}checked{% endif %}></td>
                 </tr>
                 <tr>
                     <td>
                         …the way <b>your local council</b> is doing its job?
                     </td>
-                    <td class="centered"><input type="radio" oclass="q7" name="7council" value="a" {% if form.7council and form.7council.value == 'a' %}checked{% endif %}></td>
-                    <td class="centered"><input type="radio" oclass="q7" name="7council" value="b" {% if form.7council and form.7council.value == 'b' %}checked{% endif %}></td>
-                    <td class="centered"><input type="radio" oclass="q7" name="7council" value="c" {% if form.7council and form.7council.value == 'c' %}checked{% endif %}></td>
-                    <td class="centered"><input type="radio" oclass="q7" name="7council" value="d" {% if form.7council and form.7council.value == 'd' %}checked{% endif %}></td>
-                    <td class="centered"><input type="radio" oclass="q7" name="7council" value="e" {% if form.7council and form.7council.value == 'e' %}checked{% endif %}></td>
+                    <td class="centered"><input type="radio" oclass="q7" name="8council" value="a" {% if form.8council and form.8council.value == 'a' %}checked{% endif %}></td>
+                    <td class="centered"><input type="radio" oclass="q7" name="8council" value="b" {% if form.8council and form.8council.value == 'b' %}checked{% endif %}></td>
+                    <td class="centered"><input type="radio" oclass="q7" name="8council" value="c" {% if form.8council and form.8council.value == 'c' %}checked{% endif %}></td>
+                    <td class="centered"><input type="radio" oclass="q7" name="8council" value="d" {% if form.8council and form.8council.value == 'd' %}checked{% endif %}></td>
+                    <td class="centered"><input type="radio" oclass="q7" name="8council" value="e" {% if form.8council and form.8council.value == 'e' %}checked{% endif %}></td>
                 </tr>
             </table>
 
             <div class="answers">
                 <div class="radio">
-                    <input class="table-exclusive" oclass="q7" type="checkbox" id="a7dont" name="7" value="none" {% if form.7 and form.7.value == 'dont' %}checked{% endif %}><label for="a7dont">Don't know</label>
+                    <input class="table-exclusive" oclass="q7" type="checkbox" id="a8dont" name="8" value="none" {% if form.8 and form.8.value == 'dont' %}checked{% endif %}><label for="a8dont">Don't know</label>
                 </div>
             </div>
         </div>
     </div>
 
-    <h1>10</h1><div class="screen">
+    <h1>11</h1><div class="screen">
         <div class="question">
   Generally speaking, do you believe that most people can be trusted or can’t you be too careful in dealing with people?
         </div>
         <div class="answers">
             <div class="radio">
-                <input type="radio" id="a8a" name="8" value="a" {% if form.8 and form.8.value == 'a' %}checked{% endif %}><label for="a8a">You can’t be too careful in dealing with people</label>
+                <input type="radio" id="a9a" name="9" value="a" {% if form.9 and form.9.value == 'a' %}checked{% endif %}><label for="a9a">You can’t be too careful in dealing with people</label>
             </div>
             <div class="radio">
-                <input type="radio" id="a8b" name="8" value="b" {% if form.8 and form.8.value == 'b' %}checked{% endif %}><label for="a8b">Most people can be trusted</label>
+                <input type="radio" id="a9b" name="9" value="b" {% if form.9 and form.9.value == 'b' %}checked{% endif %}><label for="a9b">Most people can be trusted</label>
             </div>
             <div class="radio">
-                <input type="radio" id="a8c" name="8" value="c" {% if form.8 and form.8.value == 'c' %}checked{% endif %}><label for="a8c">Don't know</label>
+                <input type="radio" id="a9c" name="9" value="c" {% if form.9 and form.9.value == 'c' %}checked{% endif %}><label for="a9c">Don't know</label>
             </div>
         </div>
     </div>
 
-    <h1>11</h1><div class="screen">
+    <h1>12</h1><div class="screen">
         <div class="question">
   There are different ways of trying to improve things in this country or help prevent things from going wrong. Have you ever done or have you considered doing any of the following?
         </div>
@@ -329,40 +343,40 @@
                 </thead>
                 <tr>
                     <td>Created or signed a petition in paper or online</td>
-                    <td class="centered"><input type="radio" oclass="q9" name="9petition" value="a" {% if form.9petition and form.9petition.value == 'a' %}checked{% endif %}></td>
-                    <td class="centered"><input type="radio" oclass="q9" name="9petition" value="b" {% if form.9petition and form.9petition.value == 'b' %}checked{% endif %}></td>
-                    <td class="centered"><input type="radio" oclass="q9" name="9petition" value="c" {% if form.9petition and form.9petition.value == 'c' %}checked{% endif %}></td>
+                    <td class="centered"><input type="radio" oclass="q9" name="10petition" value="a" {% if form.10petition and form.10petition.value == 'a' %}checked{% endif %}></td>
+                    <td class="centered"><input type="radio" oclass="q9" name="10petition" value="b" {% if form.10petition and form.10petition.value == 'b' %}checked{% endif %}></td>
+                    <td class="centered"><input type="radio" oclass="q9" name="10petition" value="c" {% if form.10petition and form.10petition.value == 'c' %}checked{% endif %}></td>
                 </tr>
                 <tr>
                     <td>Taken part in a lawful public protest/march/demonstration</td>
-                    <td class="centered"><input type="radio" oclass="q9" name="9march" value="a" {% if form.9march and form.9march.value == 'a' %}checked{% endif %}></td>
-                    <td class="centered"><input type="radio" oclass="q9" name="9march" value="b" {% if form.9march and form.9march.value == 'b' %}checked{% endif %}></td>
-                    <td class="centered"><input type="radio" oclass="q9" name="9march" value="c" {% if form.9march and form.9march.value == 'c' %}checked{% endif %}></td>
+                    <td class="centered"><input type="radio" oclass="q9" name="10march" value="a" {% if form.10march and form.10march.value == 'a' %}checked{% endif %}></td>
+                    <td class="centered"><input type="radio" oclass="q9" name="10march" value="b" {% if form.10march and form.10march.value == 'b' %}checked{% endif %}></td>
+                    <td class="centered"><input type="radio" oclass="q9" name="10march" value="c" {% if form.10march and form.10march.value == 'c' %}checked{% endif %}></td>
                 </tr>
                 <tr>
                     <td>Refused to buy a product for political/social reasons</td>
-                    <td class="centered"><input type="radio" oclass="q9" name="9refused" value="a" {% if form.9refused and form.9refused.value == 'a' %}checked{% endif %}></td>
-                    <td class="centered"><input type="radio" oclass="q9" name="9refused" value="b" {% if form.9refused and form.9refused.value == 'b' %}checked{% endif %}></td>
-                    <td class="centered"><input type="radio" oclass="q9" name="9refused" value="c" {% if form.9refused and form.9refused.value == 'c' %}checked{% endif %}></td>
+                    <td class="centered"><input type="radio" oclass="q9" name="10refused" value="a" {% if form.10refused and form.10refused.value == 'a' %}checked{% endif %}></td>
+                    <td class="centered"><input type="radio" oclass="q9" name="10refused" value="b" {% if form.10refused and form.10refused.value == 'b' %}checked{% endif %}></td>
+                    <td class="centered"><input type="radio" oclass="q9" name="10refused" value="c" {% if form.10refused and form.10refused.value == 'c' %}checked{% endif %}></td>
                 </tr>
                 <tr>
                     <td>Bought a certain product for political/social reasons</td>
-                    <td class="centered"><input type="radio" oclass="q9" name="9bought" value="a" {% if form.9bought and form.9bought.value == 'a' %}checked{% endif %}></td>
-                    <td class="centered"><input type="radio" oclass="q9" name="9bought" value="b" {% if form.9bought and form.9bought.value == 'b' %}checked{% endif %}></td>
-                    <td class="centered"><input type="radio" oclass="q9" name="9bought" value="c" {% if form.9bought and form.9bought.value == 'c' %}checked{% endif %}></td>
+                    <td class="centered"><input type="radio" oclass="q9" name="10bought" value="a" {% if form.10bought and form.10bought.value == 'a' %}checked{% endif %}></td>
+                    <td class="centered"><input type="radio" oclass="q9" name="10bought" value="b" {% if form.10bought and form.10bought.value == 'b' %}checked{% endif %}></td>
+                    <td class="centered"><input type="radio" oclass="q9" name="10bought" value="c" {% if form.10bought and form.10bought.value == 'c' %}checked{% endif %}></td>
                 </tr>
             </table>
 
             <div class="answers">
                 <div class="radio">
-                    <input class="table-exclusive" oclass="q9" type="checkbox" id="a9dont" name="9" value="none" {% if form.9 and form.9.value == 'dont' %}checked{% endif %}><label for="a9dont">Don't know</label>
+                    <input class="table-exclusive" oclass="q9" type="checkbox" id="a10dont" name="10" value="none" {% if form.10 and form.10.value == 'dont' %}checked{% endif %}><label for="a10dont">Don't know</label>
                 </div>
             </div>
         </div>
     </div>
 
 
-    <h1>12</h1><div class="screen">
+    <h1>13</h1><div class="screen">
         <div class="question">
             Have you ever contacted a public official or politician <b>using a mySociety website</b> to express your opinion or ask for assistance...
         </div>
@@ -380,29 +394,29 @@
                 </thead>
                 <tr>
                     <td>... about an issue affecting your local community</td>
-                    <td class="centered"><input type="radio" oclass="q10" name="10community" value="a" {% if form.10community and form.10community.value == 'a' %}checked{% endif %}></td>
-                    <td class="centered"><input type="radio" oclass="q10" name="10community" value="b" {% if form.10community and form.10community.value == 'b' %}checked{% endif %}></td>
-                    <td class="centered"><input type="radio" oclass="q10" name="10community" value="c" {% if form.10community and form.10community.value == 'c' %}checked{% endif %}></td>
-                    <td class="centered"><input type="radio" oclass="q10" name="10community" value="d" {% if form.10community and form.10community.value == 'd' %}checked{% endif %}></td>
+                    <td class="centered"><input type="radio" oclass="q10" name="11community" value="a" {% if form.11community and form.11community.value == 'a' %}checked{% endif %}></td>
+                    <td class="centered"><input type="radio" oclass="q10" name="11community" value="b" {% if form.11community and form.11community.value == 'b' %}checked{% endif %}></td>
+                    <td class="centered"><input type="radio" oclass="q10" name="11community" value="c" {% if form.11community and form.11community.value == 'c' %}checked{% endif %}></td>
+                    <td class="centered"><input type="radio" oclass="q10" name="11community" value="d" {% if form.11community and form.11community.value == 'd' %}checked{% endif %}></td>
                 </tr>
                 <tr>
                     <td>... about other issues affecting the country as a whole</td>
-                    <td class="centered"><input type="radio" oclass="q10" name="10country" value="a" {% if form.10country and form.10country.value == 'a' %}checked{% endif %}></td>
-                    <td class="centered"><input type="radio" oclass="q10" name="10country" value="b" {% if form.10country and form.10country.value == 'b' %}checked{% endif %}></td>
-                    <td class="centered"><input type="radio" oclass="q10" name="10country" value="c" {% if form.10country and form.10country.value == 'c' %}checked{% endif %}></td>
-                    <td class="centered"><input type="radio" oclass="q10" name="10country" value="d" {% if form.10country and form.10country.value == 'd' %}checked{% endif %}></td>
+                    <td class="centered"><input type="radio" oclass="q10" name="11country" value="a" {% if form.11country and form.11country.value == 'a' %}checked{% endif %}></td>
+                    <td class="centered"><input type="radio" oclass="q10" name="11country" value="b" {% if form.11country and form.11country.value == 'b' %}checked{% endif %}></td>
+                    <td class="centered"><input type="radio" oclass="q10" name="11country" value="c" {% if form.11country and form.11country.value == 'c' %}checked{% endif %}></td>
+                    <td class="centered"><input type="radio" oclass="q10" name="11country" value="d" {% if form.11country and form.11country.value == 'd' %}checked{% endif %}></td>
                 </tr>
             </table>
 
             <div class="answers">
                 <div class="radio">
-                    <input class="table-exclusive" oclass="q10" type="checkbox" id="a10dont" name="10" value="none" {% if form.10 and form.10.value == 'dont' %}checked{% endif %}><label for="a10dont">Don't know</label>
+                    <input class="table-exclusive" oclass="q10" type="checkbox" id="a11dont" name="11" value="none" {% if form.11 and form.11.value == 'dont' %}checked{% endif %}><label for="a11dont">Don't know</label>
                 </div>
             </div>
         </div>
 
     </div>
-    <h1>13</h1><div class="screen">
+    <h1>14</h1><div class="screen">
         <div class="question">
  And more generally, outside of your use of any of the mySociety websites, have you ever contacted a public official or politician by email, by post or in person to express your opinion or ask for assistance ...
         </div>
@@ -419,28 +433,28 @@
                 </thead>
                 <tr>
                     <td>...about an issue affecting your local community</td>
-                    <td class="centered"><input type="radio" oclass="q11" name="11community" value="a" {% if form.11community and form.11community.value == 'a' %}checked{% endif %}></td>
-                    <td class="centered"><input type="radio" oclass="q11" name="11community" value="b" {% if form.11community and form.11community.value == 'b' %}checked{% endif %}></td>
-                    <td class="centered"><input type="radio" oclass="q11" name="11community" value="c" {% if form.11community and form.11community.value == 'c' %}checked{% endif %}></td>
+                    <td class="centered"><input type="radio" oclass="q11" name="12community" value="a" {% if form.12community and form.12community.value == 'a' %}checked{% endif %}></td>
+                    <td class="centered"><input type="radio" oclass="q11" name="12community" value="b" {% if form.12community and form.12community.value == 'b' %}checked{% endif %}></td>
+                    <td class="centered"><input type="radio" oclass="q11" name="12community" value="c" {% if form.12community and form.12community.value == 'c' %}checked{% endif %}></td>
                 </tr>
                 <tr>
                     <td>...about other issues affecting the country as a whole</td>
-                    <td class="centered"><input type="radio" oclass="q11" name="11country" value="a" {% if form.11country and form.11country.value == 'a' %}checked{% endif %}></td>
-                    <td class="centered"><input type="radio" oclass="q11" name="11country" value="b" {% if form.11country and form.11country.value == 'b' %}checked{% endif %}></td>
-                    <td class="centered"><input type="radio" oclass="q11" name="11country" value="c" {% if form.11country and form.11country.value == 'c' %}checked{% endif %}></td>
+                    <td class="centered"><input type="radio" oclass="q11" name="12country" value="a" {% if form.12country and form.12country.value == 'a' %}checked{% endif %}></td>
+                    <td class="centered"><input type="radio" oclass="q11" name="12country" value="b" {% if form.12country and form.12country.value == 'b' %}checked{% endif %}></td>
+                    <td class="centered"><input type="radio" oclass="q11" name="12country" value="c" {% if form.12country and form.12country.value == 'c' %}checked{% endif %}></td>
                 </tr>
             </table>
 
             <div class="answers">
                 <div class="radio">
-                    <input class="table-exclusive" oclass="q11" type="checkbox" id="a11dont" name="11" value="none" {% if form.11 and form.11.value == 'dont' %}checked{% endif %}><label for="a11dont">Don't know</label>
+                    <input class="table-exclusive" oclass="q11" type="checkbox" id="a12dont" name="12" value="none" {% if form.12 and form.12.value == 'dont' %}checked{% endif %}><label for="a12dont">Don't know</label>
                 </div>
             </div>
         </div>
     </div>
 
 
-    <h1>14</h1><div class="screen">
+    <h1>15</h1><div class="screen">
         <div class="question">
              Not including the times you have contacted public officials and politicians, have you ever used social networking sites (e.g. Facebook, Twitter), blogs or the email to share your own comments or promote content produced by others…
         </div>
@@ -457,78 +471,78 @@
                 </thead>
                 <tr>
                     <td>...about an issue affecting your local community</td>
-                    <td class="centered"><input type="radio" oclass="q12" name="12community" value="a" {% if form.12community and form.12community.value == 'a' %}checked{% endif %}></td>
-                    <td class="centered"><input type="radio" oclass="q12" name="12community" value="b" {% if form.12community and form.12community.value == 'b' %}checked{% endif %}></td>
-                    <td class="centered"><input type="radio" oclass="q12" name="12community" value="c" {% if form.12community and form.12community.value == 'c' %}checked{% endif %}></td>
+                    <td class="centered"><input type="radio" oclass="q12" name="13community" value="a" {% if form.13community and form.13community.value == 'a' %}checked{% endif %}></td>
+                    <td class="centered"><input type="radio" oclass="q12" name="13community" value="b" {% if form.13community and form.13community.value == 'b' %}checked{% endif %}></td>
+                    <td class="centered"><input type="radio" oclass="q12" name="13community" value="c" {% if form.13community and form.13community.value == 'c' %}checked{% endif %}></td>
                 </tr>
                 <tr>
                     <td>...about other issues affecting the country as a whole</td>
-                    <td class="centered"><input type="radio" oclass="q12" name="12country" value="a" {% if form.12country and form.12country.value == 'a' %}checked{% endif %}></td>
-                    <td class="centered"><input type="radio" oclass="q12" name="12country" value="b" {% if form.12country and form.12country.value == 'b' %}checked{% endif %}></td>
-                    <td class="centered"><input type="radio" oclass="q12" name="12country" value="c" {% if form.12country and form.12country.value == 'c' %}checked{% endif %}></td>
+                    <td class="centered"><input type="radio" oclass="q12" name="13country" value="a" {% if form.13country and form.13country.value == 'a' %}checked{% endif %}></td>
+                    <td class="centered"><input type="radio" oclass="q12" name="13country" value="b" {% if form.13country and form.13country.value == 'b' %}checked{% endif %}></td>
+                    <td class="centered"><input type="radio" oclass="q12" name="13country" value="c" {% if form.13country and form.13country.value == 'c' %}checked{% endif %}></td>
                 </tr>
             </table>
 
             <div class="answers">
                 <div class="radio">
-                    <input class="table-exclusive" oclass="q12" type="checkbox" id="a12dont" name="12" value="none" {% if form.12 and form.12.value == 'dont' %}checked{% endif %}><label for="a12dont">Don't know</label>
+                    <input class="table-exclusive" oclass="q12" type="checkbox" id="a13dont" name="13" value="none" {% if form.13 and form.13.value == 'dont' %}checked{% endif %}><label for="a13dont">Don't know</label>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <h1>15</h1><div class="screen">
-        <div class="question">
-             Some people don't vote nowadays for one reason or another. Did you vote in the last British general election in May 2010?
-        </div>
-        <div class="answers">
-            <div class="radio">
-                <input type="radio" id="a13a" name="13" value="a" {% if form.13 and form.13.value == 'a' %}checked{% endif %}><label for="a13a">Yes</label>
-            </div>
-            <div class="radio">
-                <input type="radio" id="a13b" name="13" value="b" {% if form.13 and form.13.value == 'b' %}checked{% endif %}><label for="a13b">No</label>
-            </div>
-            <div class="radio">
-                <input type="radio" id="a13c" name="13" value="c" {% if form.13 and form.13.value == 'c' %}checked{% endif %}><label for="a13c">I wasn’t eligible to vote</label>
-            </div>
-            <div class="radio">
-                <input type="radio" id="a13d" name="13" value="d" {% if form.13 and form.13.value == 'd' %}checked{% endif %}><label for="a13d">Don't know/Can’t remember</label>
             </div>
         </div>
     </div>
 
     <h1>16</h1><div class="screen">
         <div class="question">
+             Some people don't vote nowadays for one reason or another. Did you vote in the last British general election in May 2010?
+        </div>
+        <div class="answers">
+            <div class="radio">
+                <input type="radio" id="a14a" name="14" value="a" {% if form.14 and form.14.value == 'a' %}checked{% endif %}><label for="a14a">Yes</label>
+            </div>
+            <div class="radio">
+                <input type="radio" id="a14b" name="14" value="b" {% if form.14 and form.14.value == 'b' %}checked{% endif %}><label for="a14b">No</label>
+            </div>
+            <div class="radio">
+                <input type="radio" id="a14c" name="14" value="c" {% if form.14 and form.14.value == 'c' %}checked{% endif %}><label for="a14c">I wasn’t eligible to vote</label>
+            </div>
+            <div class="radio">
+                <input type="radio" id="a14d" name="14" value="d" {% if form.14 and form.14.value == 'd' %}checked{% endif %}><label for="a14d">Don't know/Can’t remember</label>
+            </div>
+        </div>
+    </div>
+
+    <h1>17</h1><div class="screen">
+        <div class="question">
             In the last twelve months have you been involved with any <b>online</b> political organisation or activist group (e.g. 38 Degrees, MoveOn.org, political group on Facebook), other than mySociety? Can you tell us how you participated? Please tick as many as apply.
         </div>
         <div class="answers">
             <div class="radio">
-                <input type="checkbox" id="id_14_a" name="14" value="a" {% if form.14 and 'a' in form.14.value %}checked{% endif %}>
+                <input type="checkbox" id="id_14_a" name="15" value="a" {% if form.15 and 'a' in form.15.value %}checked{% endif %}>
                 <label for="id_14_a">Browsed website or contacted group for information</label>
             </div>
             <div class="radio">
-                <input type="checkbox" id="id_14_b" name="14" value="b" {% if form.14 and 'b' in form.14.value %}checked{% endif %}>
+                <input type="checkbox" id="id_14_b" name="15" value="b" {% if form.15 and 'b' in form.15.value %}checked{% endif %}>
                 <label for="id_14_b">Registered/ Signed up as a member, supporter or friend</label>
             </div>
             <div class="radio">
-                <input type="checkbox" id="id_14_c" name="14" value="c" {% if form.14 and 'c' in form.14.value %}checked{% endif %}>
+                <input type="checkbox" id="id_14_c" name="15" value="c" {% if form.15 and 'c' in form.15.value %}checked{% endif %}>
                 <label for="id_14_c">Joined a discussion forum or chat room</label>
             </div>
             <div class="radio">
-                <input type="checkbox" id="id_14_d" name="14" value="d" {% if form.14 and 'd' in form.14.value %}checked{% endif %}>
+                <input type="checkbox" id="id_14_d" name="15" value="d" {% if form.15 and 'd' in form.15.value %}checked{% endif %}>
                 <label for="id_14_d">Attended ‘real world’ events, meet-ups or gatherings </label>
             </div>
             <div class="radio">
-                <input type="checkbox" id="id_14_e" name="14" value="e" {% if form.14 and 'e' in form.14.value %}checked{% endif %}>
+                <input type="checkbox" id="id_14_e" name="15" value="e" {% if form.15 and 'e' in form.15.value %}checked{% endif %}>
                 <label for="id_14_e">Helped promote the organisation on the internet (e.g. posted or forwarded a link, message or other material about the group)</label>
             </div>
             <div class="radio">
-                <input class="optional" opt="screen14-2" type="checkbox" id="id_14_f" name="14" value="f" {% if form.14 and 'f' in form.14.value %}checked{% endif %}>
+                <input class="optional" opt="screen14-2" type="checkbox" id="id_14_f" name="15" value="f" {% if form.15 and 'f' in form.15.value %}checked{% endif %}>
                 <label for="id_14_f">Other (e.g donated money)</label>
             </div>
 
             <div class="radio">
-                <input class="exclusive" type="checkbox" id="id_14_g" name="14" value="g" {% if form.14 and 'g' in form.14.value %}checked{% endif %}>
+                <input class="exclusive" type="checkbox" id="id_14_g" name="15" value="g" {% if form.15 and 'g' in form.15.value %}checked{% endif %}>
                 <label for="id_14_g">None of the above</label>
             </div>
 
@@ -540,42 +554,42 @@
             </div>
 
             <div class="answers">
-                <textarea name="14how">{{ form.14how.value }}</textarea>
+                <textarea name="15how">{{ form.15how.value }}</textarea>
             </div>
         </div>
     </div>
 
-    <h1>17</h1><div class="screen">
+    <h1>18</h1><div class="screen">
         <div class="question">
             In the last twelve months have you been involved with any <b>online</b> community or group related to health, your hobbies, social or personal interests (e.g. a parenting site like Mumsnet.org, Cancerchat.org or an online craft/DIY/sporting group)? Can you tell us how you participated? Please tick as many as apply.
         </div>
         <div class="answers">
             <div class="radio">
-                <input type="checkbox" id="id_15_a" name="15" value="a" {% if form.15 and 'a' in form.15.value %}checked{% endif %}>
+                <input type="checkbox" id="id_15_a" name="16" value="a" {% if form.16 and 'a' in form.16.value %}checked{% endif %}>
                 <label for="id_15_a">Browsed website or contacted group for information</label>
             </div>
             <div class="radio">
-                <input type="checkbox" id="id_15_b" name="15" value="b" {% if form.15 and 'b' in form.15.value %}checked{% endif %}>
+                <input type="checkbox" id="id_15_b" name="16" value="b" {% if form.16 and 'b' in form.16.value %}checked{% endif %}>
                 <label for="id_15_b">Registered/ Signed up as a member, supporter or friend</label>
             </div>
             <div class="radio">
-                <input type="checkbox" id="id_15_c" name="15" value="c" {% if form.15 and 'c' in form.15.value %}checked{% endif %}>
+                <input type="checkbox" id="id_15_c" name="16" value="c" {% if form.16 and 'c' in form.16.value %}checked{% endif %}>
                 <label for="id_15_c">Joined a discussion forum or chat room</label>
             </div>
             <div class="radio">
-                <input type="checkbox" id="id_15_d" name="15" value="d" {% if form.15 and 'd' in form.15.value %}checked{% endif %}>
+                <input type="checkbox" id="id_15_d" name="16" value="d" {% if form.16 and 'd' in form.16.value %}checked{% endif %}>
                 <label for="id_15_d">Attended ‘real world’ events, meet-ups or gatherings </label>
             </div>
             <div class="radio">
-                <input type="checkbox" id="id_15_e" name="15" value="e" {% if form.15 and 'e' in form.15.value %}checked{% endif %}>
+                <input type="checkbox" id="id_15_e" name="16" value="e" {% if form.16 and 'e' in form.16.value %}checked{% endif %}>
                 <label for="id_15_e">Helped promote the organisation on the internet (e.g. posted or forwarded a link, message or other material about the group)</label>
             </div>
             <div class="radio">
-                <input class="optional" opt="screen15-2" type="checkbox" id="id_15_f" name="15" value="f" {% if form.15 and 'f' in form.15.value %}checked{% endif %}>
+                <input class="optional" opt="screen15-2" type="checkbox" id="id_15_f" name="16" value="f" {% if form.16 and 'f' in form.16.value %}checked{% endif %}>
                 <label for="id_15_f">Other (e.g donated money)</label>
             </div>
             <div class="radio">
-                <input class="exclusive" type="checkbox" id="id_15_g" name="15" value="g" {% if form.15 and 'g' in form.15.value %}checked{% endif %}>
+                <input class="exclusive" type="checkbox" id="id_15_g" name="16" value="g" {% if form.16 and 'g' in form.16.value %}checked{% endif %}>
                 <label for="id_15_g">None of the above</label>
             </div>
         </div>
@@ -586,12 +600,12 @@
             </div>
 
             <div class="answers">
-                <textarea name="15how">{{ form.15how.value }}</textarea>
+                <textarea name="16how">{{ form.16how.value }}</textarea>
             </div>
         </div>
     </div>
 
-    <h1>18</h1><div class="screen">
+    <h1>19</h1><div class="screen">
         <div class="question">
              The groups we just asked about in the last question operate almost entirely or fully on the internet. Beyond these online-based groups we are interested to know if you have been involved with any other more traditionally run types of community or political organisations over the past twelve months. For each of them, can you say how you participated? Please tick as many as apply.
         </div>
@@ -609,100 +623,74 @@
                 </thead>
                 <tr>
                     <td>Political party</td>
-                    <td class="centered"><input type="checkbox" oclass="q16" name="16party" value="a" {% if form.16party and 'a' in form.16party.value %}checked{% endif %}></td>
-                    <td class="centered"><input type="checkbox" oclass="q16" name="16party" value="b" {% if form.16party and 'b' in form.16party.value %}checked{% endif %}></td>
-                    <td class="centered"><input type="checkbox" oclass="q16" name="16party" value="c" {% if form.16party and 'c' in form.16party.value %}checked{% endif %}></td>
-                    <td class="centered"><input type="checkbox" oclass="q16" name="16party" value="d" {% if form.16party and 'd' in form.16party.value %}checked{% endif %}></td>
+                    <td class="centered"><input type="checkbox" oclass="q16" name="17party" value="a" {% if form.17party and 'a' in form.17party.value %}checked{% endif %}></td>
+                    <td class="centered"><input type="checkbox" oclass="q16" name="17party" value="b" {% if form.17party and 'b' in form.17party.value %}checked{% endif %}></td>
+                    <td class="centered"><input type="checkbox" oclass="q16" name="17party" value="c" {% if form.17party and 'c' in form.17party.value %}checked{% endif %}></td>
+                    <td class="centered"><input type="checkbox" oclass="q16" name="17party" value="d" {% if form.17party and 'd' in form.17party.value %}checked{% endif %}></td>
                 </tr>
                 <tr>
                     <td>Trade union</td>
-                    <td class="centered"><input type="checkbox" oclass="q16" name="16union" value="a" {% if form.16union and 'a' in form.16union.value %}checked{% endif %}></td>
-                    <td class="centered"><input type="checkbox" oclass="q16" name="16union" value="b" {% if form.16union and 'b' in form.16union.value %}checked{% endif %}></td>
-                    <td class="centered"><input type="checkbox" oclass="q16" name="16union" value="c" {% if form.16union and 'c' in form.16union.value %}checked{% endif %}></td>
-                    <td class="centered"><input type="checkbox" oclass="q16" name="16union" value="d" {% if form.16union and 'd' in form.16union.value %}checked{% endif %}></td>
+                    <td class="centered"><input type="checkbox" oclass="q16" name="17union" value="a" {% if form.17union and 'a' in form.17union.value %}checked{% endif %}></td>
+                    <td class="centered"><input type="checkbox" oclass="q16" name="17union" value="b" {% if form.17union and 'b' in form.17union.value %}checked{% endif %}></td>
+                    <td class="centered"><input type="checkbox" oclass="q16" name="17union" value="c" {% if form.17union and 'c' in form.17union.value %}checked{% endif %}></td>
+                    <td class="centered"><input type="checkbox" oclass="q16" name="17union" value="d" {% if form.17union and 'd' in form.17union.value %}checked{% endif %}></td>
                 </tr>
                 <tr>
                     <td>Local charities and community welfare organisations</td>
-                    <td class="centered"><input type="checkbox" oclass="q16" name="16local" value="a" {% if form.16local and 'a' in form.16local.value %}checked{% endif %}></td>
-                    <td class="centered"><input type="checkbox" oclass="q16" name="16local" value="b" {% if form.16local and 'b' in form.16local.value %}checked{% endif %}></td>
-                    <td class="centered"><input type="checkbox" oclass="q16" name="16local" value="c" {% if form.16local and 'c' in form.16local.value %}checked{% endif %}></td>
-                    <td class="centered"><input type="checkbox" oclass="q16" name="16local" value="d" {% if form.16local and 'd' in form.16local.value %}checked{% endif %}></td>
+                    <td class="centered"><input type="checkbox" oclass="q16" name="17local" value="a" {% if form.17local and 'a' in form.17local.value %}checked{% endif %}></td>
+                    <td class="centered"><input type="checkbox" oclass="q16" name="17local" value="b" {% if form.17local and 'b' in form.17local.value %}checked{% endif %}></td>
+                    <td class="centered"><input type="checkbox" oclass="q16" name="17local" value="c" {% if form.17local and 'c' in form.17local.value %}checked{% endif %}></td>
+                    <td class="centered"><input type="checkbox" oclass="q16" name="17local" value="d" {% if form.17local and 'd' in form.17local.value %}checked{% endif %}></td>
                 </tr>
                 <tr>
                     <td>NGOs and other environmental or humanitarian aid organisations</td>
-                    <td class="centered"><input type="checkbox" oclass="q16" name="16ngo" value="a" {% if form.16ngo and 'a' in form.16ngo.value %}checked{% endif %}></td>
-                    <td class="centered"><input type="checkbox" oclass="q16" name="16ngo" value="b" {% if form.16ngo and 'b' in form.16ngo.value %}checked{% endif %}></td>
-                    <td class="centered"><input type="checkbox" oclass="q16" name="16ngo" value="c" {% if form.16ngo and 'c' in form.16ngo.value %}checked{% endif %}></td>
-                    <td class="centered"><input type="checkbox" oclass="q16" name="16ngo" value="d" {% if form.16ngo and 'd' in form.16ngo.value %}checked{% endif %}></td>
+                    <td class="centered"><input type="checkbox" oclass="q16" name="17ngo" value="a" {% if form.17ngo and 'a' in form.17ngo.value %}checked{% endif %}></td>
+                    <td class="centered"><input type="checkbox" oclass="q16" name="17ngo" value="b" {% if form.17ngo and 'b' in form.17ngo.value %}checked{% endif %}></td>
+                    <td class="centered"><input type="checkbox" oclass="q16" name="17ngo" value="c" {% if form.17ngo and 'c' in form.17ngo.value %}checked{% endif %}></td>
+                    <td class="centered"><input type="checkbox" oclass="q16" name="17ngo" value="d" {% if form.17ngo and 'd' in form.17ngo.value %}checked{% endif %}></td>
                 </tr>
                 <tr>
                     <td>Religious groups or church organisations</td>
-                    <td class="centered"><input type="checkbox" oclass="q16" name="16religious" value="a" {% if form.16religious and 'a' in form.16religious.value %}checked{% endif %}></td>
-                    <td class="centered"><input type="checkbox" oclass="q16" name="16religious" value="b" {% if form.16religious and 'b' in form.16religious.value %}checked{% endif %}></td>
-                    <td class="centered"><input type="checkbox" oclass="q16" name="16religious" value="c" {% if form.16religious and 'c' in form.16religious.value %}checked{% endif %}></td>
-                    <td class="centered"><input type="checkbox" oclass="q16" name="16religious" value="d" {% if form.16religious and 'd' in form.16religious.value %}checked{% endif %}></td>
+                    <td class="centered"><input type="checkbox" oclass="q16" name="17religious" value="a" {% if form.17religious and 'a' in form.17religious.value %}checked{% endif %}></td>
+                    <td class="centered"><input type="checkbox" oclass="q16" name="17religious" value="b" {% if form.17religious and 'b' in form.17religious.value %}checked{% endif %}></td>
+                    <td class="centered"><input type="checkbox" oclass="q16" name="17religious" value="c" {% if form.17religious and 'c' in form.17religious.value %}checked{% endif %}></td>
+                    <td class="centered"><input type="checkbox" oclass="q16" name="17religious" value="d" {% if form.17religious and 'd' in form.17religious.value %}checked{% endif %}></td>
                 </tr>
                 <tr>
                     <td>Recreational, social, sport and fitness clubs￼or societies</td>
-                    <td class="centered"><input type="checkbox" oclass="q16" name="16hobby" value="a" {% if form.16hobby and 'a' in form.16hobby.value %}checked{% endif %}></td>
-                    <td class="centered"><input type="checkbox" oclass="q16" name="16hobby" value="b" {% if form.16hobby and 'b' in form.16hobby.value %}checked{% endif %}></td>
-                    <td class="centered"><input type="checkbox" oclass="q16" name="16hobby" value="c" {% if form.16hobby and 'c' in form.16hobby.value %}checked{% endif %}></td>
-                    <td class="centered"><input type="checkbox" oclass="q16" name="16hobby" value="d" {% if form.16hobby and 'd' in form.16hobby.value %}checked{% endif %}></td>
+                    <td class="centered"><input type="checkbox" oclass="q16" name="17hobby" value="a" {% if form.17hobby and 'a' in form.17hobby.value %}checked{% endif %}></td>
+                    <td class="centered"><input type="checkbox" oclass="q16" name="17hobby" value="b" {% if form.17hobby and 'b' in form.17hobby.value %}checked{% endif %}></td>
+                    <td class="centered"><input type="checkbox" oclass="q16" name="17hobby" value="c" {% if form.17hobby and 'c' in form.17hobby.value %}checked{% endif %}></td>
+                    <td class="centered"><input type="checkbox" oclass="q16" name="17hobby" value="d" {% if form.17hobby and 'd' in form.17hobby.value %}checked{% endif %}></td>
                 </tr>
                 <tr>
                     <td>Health, weight management and disability support groups</td>
-                    <td class="centered"><input type="checkbox" oclass="q16" name="16health" value="a" {% if form.16health and 'a' in form.16health.value %}checked{% endif %}></td>
-                    <td class="centered"><input type="checkbox" oclass="q16" name="16health" value="b" {% if form.16health and 'b' in form.16health.value %}checked{% endif %}></td>
-                    <td class="centered"><input type="checkbox" oclass="q16" name="16health" value="c" {% if form.16health and 'c' in form.16health.value %}checked{% endif %}></td>
-                    <td class="centered"><input type="checkbox" oclass="q16" name="16health" value="d" {% if form.16health and 'd' in form.16health.value %}checked{% endif %}></td>
+                    <td class="centered"><input type="checkbox" oclass="q16" name="17health" value="a" {% if form.17health and 'a' in form.17health.value %}checked{% endif %}></td>
+                    <td class="centered"><input type="checkbox" oclass="q16" name="17health" value="b" {% if form.17health and 'b' in form.17health.value %}checked{% endif %}></td>
+                    <td class="centered"><input type="checkbox" oclass="q16" name="17health" value="c" {% if form.17health and 'c' in form.17health.value %}checked{% endif %}></td>
+                    <td class="centered"><input type="checkbox" oclass="q16" name="17health" value="d" {% if form.17health and 'd' in form.17health.value %}checked{% endif %}></td>
                 </tr>
                 <tr>
                     <td>Other community or civic groups</td>
-                    <td class="centered"><input type="checkbox" oclass="q16" name="16other" value="a" {% if form.16other and 'a' in form.16other.value %}checked{% endif %}></td>
-                    <td class="centered"><input type="checkbox" oclass="q16" name="16other" value="b" {% if form.16other and 'b' in form.16other.value %}checked{% endif %}></td>
-                    <td class="centered"><input type="checkbox" oclass="q16" name="16other" value="c" {% if form.16other and 'c' in form.16other.value %}checked{% endif %}></td>
-                    <td class="centered"><input type="checkbox" oclass="q16" name="16other" value="d" {% if form.16other and 'd' in form.16other.value %}checked{% endif %}></td>
+                    <td class="centered"><input type="checkbox" oclass="q16" name="17other" value="a" {% if form.17other and 'a' in form.17other.value %}checked{% endif %}></td>
+                    <td class="centered"><input type="checkbox" oclass="q16" name="17other" value="b" {% if form.17other and 'b' in form.17other.value %}checked{% endif %}></td>
+                    <td class="centered"><input type="checkbox" oclass="q16" name="17other" value="c" {% if form.17other and 'c' in form.17other.value %}checked{% endif %}></td>
+                    <td class="centered"><input type="checkbox" oclass="q16" name="17other" value="d" {% if form.17other and 'd' in form.17other.value %}checked{% endif %}></td>
                 </tr>
             </table>
 
             <div class="answers">
                 <div class="radio">
-                    <input class="table-exclusive" oclass="q16" type="checkbox" id="a16none" name="16" value="none" {% if form.16 and form.16.value == 'none' %}checked{% endif %}><label for="a16none">None of the above</label>
+                    <input class="table-exclusive" oclass="q16" type="checkbox" id="a17none" name="17" value="none" {% if form.17 and form.17.value == 'none' %}checked{% endif %}><label for="a17none">None of the above</label>
                 </div>
             </div>
         </div>
     </div>
 
 
-    <h1>19</h1><div class="screen">
-        <div class="question">
-            How frequently do you discuss social and political issues <b>affecting your local community</b> with family, friends or neighbours?
-        </div>
-        <div class="answers">
-            <div class="radio">
-                <input type="radio" id="a17a" name="17" value="a" {% if form.17 and form.17.value == 'a' %}checked{% endif %}><label for="a17a">Every day</label>
-            </div>
-            <div class="radio">
-                <input type="radio" id="a17b" name="17" value="b" {% if form.17 and form.17.value == 'b' %}checked{% endif %}><label for="a17b">Several times a week</label>
-            </div>
-            <div class="radio">
-                <input type="radio" id="a17c" name="17" value="c" {% if form.17 and form.17.value == 'c' %}checked{% endif %}><label for="a17c">Once or twice a week</label>
-            </div>
-            <div class="radio">
-                <input type="radio" id="a17d" name="17" value="d" {% if form.17 and form.17.value == 'd' %}checked{% endif %}><label for="a17d">Less often</label>
-            </div>
-            <div class="radio">
-                <input type="radio" id="a17e" name="17" value="e" {% if form.17 and form.17.value == 'e' %}checked{% endif %}><label for="a17e">Never</label>
-            </div>
-            <div class="radio">
-                <input type="radio" id="a17f" name="17" value="f" {% if form.17 and form.17.value == 'f' %}checked{% endif %}><label for="a17f">Don't know</label>
-            </div>
-        </div>
-    </div>
-
     <h1>20</h1><div class="screen">
         <div class="question">
-            And more generally, how frequently do you discuss <b>about national/international politics and current affairs</b> with family, friends or neighbours?
+            How frequently do you discuss social and political issues <b>affecting your local community</b> with family, friends or neighbours?
         </div>
         <div class="answers">
             <div class="radio">
@@ -723,14 +711,13 @@
             <div class="radio">
                 <input type="radio" id="a18f" name="18" value="f" {% if form.18 and form.18.value == 'f' %}checked{% endif %}><label for="a18f">Don't know</label>
             </div>
-
         </div>
     </div>
-    <h1>22</h1><div class="screen">
-        <div class="question">
-             People learn what is going on in this country and the world from various sources (e.g. TV, radio, internet, newspapers, or magazines). How often, if at all, do you get information about news and current political affairs?
-        </div>
 
+    <h1>21</h1><div class="screen">
+        <div class="question">
+            And more generally, how frequently do you discuss <b>about national/international politics and current affairs</b> with family, friends or neighbours?
+        </div>
         <div class="answers">
             <div class="radio">
                 <input type="radio" id="a19a" name="19" value="a" {% if form.19 and form.19.value == 'a' %}checked{% endif %}><label for="a19a">Every day</label>
@@ -750,159 +737,186 @@
             <div class="radio">
                 <input type="radio" id="a19f" name="19" value="f" {% if form.19 and form.19.value == 'f' %}checked{% endif %}><label for="a19f">Don't know</label>
             </div>
+
         </div>
     </div>
     <h1>23</h1><div class="screen">
+        <div class="question">
+             People learn what is going on in this country and the world from various sources (e.g. TV, radio, internet, newspapers, or magazines). How often, if at all, do you get information about news and current political affairs?
+        </div>
+
+        <div class="answers">
+            <div class="radio">
+                <input type="radio" id="a20a" name="20" value="a" {% if form.20 and form.20.value == 'a' %}checked{% endif %}><label for="a20a">Every day</label>
+            </div>
+            <div class="radio">
+                <input type="radio" id="a20b" name="20" value="b" {% if form.20 and form.20.value == 'b' %}checked{% endif %}><label for="a20b">Several times a week</label>
+            </div>
+            <div class="radio">
+                <input type="radio" id="a20c" name="20" value="c" {% if form.20 and form.20.value == 'c' %}checked{% endif %}><label for="a20c">Once or twice a week</label>
+            </div>
+            <div class="radio">
+                <input type="radio" id="a20d" name="20" value="d" {% if form.20 and form.20.value == 'd' %}checked{% endif %}><label for="a20d">Less often</label>
+            </div>
+            <div class="radio">
+                <input type="radio" id="a20e" name="20" value="e" {% if form.20 and form.20.value == 'e' %}checked{% endif %}><label for="a20e">Never</label>
+            </div>
+            <div class="radio">
+                <input type="radio" id="a20f" name="20" value="f" {% if form.20 and form.20.value == 'f' %}checked{% endif %}><label for="a20f">Don't know</label>
+            </div>
+        </div>
+    </div>
+    <h1>24</h1><div class="screen">
         <div class="question">
              What was your age last birthday? Please enter a 2-digit number (e.g. 18).
         </div>
 
         <div class="answers">
-            <input type="number" name="20" maxlength="2" value="{{ form.age.value }}">
+            <input type="number" name="21" maxlength="2" value="{{ form.age.value }}">
         </div>
 
         <div class="radio">
-            <input class="exclusive" type="checkbox" id="a20" name="20" value="dont" {% if form.20 and form.20.value == 'dont' %}checked{% endif %}><label for="a20">don't want to answer </label>
+            <input class="exclusive" type="checkbox" id="a30" name="21" value="dont" {% if form.21 and form.21.value == 'dont' %}checked{% endif %}><label for="a30">don't want to answer </label>
         </div>
     </div>
 
-    <h1>24</h1><div class="screen">
+    <h1>25</h1><div class="screen">
         <div class="question">
               And are you…
         </div>
 
         <div class="answers">
             <div class="radio">
-                <input type="radio" id="a21a" name="21" value="a" {% if form.21 and form.21.value == 'a' %}checked{% endif %}><label for="a21a">female </label>
+                <input type="radio" id="a22a" name="22" value="a" {% if form.22 and form.22.value == 'a' %}checked{% endif %}><label for="a22a">female </label>
             </div>
             <div class="radio">
-                <input type="radio" id="a21b" name="21" value="b" {% if form.21 and form.21.value == 'b' %}checked{% endif %}><label for="a21b">male </label>
+                <input type="radio" id="a22b" name="22" value="b" {% if form.22 and form.22.value == 'b' %}checked{% endif %}><label for="a22b">male </label>
             </div>
             <div class="radio">
-                <input type="radio" id="a21c" name="21" value="c" {% if form.21 and form.21.value == 'c' %}checked{% endif %}><label for="a21c">don't want to answer </label>
-            </div>
-        </div>
-    </div>
-
-    <h1>25</h1><div class="screen">
-        <div class="question">
-             What is the last type of educational institution (e.g. school, college or university) that you have attended or which type of educational institution are you attending now?
-        </div>
-        <div class="answers">
-            <div class="radio">
-                <input type="radio" id="a22a" name="22" value="a" {% if form.22 and form.22.value == 'a' %}checked{% endif %}><label for="a22a">Primary school or equivalent </label>
-            </div>
-            <div class="radio">
-                <input type="radio" id="a22b" name="22" value="b" {% if form.22 and form.22.value == 'b' %}checked{% endif %}><label for="a22b">Secondary school or equivalent </label>
-            </div>
-            <div class="radio">
-                <input type="radio" id="a22c" name="22" value="c" {% if form.22 and form.22.value == 'c' %}checked{% endif %}><label for="a22c">Special school or equivalent </label>
-            </div>
-            <div class="radio">
-                <input type="radio" id="a22d" name="22" value="d" {% if form.22 and form.22.value == 'd' %}checked{% endif %}><label for="a22d">Sixth form college or equivalent </label>
-            </div>
-            <div class="radio">
-                <input type="radio" id="a22e" name="22" value="e" {% if form.22 and form.22.value == 'e' %}checked{% endif %}><label for="a22e">Technical college or equivalent </label>
-            </div>
-            <div class="radio">
-                <input type="radio" id="a22f" name="22" value="f" {% if form.22 and form.22.value == 'f' %}checked{% endif %}><label for="a22f">Further Education College </label>
-            </div>
-            <div class="radio">
-                <input type="radio" id="a22g" name="22" value="g" {% if form.22 and form.22.value == 'g' %}checked{% endif %}><label for="a22g">Adult Community College </label>
-            </div>
-            <div class="radio">
-                <input type="radio" id="a22h" name="22" value="h" {% if form.22 and form.22.value == 'h' %}checked{% endif %}><label for="a22h">University or equivalent </label>
-            </div>
-            <div class="radio">
-                <input type="radio" id="a22i" name="22" value="i" {% if form.22 and form.22.value == 'i' %}checked{% endif %}><label for="a22i">other </label>
-            </div>
-            <div class="radio">
-                <input type="radio" id="a22j" name="22" value="j" {% if form.22 and form.22.value == 'j' %}checked{% endif %}><label for="a22j">don't want to answer </label>
+                <input type="radio" id="a22c" name="22" value="c" {% if form.22 and form.22.value == 'c' %}checked{% endif %}><label for="a22c">don't want to answer </label>
             </div>
         </div>
     </div>
 
     <h1>26</h1><div class="screen">
         <div class="question">
-             Which of these descriptions best describes your current situation?
+             What is the last type of educational institution (e.g. school, college or university) that you have attended or which type of educational institution are you attending now?
         </div>
-
         <div class="answers">
             <div class="radio">
-                <input type="radio" id="a23a" name="23" value="a" {% if form.23 and form.23.value == 'a' %}checked{% endif %}><label for="a23a">working full time (30 hours a week or more) </label>
+                <input type="radio" id="a23a" name="23" value="a" {% if form.23 and form.23.value == 'a' %}checked{% endif %}><label for="a23a">Primary school or equivalent </label>
             </div>
             <div class="radio">
-                <input type="radio" id="a23b" name="23" value="b" {% if form.23 and form.23.value == 'b' %}checked{% endif %}><label for="a23b">working part time (8-29 hours a week) </label>
+                <input type="radio" id="a23b" name="23" value="b" {% if form.23 and form.23.value == 'b' %}checked{% endif %}><label for="a23b">Secondary school or equivalent </label>
             </div>
             <div class="radio">
-                <input type="radio" id="a23c" name="23" value="c" {% if form.23 and form.23.value == 'c' %}checked{% endif %}><label for="a23c">retired </label>
+                <input type="radio" id="a23c" name="23" value="c" {% if form.23 and form.23.value == 'c' %}checked{% endif %}><label for="a23c">Special school or equivalent </label>
             </div>
             <div class="radio">
-                <input type="radio" id="a23d" name="23" value="d" {% if form.23 and form.23.value == 'd' %}checked{% endif %}><label for="a23d">unemployed </label>
+                <input type="radio" id="a23d" name="23" value="d" {% if form.23 and form.23.value == 'd' %}checked{% endif %}><label for="a23d">Sixth form college or equivalent </label>
             </div>
             <div class="radio">
-                <input type="radio" id="a23e" name="23" value="e" {% if form.23 and form.23.value == 'e' %}checked{% endif %}><label for="a23e">permanently sick or disabled </label>
+                <input type="radio" id="a23e" name="23" value="e" {% if form.23 and form.23.value == 'e' %}checked{% endif %}><label for="a23e">Technical college or equivalent </label>
             </div>
             <div class="radio">
-                <input type="radio" id="a23f" name="23" value="f" {% if form.23 and form.23.value == 'f' %}checked{% endif %}><label for="a23f">in community or military service </label>
+                <input type="radio" id="a23f" name="23" value="f" {% if form.23 and form.23.value == 'f' %}checked{% endif %}><label for="a23f">Further Education College </label>
             </div>
             <div class="radio">
-                <input type="radio" id="a23g" name="23" value="g" {% if form.23 and form.23.value == 'g' %}checked{% endif %}><label for="a23g">undergraduate student </label>
+                <input type="radio" id="a23g" name="23" value="g" {% if form.23 and form.23.value == 'g' %}checked{% endif %}><label for="a23g">Adult Community College </label>
             </div>
             <div class="radio">
-                <input type="radio" id="a23h" name="23" value="h" {% if form.23 and form.23.value == 'h' %}checked{% endif %}><label for="a23h">postgraduate student </label>
+                <input type="radio" id="a23h" name="23" value="h" {% if form.23 and form.23.value == 'h' %}checked{% endif %}><label for="a23h">University or equivalent </label>
             </div>
             <div class="radio">
-                <input type="radio" id="a23i" name="23" value="i" {% if form.23 and form.23.value == 'i' %}checked{% endif %}><label for="a23i">in full time education (not degree or higher) </label>
+                <input type="radio" id="a23i" name="23" value="i" {% if form.23 and form.23.value == 'i' %}checked{% endif %}><label for="a23i">other </label>
             </div>
             <div class="radio">
-                <input type="radio" id="a23j" name="23" value="j" {% if form.23 and form.23.value == 'j' %}checked{% endif %}><label for="a23j">in part time education (not degree or higher) </label>
-            </div>
-            <div class="radio">
-                <input type="radio" id="a23k" name="23" value="k" {% if form.23 and form.23.value == 'k' %}checked{% endif %}><label for="a23k">doing housework, looking after children or other persons </label>
-            </div>
-            <div class="radio">
-                <input type="radio" id="a23l" name="23" value="l" {% if form.23 and form.23.value == 'l' %}checked{% endif %}><label for="a23l">none of the above </label>
-            </div>
-            <div class="radio">
-                <input type="radio" id="a23m" name="23" value="m" {% if form.23 and form.23.value == 'm' %}checked{% endif %}><label for="a23m">don't want to answer </label>
+                <input type="radio" id="a23j" name="23" value="j" {% if form.23 and form.23.value == 'j' %}checked{% endif %}><label for="a23j">don't want to answer </label>
             </div>
         </div>
     </div>
 
     <h1>27</h1><div class="screen">
         <div class="question">
-             The incomes of households differ a lot in Britain today. Which figures best represent the total income of your household before tax?
+             Which of these descriptions best describes your current situation?
         </div>
+
         <div class="answers">
             <div class="radio">
-                <input type="radio" id="a24a" name="24" value="a" {% if form.24 and form.24.value == 'a' %}checked{% endif %}><label for="a22a">up to £12,500 </label>
+                <input type="radio" id="a24a" name="24" value="a" {% if form.24 and form.24.value == 'a' %}checked{% endif %}><label for="a24a">working full time (30 hours a week or more) </label>
             </div>
             <div class="radio">
-                <input type="radio" id="a24b" name="24" value="b" {% if form.24 and form.24.value == 'b' %}checked{% endif %}><label for="a24b">£12,501 to £25,000 </label>
+                <input type="radio" id="a24b" name="24" value="b" {% if form.24 and form.24.value == 'b' %}checked{% endif %}><label for="a24b">working part time (8-29 hours a week) </label>
             </div>
             <div class="radio">
-                <input type="radio" id="a24c" name="24" value="c" {% if form.24 and form.24.value == 'c' %}checked{% endif %}><label for="a24c">£25,001 to £37,500 </label>
+                <input type="radio" id="a24c" name="24" value="c" {% if form.24 and form.24.value == 'c' %}checked{% endif %}><label for="a24c">retired </label>
             </div>
             <div class="radio">
-                <input type="radio" id="a24d" name="24" value="d" {% if form.24 and form.24.value == 'd' %}checked{% endif %}><label for="a24d">£37,501 to £50,000 </label>
+                <input type="radio" id="a24d" name="24" value="d" {% if form.24 and form.24.value == 'd' %}checked{% endif %}><label for="a24d">unemployed </label>
             </div>
             <div class="radio">
-                <input type="radio" id="a24e" name="24" value="e" {% if form.24 and form.24.value == 'e' %}checked{% endif %}><label for="a24e">£50,001 to £75,000 </label>
+                <input type="radio" id="a24e" name="24" value="e" {% if form.24 and form.24.value == 'e' %}checked{% endif %}><label for="a24e">permanently sick or disabled </label>
             </div>
             <div class="radio">
-                <input type="radio" id="a24f" name="24" value="f" {% if form.24 and form.24.value == 'f' %}checked{% endif %}><label for="a24f">£75,001 to £100,000 </label>
+                <input type="radio" id="a24f" name="24" value="f" {% if form.24 and form.24.value == 'f' %}checked{% endif %}><label for="a24f">in community or military service </label>
             </div>
             <div class="radio">
-                <input type="radio" id="a24g" name="24" value="g" {% if form.24 and form.24.value == 'g' %}checked{% endif %}><label for="a24g">more than £100,000 </label>
+                <input type="radio" id="a24g" name="24" value="g" {% if form.24 and form.24.value == 'g' %}checked{% endif %}><label for="a24g">undergraduate student </label>
             </div>
             <div class="radio">
-                <input type="radio" id="a24h" name="24" value="h" {% if form.24 and form.24.value == 'h' %}checked{% endif %}><label for="a24h">don't want to answer </label>
+                <input type="radio" id="a24h" name="24" value="h" {% if form.24 and form.24.value == 'h' %}checked{% endif %}><label for="a24h">postgraduate student </label>
+            </div>
+            <div class="radio">
+                <input type="radio" id="a24i" name="24" value="i" {% if form.24 and form.24.value == 'i' %}checked{% endif %}><label for="a24i">in full time education (not degree or higher) </label>
+            </div>
+            <div class="radio">
+                <input type="radio" id="a24j" name="24" value="j" {% if form.24 and form.24.value == 'j' %}checked{% endif %}><label for="a24j">in part time education (not degree or higher) </label>
+            </div>
+            <div class="radio">
+                <input type="radio" id="a24k" name="24" value="k" {% if form.24 and form.24.value == 'k' %}checked{% endif %}><label for="a24k">doing housework, looking after children or other persons </label>
+            </div>
+            <div class="radio">
+                <input type="radio" id="a24l" name="24" value="l" {% if form.24 and form.24.value == 'l' %}checked{% endif %}><label for="a24l">none of the above </label>
+            </div>
+            <div class="radio">
+                <input type="radio" id="a24m" name="24" value="m" {% if form.24 and form.24.value == 'm' %}checked{% endif %}><label for="a24m">don't want to answer </label>
             </div>
         </div>
     </div>
 
     <h1>28</h1><div class="screen">
+        <div class="question">
+             The incomes of households differ a lot in Britain today. Which figures best represent the total income of your household before tax?
+        </div>
+        <div class="answers">
+            <div class="radio">
+                <input type="radio" id="a25a" name="25" value="a" {% if form.25 and form.25.value == 'a' %}checked{% endif %}><label for="a23a">up to £12,500 </label>
+            </div>
+            <div class="radio">
+                <input type="radio" id="a25b" name="25" value="b" {% if form.25 and form.25.value == 'b' %}checked{% endif %}><label for="a25b">£12,501 to £25,000 </label>
+            </div>
+            <div class="radio">
+                <input type="radio" id="a25c" name="25" value="c" {% if form.25 and form.25.value == 'c' %}checked{% endif %}><label for="a25c">£25,001 to £37,500 </label>
+            </div>
+            <div class="radio">
+                <input type="radio" id="a25d" name="25" value="d" {% if form.25 and form.25.value == 'd' %}checked{% endif %}><label for="a25d">£37,501 to £50,000 </label>
+            </div>
+            <div class="radio">
+                <input type="radio" id="a25e" name="25" value="e" {% if form.25 and form.25.value == 'e' %}checked{% endif %}><label for="a25e">£50,001 to £75,000 </label>
+            </div>
+            <div class="radio">
+                <input type="radio" id="a25f" name="25" value="f" {% if form.25 and form.25.value == 'f' %}checked{% endif %}><label for="a25f">£75,001 to £100,000 </label>
+            </div>
+            <div class="radio">
+                <input type="radio" id="a25g" name="25" value="g" {% if form.25 and form.25.value == 'g' %}checked{% endif %}><label for="a25g">more than £100,000 </label>
+            </div>
+            <div class="radio">
+                <input type="radio" id="a25h" name="25" value="h" {% if form.25 and form.25.value == 'h' %}checked{% endif %}><label for="a25h">don't want to answer </label>
+            </div>
+        </div>
+    </div>
+
+    <h1>29</h1><div class="screen">
         <div class="question">
              To which one of these ethnic groups do you consider you belong? 
         </div>
@@ -911,140 +925,140 @@
                 <dt>White</dt>
                 <dd>
                     <div class="radio">
-                        <input type="radio" name="25" value="British" {% if form.25 and form.25.value == 'British' %}checked{% endif %}><label>British</label>
+                        <input type="radio" name="26" value="British" {% if form.26 and form.26.value == 'British' %}checked{% endif %}><label>British</label>
                     </div>
                     <div class="radio">
-                        <input type="radio" name="25" value="English" {% if form.25 and form.25.value == 'English' %}checked{% endif %}><label>English</label>
+                        <input type="radio" name="26" value="English" {% if form.26 and form.26.value == 'English' %}checked{% endif %}><label>English</label>
                     </div>
                     <div class="radio">
-                        <input type="radio" name="25" value="Welsh" {% if form.25 and form.25.value == 'Welsh' %}checked{% endif %}><label>Welsh</label>
+                        <input type="radio" name="26" value="Welsh" {% if form.26 and form.26.value == 'Welsh' %}checked{% endif %}><label>Welsh</label>
                     </div>
                     <div class="radio">
-                        <input type="radio" name="25" value="Scottish" {% if form.25 and form.25.value == 'Scottish' %}checked{% endif %}><label>Scottish</label>
+                        <input type="radio" name="26" value="Scottish" {% if form.26 and form.26.value == 'Scottish' %}checked{% endif %}><label>Scottish</label>
                     </div>
                     <div class="radio">
-                        <input type="radio" name="25" value="Irish" {% if form.25 and form.25.value == 'Irish' %}checked{% endif %}><label>Irish</label>
+                        <input type="radio" name="26" value="Irish" {% if form.26 and form.26.value == 'Irish' %}checked{% endif %}><label>Irish</label>
                     </div>
                     <div class="radio">
-                        <input type="radio" name="25" value="Other white" {% if form.25 and form.25.value == 'Other white' %}checked{% endif %}><label>Other white</label>
+                        <input type="radio" name="26" value="Other white" {% if form.26 and form.26.value == 'Other white' %}checked{% endif %}><label>Other white</label>
                     </div>
                 </dd>
                 <dt>Mixed</dt>
                 <dd>
                     <div class="radio">
-                        <input type="radio" name="25" value="White and Black Caribbean" {% if form.25 and form.25.value == 'White and Black Caribbean' %}checked{% endif %}><label>White and Black Caribbean</label>
+                        <input type="radio" name="26" value="White and Black Caribbean" {% if form.26 and form.26.value == 'White and Black Caribbean' %}checked{% endif %}><label>White and Black Caribbean</label>
                     </div>
                     <div class="radio">
-                        <input type="radio" name="25" value="White and Black African" {% if form.25 and form.25.value == 'White and Black African' %}checked{% endif %}><label>White and Black African</label>
+                        <input type="radio" name="26" value="White and Black African" {% if form.26 and form.26.value == 'White and Black African' %}checked{% endif %}><label>White and Black African</label>
                     </div>
                     <div class="radio">
-                        <input type="radio" name="25" value="White and Asian" {% if form.25 and form.25.value == 'White and Asian' %}checked{% endif %}><label>White and Asian</label>
+                        <input type="radio" name="26" value="White and Asian" {% if form.26 and form.26.value == 'White and Asian' %}checked{% endif %}><label>White and Asian</label>
                     </div>
                     <div class="radio">
-                        <input type="radio" name="25" value="Other Mixed" {% if form.25 and form.25.value == 'Other Mixed' %}checked{% endif %}><label>Other Mixed</label>
+                        <input type="radio" name="26" value="Other Mixed" {% if form.26 and form.26.value == 'Other Mixed' %}checked{% endif %}><label>Other Mixed</label>
                     </div>
                 </dd>
                 <dt>Asian or Asian British</dt>
                 <dd>
                     <div class="radio">
-                        <input type="radio" name="25" value="Indian" {% if form.25 and form.25.value == 'Indian' %}checked{% endif %}><label>Indian</label>
+                        <input type="radio" name="26" value="Indian" {% if form.26 and form.26.value == 'Indian' %}checked{% endif %}><label>Indian</label>
                     </div>
                     <div class="radio">
-                        <input type="radio" name="25" value="Pakistani" {% if form.25 and form.25.value == 'Pakistani' %}checked{% endif %}><label>Pakistani</label>
+                        <input type="radio" name="26" value="Pakistani" {% if form.26 and form.26.value == 'Pakistani' %}checked{% endif %}><label>Pakistani</label>
                     </div>
                     <div class="radio">
-                        <input type="radio" name="25" value="Bangladeshi" {% if form.25 and form.25.value == 'Bangladeshi' %}checked{% endif %}><label>Bangladeshi</label>
+                        <input type="radio" name="26" value="Bangladeshi" {% if form.26 and form.26.value == 'Bangladeshi' %}checked{% endif %}><label>Bangladeshi</label>
                     </div>
                     <div class="radio">
-                        <input type="radio" name="25" value="Other Asian" {% if form.25 and form.25.value == 'Other Asian' %}checked{% endif %}><label>Other Asian</label>
+                        <input type="radio" name="26" value="Other Asian" {% if form.26 and form.26.value == 'Other Asian' %}checked{% endif %}><label>Other Asian</label>
                     </div>
                 </dd>
                 <dt>Black or Black British</dt>
                 <dd>
                     <div class="radio">
-                        <input type="radio" name="25" value="Caribbean" {% if form.25 and form.25.value == 'Caribbean' %}checked{% endif %}><label>Caribbean</label>
+                        <input type="radio" name="26" value="Caribbean" {% if form.26 and form.26.value == 'Caribbean' %}checked{% endif %}><label>Caribbean</label>
                     </div>
                     <div class="radio">
-                        <input type="radio" name="25" value="African" {% if form.25 and form.25.value == 'African' %}checked{% endif %}><label>African</label>
+                        <input type="radio" name="26" value="African" {% if form.26 and form.26.value == 'African' %}checked{% endif %}><label>African</label>
                     </div>
                     <div class="radio">
-                        <input type="radio" name="25" value="Other Black" {% if form.25 and form.25.value == 'Other Black' %}checked{% endif %}><label>Other Black</label>
+                        <input type="radio" name="26" value="Other Black" {% if form.26 and form.26.value == 'Other Black' %}checked{% endif %}><label>Other Black</label>
                     </div>
                 </dd>
             </dl>
             <div class="radio">
-                <input type="radio" name="25" value="Chinese" {% if form.25 and form.25.value == 'Chinese' %}checked{% endif %}><label>Chinese</label>
+                <input type="radio" name="26" value="Chinese" {% if form.26 and form.26.value == 'Chinese' %}checked{% endif %}><label>Chinese</label>
             </div>
             <div class="radio">
-                <input type="radio" name="25" value="Other ethnic" {% if form.25 and form.25.value == 'Other ethnic' %}checked{% endif %}><label>any other ethnic group</label>
+                <input type="radio" name="26" value="Other ethnic" {% if form.26 and form.26.value == 'Other ethnic' %}checked{% endif %}><label>any other ethnic group</label>
             </div>
             <div class="radio">
-                <input type="radio" name="25" value="Don't know" {% if form.25 and form.25.value == "Don't know" %}checked{% endif %}><label>Don't know</label>
+                <input type="radio" name="26" value="Don't know" {% if form.26 and form.26.value == "Don't know" %}checked{% endif %}><label>Don't know</label>
             </div>
             <div class="radio">
-                <input type="radio" name="25" value="No answer" {% if form.25 and form.25.value == 'No answer' %}checked{% endif %}><label>Don't want to answer</label>
+                <input type="radio" name="26" value="No answer" {% if form.26 and form.26.value == 'No answer' %}checked{% endif %}><label>Don't want to answer</label>
             </div>
-        </div>
-    </div>
-
-    <h1>29</h1><div class="screen">
-        <div class="question">
-             Could you tell us the <b>first half</b> of your postcode? (e.g. M13 or KA27)
-        </div>
-        <div class="answers">
-            <input type="text" name="26" value="{{ form.postcode.value }}"/>
-        </div>
-
-        <div class="radio">
-            <input class="exclusive" type="checkbox" id="a26" name="26" value="dont" {% if form.26 and form.26.value == 'dont' %}checked{% endif %}><label for="a26">don't want to answer </label>
         </div>
     </div>
 
     <h1>30</h1><div class="screen">
         <div class="question">
- Here is a list of tasks that can be performed on the Internet. Some people have done these tasks, while others have not. Which, if any, of these have you done? Please tick as many as apply.
+             Could you tell us the <b>first half</b> of your postcode? (e.g. M13 or KA27)
         </div>
         <div class="answers">
-            <div class="radio">
-                <input type="checkbox" id="a27a" name="27" value="a" {% if form.27 and 'a' in form.27.value %}checked{% endif %}><label for="a27a">Written a blog post</label>
-            </div>
-            <div class="radio">
-                <input type="checkbox" id="a27b" name="27" value="b" {% if form.27 and 'b' in form.27.value %}checked{% endif %}><label for="a27b">Purchased a product or service on a website</label>
-            </div>
-            <div class="radio">
-                <input type="checkbox" id="a27c" name="27" value="c" {% if form.27 and 'c' in form.27.value %}checked{% endif %}><label for="a27c">Logged onto a social networking site (e.g. Facebook, Twitter, Google+)</label>
-            </div>
-            <div class="radio">
-                <input type="checkbox" id="a27d" name="27" value="d" {% if form.27 and 'd' in form.27.value %}checked{% endif %}><label for="a27d">Posted a comment on a social networking site (e.g. Facebook, Twitter, Google+)</label>
-            </div>
-            <div class="radio">
-                <input type="checkbox" id="a27e" name="27" value="e" {% if form.27 and 'e' in form.27.value %}checked{% endif %}><label for="a27e">Posted an audio, video, or image file to the internet </label>
-            </div>
-            <div class="radio">
-                <input type="checkbox" id="a27f" name="27" value="f" {% if form.27 and 'f' in form.27.value %}checked{% endif %}><label for="a27f">Sent an attachment with an email</label>
-            </div>
-            <div class="radio">
-                <input type="checkbox" id="a27g" name="27" value="g" {% if form.27 and 'g' in form.27.value %}checked{% endif %}><label for="a27g">Commented on an article or blog post</label>
-            </div>
-            <div class="radio">
-                <input class="exclusive" type="checkbox" id="a27h" name="27" value="h" {% if form.27 and 'h' in form.27.value %}checked{% endif %}><label for="a27h">None of the above</label>
-            </div>
+            <input type="text" name="27" value="{{ form.postcode.value }}"/>
+        </div>
+
+        <div class="radio">
+            <input class="exclusive" type="checkbox" id="a36" name="27" value="dont" {% if form.27 and form.27.value == 'dont' %}checked{% endif %}><label for="a36">don't want to answer </label>
         </div>
     </div>
 
     <h1>31</h1><div class="screen">
         <div class="question">
+ Here is a list of tasks that can be performed on the Internet. Some people have done these tasks, while others have not. Which, if any, of these have you done? Please tick as many as apply.
+        </div>
+        <div class="answers">
+            <div class="radio">
+                <input type="checkbox" id="a28a" name="28" value="a" {% if form.28 and 'a' in form.28.value %}checked{% endif %}><label for="a28a">Written a blog post</label>
+            </div>
+            <div class="radio">
+                <input type="checkbox" id="a28b" name="28" value="b" {% if form.28 and 'b' in form.28.value %}checked{% endif %}><label for="a28b">Purchased a product or service on a website</label>
+            </div>
+            <div class="radio">
+                <input type="checkbox" id="a28c" name="28" value="c" {% if form.28 and 'c' in form.28.value %}checked{% endif %}><label for="a28c">Logged onto a social networking site (e.g. Facebook, Twitter, Google+)</label>
+            </div>
+            <div class="radio">
+                <input type="checkbox" id="a28d" name="28" value="d" {% if form.28 and 'd' in form.28.value %}checked{% endif %}><label for="a28d">Posted a comment on a social networking site (e.g. Facebook, Twitter, Google+)</label>
+            </div>
+            <div class="radio">
+                <input type="checkbox" id="a28e" name="28" value="e" {% if form.28 and 'e' in form.28.value %}checked{% endif %}><label for="a28e">Posted an audio, video, or image file to the internet </label>
+            </div>
+            <div class="radio">
+                <input type="checkbox" id="a28f" name="28" value="f" {% if form.28 and 'f' in form.28.value %}checked{% endif %}><label for="a28f">Sent an attachment with an email</label>
+            </div>
+            <div class="radio">
+                <input type="checkbox" id="a28g" name="28" value="g" {% if form.28 and 'g' in form.28.value %}checked{% endif %}><label for="a28g">Commented on an article or blog post</label>
+            </div>
+            <div class="radio">
+                <input class="exclusive" type="checkbox" id="a28h" name="28" value="h" {% if form.28 and 'h' in form.28.value %}checked{% endif %}><label for="a28h">None of the above</label>
+            </div>
+        </div>
+    </div>
+
+    <h1>32</h1><div class="screen">
+        <div class="question">
  Do you have a twitter account? If so would you be willing to provide your username to the research team?
         </div>
         <div class="answers">
             <div class="radio">
-                <input type="radio" id="a28a" name="28" value="a" {% if form.28 and form.28.value == 'a' %}checked{% endif %}><label for="a28a">No</label>
+                <input type="radio" id="a29a" name="29" value="a" {% if form.29 and form.29.value == 'a' %}checked{% endif %}><label for="a29a">No</label>
             </div>
             <div class="radio">
-                <input type="radio" id="a28b" name="28" value="b" {% if form.28 and form.28.value == 'b' %}checked{% endif %}><label for="a28b">Yes, but I’d rather not give you my username</label>
+                <input type="radio" id="a29b" name="29" value="b" {% if form.29 and form.29.value == 'b' %}checked{% endif %}><label for="a29b">Yes, but I’d rather not give you my username</label>
             </div>
             <div class="radio">
-                <input type="radio" id="a28c" name="28" value="c" {% if form.28 and form.28.value == 'c' %}checked{% endif %}><label for="a28c">Yes,</label> and my username is @<input type="text" name="twitter_name" maxlength="20" value="{{ form.twitter_name.value }}">
+                <input type="radio" id="a29c" name="29" value="c" {% if form.29 and form.29.value == 'c' %}checked{% endif %}><label for="a29c">Yes,</label> and my username is @<input type="text" name="twitter_name" maxlength="20" value="{{ form.twitter_name.value }}">
             </div>
 
             <p>
@@ -1053,7 +1067,7 @@
         </div>
     </div>
 
-    <h1>32</h1><div class="screen">
+    <h1>33</h1><div class="screen">
         <p>Thank you very much for completing this survey! Your answers are very valuable to our research.</p> 
         <p>As well as your use of {{ site_name }}, we would like to know more about your experiences of using the web in your daily life. To do this, we might contact you again to ask you to complete another survey and/or to get involved in other online activities (e.g. take part in an online discussion forum, fill an online diary) about some of the topics covered in this survey.</p> 
 
