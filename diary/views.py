@@ -1,6 +1,7 @@
 import random
 from datetime import date
 
+from django.contrib.auth.decorators import permission_required
 from django.shortcuts import render_to_response
 from django.template import RequestContext, loader, Context, Template
 from django.core.mail import send_mail
@@ -8,7 +9,7 @@ from django.utils import timezone
 from django.conf import settings
 from django.contrib import sites
 
-from manchester_survey.utils import SurveyDate, int_to_base32
+from manchester_survey.utils import SurveyDate, int_to_base32, UnicodeWriter
 from diary.forms import RegisterForm
 from diary.models import Entries, Week
 from survey.models import User, UserManager
@@ -152,3 +153,36 @@ def send_start_email(user, is_diary_day):
             }
     content = template.render(Context(context))
     send_mail(subject, content, settings.FROM_EMAIL, [user.email])
+
+@permission_required('survey.can_export')
+def export(request):
+    # Create the HttpResponse object with the appropriate CSV header.
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="survey.csv"'
+
+    writer = UnicodeWriter(response)
+
+    checkboxes = [
+    ]
+
+    all_fields = [
+    ]
+
+    users = User.objects.all()
+    for user in users:
+        entries = Entries.objects.filter(user_id=user.id)
+        values = defaultdict(str)
+        for entry in entries:
+            if entry.key in checkboxes:
+                answers = entry.value.split(',')
+                for answer in answers:
+                    values[answer] = 1
+            else:
+                values[entry.key] = entry.value
+
+        values['id'] = user.id
+
+        all_values = [ values[field] for field in all_fields ]
+        writer.writerow(all_values)
+
+    return response
