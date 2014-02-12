@@ -59,4 +59,5 @@
     $('#screen14-2').hide();
     $('#screen15-2').hide();
     $('#submit_button').hide();
+    $('.back').show();
 })(jQuery);

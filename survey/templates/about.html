@@ -33,4 +33,12 @@
             <a href="{% url 'survey:contact' %}">Contact details</a>
         </p>
     </div>
+
+    <div class="actions clearfix back">
+        <ul role="menu" aria-label="Pagination">
+            <li aria-hidden="false" aria-disabled="false">
+            <a href="#next" onclick="window.history.back(); return false;" role="menuitem">Back</a>
+            </li>
+        </ul>
+    </div>
 {% endblock %}

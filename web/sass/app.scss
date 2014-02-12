@@ -446,6 +446,11 @@ ul[role="menu"] {
     }
 }
 
+/* don't want to display this unless we have javascript enabled */
+.back {
+    display: none;
+}
+
 .centered-form {
     @include grid-column(12);
     @media (min-width: $medium-screen) {
