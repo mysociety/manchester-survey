@@ -94,26 +94,25 @@ def export(request):
     to export on column per value with a 1 for selected and a 0 for not. hence we combine
     the list in the field of selected values with the list in all_fields
     """
-    checkboxes = ['1', '14', '15', '16', '27']
+    checkboxes = ['15', '16', '17', '28']
 
     """
     because most of the fields are optional and we need to produce a consistent list for each
     row we need to have a list of all fields for output
     """
     all_fields = [
-        'id', 'recorded', 'permission', 'tv', 'newspaper', 'internet', 'family', 'other', "1 don't know",
-        'a1other', '2', '3', '4', '5', '6', '7government', '7council', '7', '8', '9petition', '9march', '9refused', '9bought',
-        '9', '10community', '10country', '10', '11community', '11country', '11', '12community', '12country', '12', '13',
-        '14browsed', '14registered', '14joined', '14attended', '14promote', '14other', "14 don't know", '14how',
+        'id', 'recorded', 'permission', '1', '2', '3', '4', '5', '6', '7', '8government', '8council', '9', '10petition', '10march', '10refused', '10bought',
+        '9', '10', '11community', '11country', '11', '12community', '12country', '12', '13community', '13country', '13', '14',
         '15browsed', '15registered', '15joined', '15attended', '15promote', '15other', "15 don't know", '15how',
+        '16browsed', '16registered', '16joined', '16attended', '16promote', '16other', "16 don't know", '16how',
         'party_information', 'party_joined', 'party_attended', 'party_voluntary', 'union_information', 'union_joined',
         'union_attended', 'union_voluntary', 'local_information', 'local_joined', 'local_attended', 'local_voluntary',
         'ngo_information', 'ngo_joined', 'ngo_attended', 'ngo_voluntary', 'religious_information', 'religious_joined',
         'religious_attended', 'religious_voluntary', 'hobby_information', 'hobby_joined', 'hobby_attended', 'hobby_voluntary',
         'health_information', 'health_joined', 'health_attended', 'health_voluntary', 'other_information', 'other_joined',
-        'other_attended', 'other_voluntary', '16none', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26',
-        'blog', 'purchase', 'logged on', 'commented', 'multimedia', 'emailed', 'blog comment', '27 none',
-        '28', 'email', 'site', 'source',
+        'other_attended', 'other_voluntary', '17none', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27',
+        'blog', 'purchase', 'logged on', 'commented', 'multimedia', 'emailed', 'blog comment', '28 none',
+        '29', 'email', 'site', 'source',
     ]
 
     writer.writerow(all_fields)

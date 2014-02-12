@@ -8,17 +8,16 @@ class SurveyForm(forms.Form):
     def __init__(self, fields, *args, **kwargs):
         super(SurveyForm, self).__init__(fields, *args, **kwargs)
         a_to_z = zip(list(string.ascii_lowercase), list(string.ascii_lowercase))
-        field_list_1 = [ (field, field) for field in ('tv', 'newspaper', 'internet', 'family', 'promote', '1 other', "1 don't know") ]
-        field_list_14 = [ (field, field) for field in ( '14browsed', '14registered', '14joined', '14attended', '14promote', '14other', "14 don't know")]
-        field_list_15 = [ (field, field) for field in ('15browsed', '15registered', '15joined', '15attended', '15promote', '15other', "15 don't know") ]
-        field_list_16 = [ (field, field) for field in (
+        field_list_15 = [ (field, field) for field in ( '15browsed', '15registered', '15joined', '15attended', '15promote', '15other', "15 don't know")]
+        field_list_16 = [ (field, field) for field in ('16browsed', '16registered', '16joined', '16attended', '16promote', '16other', "16 don't know") ]
+        field_list_17 = [ (field, field) for field in (
             'party_information', 'party_joined', 'party_attended', 'party_voluntary', 'union_information', 'union_joined', 'union_attended', 'union_voluntary',
             'local_information', 'local_joined', 'local_attended', 'local_voluntary', 'ngo_information', 'ngo_joined', 'ngo_attended', 'ngo_voluntary',
             'religious_information', 'religious_joined', 'religious_attended', 'religious_voluntary', 'hobby_information', 'hobby_joined', 'hobby_attended',
             'hobby_voluntary', 'health_information', 'health_joined', 'health_attended', 'health_voluntary', 'other_information', 'other_joined', 'other_attended',
             'other_voluntary'
         )]
-        field_list_27 = [ ( field, field) for field in ('blog', 'purchase', 'logged on', 'commented', 'multimedia', 'emailed', 'blog comment', '27 none')]
+        field_list_28 = [ ( field, field) for field in ('blog', 'purchase', 'logged on', 'commented', 'multimedia', 'emailed', 'blog comment', '28 none')]
         for i in fields:
             if i == 'csrfmiddlewaretoken':
                 continue
@@ -28,11 +27,10 @@ class SurveyForm(forms.Form):
             else:
                 self.fields[i] = forms.CharField(required=False)
 
-        self.fields['1'] = forms.MultipleChoiceField(choices=field_list_1, required=False)
-        self.fields['14'] = forms.MultipleChoiceField(choices=field_list_14, required=False)
         self.fields['15'] = forms.MultipleChoiceField(choices=field_list_15, required=False)
         self.fields['16'] = forms.MultipleChoiceField(choices=field_list_16, required=False)
-        self.fields['27'] = forms.MultipleChoiceField(choices=field_list_27, required=False)
+        self.fields['17'] = forms.MultipleChoiceField(choices=field_list_17, required=False)
+        self.fields['28'] = forms.MultipleChoiceField(choices=field_list_28, required=False)
         self.fields['email'] = forms.EmailField(required=False)
         self.fields['permission'].required = True
 
