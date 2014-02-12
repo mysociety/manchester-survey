@@ -1,11 +1,14 @@
 # Create your views here.
-from django.http import Http404
+from collections import defaultdict
+from django.http import Http404, HttpResponse
+from django.contrib.auth.decorators import permission_required
 from django.shortcuts import get_object_or_404,render_to_response
 from django.template import RequestContext
 from django.conf import settings
 
 from survey.models import Item, User, Sites
 from survey.forms import SurveyForm
+from manchester_survey.utils import UnicodeWriter, SurveyDate
 
 def has_voted(request):
     if ( request.COOKIES.has_key('surveydone') ):
@@ -60,6 +63,9 @@ def record(request):
         if f.cleaned_data.has_key('email'):
             u.email = f.cleaned_data['email']
             u.save()
+
+        r = Item(user_id=u.id, key='recorded', value=SurveyDate.now(), batch=1)
+        r.save();
     else:
         return render_to_response('survey.html', { 'form': f }, context_instance=RequestContext(request))
 
@@ -72,5 +78,65 @@ def record(request):
 
     response = render_to_response('thanks.html', {}, context_instance=RequestContext(request))
     response.set_cookie('surveydone', 1, max_age=one_year)
+
+    return response
+
+@permission_required('survey.can_export')
+def export(request):
+    # Create the HttpResponse object with the appropriate CSV header.
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="survey.csv"'
+
+    writer = UnicodeWriter(response)
+
+    """
+    these are field where the values are stored as a comma seperated list and we want
+    to export on column per value with a 1 for selected and a 0 for not. hence we combine
+    the list in the field of selected values with the list in all_fields
+    """
+    checkboxes = ['1', '14', '15', '16', '27']
+
+    """
+    because most of the fields are optional and we need to produce a consistent list for each
+    row we need to have a list of all fields for output
+    """
+    all_fields = [
+        'id', 'recorded', 'permission', 'tv', 'newspaper', 'internet', 'family', 'other', "1 don't know",
+        'a1other', '2', '3', '4', '5', '6', '7government', '7council', '7', '8', '9petition', '9march', '9refused', '9bought',
+        '9', '10community', '10country', '10', '11community', '11country', '11', '12community', '12country', '12', '13',
+        '14browsed', '14registered', '14joined', '14attended', '14promote', '14other', "14 don't know", '14how',
+        '15browsed', '15registered', '15joined', '15attended', '15promote', '15other', "15 don't know", '15how',
+        'party_information', 'party_joined', 'party_attended', 'party_voluntary', 'union_information', 'union_joined',
+        'union_attended', 'union_voluntary', 'local_information', 'local_joined', 'local_attended', 'local_voluntary',
+        'ngo_information', 'ngo_joined', 'ngo_attended', 'ngo_voluntary', 'religious_information', 'religious_joined',
+        'religious_attended', 'religious_voluntary', 'hobby_information', 'hobby_joined', 'hobby_attended', 'hobby_voluntary',
+        'health_information', 'health_joined', 'health_attended', 'health_voluntary', 'other_information', 'other_joined',
+        'other_attended', 'other_voluntary', '16none', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26',
+        'blog', 'purchase', 'logged on', 'commented', 'multimedia', 'emailed', 'blog comment', '27 none',
+        '28', 'email', 'site', 'source',
+    ]
+
+    writer.writerow(all_fields)
+
+    users = User.objects.all()
+    for user in users:
+        items = Item.objects.filter(user_id=user.id)
+        values = defaultdict(str)
+        for item in items:
+            if item.key in checkboxes:
+                answers = item.value.split(',')
+                for answer in answers:
+                    values[answer] = 1
+            else:
+                values[item.key] = item.value
+
+        values['id'] = user.id
+        values['email'] = 0
+        if user.email:
+            values['email'] = 1
+
+
+        all_values = [ values[field] for field in all_fields ]
+        writer.writerow(all_values)
 
     return response

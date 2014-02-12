@@ -8,4 +8,5 @@ urlpatterns = patterns('',
     url(r'^contact', 'survey.views.contact', name='contact'),
     url(r'^S/(?P<site>[a-z]{,4})/(?P<source>[a-z])/$', 'survey.views.survey', name='survey'),
     url(r'^record$', 'survey.views.record', name='record'),
+    url(r'^export$', 'survey.views.export', name='export'),
 )

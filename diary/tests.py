@@ -244,8 +244,11 @@ class DiaryPageTest(TestCase):
             response = self.client.get(reverse('diary:questions', args=(rand, hash)))
             response = self.client.post(reverse('diary:record_answers'), { 'media_diary': 'watched the news', 'week': 1 })
 
+            """
+            date of diary recording is also added so we have 2 answers
+            """
             answers = Entries.objects.filter(user_id=u.id).filter(week_id=w.id)
-            self.assertEqual(len(answers), 1)
+            self.assertEqual(len(answers), 2)
 
 class FirstReminderTest(TestCase):
     fixtures = ['initial_data.json']
