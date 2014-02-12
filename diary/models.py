@@ -35,9 +35,11 @@ class ReminderManager(models.Manager):
         if not settings.DEBUG and today.weekday() != 3:
             raise CommandError("This should only be run on a Thursday")
 
-        users = User.objects.filter(startdate__isnull=True).exclude(email__isnull=True)
+        users = User.objects.filter(startdate__isnull=True).exclude(email__isnull=True).exclude(reg_email_sent=True)
 
         self.send_email('email/registration_confirm.txt', 'Participate in the mySociety diary!', settings.FROM_EMAIL, users)
+
+        users.update(reg_email_sent=True)
 
     """
     Send out an email to tell people that the diary entry is open.

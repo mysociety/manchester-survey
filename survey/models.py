@@ -24,6 +24,7 @@ class User(models.Model):
     name = models.TextField(null=True)
     startdate = models.DateTimeField(null=True)
     withdrawn = models.BooleanField(default=False)
+    reg_email_sent = models.BooleanField(default=False)
 
     def __unicode__(self):
         return "%s - %s ( %s )" % ( self.code, self.email, self.name )

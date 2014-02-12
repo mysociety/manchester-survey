@@ -102,6 +102,17 @@ class RegistraionEmailTest(TestCase):
         self.run_command('2014-01-23')
         self.assertEqual(len(mail.outbox), 1)
 
+    def test_does_not_send_email_twice(self):
+        u = User(email='test@example.org',)
+        u.save()
+        self.run_command('2014-01-23')
+        self.assertEqual(len(mail.outbox), 1)
+
+        mail.outbox = []
+
+        self.run_command('2014-01-23')
+        self.assertEqual(len(mail.outbox), 0)
+
     def test_command_does_not_run_if_not_thursday(self):
         with self.assertRaisesRegexp(CommandError, 'Thursday'):
             self.run_command('2014-01-22')
