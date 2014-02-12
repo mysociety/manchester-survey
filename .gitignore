@@ -1,6 +1,8 @@
 *.pyc
 conf/httpd.conf
+conf/httpd.conf.deployed
 conf/general.yml
+conf/general.yml.deployed
 Vagrantfile
 .sass-cache
 web/css
