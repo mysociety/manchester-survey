@@ -56,8 +56,8 @@
         the_el.on('click', toggle_optional);
     });
 
-    $('#screen14-2').hide();
     $('#screen15-2').hide();
+    $('#screen16-2').hide();
     $('#submit_button').hide();
     $('.back').show();
 })(jQuery);
