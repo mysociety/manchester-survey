@@ -9,4 +9,5 @@ urlpatterns = patterns('',
     url(r'^W/(?P<id>[0-9A-Za-z]+)-(?P<token>.+)/$', 'diary.views.withdraw', name='withdraw'),
     url(r'^record_diary', 'diary.views.record_answers', name='record_answers'),
     url(r'^participant_info', 'diary.views.participant_info', name='participant_info'),
+    url(r'^diary_export/(?P<week>[0-9]+)$', 'diary.views.export', name='diary_export'),
 )

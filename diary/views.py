@@ -1,7 +1,9 @@
 import random
 from datetime import date
+from collections import defaultdict
 
 from django.contrib.auth.decorators import permission_required
+from django.http import Http404, HttpResponse
 from django.shortcuts import render_to_response
 from django.template import RequestContext, loader, Context, Template
 from django.core.mail import send_mail
@@ -155,35 +157,58 @@ def send_start_email(user, is_diary_day):
     content = template.render(Context(context))
     send_mail(subject, content, settings.FROM_EMAIL, [user.email])
 
+"""
+we only export the multiple choice fields as the text answers are exported
+seperately
+"""
 @permission_required('survey.can_export')
-def export(request):
+def export(request, week):
     # Create the HttpResponse object with the appropriate CSV header.
     response = HttpResponse(content_type='text/csv')
-    response['Content-Disposition'] = 'attachment; filename="survey.csv"'
+    response['Content-Disposition'] = 'attachment; filename="survey_week%s.csv"' % week
 
     writer = UnicodeWriter(response)
 
     checkboxes = [
+        'media', 'attention', 'help', 'impact', 'activity'
     ]
 
-    all_fields = [
-    ]
+    fields_a = [ 'id', 'recorded', 'paper', 'online', 'local', 'tv', 'radion', 'search', 'social', 'blog', 'video', 'internation', 'national', 'local', 'community', 'sport', 'business', 'science', 'entertainment', 'health', 'neighbour', 'improve', 'solve' ]
+    fields_b = [ 'id', 'recorded', 'paper', 'online', 'local', 'tv', 'radion', 'search', 'social', 'blog', 'video', 'internation', 'national', 'local', 'community', 'sport', 'business', 'science', 'entertainment', 'health', 'big', 'moderate', 'small', 'none' ]
+    fields_d = [ 'id', 'recorded', 'paper', 'online', 'local', 'tv', 'radion', 'search', 'social', 'blog', 'video', 'internation', 'national', 'local', 'community', 'sport', 'business', 'science', 'entertainment', 'health', 'petition', 'protest', 'boycott', 'contact', 'politician', 'voluntary', 'social' ]
 
-    users = User.objects.all()
+    fields_for_weeks = {
+        '1': fields_a,
+        '2': fields_b,
+        '3': fields_a,
+        '4': fields_d,
+        '5': fields_a,
+        '6': fields_b,
+        '7': fields_a,
+        '8': fields_d,
+        '9': fields_a,
+        '10': fields_b,
+        '11': fields_a,
+        '12': fields_d,
+    }
+
+    writer.writerow(fields_for_weeks[week])
+
+    users = User.objects.filter(startdate__isnull=False)
     for user in users:
         entries = Entries.objects.filter(user_id=user.id)
         values = defaultdict(str)
         for entry in entries:
-            if entry.key in checkboxes:
-                answers = entry.value.split(',')
+            if entry.question in checkboxes:
+                answers = entry.answer.split(',')
                 for answer in answers:
                     values[answer] = 1
             else:
-                values[entry.key] = entry.value
+                values[entry.question] = entry.answer
 
         values['id'] = user.id
 
-        all_values = [ values[field] for field in all_fields ]
+        all_values = [ values[field] for field in fields_for_weeks[week] ]
         writer.writerow(all_values)
 
     return response
