@@ -394,10 +394,16 @@ ul[role="menu"] {
     }
 
     .radio {
-        margin-bottom: 0.25em;
+        margin-bottom: 0.5em;
         padding-left: 1em;
-        input, label {
-            display: inline-block;
+        clear: both;
+        input {
+            display: block;
+            float: left;
+        }
+        label {
+            display: block;
+            margin-left: 2em;
         }
         label.error {
             line-height: 1.6;
@@ -405,9 +411,6 @@ ul[role="menu"] {
             margin-bottom: 0.25em;
         }
         input {
-            display: inline-block;
-            margin-right: 1em;
-            margin-bottom: 0.5em;
             .error {
                 margin-bottom: 0.5em;
             }
