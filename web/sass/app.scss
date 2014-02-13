@@ -291,6 +291,42 @@ ul[role="tablist"] {
 }
 
 ul[role="tablist"] {
+    li.done,
+    li.disabled {
+        display: none;
+    }
+
+    li.last,
+    li.current {
+        display: inline-block !important;
+        .current-info {
+            display: none;
+        }
+    }
+
+    #last_of {
+        display: inline;
+    }
+
+    li.current #last_of {
+        display: none;
+    }
+    @media (min-width: $medium-screen) {
+        li.done,
+        li.disabled {
+            display: inline-block;
+        }
+        li.last,
+        li.current {
+            .current-info {
+                display: inline;
+            }
+        }
+        #last_of {
+            display: none;
+        }
+    }
+
     li {
         a {
             color: black;

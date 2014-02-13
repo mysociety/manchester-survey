@@ -60,4 +60,6 @@
     $('#screen16-2').hide();
     $('#submit_button').hide();
     $('.back').show();
+
+    $('li.last').prepend('<span id="last_of">of </span>');
 })(jQuery);
