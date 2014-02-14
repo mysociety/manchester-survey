@@ -8,7 +8,7 @@ class SurveyForm(forms.Form):
     def __init__(self, fields, *args, **kwargs):
         super(SurveyForm, self).__init__(fields, *args, **kwargs)
         a_to_z = zip(list(string.ascii_lowercase), list(string.ascii_lowercase))
-        field_list_15 = [ (field, field) for field in ( '15browsed', '15registered', '15joined', '15attended', '15promote', '15other', "15 don't know")]
+        field_list_15 = [ (field, field) for field in ( '15browsed', '15registered', '15joined', '15attended', '15promote', '15other', "15don't know")]
         field_list_16 = [ (field, field) for field in ('16browsed', '16registered', '16joined', '16attended', '16promote', '16other', "16 don't know") ]
         field_list_17 = [ (field, field) for field in (
             'party_information', 'party_joined', 'party_attended', 'party_voluntary', 'union_information', 'union_joined', 'union_attended', 'union_voluntary',
