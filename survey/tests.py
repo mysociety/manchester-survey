@@ -74,7 +74,7 @@ class SurveyTest(TestCase):
         self.assertEqual(count + 1, users.count())
 
     def test_survey_is_recorded(self):
-        self.post_survey({'1':'tv'})
+        self.post_survey({'15':'15browsed'})
 
         u = User.objects.latest('id')
 
@@ -85,13 +85,13 @@ class SurveyTest(TestCase):
         responses = Item.objects.filter(user_id=u.id)
         self.assertTrue(len(responses) == 3)
 
-        response = Item.objects.filter(user_id=u.id).filter(key='1').filter(value='tv')
+        response = Item.objects.filter(user_id=u.id).filter(key='15').filter(value='15browsed')
         self.assertTrue(len(response) == 1)
 
     def test_multi_value_answers_recorded(self):
-        self.post_survey({'1':['tv','newspaper']})
-        stored = self.get_stored_item('1')
-        self.assertEqual('tv,newspaper', stored.value)
+        self.post_survey({'15':['15browsed','15attended']})
+        stored = self.get_stored_item('15')
+        self.assertEqual('15browsed,15attended', stored.value)
 
     def test_email_is_recorded_in_user(self):
         self.post_survey({'1':'tv', 'email': 'test@example.org'})
@@ -103,7 +103,7 @@ class SurveyTest(TestCase):
         self.assertEqual('test@example.org', u.email)
 
     def test_email_is_blank_if_not_provided(self):
-        self.post_survey({'1':'tv'})
+        self.post_survey({'1':'15browsed'})
 
         stored = self.get_stored_item('email')
         self.assertIsNone(stored)
@@ -143,19 +143,18 @@ class ExportTest(ExportBase):
         response = self.client.get(reverse('survey:export'))
 
         all_fields = [
-            'id', 'recorded', 'permission', 'tv', 'newspaper', 'internet', 'family', 'other', "1 don't know",
-            'a1other', '2', '3', '4', '5', '6', '7government', '7council', '7', '8', '9petition', '9march', '9refused', '9bought',
-            '9', '10community', '10country', '10', '11community', '11country', '11', '12community', '12country', '12', '13',
-            '14browsed', '14registered', '14joined', '14attended', '14promote', '14other', "14 don't know", '14how',
+            'id', 'recorded', 'permission', '1', '2', '3', '4', '5', '6', '7', '8government', '8council', '9', '10petition', '10march', '10refused', '10bought',
+            '9', '10', '11community', '11country', '11', '12community', '12country', '12', '13community', '13country', '13', '14',
             '15browsed', '15registered', '15joined', '15attended', '15promote', '15other', "15 don't know", '15how',
+            '16browsed', '16registered', '16joined', '16attended', '16promote', '16other', "16 don't know", '16how',
             'party_information', 'party_joined', 'party_attended', 'party_voluntary', 'union_information', 'union_joined',
             'union_attended', 'union_voluntary', 'local_information', 'local_joined', 'local_attended', 'local_voluntary',
             'ngo_information', 'ngo_joined', 'ngo_attended', 'ngo_voluntary', 'religious_information', 'religious_joined',
             'religious_attended', 'religious_voluntary', 'hobby_information', 'hobby_joined', 'hobby_attended', 'hobby_voluntary',
             'health_information', 'health_joined', 'health_attended', 'health_voluntary', 'other_information', 'other_joined',
-            'other_attended', 'other_voluntary', '16none', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26',
-            'blog', 'purchase', 'logged on', 'commented', 'multimedia', 'emailed', 'blog comment', '27 none',
-            '28', 'email', 'site', 'source',
+            'other_attended', 'other_voluntary', '17none', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27',
+            'blog', 'purchase', 'logged on', 'commented', 'multimedia', 'emailed', 'blog comment', '28 none',
+            '29', 'email', 'site', 'source',
         ]
 
         reader = csv.reader(cStringIO.StringIO(response.content))
@@ -174,7 +173,7 @@ class ExportMultiChoiceFieldsTest(ExportBase):
         reader.next()
 
         answer = [
-                '108', '2014-02-10 15:33:03.874897','Yes',"1","","1","","","","","","7","-1","3","","c","","","b","","","","","","c","b","","","","1","a","b","","c","","","","1","","","","","","1","1","","","","","","1","","","","","","1","","","1","1","","","","","1","","","","","","","1","","","","","1","","1","","","","d","b","","33","b","e","","c","Scottish","","","","1","","","","","","","0","twfy","w"
+                '108', '2014-02-10 15:33:03.874897','Yes',"a","","","7","-1","3","","c","","b","","","","","b","","c","b","","","","1","a","b","","c","","","","","","","","","","1","1","","","","","","1","","","","","","1","","","1","1","","","","","1","","","","","","","1","","","","","1","","1","","","","d","b","","33","b","e","","c","Scottish","","","","1","","","","","","","0","twfy","w"
         ]
 
         row = reader.next()

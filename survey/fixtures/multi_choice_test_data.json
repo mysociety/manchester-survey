@@ -16,7 +16,7 @@
     "batch": "1", 
     "value": "b", 
     "user": 108, 
-    "key": "10country", 
+    "key": "11country", 
     "whenstored": "2014-02-10T15:33:03.795"
   }
 },
@@ -27,7 +27,7 @@
     "batch": "1", 
     "value": "Scottish", 
     "user": 108, 
-    "key": "25", 
+    "key": "26", 
     "whenstored": "2014-02-10T15:33:03.815"
   }
 },
@@ -38,7 +38,7 @@
     "batch": "1", 
     "value": "c", 
     "user": 108, 
-    "key": "24", 
+    "key": "25", 
     "whenstored": "2014-02-10T15:33:03.838"
   }
 },
@@ -47,7 +47,7 @@
   "model": "survey.item", 
   "fields": {
     "batch": "1", 
-    "value": "tv,internet", 
+    "value": "a", 
     "user": 108, 
     "key": "1", 
     "whenstored": "2014-02-10T15:33:03.839"
@@ -60,7 +60,7 @@
     "batch": "1", 
     "value": "logged on", 
     "user": 108, 
-    "key": "27", 
+    "key": "28", 
     "whenstored": "2014-02-10T15:33:03.841"
   }
 },
@@ -71,7 +71,7 @@
     "batch": "1", 
     "value": "33", 
     "user": 108, 
-    "key": "20", 
+    "key": "21", 
     "whenstored": "2014-02-10T15:33:03.843"
   }
 },
@@ -82,7 +82,7 @@
     "batch": "1", 
     "value": "b", 
     "user": 108, 
-    "key": "21", 
+    "key": "22", 
     "whenstored": "2014-02-10T15:33:03.844"
   }
 },
@@ -93,7 +93,7 @@
     "batch": "1", 
     "value": "e", 
     "user": 108, 
-    "key": "22", 
+    "key": "23", 
     "whenstored": "2014-02-10T15:33:03.846"
   }
 },
@@ -104,7 +104,7 @@
     "batch": "1", 
     "value": "b", 
     "user": 108, 
-    "key": "12country", 
+    "key": "13country", 
     "whenstored": "2014-02-10T15:33:03.848"
   }
 },
@@ -115,7 +115,7 @@
     "batch": "1", 
     "value": "7", 
     "user": 108, 
-    "key": "3", 
+    "key": "4", 
     "whenstored": "2014-02-10T15:33:03.849"
   }
 },
@@ -126,7 +126,7 @@
     "batch": "1", 
     "value": "3", 
     "user": 108, 
-    "key": "5", 
+    "key": "6", 
     "whenstored": "2014-02-10T15:33:03.850"
   }
 },
@@ -137,7 +137,7 @@
     "batch": "1", 
     "value": "-1", 
     "user": 108, 
-    "key": "4", 
+    "key": "5", 
     "whenstored": "2014-02-10T15:33:03.852"
   }
 },
@@ -148,7 +148,7 @@
     "batch": "1", 
     "value": "a", 
     "user": 108, 
-    "key": "12community", 
+    "key": "13community", 
     "whenstored": "2014-02-10T15:33:03.854"
   }
 },
@@ -159,7 +159,7 @@
     "batch": "1", 
     "value": "b", 
     "user": 108, 
-    "key": "8", 
+    "key": "9", 
     "whenstored": "2014-02-10T15:33:03.855"
   }
 },
@@ -181,7 +181,7 @@
     "batch": "1", 
     "value": "c", 
     "user": 108, 
-    "key": "7government", 
+    "key": "8government", 
     "whenstored": "2014-02-10T15:33:03.858"
   }
 },
@@ -192,7 +192,7 @@
     "batch": "1", 
     "value": "c", 
     "user": 108, 
-    "key": "10community", 
+    "key": "11community", 
     "whenstored": "2014-02-10T15:33:03.860"
   }
 },
@@ -203,7 +203,7 @@
     "batch": "1", 
     "value": "1", 
     "user": 108, 
-    "key": "11", 
+    "key": "12", 
     "whenstored": "2014-02-10T15:33:03.862"
   }
 },
@@ -214,7 +214,7 @@
     "batch": "1", 
     "value": "c", 
     "user": 108, 
-    "key": "13", 
+    "key": "14", 
     "whenstored": "2014-02-10T15:33:03.863"
   }
 },
@@ -223,9 +223,9 @@
   "model": "survey.item", 
   "fields": {
     "batch": "1", 
-    "value": "15registered,15joined", 
+    "value": "16registered,16joined", 
     "user": 108, 
-    "key": "15", 
+    "key": "16", 
     "whenstored": "2014-02-10T15:33:03.865"
   }
 },
@@ -236,7 +236,7 @@
     "batch": "1", 
     "value": "14attended", 
     "user": 108, 
-    "key": "14", 
+    "key": "15", 
     "whenstored": "2014-02-10T15:33:03.866"
   }
 },
@@ -247,7 +247,7 @@
     "batch": "1", 
     "value": "d", 
     "user": 108, 
-    "key": "17", 
+    "key": "18", 
     "whenstored": "2014-02-10T15:33:03.868"
   }
 },
@@ -258,7 +258,7 @@
     "batch": "1", 
     "value": "party_information,union_attended,local_joined,local_attended,ngo_voluntary,hobby_attended,health_voluntary,other_joined", 
     "user": 108, 
-    "key": "16", 
+    "key": "17", 
     "whenstored": "2014-02-10T15:33:03.869"
   }
 },
@@ -269,7 +269,7 @@
     "batch": "1", 
     "value": "b", 
     "user": 108, 
-    "key": "18", 
+    "key": "19", 
     "whenstored": "2014-02-10T15:33:03.870"
   }
 },
