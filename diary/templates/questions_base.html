@@ -9,13 +9,17 @@
 {% block questions %}{% endblock %}
 </form>
 <script>
+    has_submitted = false;
     $("#diary-form").steps({
         titleTemplate: '#title#',
         onStepChanging: function(ev, current, next) {
           return $('#diary-form').valid();
         },
         onFinishing: function(ev, current) {
-            $('#diary-form').submit();
+            if (!has_submitted) {
+                has_submitted = true;
+                $('#diary-form').submit();
+            }
         },
         labels: {
             current: '&gt;'
