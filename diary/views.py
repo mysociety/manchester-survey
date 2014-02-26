@@ -57,10 +57,10 @@ def register(request, id, token):
 
 def questions_for_week(request, id, token):
     week_num = week_override = 0
+    sd = SurveyDate(date=SurveyDate.now())
     if settings.DEBUG and request.GET and request.GET['week']:
         week_num = week_override = request.GET['week']
     else:
-        sd = SurveyDate(date=SurveyDate.now())
         if not sd.is_diary_day():
             return render_to_response('diary_closed.html', {},  context_instance=RequestContext(request))
 
@@ -71,7 +71,7 @@ def questions_for_week(request, id, token):
         return render_to_response('invalid_week.html', {}, context_instance=RequestContext(request))
 
     if not week_override:
-        week_num = sd.get_week_from_startdate(timezone.now(), u.startdate)
+        week_num = sd.get_week_from_startdate(SurveyDate.now(), u.startdate)
 
     try:
         week = Week.objects.get(week=week_num)

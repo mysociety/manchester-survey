@@ -1,4 +1,5 @@
 import random
+import re
 from mock import patch, Mock
 from datetime import timedelta, date
 from django.core import mail
@@ -227,6 +228,34 @@ class DiaryPageTest(TestCase):
                 response = self.client.get(reverse('diary:questions', args=(rand, hash)))
                 self.assertContains(response, 'Week %d' % ( i ))
 
+    def test_questions_page_says_if_already_filled_in(self):
+        u = User(email='test@example.org', startdate=timezone.now())
+        u.save()
+        (rand, hash) = make_token_args(u)
+
+        w = Week.objects.filter(week=1)
+
+        e = Entries(question='recorded', answer=timezone.now(), user_id=u.id, week_id=w[0].id)
+        e.save()
+
+        with patch( 'diary.views.SurveyDate') as mock:
+            patched_date = mock.return_value
+            patched_date.is_diary_day.return_value = True
+            patched_date.get_week_from_startdate.return_value = 2
+            response = self.client.get(reverse('diary:questions', args=(rand, hash)))
+            self.assertContains(response, 'Week 2')
+
+            w = Week.objects.filter(week=2)
+            e = Entries(question='recorded', answer=timezone.now(), user_id=u.id, week_id=w[0].id)
+            e.save()
+
+            response = self.client.get(reverse('diary:questions', args=(rand, hash)))
+            self.assertContains(response, 'already filled in this week')
+
+
+
+
+
     def test_startdate_over_12_weeks_ago_is_an_error(self):
         u = User(email='test@example.org', startdate=timezone.now())
         u.save()
@@ -341,6 +370,23 @@ class FirstReminderTest(TestCase):
         self.run_command('2014-01-23')
         self.assertEqual(len(mail.outbox), 1)
         self.assertEqual(mail.outbox[0].to, ['test@example.org'])
+
+    def test_reminder_link_works(self):
+        startdate = '2014-01-21'
+        u = User(email='test@example.org', startdate=startdate)
+        u.save()
+
+        self.run_command('2014-01-23')
+        self.assertRegexpMatches(mail.outbox[0].body, '(?P<url>D/([0-9A-Za-z]+)-(.+)/)')
+        matches = re.search('(?P<url>/D/[0-9A-Za-z]+-.+/)', mail.outbox[0].body)
+
+        print matches.group('url')
+        with patch.object( SurveyDate, 'now') as mock:
+            mock.return_value = dateparse.parse_datetime('2014-01-30 00:00:00+00:00')
+
+            response = self.client.get(matches.group('url'))
+            self.assertEqual(response.status_code, 200);
+            self.assertContains(response, 'Week 2')
 
     def test_command_does_not_run_if_not_thursday(self):
         with self.assertRaisesRegexp(CommandError, 'Thursday'):
