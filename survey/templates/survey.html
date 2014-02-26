@@ -1091,6 +1091,7 @@
 </form>
 
 <script>
+    has_submitted = false;
     jQuery.validator.addMethod("pattern", function(value, element, param) {
         if (this.optional(element)) {
             return true;
@@ -1106,7 +1107,10 @@
           return $('#surveyform').valid();
         },
         onFinishing: function(ev, current) {
-            $('#surveyform').submit();
+            if (!has_submitted) {
+                has_submitted = true;
+                $('#surveyform').submit();
+            }
         },
         labels: {
             current: '&gt;'
