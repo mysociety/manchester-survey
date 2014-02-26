@@ -393,6 +393,7 @@ ul[role="menu"] {
         margin-top: 1em;
     }
 
+    .radio-extra,
     .radio {
         margin-bottom: 0.5em;
         padding-left: 1em;
@@ -400,6 +401,11 @@ ul[role="menu"] {
         input {
             display: block;
             float: left;
+        }
+        input[type="text"] {
+            display: inline;
+            float: none;
+            margin-bottom: 0px;
         }
         label {
             display: block;
@@ -414,6 +420,13 @@ ul[role="menu"] {
             .error {
                 margin-bottom: 0.5em;
             }
+        }
+    }
+
+    .radio-extra {
+        label {
+            display: inline-block;
+            margin-left: 1em;
         }
     }
 
