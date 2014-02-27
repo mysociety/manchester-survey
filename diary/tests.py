@@ -60,6 +60,10 @@ class SurveyDateTest(TestCase):
         startdate = dateparse.parse_date('2014-01-09')
         self.assertEquals(sd.get_week_from_startdate(today, startdate), 2)
 
+        today = dateparse.parse_datetime('2014-02-27 00:00:00')
+        startdate = dateparse.parse_datetime('2014-02-20 23:57:56')
+        self.assertEquals(sd.get_week_from_startdate(today, startdate), 2)
+
 
 class RegistraionEmailTest(TestCase):
     fixtures = ['initial_data.json']

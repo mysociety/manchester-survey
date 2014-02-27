@@ -1,4 +1,4 @@
-from datetime import date, timedelta
+from datetime import date, timedelta, datetime
 import csv, codecs, cStringIO
 from django.utils import dateparse, timezone, encoding
 
@@ -48,7 +48,10 @@ class SurveyDate:
         return False
 
     def get_week_from_startdate(self, current, startdate):
-        diff = current - startdate
+        normalised_start = datetime(startdate.year, startdate.month, startdate.day)
+        normalised_current = datetime(current.year, current.month, current.day)
+        diff = normalised_current - normalised_start
+
         # convert to weeks
         return ( diff.days / 7 ) + 1
 
