@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import permission_required
 from django.shortcuts import get_object_or_404,render_to_response
 from django.template import RequestContext
 from django.conf import settings
+from django.db import IntegrityError, transaction
 
 from survey.models import Item, User, Sites
 from survey.forms import SurveyForm
@@ -45,13 +46,24 @@ def survey(request, site, source):
 def record(request):
     if ( has_voted(request) ):
         return render_to_response('already_completed.html', {}, context_instance=RequestContext(request))
-    else:
-        u = User()
-        u.save()
-
 
     f = SurveyForm(request.POST)
     if f.is_valid():
+        u = None
+        if f.cleaned_data.has_key('email'):
+            u = User()
+            u.email = f.cleaned_data['email']
+            try:
+                """ depressingly this is here to stop the tests expoloding """
+                with transaction.atomic():
+                    u.save()
+            except IntegrityError:
+                u.email = None
+                u.save()
+        else:
+            u = User()
+            u.save()
+
         for v in f.cleaned_data:
             if v == 'email':
                 continue
@@ -60,12 +72,9 @@ def record(request):
             r = Item(user_id=u.id, key=v, value=val, batch=1)
             r.save()
 
-        if f.cleaned_data.has_key('email'):
-            u.email = f.cleaned_data['email']
-            u.save()
-
         r = Item(user_id=u.id, key='recorded', value=SurveyDate.now(), batch=1)
         r.save();
+
     else:
         return render_to_response('survey.html', { 'form': f }, context_instance=RequestContext(request))
 

@@ -1,6 +1,8 @@
 import string
 from django import forms
 
+from survey.models import User
+
 class SurveyForm(forms.Form):
     email = forms.CharField(required=False)
     permission = forms.CharField(required=True)
@@ -40,6 +42,12 @@ class SurveyForm(forms.Form):
         perm_msg = 'Please agree to the terms and conditions before taking part'
         if 'permission' not in cleaned_data or cleaned_data['permission'] == 'No':
             self._errors['permission'] = self.error_class([perm_msg])
+
+
+        if cleaned_data['email']:
+            u = User.objects.filter(email=cleaned_data['email'])
+            if u.count():
+                self._errors['email'] = self.error_class(['Someone with that email address has already filled in the survey'])
 
         for name, field in self.fields.items():
             if name in cleaned_data:

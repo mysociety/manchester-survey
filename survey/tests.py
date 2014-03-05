@@ -1,5 +1,7 @@
 import csv, cStringIO
 
+from Cookie import SimpleCookie
+
 from django.contrib.auth.models import Permission
 from django.contrib.auth.models import User as DjangoUser
 from django.core.urlresolvers import reverse
@@ -12,7 +14,8 @@ class SurveyTest(TestCase):
         self.client.get(reverse('survey:survey', args=('twfy', 'w')))
         if 'permission' not in values:
             values['permission'] = 'Yes'
-        self.client.post(reverse('survey:record'), values)
+        response = self.client.post(reverse('survey:record'), values)
+        return response
 
     def get_stored_item(self, key):
         u = User.objects.latest('id')
@@ -101,6 +104,20 @@ class SurveyTest(TestCase):
 
         u = User.objects.latest('id')
         self.assertEqual('test@example.org', u.email)
+
+    def test_duplicate_email(self):
+        self.post_survey({'1':'tv', 'email': 'test@example.org'})
+
+        stored = self.get_stored_item('email')
+        self.assertIsNone(stored)
+
+        u = User.objects.latest('id')
+        self.assertEqual('test@example.org', u.email)
+
+        self.client.cookies = SimpleCookie()
+        response = self.post_survey({'1':'newspaper', 'email': 'test@example.org'})
+        self.assertContains(response, 'that email address has already')
+
 
     def test_email_is_blank_if_not_provided(self):
         self.post_survey({'1':'15browsed'})
