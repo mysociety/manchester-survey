@@ -83,7 +83,12 @@ class ReminderManager(models.Manager):
 
             users = User.objects.filter(withdrawn=False).filter(startdate__lte=end_date).filter(startdate__gte=start_date).exclude(entries__week_id=week_id)
 
-            self.send_email('email/second_reminder.txt', 'Don\'t forget to complete your mySociety Diary', settings.FROM_EMAIL, users)
+            """ special case week 1 as we want to send different mails to people who registered this
+                week as they won't have seen the first reminder before so the second one is confusing """
+            if week_num == 0:
+                self.send_email('email/first_reminder.txt', 'Don\'t forget to complete your mySociety Diary', settings.FROM_EMAIL, users)
+            else:
+                self.send_email('email/second_reminder.txt', 'Don\'t forget to complete your mySociety Diary', settings.FROM_EMAIL, users)
 
             #print 'users for week %d: %d' % ( week_num + 1, users.count() )
             #print 'start: %s, end: %s' % ( start_date, end_date )

@@ -400,6 +400,23 @@ class SecondReminderTest(TestCase):
     fixtures = ['initial_data.json']
 
     def test_sends_reminder(self):
+        startdate = '2014-01-16'
+        u = User(email='test@example.org', startdate=startdate)
+        u.save()
+
+        with patch('diary.models.SurveyDate') as mock:
+            patched_date = mock.return_value
+            patched_date.now.return_value = dateparse.parse_date('2014-01-25')
+            patched_date.get_start_date.return_value = dateparse.parse_date('2014-01-23')
+
+            rm = ReminderManager()
+            rm.send_second_reminder_email()
+
+            self.assertEqual(len(mail.outbox), 1)
+            self.assertRegexpMatches(mail.outbox[0].body, 'On Thursday, we sent you a link to your new');
+            self.assertRegexpMatches(mail.outbox[0].body, 'D/([0-9A-Za-z]+)-(.+)/')
+
+    def test_sends_first_reminder_if_first_week(self):
         startdate = '2014-01-23'
         u = User(email='test@example.org', startdate=startdate)
         u.save()
@@ -413,7 +430,7 @@ class SecondReminderTest(TestCase):
             rm.send_second_reminder_email()
 
             self.assertEqual(len(mail.outbox), 1)
-            self.assertRegexpMatches(mail.outbox[0].body, 'D/([0-9A-Za-z]+)-(.+)/')
+            self.assertRegexpMatches(mail.outbox[0].body, 'You recently registered to complete an online diary');
 
     def test_no_reminder_sent_before_startdate(self):
         startdate = '2014-01-23'
