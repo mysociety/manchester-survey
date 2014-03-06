@@ -44,7 +44,7 @@ class SurveyForm(forms.Form):
             self._errors['permission'] = self.error_class([perm_msg])
 
 
-        if cleaned_data['email']:
+        if cleaned_data.has_key('email') and cleaned_data['email']:
             u = User.objects.filter(email=cleaned_data['email'])
             if u.count():
                 self._errors['email'] = self.error_class(['Someone with that email address has already filled in the survey'])

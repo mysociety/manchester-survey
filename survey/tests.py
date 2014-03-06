@@ -118,6 +118,20 @@ class SurveyTest(TestCase):
         response = self.post_survey({'1':'newspaper', 'email': 'test@example.org'})
         self.assertContains(response, 'that email address has already')
 
+    def test_blank_email_submitted_ignores_email(self):
+        response = self.post_survey({'1':'tv', 'email': ' '})
+
+        self.assertContains(response, 'Thanks for completing the survey')
+        stored = self.get_stored_item('email')
+        self.assertIsNone(stored)
+
+        u = User.objects.latest('id')
+        self.assertEqual(None, u.email)
+
+    def test_invalid_email_display_error(self):
+        response = self.post_survey({'1':'tv', 'email': 'invalid'})
+
+        self.assertContains(response, 'Enter a valid email address.')
 
     def test_email_is_blank_if_not_provided(self):
         self.post_survey({'1':'15browsed'})
