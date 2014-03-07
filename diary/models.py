@@ -7,6 +7,7 @@ from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib import sites
 from django.core.management.base import CommandError
+from django.core.urlresolvers import reverse
 
 from survey.models import User
 from manchester_survey.utils import SurveyDate, base32_to_int, int_to_base32
@@ -92,6 +93,18 @@ class ReminderManager(models.Manager):
 
             #print 'users for week %d: %d' % ( week_num + 1, users.count() )
             #print 'start: %s, end: %s' % ( start_date, end_date )
+
+    def generate_link(self, user_id):
+        user = User.objects.get(pk=int(user_id))
+        if user == None:
+            print 'No user with that id'
+        else:
+            id = int_to_base32(user.id)
+            token = user.generate_token(random.randint(0,32767))
+            url = reverse('diary:questions', args=(id, token,))
+            host = sites.models.Site.objects.get_current()
+            print 'http://%s%s' % ( host, url )
+
 
 class ExportManager(models.Manager):
     def export_diary_text(self):
