@@ -94,6 +94,20 @@ class ReminderManager(models.Manager):
             #print 'users for week %d: %d' % ( week_num + 1, users.count() )
             #print 'start: %s, end: %s' % ( start_date, end_date )
 
+    def send_email_to_all_diary_participants(self, subject, template):
+        sd = SurveyDate()
+        today = sd.now()
+
+        today = sd.get_start_date(today)
+        twelve_weeks_ago = today - timedelta(weeks=12)
+
+        last_sunday = today - timedelta(days=3)
+
+        users = User.objects.filter(startdate__gte=twelve_weeks_ago).filter(startdate__lte=last_sunday).filter(withdrawn=False)
+
+        self.send_email(template, subject, settings.FROM_EMAIL, users)
+
+
     def generate_link(self, user_id):
         user = User.objects.get(pk=int(user_id))
         if user == None:
