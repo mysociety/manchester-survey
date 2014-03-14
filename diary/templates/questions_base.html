@@ -7,6 +7,21 @@
 {% csrf_token %}
 <input type="hidden" name="week" value="{{ week.week }}">
 {% block questions %}{% endblock %}
+
+    <h1>6</h1>
+    <div class="screen">
+        <p>
+            That's all the parts for this week's diary. If you want to review them you can use the Previous and Next buttons.
+        </p>
+
+        <p>
+            If you're happy with your diary then click the Finish button to save it. Once you do this you won't be able to edit it.
+        </p>
+
+        <p>
+            Thank you for your participation!
+        </p>
+    </div>
 </form>
 <script>
     has_submitted = false;
