@@ -27,6 +27,8 @@ def management(request):
 def contact(request):
     return render_to_response('contact.html', {}, context_instance=RequestContext(request))
 
+def closed(request):
+    return render_to_response('closed.html', {}, context_instance=RequestContext(request))
 
 def survey(request, site, source):
     if ( has_voted(request) ):
