@@ -23,6 +23,9 @@ def get_user_from_session(request):
 def add_user_to_session(request, user):
     request.session['u'] = user.id
 
+def registration_closed(request, id, token):
+    return render_to_response('registration_closed.html', {}, context_instance=RequestContext(request))
+
 def register(request, id, token):
     if request.method == 'POST':
         u = get_user_from_session(request)
