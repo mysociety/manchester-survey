@@ -111,7 +111,9 @@ class ReminderManager(models.Manager):
         sd = SurveyDate()
         today = sd.now()
         twelve_weeks_ago = today - timedelta(weeks=12)
-        users = User.objects.filter(startdate=twelve_weeks_ago).filter(withdrawn=False)
+        startday = twelve_weeks_ago - timedelta(days=1)
+        endday = twelve_weeks_ago + timedelta(days=1)
+        users = User.objects.filter(startdate__gte=startday).filter(startdate__lte=endday).filter(withdrawn=False)
         self.send_email(template, subject, settings.FROM_EMAIL, users)
 
 
