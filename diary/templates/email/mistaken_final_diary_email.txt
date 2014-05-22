@@ -1,9 +1,9 @@
 Hello,
 
-This morning we mistakenly sent out an email inviting you to complete this week's diary
-when in fact you have completed all the diaries. This was due to an error which
-has now been resolved. You'll not receive any more emails asking you to complete
-a weekly diary.
+This morning we mistakenly sent out an email inviting you to complete this
+week's diary when in fact you have completed all the diaries. This was due
+to an error which has now been resolved. You'll not receive any more emails
+asking you to complete a weekly diary.
 
 Apologies for any confusion this may have caused.
 
