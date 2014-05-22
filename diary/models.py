@@ -55,7 +55,7 @@ class ReminderManager(models.Manager):
             raise CommandError("This should only be run on a Thursday")
 
         today = sd.get_start_date(today)
-        twelve_weeks_ago = today - timedelta(weeks=12)
+        twelve_weeks_ago = today - timedelta(weeks=11)
 
         last_sunday = today - timedelta(days=3)
 
