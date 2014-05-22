@@ -107,6 +107,13 @@ class ReminderManager(models.Manager):
 
         self.send_email(template, subject, settings.FROM_EMAIL, users)
 
+    def send_email_to_recently_completed_diary_participants(self, subject, template):
+        sd = SurveyDate()
+        today = sd.now()
+        twelve_weeks_ago = today - timedelta(weeks=12)
+        users = User.objects.filter(startdate=twelve_weeks_ago).filter(withdrawn=False)
+        self.send_email(template, subject, settings.FROM_EMAIL, users)
+
 
     def generate_link(self, user_id):
         user = User.objects.get(pk=int(user_id))
