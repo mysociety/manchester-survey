@@ -1,6 +1,9 @@
 import random, hmac, hashlib
 from django.conf import settings
 from django.db import models
+from django.template import loader, Context, Template
+from django.contrib import sites
+from django.core.mail import send_mail
 
 from manchester_survey.utils import base32_to_int, int_to_base32
 
@@ -12,6 +15,28 @@ class UserManager(models.Manager):
         u = User.objects.get(id=id)
         if u.check_token(token):
             return u
+
+class InvitationManager(models.Manager):
+    def send_email(self, template, subject, from_address, users):
+        host = sites.models.Site.objects.get_current()
+        template = loader.get_template(template)
+
+        for user in users:
+            if user.email == '':
+                continue
+            context = {
+                    'id': int_to_base32(user.id),
+                    'token': user.generate_token(random.randint(0,32767)),
+                    'host': host,
+                    'contact_email': settings.CONTACT_EMAIL
+                    }
+            content = template.render(Context(context))
+            send_mail(subject, content, from_address, [user.email])
+
+    def send_survey2_invitation_email(self):
+        users = User.objects.filter(withdrawn=False).exclude(survey2_email_sent=True).exclude(email__isnull=True)
+        self.send_email('email/survey2_invitation.txt', 'mySociety Survey: follow up survey', settings.FROM_EMAIL, users)
+        users.update(survey2_email_sent=True)
 
 class Sites():
     sites = { 'twfy': 'TheyWorkForYou', 'wtt': 'WriteToThem', 'fms': 'FixMyStreet', 'wtdk': 'WhatDoTheyKnow' }
@@ -25,6 +50,7 @@ class User(models.Model):
     startdate = models.DateTimeField(null=True)
     withdrawn = models.BooleanField(default=False)
     reg_email_sent = models.BooleanField(default=False)
+    survey2_email_sent = models.BooleanField(default=False)
 
     def __unicode__(self):
         return "%s - %s ( %s )" % ( self.code, self.email, self.name )

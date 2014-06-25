@@ -1,0 +1,19 @@
+Dear Survey Participant
+
+You recently very kindly completed an online survey for us about your
+use of a mySociety website and also indicated that you would be
+willing to participate in a follow-up stage of the research. We are
+contacting you now to see whether you would be willing to take part
+in the second phase by completing another short survey about your use
+of the site(s) and a range of online and offline activities. This
+follow-up is being done so that we can gain a fuller picture of
+whether and how you may have benefited from using the mySociety
+websites. This second survey shouldn’t take more than 10 minutes to
+complete. Your individual responses will not be reported as part of
+the overall findings and never used in a way that could identify you.  
+
+http://{{ host }}{% url 'survey:survey2' id token %}
+
+Thanks
+
+Contact details: http://{{ host }}{% url 'survey:contact' %}
