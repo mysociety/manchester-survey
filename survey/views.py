@@ -7,16 +7,27 @@ from django.template import RequestContext
 from django.conf import settings
 from django.db import IntegrityError, transaction
 
-from survey.models import Item, User, Sites
-from survey.forms import SurveyForm
+from survey.models import Item, User, UserManager, Sites
+from survey.forms import SurveyForm, Survey2Form
 from manchester_survey.utils import UnicodeWriter, SurveyDate
 
-def has_voted(request):
-    if ( request.COOKIES.has_key('surveydone') ):
+def has_voted(request, survey_num=1):
+    cookie_name = 'surveydone'
+    if ( survey_num == 2 ):
+        cookie_name = 'surveydone2'
+
+    if ( request.COOKIES.has_key(cookie_name) ):
         if ( settings.DEBUG and request.GET and request.GET['ignorecookie'] ):
             return False
         return True
     return False
+
+def get_user_from_session(request):
+    u = User.objects.get(id=request.session['u'])
+    return u
+
+def add_user_to_session(request, user):
+    request.session['u'] = user.id
 
 def about(request):
     return render_to_response('about.html', {}, context_instance=RequestContext(request))
@@ -46,7 +57,7 @@ def survey(request, site, source):
     return render_to_response('survey.html', vars, context_instance=RequestContext(request))
 
 def record(request):
-    if ( has_voted(request) ):
+    if ( has_voted(request, 1) ):
         return render_to_response('already_completed.html', {}, context_instance=RequestContext(request))
 
     f = SurveyForm(request.POST)
@@ -80,7 +91,6 @@ def record(request):
     else:
         return render_to_response('survey.html', { 'form': f }, context_instance=RequestContext(request))
 
-
     """
     We don't use django's session handling as we want to save the cookie for a long
     time and we also use the built in session things for actual session data
@@ -89,6 +99,49 @@ def record(request):
 
     response = render_to_response('thanks.html', {}, context_instance=RequestContext(request))
     response.set_cookie('surveydone', 1, max_age=one_year)
+
+    return response
+
+def survey2(request, id, token):
+    if ( has_voted(request, 2) ):
+        return render_to_response('already_completed.html', {}, context_instance=RequestContext(request))
+
+    try:
+        u = UserManager.get_user_from_token(id, token)
+        add_user_to_session(request, u)
+    except:
+        return render_to_response('invalid_link.html', {}, context_instance=RequestContext(request))
+
+    return render_to_response('survey2.html', {}, context_instance=RequestContext(request))
+
+def record2(request):
+    if ( has_voted(request, 2) ):
+        return render_to_response('already_completed.html', {}, context_instance=RequestContext(request))
+
+    u=get_user_from_session(request)
+
+    f = Survey2Form(request.POST)
+    if f.is_valid():
+        for v in f.cleaned_data:
+            val = f.cleaned_data[v]
+
+            r = Item(user_id=u.id, key=v, value=val, batch=2)
+            r.save()
+
+        r = Item(user_id=u.id, key='recorded', value=SurveyDate.now(), batch=2)
+        r.save();
+
+    else:
+        return render_to_response('survey.html', { 'form': f }, context_instance=RequestContext(request))
+
+    """
+    We don't use django's session handling as we want to save the cookie for a long
+    time and we also use the built in session things for actual session data
+    """
+    one_year = 60 * 60 * 24 * 365
+
+    response = render_to_response('thanks.html', {}, context_instance=RequestContext(request))
+    response.set_cookie('surveydone2', 1, max_age=one_year)
 
     return response
 

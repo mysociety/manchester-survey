@@ -1,3 +1,4 @@
+import random
 import csv, cStringIO
 
 from Cookie import SimpleCookie
@@ -8,6 +9,12 @@ from django.core.urlresolvers import reverse
 from django.test import TestCase
 
 from survey.models import User, Item
+from manchester_survey.utils import SurveyDate, int_to_base32
+
+def make_token_args(u):
+    id = int_to_base32(u.id)
+    token = u.generate_token(random.randint(0,32767))
+    return (id, token)
 
 class SurveyTest(TestCase):
     def post_survey(self, values):
@@ -141,6 +148,56 @@ class SurveyTest(TestCase):
 
         u = User.objects.latest('id')
         self.assertEqual(u.email, None)
+
+class Survey2Test(TestCase):
+    def post_survey(self, values):
+        u = User(email='test@example.org')
+        u.save()
+        (rand, hash) = make_token_args(u)
+
+        self.client.get(reverse('survey:survey2', args=(rand, hash)))
+        response = self.client.post(reverse('survey:record2'), values)
+        return response
+
+    def get_stored_item(self, key):
+        u = User.objects.latest('id')
+
+        responses = Item.objects.filter(user_id=u.id)
+
+        try:
+            response = Item.objects.get(user_id=u.id, key=key)
+        except Item.DoesNotExist:
+            return None
+        return response
+
+    def test_need_valid_link(self):
+        response = self.client.get(reverse('survey:survey2', args=('foo', 'bar')))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'try clicking the link in the email again')
+
+
+        u = User(email='test@example.org')
+        u.save()
+        (rand, hash) = make_token_args(u)
+        response = self.client.get(reverse('survey:survey2', args=(rand, hash)))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'University of Manchester')
+
+    def test_cannot_complete_survey_twice(self):
+        u = User(email='test@example.org')
+        u.save()
+        (rand, hash) = make_token_args(u)
+
+        response = self.client.get(reverse('survey:survey2', args=(rand, hash)))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "University of Manchester")
+
+        self.client.post(reverse('survey:record2'), {} )
+        self.assertIsNotNone(self.client.cookies['surveydone2'])
+
+        response = self.client.get(reverse('survey:survey2', args=(rand, hash)))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "already completed")
 
 class ExportBase(TestCase):
     fixtures = ['user_accounts_test_data.json']
