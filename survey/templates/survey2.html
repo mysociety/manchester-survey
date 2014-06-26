@@ -102,55 +102,55 @@
         </div>
         <div class="answers">
             <div class="radio">
-                <input type="checkbox" id="id_2_a" name="2" value="a" {% if form.2 and "a" in form.2.value %}checked{% endif %}>
+                <input type="checkbox" id="id_2_a" name="2" value="2browsing" {% if form.2 and "2browsing" in form.2.value %}checked{% endif %}>
                 <label for="id_2_a">Just generally browsing out of interest or curiosity</label>
             </div>
             <div class="radio radio-optional fixmystreet">
-                <input type="checkbox" id="id_2_b" name="2" value="b" {% if form.2 and "b" in form.2.value %}checked{% endif %}>
+                <input type="checkbox" id="id_2_b" name="2" value="2street" {% if form.2 and "2street" in form.2.value %}checked{% endif %}>
                 <label for="id_2_b">Reported a problem in or near my street (e.g. potholes, fly tipping, street lighting, etc.)</label>
             </div>
             <div class="radio radio-optional fixmystransport">
-                <input type="checkbox" id="id_2_c" name="2" value="c" {% if form.2 and "c" in form.2.value %}checked{% endif %}>
+                <input type="checkbox" id="id_2_c" name="2" value="2transport" {% if form.2 and "2transport" in form.2.value %}checked{% endif %}>
                 <label for="id_2_c">Reported a problem with my transport (e.g. bus journey, train station, etc.)</label>
             </div>
             <div class="radio radio-optional whatdotheyknow">
-                <input type="checkbox" id="id_2_d" name="2" value="d" {% if form.2 and "d" in form.2.value %}checked{% endif %}>
+                <input type="checkbox" id="id_2_d" name="2" value="2foi" {% if form.2 and "2foi" in form.2.value %}checked{% endif %}>
                 <label for="id_2_d">Made a freedom of information request to a public authority</label>
             </div>
             <div class="radio radio-optional writetothem">
-                <input type="checkbox" id="id_2_e" name="2" value="e" {% if form.2 and "e" in form.2.value %}checked{% endif %}>
+                <input type="checkbox" id="id_2_e" name="2" value="2message" {% if form.2 and "2message" in form.2.value %}checked{% endif %}>
                 <label for="id_2_e">Sent a message to a public official (local councillor, MP, MEP or Lord)</label>
             </div>
             <div class="radio radio-optional fixmystreet fixmystransport theyworkforyou writetothem">
-                <input type="checkbox" id="id_2_f" name="2" value="f" {% if form.2 and "f" in form.2.value %}checked{% endif %}>
+                <input type="checkbox" id="id_2_f" name="2" value="2alerts" {% if form.2 and "2alerts" in form.2.value %}checked{% endif %}>
                 <label for="id_2_f">Signed up to receive emails or alerts</label>
             </div>
             <div class="radio radio-optional theyworkforyou">
-                <input type="checkbox" id="id_2_g" name="2" value="g" {% if form.2 and "g" in form.2.value %}checked{% endif %}>
+                <input type="checkbox" id="id_2_g" name="2" value="2representative" {% if form.2 and "2representative" in form.2.value %}checked{% endif %}>
                 <label for="id_2_g">Looked for information about my representative</label>
             </div>
             <div class="radio radio-optional theyworkforyou whatdotheyknow">
-                <input type="checkbox" id="id_2_h" name="2" value="h" {% if form.2 and "h" in form.2.value %}checked{% endif %}>
+                <input type="checkbox" id="id_2_h" name="2" value="2topic" {% if form.2 and "2topic" in form.2.value %}checked{% endif %}>
                 <label for="id_2_h">Looked for information about a specific topic</label>
             </div>
             <div class="radio radio-optional whatdotheyknow">
-                <input type="checkbox" id="id_2_i" name="2" value="i" {% if form.2 and "i" in form.2.value %}checked{% endif %}>
+                <input type="checkbox" id="id_2_i" name="2" value="2authority" {% if form.2 and "2authority" in form.2.value %}checked{% endif %}>
                 <label for="id_2_i">Looked for information about a public authority</label>
             </div>
             <div class="radio radio-optional fixmystreet fixmystransport">
-                <input type="checkbox" id="id_2_j" name="2" value="j" {% if form.2 and "j" in form.2.value %}checked{% endif %}>
+                <input type="checkbox" id="id_2_j" name="2" value="2problem_others" {% if form.2 and "2problem_others" in form.2.value %}checked{% endif %}>
                 <label for="id_2_j">Browsed to find out about problems reported by others</label>
             </div>
             <div class="radio radio-optional whatdotheyknow">
-                <input type="checkbox" id="id_2_k" name="2" value="k" {% if form.2 and "k" in form.2.value %}checked{% endif %}>
+                <input type="checkbox" id="id_2_k" name="2" value="2info_others" {% if form.2 and "2info_others" in form.2.value %}checked{% endif %}>
                 <label for="id_2_k">Browsed to find out about information requested by others</label>
             </div>
             <div class="radio">
-                <input type="checkbox" id="id_2_l" name="2" value="l" {% if form.2 and "l" in form.2.value %}checked{% endif %}>
+                <input type="checkbox" id="id_2_l" name="2" value="2other_uses" {% if form.2 and "2other_uses" in form.2.value %}checked{% endif %}>
                 <label for="id_2_l">Other uses</label>
             </div>
             <div class="radio">
-                <input class="exclusive" type="checkbox" id="id_2_m" name="2" value="m" {% if form.2 and "m" in form.2.value %}checked{% endif %}>
+                <input class="exclusive" type="checkbox" id="id_2_m" name="2" value="2dontknow" {% if form.2 and "2dontknow" in form.2.value %}checked{% endif %}>
                 <label for="id_2_m">Don’t know/Can’t remember</label>
             </div>
         </div>
@@ -475,7 +475,7 @@
 
     <h1>14</h1><div class="screen">
         <div class="question">
-             Not including the times you have contacted public officials and politicians, have you ever used social networking sites (e.g. Facebook, Twitter), blogs or the email to share your own comments or promote content produced by others…
+          Excluding any of the times you have contacted public officials and politicians, have you ever used social networking sites (e.g. Facebook, Twitter), blogs or the email to share your own comments or promote content produced by others...
         </div>
 
         <div class="answers">
@@ -893,16 +893,22 @@
         </div>
 
         <div class="answers">
-            <input type="number" name="21" maxlength="2" value="{{ form.age.value }}">
+            <input type="number" name="25" maxlength="2" value="{{ form.age.value }}">
         </div>
 
         <div class="radio">
-            <input class="exclusive" type="checkbox" id="a21" name="21" value="" {% if form.21 and form.21.value == ' ' %}checked{% endif %}><label for="a21">don't want to answer </label>
+            <input class="exclusive" type="checkbox" id="a25" name="25" value="" {% if form.25 and form.25.value == ' ' %}checked{% endif %}><label for="a25">don't want to answer </label>
         </div>
     </div>
 
     <h1>27</h1><div class="screen">
-        <p>Thank you very much for completing this survey! Your answers are very valuable to our research.</p> 
+        <p>
+        Thank you very much for completing this survey! Your answers are very valuable to our research. The research team will report the key findings from the study in a report for mySociety which we can make available to participants if you would like to receive a copy? Please check the box if you would like to be contacted when the report is publicly available.
+        </p>
+
+        <div class="radio">
+            <input type="checkbox" id="26" name="26" value="report" {% if form.26 and "report" in form.26.value %}checked{% endif %}><label for="a26">I would like to be notified when the report is available.</label>
+        </div>
 
         {% csrf_token %}
         <p>

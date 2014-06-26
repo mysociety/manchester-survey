@@ -64,6 +64,7 @@ class Survey2Form(forms.Form):
         super(Survey2Form, self).__init__(fields, *args, **kwargs)
         a_to_z = zip(list(string.ascii_lowercase), list(string.ascii_lowercase))
         field_list_1 = [ (field, field) for field in ( '1writetothem', '1theyworkforyou', '1fixmytransport', '1fixmystreet', '1whatdotheyknow', "1dontknow", "")]
+        field_list_2 = [ (field, field) for field in ('2browsing', '2street', '2transport', '2foi', '2message', '2alerts', '2representative', '2topic', '2authority','2problem_others', '2info_others', '2other_uses', '2dontknow')]
         field_list_15 = [ (field, field) for field in ( '15browsed', '15registered', '15joined', '15attended', '15promote', '15other', "15don't know", "")]
         field_list_16 = [ (field, field) for field in ('16browsed', '16registered', '16joined', '16attended', '16promote', '16other', "16 don't know", "") ]
         field_list_17 = [ (field, field) for field in (
@@ -84,6 +85,7 @@ class Survey2Form(forms.Form):
                 self.fields[i] = forms.CharField(required=False)
 
         self.fields['1'] = forms.MultipleChoiceField(choices=field_list_1, required=False)
+        self.fields['2'] = forms.MultipleChoiceField(choices=field_list_2, required=False)
         self.fields['15'] = forms.MultipleChoiceField(choices=field_list_15, required=False)
         self.fields['16'] = forms.MultipleChoiceField(choices=field_list_16, required=False)
         self.fields['17'] = forms.MultipleChoiceField(choices=field_list_17, required=False)
