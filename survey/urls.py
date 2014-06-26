@@ -11,4 +11,5 @@ urlpatterns = patterns('',
     url(r'^record$', 'survey.views.record', name='record'),
     url(r'^record2$', 'survey.views.record2', name='record2'),
     url(r'^export$', 'survey.views.export', name='export'),
+    url(r'^export2$', 'survey.views.export2', name='export2'),
 )

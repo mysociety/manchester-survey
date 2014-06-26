@@ -203,3 +203,63 @@ def export(request):
         writer.writerow(all_values)
 
     return response
+
+
+@permission_required('survey.can_export')
+def export2(request):
+    # Create the HttpResponse object with the appropriate CSV header.
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="survey.csv"'
+
+    writer = UnicodeWriter(response)
+
+    """
+    these are field where the values are stored as a comma seperated list and we want
+    to export on column per value with a 1 for selected and a 0 for not. hence we combine
+    the list in the field of selected values with the list in all_fields
+    """
+    checkboxes = ['1', '2', '15', '16', '17', '22']
+
+    """
+    because most of the fields are optional and we need to produce a consistent list for each
+    row we need to have a list of all fields for output
+    """
+    all_fields = [
+        'id', 'recorded', '1writetothem', '1fixmystreet', '1whatdotheyknow', '1theyworkforyou', '1dontknow',
+        '2browsing', '2street', '2transport', '2foi', '2message', '2alerts', '2representative', '2topic', '2authority',
+        '2problem_others', '2info_others', '2other_uses', '2dontknow', '3', '4', '5', '6', '7', '8government',
+        '8council', '8', '9', '10petition', '10march', '10refused', '10bought', '10',
+        '11community', '11country', '11', '12community', '12country', '12', '13community', '13country', '13', '14',
+        '15browsed', '15registered', '15joined', '15attended', '15promote', '15other', "15 don't know", '15how',
+        '16browsed', '16registered', '16joined', '16attended', '16promote', '16other', "16 don't know", '16how',
+        'party_information', 'party_joined', 'party_attended', 'party_voluntary', 'union_information', 'union_joined',
+        'union_attended', 'union_voluntary', 'local_information', 'local_joined', 'local_attended', 'local_voluntary',
+        'ngo_information', 'ngo_joined', 'ngo_attended', 'ngo_voluntary', 'religious_information', 'religious_joined',
+        'religious_attended', 'religious_voluntary', 'hobby_information', 'hobby_joined', 'hobby_attended', 'hobby_voluntary',
+        'health_information', 'health_joined', 'health_attended', 'health_voluntary', 'other_information', 'other_joined',
+        'other_attended', 'other_voluntary', '17none', '18', '19', '20', '21',
+        'blog', 'purchase', 'logged on', 'commented', 'multimedia', 'emailed', 'blog comment', '22 none',
+        '23', '24', '25', '26'
+    ]
+
+    writer.writerow(all_fields)
+
+    users = User.objects.all()
+    for user in users:
+        items = Item.objects.filter(user_id=user.id,batch=2)
+        values = defaultdict(str)
+        for item in items:
+            if item.key in checkboxes:
+                answers = item.value.split(',')
+                for answer in answers:
+                    values[answer] = 1
+            else:
+                values[item.key] = item.value
+
+        if values['recorded']:
+            values['id'] = user.id
+
+            all_values = [ values[field] for field in all_fields ]
+            writer.writerow(all_values)
+
+    return response
