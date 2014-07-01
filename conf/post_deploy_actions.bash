@@ -30,4 +30,3 @@ compass compile web
 
 # gather all the static files in one place
 ./manage.py collectstatic --noinput
-
