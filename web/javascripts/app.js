@@ -51,11 +51,29 @@
         }
     }
 
+    function toggle_multi_optional() {
+        el = $(this);
+        id_str = '#' + el.attr('opt');
+        var parent = el.closest('div.answers');
+        if ( parent.find('.multi-optional:checked').length > 0 ) {
+            $(id_str).show();
+        } else {
+            $(id_str).hide();
+        }
+    }
+
     $('.optional').each( function(idx, el) {
         the_el = $(el);
         the_el.on('click', toggle_optional);
     });
 
+    $('.multi-optional').each( function(idx, el) {
+        the_el = $(el);
+        the_el.on('click', toggle_multi_optional);
+    });
+
+    $('#screen3-2').hide();
+    $('#screen3-3').hide();
     $('#screen15-2').hide();
     $('#screen16-2').hide();
     $('#submit_button').hide();
