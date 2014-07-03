@@ -74,7 +74,7 @@ class Survey2Form(forms.Form):
             'hobby_voluntary', 'health_information', 'health_joined', 'health_attended', 'health_voluntary', 'other_information', 'other_joined', 'other_attended',
             'other_voluntary', ''
         )]
-        field_list_22 = [ ( field, field) for field in ('blog', 'purchase', 'logged on', 'commented', 'multimedia', 'emailed', 'blog comment', '28 none', '')]
+        field_list_22 = [ ( field, field) for field in ('blog', 'purchase', 'logged on', 'commented', 'multimedia', 'emailed', 'blog comment', '22 none', '')]
         for i in fields:
             if i == 'csrfmiddlewaretoken':
                 continue
