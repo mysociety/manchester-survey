@@ -227,7 +227,7 @@ def export2(request):
     all_fields = [
         'id', 'recorded', '1writetothem', '1fixmystreet', '1whatdotheyknow', '1theyworkforyou', '1dontknow',
         '2browsing', '2street', '2transport', '2foi', '2message', '2alerts', '2representative', '2topic', '2authority',
-        '2problem_others', '2info_others', '2other_uses', '2dontknow', '3', '4', '5', '6', '7', '8government',
+        '2problem_others', '2info_others', '2other_uses', '2dontknow', '2response', '2resolve', '3', '4', '5', '6', '7', '8government',
         '8council', '8', '9', '10petition', '10march', '10refused', '10bought', '10',
         '11community', '11country', '11', '12community', '12country', '12', '13community', '13country', '13', '14',
         '15browsed', '15registered', '15joined', '15attended', '15promote', '15other', "15 don't know", '15how',
