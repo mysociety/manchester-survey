@@ -22,12 +22,11 @@ find . -name '*.pyc' -delete
 ./manage.py migrate
 
 # Install gems in order to compile the CSS
-export GEM_HOME="../gems"
-mkdir -p "$GEM_HOME"
+mkdir -p ../gems
+export GEM_HOME="$(cd ../gems && pwd -P)"
 export PATH="$GEM_HOME/bin:$PATH"
 gem install --conservative --no-ri --no-rdoc compass zurb-foundation
 compass compile web
 
 # gather all the static files in one place
 ./manage.py collectstatic --noinput
-
