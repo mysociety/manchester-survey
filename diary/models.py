@@ -1,4 +1,4 @@
-import random, sys
+import random, sys, codecs
 from datetime import date, timedelta
 from django.db import models
 from django.utils import timezone
@@ -144,7 +144,7 @@ class ExportManager(models.Manager):
                 if current_file:
                     current_file.close()
                 file_name = '%s.txt' % entry.user_id
-                current_file = open( file_name, 'w' )
+                current_file = codecs.open( file_name, 'w', 'utf-8' )
                 current_file.write( 'user %s' % entry.user_id )
                 current_user = entry.user_id
 
