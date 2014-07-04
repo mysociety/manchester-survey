@@ -682,3 +682,7 @@ ul[role="menu"] {
         }
     }
 }
+
+.img-row > * { vertical-align: middle }
+.screen .radio .img-row input { display: inline; float: none; }
+.img-row img { margin: 0.25em 1em; }

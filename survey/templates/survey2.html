@@ -70,28 +70,35 @@
 
         <div class="answers">
             <div class="radio">
+                <label class="img-row">
                 <input type="checkbox" id="id_1_a" name="1" value="1writetothem" {% if form.1 and "1writetothem" in form.1.value %}checked{% endif %}>
-                <label for="id_1_a">WriteToThem</label>
+                <img src="{% static "img/wtt.png" %}">WriteToThem
+                </label>
             </div>
             <div class="radio">
+                <label class="img-row">
                 <input type="checkbox" id="id_1_b" name="1" value="1fixmytransport" {% if form.1 and "1fixmytransport" in form.1.value %}checked{% endif %}>
-                <label for="id_1_b">FixMyTransport</label>
+                <img src="{% static "img/fmt.png" %}">FixMyTransport</label>
             </div>
             <div class="radio">
+                <label class="img-row">
                 <input type="checkbox" id="id_1_c" name="1" value="1fixmystreet" {% if form.1 and "1fixmystreet" in form.1.value %}checked{% endif %}>
-                <label for="id_1_c">FixMyStreet</label>
+                <img src="{% static "img/fms.png" %}">FixMyStreet</label>
             </div>
             <div class="radio">
+                <label class="img-row">
                 <input type="checkbox" id="id_1_d" name="1" value="1whatdotheyknow" {% if form.1 and "1whatdotheyknow" in form.1.value %}checked{% endif %}>
-                <label for="id_1_d">WhatDoTheyKnow</label>
+                <img src="{% static "img/wdtk.png" %}">WhatDoTheyKnow</label>
             </div>
             <div class="radio">
+                <label class="img-row">
                 <input type="checkbox" id="id_1_e" name="1" value="1theyworkforyou" {% if form.1 and "1theyworkforyou" in form.1.value %}checked{% endif %}>
-                <label for="id_1_e">TheyWorkForYou</label>
+                <img src="{% static "img/twfy.png" %}">TheyWorkForYou</label>
             </div>
             <div class="radio">
-                <input class="exclusive" type="checkbox" id="id_1_f" name="1" value="1dontknow" {% if form.1 and "1dontknow" in form.1.value %}checked{% endif %}>
-                <label for="id_1_f">Don't know/Can't remember</label>
+                <label>
+                <input style="margin-right: 1em;" class="exclusive" type="checkbox" id="id_1_f" name="1" value="1dontknow" {% if form.1 and "1dontknow" in form.1.value %}checked{% endif %}>
+                Don't know/Can't remember</label>
             </div>
         </div>
     </div>
