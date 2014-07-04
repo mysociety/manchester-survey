@@ -997,7 +997,7 @@
           return $('#surveyform').valid();
         },
         onStepChanged: function(ev, current, prev) {
-          if ( $('#id_1_f').is(':checked') ) {
+          if ( $('#id_1_f').is(':checked') || $('input[name="1"]:checked').length == 0 ) {
             if ( current == 2 && prev == 1 ) {
               $('#surveyform').steps('next');
               $('#surveyform').steps('next');

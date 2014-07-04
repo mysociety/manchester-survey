@@ -51,6 +51,16 @@
         }
     }
 
+    function toggle_optional_radio() {
+        el = $(this);
+        id_str = '#' + el.attr('opt');
+        if ( el.prop('checked') && el.attr('on') ) {
+            $(id_str).show();
+        } else {
+            $(id_str).hide();
+        }
+    }
+
     function toggle_multi_optional() {
         el = $(this);
         id_str = '#' + el.attr('opt');
@@ -59,12 +69,18 @@
             $(id_str).show();
         } else {
             $(id_str).hide();
+            $('#screen3-3').hide();
         }
     }
 
     $('.optional').each( function(idx, el) {
         the_el = $(el);
         the_el.on('click', toggle_optional);
+    });
+
+    $('.optional-radio').each( function(idx, el) {
+        the_el = $(el);
+        the_el.on('click', toggle_optional_radio);
     });
 
     $('.multi-optional').each( function(idx, el) {
