@@ -974,9 +974,7 @@
     $("#surveyform").steps({
         titleTemplate: '#title#',
         onStepChanging: function(ev, current, next) {
-        console.log(current + ', ' + next);
           if ( current == 1 && next == 2 ) {
-          console.log('checking');
             $('.radio-optional').hide();
             if ( $('#id_1_a').is(':checked') ) {
               $('.writetothem').show();
