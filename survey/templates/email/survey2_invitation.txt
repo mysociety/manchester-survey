@@ -17,3 +17,6 @@ http://{{ host }}{% url 'survey:survey2' id token %}
 Thanks
 
 Contact details: http://{{ host }}{% url 'survey:contact' %}
+
+If you'd prefer we didn't contact you again please click this
+link: http://{{ host }}{% url 'diary:withdraw' id token %}
