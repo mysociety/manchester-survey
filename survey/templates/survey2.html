@@ -344,7 +344,7 @@
                         <th></th>
                         <th>Very satisfied</th>
                         <th>Fairly satisfied</th>
-                        <th>Neither/not</th>
+                        <th>Neither satisfied nor dissatisfied</th>
                         <th>Fairly dissatisfied</th>
                         <th>Very dissatisfied</th>
                     </tr>
@@ -929,7 +929,7 @@
         </div>
 
         <div class="answers">
-            <input type="number" name="24" maxlength="2" value="{{ form.age.value }}">
+            <input type="number" name="24" maxlength="2" value="{{ form.24.value }}">
         </div>
 
         <div class="radio">
@@ -943,7 +943,7 @@
         </div>
 
         <div class="answers">
-            <input type="number" name="25" maxlength="2" value="{{ form.age.value }}">
+            <input type="number" name="25" maxlength="2" value="{{ form.25.value }}">
         </div>
 
         <div class="radio">
@@ -1022,6 +1022,16 @@
             current: '&gt;'
         }
     }).validate({
+        rules: {
+            24: {
+                min: 0,
+                max: 15
+            },
+            25: {
+                min: 0,
+                max: 15
+            }
+        },
         errorPlacement: function(error, element) {
             element.before( error );
         }
