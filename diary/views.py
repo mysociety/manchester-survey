@@ -199,7 +199,7 @@ def export(request, week):
 
     users = User.objects.filter(startdate__isnull=False)
     for user in users:
-        entries = Entries.objects.filter(user_id=user.id)
+        entries = Entries.objects.filter(user_id=user.id,week=week)
         values = defaultdict(str)
         for entry in entries:
             if entry.question in checkboxes:
