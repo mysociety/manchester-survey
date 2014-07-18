@@ -131,7 +131,7 @@ class ReminderManager(models.Manager):
 
 class ExportManager(models.Manager):
     def export_diary_text(self):
-        entries = Entries.objects.order_by('user_id').order_by('week__week')
+        entries = Entries.objects.order_by('user', 'week__week')
 
         current_user = 0;
         current_week = 0;
