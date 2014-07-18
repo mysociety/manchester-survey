@@ -147,6 +147,7 @@ class ExportManager(models.Manager):
                 current_file = codecs.open( file_name, 'w', 'utf-8' )
                 current_file.write( 'user %s' % entry.user_id )
                 current_user = entry.user_id
+                current_week = 0;
 
             if current_week != entry.week.week:
                 current_file.write( '\n' )
