@@ -131,9 +131,6 @@ class ReminderManager(models.Manager):
 
 class ExportManager(models.Manager):
     def export_diary_text(self):
-        text_questions = [
-            'diary_impact', 'activity_diary', 'news_diary', 'local_diary'
-        ]
         entries = Entries.objects.order_by('user_id').order_by('week__week')
 
         current_user = 0;
@@ -158,11 +155,10 @@ class ExportManager(models.Manager):
                 current_file.write( '\n' )
                 current_week = entry.week.week
 
-            if entry.question in text_questions:
-                current_file.write( entry.question )
-                current_file.write( '\n-----------------------\n' )
-                current_file.write( entry.answer )
-                current_file.write( '\n\n' )
+            current_file.write( entry.question )
+            current_file.write( '\n-----------------------\n' )
+            current_file.write( entry.answer )
+            current_file.write( '\n\n' )
 
 
 
