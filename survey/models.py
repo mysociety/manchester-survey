@@ -43,6 +43,11 @@ class InvitationManager(models.Manager):
         self.send_email('email/survey2_reminder.txt', 'mySociety Survey: follow up survey reminder', settings.FROM_EMAIL, users)
         users.update(survey2_reminder_email_sent=True)
 
+    def send_results_email(self):
+        users = User.objects.filter(withdrawn=False).filter(item__batch='2').filter(item__key='26').filter(item__value='report').exclude(results_email_sent=True).exclude(email__isnull=True)
+        self.send_email('email/results_published.txt', 'mySociety Survey: results published', settings.FROM_EMAIL, users)
+        users.update(results_email_sent=True)
+
 class Sites():
     sites = { 'twfy': 'TheyWorkForYou', 'wtt': 'WriteToThem', 'fms': 'FixMyStreet', 'wtdk': 'WhatDoTheyKnow' }
 
@@ -57,6 +62,7 @@ class User(models.Model):
     reg_email_sent = models.BooleanField(default=False)
     survey2_email_sent = models.BooleanField(default=False)
     survey2_reminder_email_sent = models.BooleanField(default=False)
+    results_email_sent = models.BooleanField(default=False)
 
     def __unicode__(self):
         return "%s - %s ( %s )" % ( self.code, self.email, self.name )
