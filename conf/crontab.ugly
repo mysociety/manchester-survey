@@ -6,7 +6,3 @@ MAILTO=cron-!!(*= $site *)!!@mysociety.org
 
 VIRTUAL_ENV="/data/vhost/!!(*= $vhost *)!!/virtualenv-manchester_survey"
 PATH=/data/vhost/!!(*= $vhost *)!!/manchester_survey/bin/:/data/vhost/!!(*= $vhost *)!!/virtualenv-manchester_survey/bin:/usr/local/bin:/usr/bin:/bin
-
-!!(* if (!$staging) { *)!!
-0 9 18 7 * !!(*= $user *)!! run-with-lockfile -n /data/vhost/!!(*= $vhost *)!!/send_second_survey_reminder.lock "/data/vhost/!!(*= $vhost *)!!/manchester-survey/bin/cronwrapper.bash send_survey2_reminder_emails" || echo "stalled?"
-!!(* } *)!!
