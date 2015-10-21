@@ -7,8 +7,9 @@ from django.contrib.auth.models import Permission
 from django.contrib.auth.models import User as DjangoUser
 from django.core.urlresolvers import reverse
 from django.test import TestCase
+from django.core import mail
 
-from survey.models import User, Item
+from survey.models import User, Item, InvitationManager
 from manchester_survey.utils import SurveyDate, int_to_base32
 
 def make_token_args(u):
@@ -266,3 +267,24 @@ class ExportMultiChoiceFieldsTest(ExportBase):
 
         row = reader.next()
         self.assertEqual(row, answer)
+
+
+class SendEmailTest(TestCase):
+    fixtures = ['mail_report_test_data.json']
+
+    def test_send_report_email(self):
+        im = InvitationManager()
+        im.send_diary_feedback_email()
+
+        #import pdb; pdb.set_trace()
+        self.assertEqual(len(mail.outbox), 1)
+
+        sent_mail = mail.outbox[0]
+
+        self.assertEqual(len(sent_mail.to), 1)
+        self.assertEqual(sent_mail.to[0], u'one@example.org')
+
+        mail.outbox = []
+        im.send_diary_feedback_email()
+
+        self.assertEqual(len(mail.outbox), 0)

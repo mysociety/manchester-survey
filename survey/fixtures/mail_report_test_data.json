@@ -1,0 +1,103 @@
+[
+{
+  "pk": 108,
+  "model": "survey.user",
+  "fields": {
+    "startdate": null,
+    "withdrawn": false,
+    "email": "one@example.org",
+    "name": null
+  }
+},
+{
+  "pk": 109,
+  "model": "survey.user",
+  "fields": {
+    "startdate": null,
+    "withdrawn": true,
+    "email": "two@example.org",
+    "name": null
+  }
+},
+{
+  "pk": 110,
+  "model": "survey.user",
+  "fields": {
+    "startdate": null,
+    "withdrawn": false,
+    "email": "three@example.org",
+    "name": null
+  }
+},
+{
+  "pk": 314,
+  "model": "survey.item",
+  "fields": {
+    "batch": "2",
+    "value": "report",
+    "user": 108,
+    "key": "26",
+    "whenstored": "2014-02-10T15:33:03.795"
+  }
+},
+{
+  "pk": 315,
+  "model": "survey.item",
+  "fields": {
+    "batch": "2",
+    "value": "report",
+    "user": 109,
+    "key": "26",
+    "whenstored": "2014-02-10T15:33:03.795"
+  }
+},
+{
+  "pk": 316,
+  "model": "survey.item",
+  "fields": {
+    "batch": "2",
+    "value": "report",
+    "user": 110,
+    "key": "26",
+    "whenstored": "2014-02-10T15:33:03.795"
+  }
+},
+{
+    "pk": 12,
+    "model": "diary.week",
+    "fields": {
+        "week":12,
+        "template": "questions_a.html"
+    }
+},
+{
+  "pk": 200,
+  "model": "diary.entries",
+  "fields": {
+    "question": "1",
+    "answer": "1",
+    "user": 108,
+    "week": "12"
+  }
+},
+{
+  "pk": 201,
+  "model": "diary.entries",
+  "fields": {
+    "question": "1",
+    "answer": "1",
+    "user": 109,
+    "week": "12"
+  }
+},
+{
+  "pk": 202,
+  "model": "diary.entries",
+  "fields": {
+    "question": "2",
+    "answer": "1",
+    "user": 108,
+    "week": "12"
+  }
+}
+]
