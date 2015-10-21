@@ -50,12 +50,9 @@ class InvitationManager(models.Manager):
 
     def send_diary_feedback_email(self):
         users = User.objects.filter(withdrawn=False) \
-            .filter(item__batch='2') \
-            .filter(item__key='26') \
-            .filter(item__value='report') \
+            .filter(item__batch='2',item__key='26',item__value='report',entries__week_id=12,entries__question='recorded') \
             .exclude(report_email_sent=True) \
             .exclude(email__isnull=True) \
-            .filter(entries__week_id=12) \
             .distinct('email')
         self.send_email('email/diary_feedback.txt', 'mySociety Survey: asking for diary feedback', settings.FROM_EMAIL, users)
         users.update(report_email_sent=True)

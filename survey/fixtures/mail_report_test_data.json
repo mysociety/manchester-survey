@@ -30,6 +30,16 @@
   }
 },
 {
+  "pk": 111,
+  "model": "survey.user",
+  "fields": {
+    "startdate": null,
+    "withdrawn": false,
+    "email": "four@example.org",
+    "name": null
+  }
+},
+{
   "pk": 314,
   "model": "survey.item",
   "fields": {
@@ -74,7 +84,7 @@
   "pk": 200,
   "model": "diary.entries",
   "fields": {
-    "question": "1",
+    "question": "recorded",
     "answer": "1",
     "user": 108,
     "week": "12"
@@ -97,6 +107,16 @@
     "question": "2",
     "answer": "1",
     "user": 108,
+    "week": "12"
+  }
+},
+{
+  "pk": 203,
+  "model": "diary.entries",
+  "fields": {
+    "question": "2",
+    "answer": "1",
+    "user": 111,
     "week": "12"
   }
 }
