@@ -350,11 +350,11 @@ class FirstReminderTest(TestCase):
         self.assertEqual(mail.outbox[0].to, ['test@example.org'])
 
     def test_reminder_not_sent_to_finished_users(self):
-        startdate = '2013-10-31'
+        startdate = '2013-11-07'
         u = User(email='test@example.org', startdate=startdate)
         u.save()
 
-        startdate = '2013-10-24'
+        startdate = '2013-10-31'
         u = User(withdrawn=True,email='test2@example.org', startdate=startdate)
         u.save()
 
@@ -363,7 +363,7 @@ class FirstReminderTest(TestCase):
         self.assertEqual(mail.outbox[0].to, ['test@example.org'])
 
     def test_reminder_not_sent_to_not_started_users(self):
-        startdate = '2013-10-31'
+        startdate = '2013-11-07'
         u = User(email='test@example.org', startdate=startdate)
         u.save()
 
