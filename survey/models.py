@@ -44,7 +44,7 @@ class InvitationManager(models.Manager):
         users.update(survey2_reminder_email_sent=True)
 
     def send_results_email(self):
-        users = User.objects.filter(withdrawn=False).filter(item__batch='2').filter(item__key='26').filter(item__value='report').exclude(results_email_sent=True).exclude(email__isnull=True)
+        users = User.objects.filter(withdrawn=False).filter(item__batch='2').filter(item__key='26').filter(item__value='report').exclude(results_email_sent=True).exclude(email__isnull=True).distinct('email')
         self.send_email('email/results_published.txt', 'mySociety Survey: results published', settings.FROM_EMAIL, users)
         users.update(results_email_sent=True)
 
